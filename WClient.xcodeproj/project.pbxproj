@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0490D317D4DE0D005D57CE /* SYBWeiboEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0490D217D4DE0D005D57CE /* SYBWeiboEngine.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
 		CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */; };
 		CF1E00E517C7B7AA00E3FF7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E417C7B7AA00E3FF7F /* CoreGraphics.framework */; };
@@ -18,9 +19,13 @@
 		CF1E00F717C7B7AA00E3FF7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1E00F617C7B7AA00E3FF7F /* Default-568h@2x.png */; };
 		CF1E00FA17C7B7AA00E3FF7F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */; };
 		CF1E00FD17C7B7AB00E3FF7F /* SYBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E00FC17C7B7AB00E3FF7F /* SYBViewController.m */; };
+		CF1E010417C7C05300E3FF7F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E010317C7C05300E3FF7F /* Security.framework */; };
+		CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB0864417E73E16003F5F03 /* SYBWeiBo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF0490D117D4DE0D005D57CE /* SYBWeiboEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboEngine.h; sourceTree = "<group>"; };
+		CF0490D217D4DE0D005D57CE /* SYBWeiboEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboEngine.m; sourceTree = "<group>"; };
 		CF1E00DD17C7B7AA00E3FF7F /* WClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +42,11 @@
 		CF1E00F917C7B7AA00E3FF7F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CF1E00FB17C7B7AA00E3FF7F /* SYBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYBViewController.h; sourceTree = "<group>"; };
 		CF1E00FC17C7B7AB00E3FF7F /* SYBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYBViewController.m; sourceTree = "<group>"; };
+		CF1E010317C7C05300E3FF7F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CF1E010B17C8683200E3FF7F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboConstantDefine.h; sourceTree = "<group>"; };
+		CFB0864317E73E16003F5F03 /* SYBWeiBo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBo.h; sourceTree = "<group>"; };
+		CFB0864417E73E16003F5F03 /* SYBWeiBo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF1E010417C7C05300E3FF7F /* Security.framework in Frameworks */,
 				CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */,
 				CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */,
 				CF1E00E517C7B7AA00E3FF7F /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +67,8 @@
 		CF1E00D417C7B7AA00E3FF7F = {
 			isa = PBXGroup;
 			children = (
+				CF1E010B17C8683200E3FF7F /* SenTestingKit.framework */,
+				CF1E010317C7C05300E3FF7F /* Security.framework */,
 				CF1E00E617C7B7AA00E3FF7F /* WClient */,
 				CF1E00DF17C7B7AA00E3FF7F /* Frameworks */,
 				CF1E00DE17C7B7AA00E3FF7F /* Products */,
@@ -88,7 +101,12 @@
 				CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */,
 				CF1E00FB17C7B7AA00E3FF7F /* SYBViewController.h */,
 				CF1E00FC17C7B7AB00E3FF7F /* SYBViewController.m */,
+				CFB0864317E73E16003F5F03 /* SYBWeiBo.h */,
+				CFB0864417E73E16003F5F03 /* SYBWeiBo.m */,
+				CF0490D117D4DE0D005D57CE /* SYBWeiboEngine.h */,
+				CF0490D217D4DE0D005D57CE /* SYBWeiboEngine.m */,
 				CF1E00E717C7B7AA00E3FF7F /* Supporting Files */,
+				CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */,
 			);
 			path = WClient;
 			sourceTree = "<group>";
@@ -177,6 +195,8 @@
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
 				CF1E00F117C7B7AA00E3FF7F /* SYBAppDelegate.m in Sources */,
 				CF1E00FD17C7B7AB00E3FF7F /* SYBViewController.m in Sources */,
+				CF0490D317D4DE0D005D57CE /* SYBWeiboEngine.m in Sources */,
+				CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +281,10 @@
 		CF1E010117C7B7AB00E3FF7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WClient/WClient-Prefix.pch";
 				INFOPLIST_FILE = "WClient/WClient-Info.plist";
@@ -272,6 +296,10 @@
 		CF1E010217C7B7AB00E3FF7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WClient/WClient-Prefix.pch";
 				INFOPLIST_FILE = "WClient/WClient-Info.plist";
@@ -299,6 +327,7 @@
 				CF1E010217C7B7AB00E3FF7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

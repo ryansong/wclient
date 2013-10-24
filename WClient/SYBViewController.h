@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYBWeiboEngine.h"
 
-@interface SYBViewController : UIViewController
+
+@interface SYBViewController : UIViewController <UIWebViewDelegate>
+
+@property(nonatomic,retain)UIWebView *webView;
+
+@property(nonatomic,retain)NSMutableData *receivedData;
+
+@property(nonatomic)NSHTTPURLResponse *response;
 
 @end
