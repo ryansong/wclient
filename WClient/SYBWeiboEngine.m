@@ -74,8 +74,7 @@ static NSString *ResponseURL;
         
         
     }
-    
-                          return authorizeCode;
+    return authorizeCode;
 
 }
 
@@ -83,8 +82,6 @@ static NSString *ResponseURL;
 
 +(NSString *)getAccessCodeFromServer
 {
-    
-    
     return accessCode;
 }
 

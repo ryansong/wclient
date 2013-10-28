@@ -10,10 +10,6 @@
 
 @interface SYBWeiboEngine:NSObject
 
-
 +(NSString *) getAuthorizeCodeFromServer:(UIWebView *) view;
 +(NSString *) getAccessCodeFromServer;
-
-
-
 @end

@@ -1,15 +1,13 @@
 //
-//  SYBWeiBo.h
+//  SYBWeiboUser.h
 //  WClient
 //
-//  Created by Song Xiaoming on 13-9-16.
+//  Created by Song Xiaoming on 13-10-24.
 //  Copyright (c) 2013年 Song Xiaoming. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface SYBWeiBo : NSObject
-
-@property NSString *created_at;
+@interface SYBWeiboUser : NSObject
 
 @end
