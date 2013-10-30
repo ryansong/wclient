@@ -22,11 +22,12 @@
         [SYBWeiboAPIClient sharedClient].token = token;
     }
     
-    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:1l max_id:2l count:3 base_app:0 feature:0 trim_user:0 success:^(NSArray *reslut) {
-        NSLog(@"success");
-    } failure:^(PBXError error) {
-        NSLog(@"failed");
-    }];
+    //test get friendsWeibo
+//    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0 success:^(NSArray *reslut) {
+//        NSLog(@"success");
+//    } failure:^(PBXError error) {
+//        NSLog(@"failed errorcode : %d",error);
+//    }];
     
     return YES;
 }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYBListViewController : UIViewController
+@interface SYBListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, weak) IBOutlet UITableView *listView;
 
 @end

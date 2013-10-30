@@ -10,6 +10,11 @@
 
 @interface SYBWeiBo : NSObject
 
-@property NSString *created_at;
+@property (nonatomic, strong) NSString *created_at;
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, assign) long weiboId;
+@property (nonatomic, assign) long mid;
+@property (nonatomic, strong) NSString *source;
+
 
 @end

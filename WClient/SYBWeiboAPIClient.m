@@ -10,11 +10,12 @@ static NSString *const KAPIRedirectUri = @"https://api.weibo.com/oauth2/default.
 static NSString *const KAPIBaseUrl = @"https://api.weibo.com";
 static NSString *const KAPIRequestAuthorize = @"/oauth2/authorize";
 static NSString *const KAPIRequestAccess_token = @"/oauth2/access_token";
-static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline";
+static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
 
 
 #import "SYBWeiboAPIClient.h"
 #import <AFNetworking.h>
+#import "SYBWeiBo.h"
 #import <SSKeychain.h>
 
 @interface SYBWeiboAPIClient ()
@@ -94,22 +95,37 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline";
     
     
     
-    [_httpClient postPath:KAPIRequestFriendsWeibo parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [_httpClient getPath:KAPIRequestFriendsWeibo parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error;
         
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
         
-        
         if (!error) {
             if (dict) {
-                if (success) {
+                NSMutableArray *result = [[NSMutableArray alloc] init];
+                NSMutableArray *statuses =  dict[@"statuses"];
+               
+                for ( NSDictionary *status in statuses ) {
+                    SYBWeiBo *weibo = [[SYBWeiBo alloc] init];
+                    weibo.created_at = status[@"created_at"];
+                    weibo.text = status[@"text"];
+                    weibo.weiboId = [status[@"id"] longLongValue];
+                    weibo.mid = [status[@"mid"] longLongValue];
+                    weibo.source = status[@"source"];
+                    
+                    [result addObject:weibo];
+                }
                 
+                if (success) {
+                    success(result);
                 }
             }
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        if (failure) {
+            failure(error.code);
+        }
     }];
     
 }
