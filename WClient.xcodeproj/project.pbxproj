@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF0490D317D4DE0D005D57CE /* SYBWeiboEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0490D217D4DE0D005D57CE /* SYBWeiboEngine.m */; };
+		CF06B2931823E9F100D23AEA /* SYBListWeiBoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBListWeiBoCellView.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
 		CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */; };
 		CF1E00E517C7B7AA00E3FF7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E417C7B7AA00E3FF7F /* CoreGraphics.framework */; };
@@ -34,6 +35,8 @@
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF0490D117D4DE0D005D57CE /* SYBWeiboEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboEngine.h; sourceTree = "<group>"; };
 		CF0490D217D4DE0D005D57CE /* SYBWeiboEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboEngine.m; sourceTree = "<group>"; };
+		CF06B2911823E9F100D23AEA /* SYBListWeiBoCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBListWeiBoCellView.h; sourceTree = "<group>"; };
+		CF06B2921823E9F100D23AEA /* SYBListWeiBoCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBListWeiBoCellView.m; sourceTree = "<group>"; };
 		CF1E00DD17C7B7AA00E3FF7F /* WClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF06B2901823E88400D23AEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF06B2911823E9F100D23AEA /* SYBListWeiBoCellView.h */,
+				CF06B2921823E9F100D23AEA /* SYBListWeiBoCellView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		CF1E00D417C7B7AA00E3FF7F = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CFB4ED36181AAFA6004E5846 /* WClient.entitlements */,
+				CF06B2901823E88400D23AEA /* View */,
 				CFB4ED2F181926CF004E5846 /* Model */,
 				CFB4ED2A181925E6004E5846 /* API */,
 				CF1E00EF17C7B7AA00E3FF7F /* SYBAppDelegate.h */,
@@ -286,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF06B2931823E9F100D23AEA /* SYBListWeiBoCellView.m in Sources */,
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
 				CF1E00F117C7B7AA00E3FF7F /* SYBAppDelegate.m in Sources */,
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,

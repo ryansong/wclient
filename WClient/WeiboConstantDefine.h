@@ -19,5 +19,6 @@
 #define response_type @"code"
 #define forcelogin @"true"
 
+#define textViewFont @"[UIFont fontWithName:@"Helvetica Neue" size:14.0]"
 
 #endif

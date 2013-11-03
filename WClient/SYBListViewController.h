@@ -10,5 +10,6 @@
 
 @interface SYBListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *listView;
+@property (weak, nonatomic) IBOutlet UITextView *rePoText;
 
 @end

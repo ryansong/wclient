@@ -9,6 +9,7 @@
 #import "SYBListViewController.h"
 #import "SYBWeiboAPIClient.h"
 #import "SYBWeiBo.h"
+#import "SYBListWeiBoCellView.h"
 
 @interface SYBListViewController ()
 @property (strong, nonatomic) NSArray *items;
@@ -55,10 +56,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"weiboCell"];
-    NSLog(@"%d",indexPath.row);
+    SYBListWeiBoCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"weiboCell"];
     SYBWeiBo *weibo = [_items objectAtIndex:indexPath.row];
-    cell.textLabel.text = weibo.text;
+    NSString *po = weibo.text;
+    cell.rePoText.text = po;
+    [cell.rePoText setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
+    [cell.rePoText setScrollEnabled:NO];
+
     return cell;
 }
 
@@ -74,4 +78,14 @@ success:^(NSArray *result) {
 }];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SYBWeiBo *weibo = [_items objectAtIndex:indexPath.row];
+    NSString *str = weibo.text;
+    CGSize size = [str sizeWithFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0] constrainedToSize:CGSizeMake(320-16, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    NSLog(@"%d and %f", str.length,size.height);
+
+    return size.height+16;
+}
 @end
