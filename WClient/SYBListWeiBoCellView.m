@@ -9,7 +9,4 @@
 #import "SYBListWeiBoCellView.h"
 
 @implementation SYBListWeiBoCellView
-
-
-
 @end

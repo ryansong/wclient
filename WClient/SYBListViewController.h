@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYBListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, weak) IBOutlet UITableView *listView;
-@property (weak, nonatomic) IBOutlet UITextView *rePoText;
+
+@interface SYBListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,UIGestureRecognizerDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *listTableView;
+
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationTitle;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 
 @end

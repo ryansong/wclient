@@ -19,6 +19,7 @@
 #define response_type @"code"
 #define forcelogin @"true"
 
-#define textViewFont @"[UIFont fontWithName:@"Helvetica Neue" size:14.0]"
+#define userImagerAeraHeight 40.0;
 
 #endif
+

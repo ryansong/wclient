@@ -84,6 +84,7 @@
                 NSString *access_token = dict[@"access_token"];
                 [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
                 [SSKeychain setPassword:access_token forService:@"WClient" account:uid];
+                [[SYBWeiboAPIClient sharedClient] setToken:access_token];
                 [self performSegueWithIdentifier:@"login" sender:self];
                 
             } failure:^(PBXError error) {
