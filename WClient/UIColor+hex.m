@@ -17,7 +17,7 @@
                              blue:(float)(hexValue & 0xFF)/255.0 alpha:alphaValue];
 }
 
-+ (UIColor *)ColorWithHex:(NSInteger)hexValue
++ (UIColor *)colorWithHex:(NSInteger)hexValue
 {
     return [UIColor colorWithHex:hexValue alpha:1.0];
 }

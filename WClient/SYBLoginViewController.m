@@ -16,6 +16,9 @@
 @end
 
 @implementation SYBLoginViewController
+{
+    NSTimer *timer;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +32,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if (!_webView) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+        [self.view addSubview: _webView];
+    }
+    _webView.hidden  = YES;
+    _loadImage.hidden = NO;
+    
+    [self start];
     
 }
 
@@ -40,35 +52,57 @@
     { //As Not Login
         [self loadLoginWebView];
     } else {
+#warning delete user key for test
 //        [SSKeychain deletePasswordForService:@"WClient" account:uid];
+        
         NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
         [[SYBWeiboAPIClient sharedClient] setToken:token];
-        
+
         if (!token)
         {//As not Login
             [self loadLoginWebView];
         }else{
-           [self performSegueWithIdentifier:@"login" sender:self];
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(goListViewController) userInfo:nil repeats:NO];
         }
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)goListViewController
 {
-    [super viewDidAppear:animated];
-    [self start];
+    [self hideWebView];
+    [self performSegueWithIdentifier:@"login" sender:self];
+}
+
+- (void)showWebView
+{
+    [self hideWebView];
+    _webView.hidden = NO;
+}
+
+- (void)hideWebView
+{
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.8];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                           forView:self.view cache:YES];
+    _loadImage.hidden = YES;
+    [UIView commitAnimations];
 }
 
 
 - (void)loadLoginWebView
 {
-    NSURLRequest *request = [[SYBWeiboAPIClient sharedClient] authorizeRequest:@"261263576" res_type:@"code" flogin:@"true"];
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    NSURLRequest *request = [[SYBWeiboAPIClient sharedClient] authorizeRequest:@"261263576" res_type:@"code" flogin:@"true" client:@"mobile"];
+    
     [_webView loadRequest:request];
-    self.view = _webView;
     _webView.delegate = self;
+    [self didLoadLoginWebView];
 }
 
+- (void)didLoadLoginWebView
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(showWebView) userInfo:nil repeats:NO];
+}
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
     NSString *tokenstring = self.webView.request.URL.absoluteString;
@@ -85,8 +119,8 @@
                 [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
                 [SSKeychain setPassword:access_token forService:@"WClient" account:uid];
                 [[SYBWeiboAPIClient sharedClient] setToken:access_token];
-                [self performSegueWithIdentifier:@"login" sender:self];
                 
+                [self performSegueWithIdentifier:@"login" sender:self];
             } failure:^(PBXError error) {
              NSLog(@"Outh access_token error : %u", error);
             }];

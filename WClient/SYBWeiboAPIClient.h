@@ -36,7 +36,8 @@ typedef void(^PBEmptyBlock)();
 
 - (NSURLRequest *)authorizeRequest:(NSString *)c_id
                           res_type:(NSString *)res_tp
-                            flogin:(NSString *)fl;
+                            flogin:(NSString *)fl
+                            client:(NSString *)client;
 ;
 
 - (void)OuthAccess_token:(NSString *)code

@@ -17,8 +17,8 @@
         // Initialization code
     }
     
-    _repoUsername = [[UILabel alloc] init];
     _repoText = [[UILabel alloc] init];
+    _repoUsername = [[UILabel alloc] init];
     _repoImageView = [[UIImageView alloc] init];
     
     [self addSubview:_repoUsername];

@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) NSString *created_at;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSAttributedString *attributedText;
 @property (nonatomic, assign) long weiboId;
 @property (nonatomic, assign) long mid;
 @property (nonatomic, strong) NSString *source;
@@ -35,6 +36,17 @@
 @property (nonatomic, assign) int mlevel;	//	暂未支持
 @property (nonatomic, strong) NSDictionary *visible;	//	微博的可见性及指定可见分组信息。该object中type取值，0：普通微博，1：私密微博，3：指定分组微博，4：密友微博；list_id为分组的组号
 @property (nonatomic, strong) NSArray *pic_urls;	//	微博配图地址。多图时返回多图链接。无配图返回“[]”
-@property (nonatomic, strong) NSArray *ad;	// array
+@property (nonatomic, strong) NSArray *ad; // array
+
+
+@property (nonatomic, strong) NSNumber *rowHeight;
+@property (nonatomic, assign) CGSize repoArea;
+
+@property (nonatomic, assign) CGSize textSize;
+@property (nonatomic, assign) CGSize poImageSize;
+@property (nonatomic, assign) CGFloat usernameWidth;
+
+@property (nonatomic, assign) BOOL hasRepo;
+@property (nonatomic, assign) BOOL hasPic;
 
 @end

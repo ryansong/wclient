@@ -13,7 +13,13 @@
 #import "SYBMenuViewController.h"
 #import "UIColor+hex.h"
 #import "SYBCellRetweetView.h"
+#import "RegexKitLite.h"
 
+#define ALABEL_EXPRESSION @"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}"
+#define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
+#define URL_EXPRESSION @"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])"
+#define AT_IN_WEIBO_EXPRESSION @"(@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30})"
+#define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
 
 @interface SYBListViewController ()
 @property (strong, nonatomic) NSArray *items;
@@ -21,6 +27,10 @@
 @end
 
 @implementation SYBListViewController
+{
+    CGFloat rowHeight;
+    CGFloat repoHeight;
+}
 
 
 static const float MAX_VIEW_SLID_POINT_X = 400.0f;
@@ -34,10 +44,30 @@ static const double SYBHOURSECONDS = 60*60;
 static const double SYBDAYSECONDS = 24*60*60;
 
 static const float CELL_CONTENT_WIDTH = 320.0f;
-static const float CELL_CONTENT_MARGIN = 8.0f;
+static const float CELL_CONTENT_MARGIN = 6.0f;
 
-static float yHight = 0;
+static const float REPO_WIDTH = 302.0f;
+static const float TEXTROWHEIGHT = 17.0f;
+static const float REPO_TEXTROWHEIGHT = 16.0f;
+
+
+static float yHeight = 0;
 static float reYHight = 0;
+
+static UIImage *defalutUserIcon;
+static UIImage *defalutImage;
+
++(void)initialize
+{
+    [super initialize];
+    
+    NSString *iconPath = [[NSBundle mainBundle] pathForResource:@"UserIcon" ofType:@"png"];
+    defalutUserIcon = [UIImage imageWithContentsOfFile:iconPath];
+    
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"noImage" ofType:@"png"];
+    defalutImage = [UIImage imageWithContentsOfFile:imagePath];
+
+}
 
 - (void)viewDidLoad
 {
@@ -45,22 +75,21 @@ static float reYHight = 0;
 	// Do any additional setup after loading the view.    
     [self getWeibo];
 
-//    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
-//                                                    initWithTarget:self
-//                                                    action:@selector(handlePan:)];
-//    panGestureRecognizer.delegate = self;
-//    [_listTableView addGestureRecognizer:panGestureRecognizer];
-//    
-//    //add shadow
-//    CALayer *layer = [_listTableView layer];
-//    [layer setShadowOffset:CGSizeMake(-10, 10)];
-//    [layer setShadowRadius:20];
-//    [layer setShadowOpacity:1];
-//    [layer setShadowColor:[UIColor blackColor].CGColor];
-//    layer.masksToBounds = NO;
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
+                                                    initWithTarget:self
+                                                    action:@selector(handlePan:)];
+    panGestureRecognizer.delegate = self;
+    [_listTableView addGestureRecognizer:panGestureRecognizer];
+    
+    //add shadow
+    CALayer *layer = [_listTableView layer];
+    [layer setShadowOffset:CGSizeMake(-10, 10)];
+    [layer setShadowRadius:20];
+    [layer setShadowOpacity:1];
+    [layer setShadowColor:[UIColor blackColor].CGColor];
+    layer.masksToBounds = NO;
     
     [_listTableView reloadData];
-    
 }
 
 - (void)loadView
@@ -90,7 +119,6 @@ static float reYHight = 0;
     if (!cell)
     {
         cell = [[SYBListWeiBoCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-
     }
     
     SYBWeiBo *status =[_items objectAtIndex:[indexPath row]];
@@ -102,17 +130,18 @@ static float reYHight = 0;
 -(void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBListWeiBoCellView *)cell
 {
     // set icon view
-    yHight = CELL_CONTENT_MARGIN;
+    yHeight = CELL_CONTENT_MARGIN;
     
     if (!cell.iconView) {
-            cell.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHight, 50, 50)];
+            cell.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHeight, 50, 50)];
     }
     [cell addSubview:cell.iconView];
+    cell.iconView.image = defalutUserIcon;
     
     CALayer *imageLayer = cell.iconView.layer;
     [imageLayer setMasksToBounds:YES];
-    [imageLayer setCornerRadius:8.0f];
-    
+    [imageLayer setCornerRadius:10.0f];
+
     __unsafe_unretained typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage *image = [weakSelf getImageWithURL:status.user.profile_image_url];
@@ -122,180 +151,200 @@ static float reYHight = 0;
     });
     
     //set username label
-    CGSize nameSize = [status.user.name sizeWithFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize nameSize = [status.user.screen_name sizeWithFont:[UIFont boldSystemFontOfSize:DEFALUTFONTSIZE] constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
 
     if (!cell.username) {
         cell.username = [[UILabel alloc] init];
     }
     
-    [cell.username setFrame: CGRectMake(CELL_CONTENT_MARGIN+60, yHight,ceilf(nameSize.width), ceilf(nameSize.height))];
+    [cell.username setFrame: CGRectMake(CELL_CONTENT_MARGIN+60, yHeight,ceilf(nameSize.width), ceilf(nameSize.height))];
     
-    [cell.username setFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE]];
-    [cell.username setText:status.user.name];
+    cell.username.font = [UIFont boldSystemFontOfSize:DEFALUTFONTSIZE];
+    [cell.username setText:status.user.screen_name];
     [cell addSubview:cell.username];
     
     //set create time
     NSString *creatDate = [self dateTimeWithCreat_dt:status.created_at];
-    CGSize cdsize = [creatDate sizeWithFont: [UIFont systemFontOfSize:DEFALUTFONTSIZE] constrainedToSize: CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    CGSize cdsize = [creatDate sizeWithFont: [UIFont systemFontOfSize:DEFALUTFONTSIZE - 2] constrainedToSize: CGSizeMake(MAXFLOAT, TEXTROWHEIGHT)];
     
     if (!cell.creatTime) {
         cell.creatTime = [[UILabel alloc] init];
     }
-    
-    [cell.creatTime setFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE]];
-    [cell.creatTime setFrame:CGRectMake(CELL_CONTENT_MARGIN+60, yHight+25,ceilf(cdsize.width), ceilf(cdsize.height))];
+    [cell.creatTime setFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 2]];
+    [cell.creatTime setFrame:CGRectMake(CELL_CONTENT_MARGIN + 60, yHeight + 50 - ceilf(cdsize.height),ceilf(cdsize.width), ceilf(cdsize.height))];
     [cell.creatTime setText:creatDate];
     [cell addSubview:cell.creatTime];
     
-    yHight += 50;
-    
+    yHeight += 50;
+    yHeight += CELL_CONTENT_MARGIN * 2;
     
     NSString *poText = status.text;
     
     if (!cell.poTextLabel) {
         cell.poTextLabel = [[UILabel alloc] init];
     }
-   
-    CGSize poTextSize = [poText sizeWithFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH - 2*CELL_CONTENT_MARGIN , MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-    CGRect poTextRect = {.origin.x = CELL_CONTENT_MARGIN, .origin.y = yHight + CELL_CONTENT_MARGIN, .size.width = ceilf(poTextSize.width), .size.height =  ceilf(poTextSize.height) };
+    CGRect poTextRect = {.origin.x = CELL_CONTENT_MARGIN, .origin.y = yHeight + CELL_CONTENT_MARGIN, .size.width = ceilf(status.textSize.width), .size.height =  ceilf(status.textSize.height) };
     
     [cell.poTextLabel setFrame:poTextRect];
     [cell.poTextLabel setNumberOfLines:0];
     [cell.poTextLabel setFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE]];
-    [cell.poTextLabel setText:poText];
-    [cell addSubview:cell.poTextLabel];
     
-    yHight += poTextSize.height;
-    yHight += CELL_CONTENT_MARGIN;
+    if (!status.attributedText) {
+        status.attributedText = [self AttributedString:poText];
+    }
+    cell.poTextLabel.attributedText = status.attributedText;
 
+    [cell addSubview:cell.poTextLabel];
+
+    yHeight += status.textSize.height;
+    yHeight += CELL_CONTENT_MARGIN * 2;
     
     // attach pic
-    if (status.pic_urls) {
+    if (status.hasPic) {
+        yHeight += CELL_CONTENT_MARGIN;
         if (!cell.poImage) {
             cell.poImage = [[UIImageView alloc] init];
+            cell.poImage.contentMode = UIViewContentModeScaleAspectFit;
         }
+#warning todo multiple images
+        cell.poImage.frame = CGRectMake(CELL_CONTENT_MARGIN, yHeight, 120, 120);
+        cell.poImage.image = defalutImage;
+        
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             UIImage *image = [weakSelf getImageWithURL: [status.pic_urls objectAtIndex:0]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self resizeView:cell.poImage size:image.size];
                 cell.poImage.image = image;
             });
         });
-        
-        cell.poImage.frame = CGRectMake(CELL_CONTENT_MARGIN, yHight, 40, 120);
         [cell addSubview:cell.poImage];
-        yHight += 120;
+        
+        yHeight += 120;
+        yHeight += CELL_CONTENT_MARGIN;
+        cell.poImage.hidden = NO;
     } else {
         cell.poImage.hidden = YES;
-
     }
-
-    reYHight = CELL_CONTENT_MARGIN;
     
+    reYHight = CELL_CONTENT_MARGIN;
     SYBWeiBo *reStatus = status.retweeted_status;
     if (reStatus) {
         if(!cell.repoArea){
             cell.repoArea = [[UIView alloc] init];
-            cell.repoArea.layer.borderWidth = 0.0f;
-            cell.repoArea.layer.backgroundColor = [[UIColor ColorWithHex:0xECF0F1] CGColor];
+//            cell.repoArea.layer.backgroundColor = [[UIColor colorWithHex:0xECF0F1] CGColor];
+
+//            CALayer *repoLayer = cell.repoArea.layer;
+//            repoLayer.shadowOffset = CGSizeMake(-5, 5);
+//            repoLayer.shadowColor = [UIColor colorWithHex:0x000000 alpha:1].CGColor;
+//            repoLayer.shadowOpacity = 1;
             
             [cell addSubview:cell.repoArea];
         }
         
-        cell.repoArea.frame = CGRectMake(CELL_CONTENT_MARGIN, yHight, CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 2, 300);
+        if (!cell.repoBar) {
+            cell.repoBar = [[UIView alloc] init];
+            cell.repoBar.backgroundColor = [UIColor colorWithHex:0xECF0F1 alpha:1.0];
+            
+            [cell addSubview:cell.repoBar];
+        }
         
         if (!cell.repoUsername) {
-            cell.repoUsername = [[UILabel alloc] init];
-            cell.repoUsername.font = [UIFont systemFontOfSize:DEFALUTFONTSIZE - 1];
+            cell.repoUsername = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, 0, 0)];
+            cell.repoUsername.font = [UIFont boldSystemFontOfSize:DEFALUTFONTSIZE - 1];
             
             [cell.repoArea addSubview:cell.repoUsername];
         }
-        cell.repoUsername.text = reStatus.user.name;
-        [self resizeView:cell.repoUsername withText:reStatus.user.name withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1]];
-        
-        [self setOriginPointAboutView:cell.repoUsername newPoint:CGPointMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN)];
+        cell.repoUsername.text = reStatus.user.screen_name;
+        if (reStatus.usernameWidth == 0) {
+           reStatus.usernameWidth = [self sizeByString:reStatus.user.screen_name UIFont:[UIFont boldSystemFontOfSize:DEFALUTFONTSIZE - 1] height:REPO_TEXTROWHEIGHT].width;
+        }
+        [self setView:cell.repoUsername withWidth:reStatus.usernameWidth withHeight:REPO_TEXTROWHEIGHT];
+
         reYHight += cell.repoUsername.frame.size.height;
+        reYHight += CELL_CONTENT_MARGIN;
         
         if (!cell.repoText) {
-            cell.repoText = [[UILabel alloc] init];
+            cell.repoText = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, reYHight, 0, 0)];
             cell.repoText.numberOfLines = 0;
             cell.repoText.font = [UIFont systemFontOfSize:DEFALUTFONTSIZE - 1];
-            
             [cell.repoArea addSubview:cell.repoText];
         }
-        cell.repoText.text = reStatus.text;
-        [self resizeView:cell.repoText withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1]];
-        [self setOriginPointAboutView:cell.repoText newPoint:CGPointMake(CELL_CONTENT_MARGIN, reYHight+CELL_CONTENT_MARGIN)];
-        reYHight += cell.repoText.frame.size.height;
+        if (!reStatus.attributedText) {
+            reStatus.attributedText = [self AttributedString:reStatus.text];
+        }
+        cell.repoText.attributedText = reStatus.attributedText;
         
-        if (reStatus.pic_urls) {
+        [self setView:cell.repoText withSize:reStatus.textSize];
+        reYHight += cell.repoText.frame.size.height;
+        reYHight += CELL_CONTENT_MARGIN * 2;
+        if (reStatus.hasPic) {
             if (!cell.repoImage) {
                 cell.repoImage = [[UIImageView alloc] init];
+                cell.repoImage.contentMode = UIViewContentModeScaleAspectFit;
                 [cell.repoArea addSubview:cell.repoImage];
             }
-             [self setOriginPointAboutView:cell.repoImage newPoint:CGPointMake(CELL_CONTENT_MARGIN, reYHight+CELL_CONTENT_MARGIN)];
+            
+            cell.repoImage.frame = CGRectMake(CELL_CONTENT_MARGIN, reYHight, 120, 120);
+            cell.repoImage.image = defalutImage;
+
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 UIImage *image = [weakSelf getImageWithURL:[reStatus.pic_urls objectAtIndex:0]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self resizeView:cell.repoImage ceilfSize:image.size];
+                    [self setImageView:cell.repoImage withSize:image.size];
                     cell.repoImage.image = image;
+                    
+#warning to do listTableView updates
+                    [_listTableView beginUpdates];
+                    [_listTableView endUpdates];
+                    
                 });
             });
-            }
+            cell.repoImage.hidden = NO;
+        } else {
+            cell.repoImage.hidden = YES;
+        }
         
+        cell.repoArea.hidden = NO;
+    } else {
+        cell.repoArea.hidden = YES;
     }
     
+    cell.repoArea.frame = CGRectMake(CELL_CONTENT_MARGIN * 2, yHeight, REPO_WIDTH, status.repoArea.height);
+    cell.repoBar.frame = CGRectMake(CELL_CONTENT_MARGIN, yHeight, CELL_CONTENT_MARGIN, status.repoArea.height);
 }
 
-- (void)setOriginPointAboutView:(UIView *)view newPoint:(CGPoint) originPoint
+-(void)setImageView:(UIImageView *)imageView withSize:(CGSize)size
 {
-    [self resizeFrameView:view originX:originPoint.x originY:originPoint.y sizeWidth:view.frame.size.width sizeHeight:view.frame.size.height];
+    [self setView:imageView withSize:size];
+}
+-(void)setView:(UIView *)view withWidth:(CGFloat)width withHeight:(CGFloat)height
+{
+    [self setView:view withSize:CGSizeMake(width, height)];
 }
 
-- (void)resizeFrameView:(UIView *)aView originX:(CGFloat)x originY:(CGFloat)y sizeWidth:(CGFloat)width sizeHeight:(CGFloat)height
+-(CGFloat)widthByString:(NSString *)text UIFont:(UIFont *)font height:(CGFloat)height
 {
-    aView.frame = CGRectMake(x, y, width, height);
+   CGSize size = [self sizeByString:text UIFont:font height:height];
+    size = [self celifSize:size];
+    return size.width;
 }
 
-
-- (void)resizeView:(UIView *)aView size:(CGSize)size
+-(CGSize)sizeByString:(NSString *)text UIFont:(UIFont *)font height:(CGFloat)height
 {
-    aView.frame = CGRectMake(aView.frame.origin.x, aView.frame.origin.y, size.width, size.height);
+    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(MAXFLOAT, height) lineBreakMode:NSLineBreakByCharWrapping];
+    return [self celifSize:size];
 }
 
-- (void)resizeView:(UILabel *)theLabel withFont:(UIFont *)font
+-(CGSize)celifSize:(CGSize)size
 {
-    if(!font){
-        font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    }
-    CGSize  constrainedSize = CGSizeMake(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 3, MAXFLOAT);
-    
-    CGSize newSize = [theLabel.text sizeWithFont:font constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByCharWrapping];
-    
-    [self resizeView:theLabel ceilfSize:newSize];
+    size.height = ceilf(size.height);
+    size.width = ceilf(size.width);
+    return size;
 }
 
-
-- (void)resizeView:(UIView *)view withText:(NSString *)text withFont:(UIFont *)font
+-(void)setView:(UIView *)view withSize:(CGSize)size
 {
-    if(!font){
-        font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    }
-    CGSize  constrainedSize = CGSizeMake(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 3, MAXFLOAT);
-        
-    CGSize newSize = [text sizeWithFont:font constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByCharWrapping];
-    
-    [self resizeView:view ceilfSize:newSize];
-    
-}
-
-- (void)resizeView:(UIView *)view withSize:(CGSize)size
-{
+    size = [self celifSize:size];
     view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, size.width, size.height);
-}
-- (void) resizeView:(UIView *)view ceilfSize:(CGSize)size
-{
-    view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, ceilf(size.width), ceilf(size.height));
 }
 
 -(NSString *)dateTimeWithCreat_dt:(NSString *)created_dt
@@ -350,46 +399,52 @@ success:^(NSArray *result) {
 {
     SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
-    //高度设置
-    CGFloat yHeight = 70.0;
-    
-    //微博的内容的高度
-    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), MAXFLOAT);
-    CGSize sizeOne = [status.text sizeWithFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    
-    yHeight += (sizeOne.height + CELL_CONTENT_MARGIN);
-    
-    //转发情况
-    SYBWeiBo  *retwitterStatus = status.retweeted_status;
-    
-    //有转发
-    if (retwitterStatus && ![retwitterStatus isEqual:[NSNull null]])
-    {
+    if (status.rowHeight) {
+        return [status.rowHeight floatValue];
+    } else {
+        rowHeight = CELL_CONTENT_MARGIN * 2 + 50;
         
-        //转发内容的文本内容
-        NSString *retwitterContentText = [NSString stringWithFormat:@"%@:%@",retwitterStatus.user.screen_name,retwitterStatus.text];
-        CGSize textSize = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), MAXFLOAT);
-        CGSize sizeTwo = [retwitterContentText sizeWithFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] constrainedToSize:textSize lineBreakMode:NSLineBreakByWordWrapping];
+        status.textSize = [self getSizeOfString:status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] withWidth:(CELL_CONTENT_WIDTH)];
         
-        yHeight += (sizeTwo.height + CELL_CONTENT_MARGIN);
-        
-        //那么图像就在转发部分进行显示
-        if (status.retweeted_status.pic_urls) //转发的微博有图像
-        {
-            yHeight += (120 + CELL_CONTENT_MARGIN);
+        rowHeight += ceilf(status.textSize.height);
+        rowHeight += CELL_CONTENT_MARGIN * 2 ;
+
+        // height of image
+        if (status.hasPic) {
+            rowHeight += CELL_CONTENT_MARGIN * 2 ;
+            status.poImageSize = CGSizeMake(120, 120);
+            rowHeight += 120;
         }
-    }
-    //无转发
-    else
-    {
-        //微博有图像
-        if (status.pic_urls) {
+        
+        //height of repo
+        repoHeight =  rowHeight;
+        if (status.hasRepo) {
+            rowHeight += CELL_CONTENT_MARGIN * 2 ;
+            SYBWeiBo *reStatus = status.retweeted_status;
+            rowHeight += 16;
             
-            yHeight += (120+ CELL_CONTENT_MARGIN);
+            reStatus.textSize = [self getSizeOfString:reStatus.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1] withWidth:(CELL_CONTENT_WIDTH - 2 * CELL_CONTENT_MARGIN)];
+            
+            rowHeight += ceilf(reStatus.textSize.height);
+            
+            if (reStatus.hasPic) {
+                rowHeight += CELL_CONTENT_MARGIN * 2 ;
+                reStatus.poImageSize = CGSizeMake(120, 120);
+                rowHeight += 120;
+            }
         }
+        rowHeight += CELL_CONTENT_MARGIN * 2;
+        repoHeight = rowHeight - repoHeight;
+        status.repoArea = CGSizeMake(0, repoHeight);
+        status.rowHeight = [[NSNumber alloc] initWithFloat:rowHeight];
+        return rowHeight;
     }
-    yHeight += 20;
-    return yHeight;
+
+}
+
+- (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
+{
+   return  [aString sizeWithFont:font constrainedToSize:CGSizeMake(theWidth, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer
@@ -398,7 +453,7 @@ success:^(NSArray *result) {
     float x = orignCenterPoint.x;
     
     CGPoint transformPoint = [recognizer translationInView:_listTableView];
-    x = orignCenterPoint.x +transformPoint.x;
+    x += transformPoint.x;
     
     if(x > MAX_VIEW_SLID_POINT_X) {
         x = MAX_VIEW_SLID_POINT_X;
@@ -456,4 +511,38 @@ success:^(NSArray *result) {
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
     return image;
 }
+
+-(NSMutableAttributedString *)AttributedString:(NSString *)text withFont:(UIFont *)font withColor:(UIColor *)color
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    
+    if (!color) {
+      color = [UIColor colorWithHex:0x3498DB];
+    }
+
+    NSRange userRange = {NSNotFound, NSNotFound};
+    NSInteger local = 0;
+    NSMutableString *muText = [NSMutableString stringWithString:text];
+    
+    NSString *regEx = ALABEL_EXPRESSION;
+    for(NSString *user in [muText componentsMatchedByRegex:regEx]) {
+
+        if (userRange.location != NSNotFound) {
+            [muText deleteCharactersInRange:NSMakeRange(0, userRange.location + userRange.length)];
+        }
+        
+        userRange = [muText rangeOfString:user options:NSRegularExpressionSearch];
+        [attString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(local + userRange.location, userRange.length)];
+        local += userRange.length + userRange.location;
+        
+    }
+    return attString;
+}
+
+-(NSMutableAttributedString *)AttributedString:(NSString *)text
+{
+    return [self AttributedString:text withFont:nil withColor:nil] ;
+}
+
+
 @end

@@ -22,12 +22,13 @@
 		CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DE5211849E62300FC3403 /* UIColor+hex.m */; };
 		CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DE529184A61DB00FC3403 /* SYBCellRetweetView.m */; };
 		CF3F7961182926D3008166B0 /* SYBWeiboPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F7960182926D3008166B0 /* SYBWeiboPrivacy.m */; };
-		CF3F796418292AC0008166B0 /* SYBWeiBoGEO.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796318292AC0008166B0 /* SYBWeiBoGEO.m */; };
 		CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796618292AFF008166B0 /* SYBWeiBoComment.m */; };
 		CF3F796A1829343A008166B0 /* SYBWeiBoRemind.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */; };
 		CF3F796D18293545008166B0 /* SYBWeiBoURLShort.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */; };
+		CF58BB18185A131C00CE3136 /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CF58BB17185A131C00CE3136 /* UserIcon.png */; };
+		CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CF58BB74185F3D9100CE3136 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF58BB73185F3D9100CE3136 /* libicucore.dylib */; };
 		CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */; };
-		CF6FBD941837DD6A001A35EF /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = CF6FBD931837DD6A001A35EF /* left.png */; };
 		CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB0864417E73E16003F5F03 /* SYBWeiBo.m */; };
 		CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB4ED2C1819261F004E5846 /* SYBWeiboAPIClient.m */; };
 		CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB4ED3118193180004E5846 /* SYBWeiboUser.m */; };
@@ -35,6 +36,14 @@
 		CFB4ED3E181D4CC4004E5846 /* SYBListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB4ED3D181D4CC4004E5846 /* SYBListViewController.m */; };
 		CFB4ED45181EBEF3004E5846 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB4ED44181EBEF3004E5846 /* MobileCoreServices.framework */; };
 		CFB4ED47181EBF20004E5846 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB4ED46181EBF20004E5846 /* SystemConfiguration.framework */; };
+		CFC7163B1854954C0057EEE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFC7163A1854954C0057EEE4 /* Images.xcassets */; };
+		CFC7164B1858AFBE0057EEE4 /* table_header_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716401858AFBE0057EEE4 /* table_header_bg.png */; };
+		CFC7164C1858AFBE0057EEE4 /* table_header_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716411858AFBE0057EEE4 /* table_header_bg@2x.png */; };
+		CFC7164D1858AFBE0057EEE4 /* timeline_rt_border_t.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716421858AFBE0057EEE4 /* timeline_rt_border_t.png */; };
+		CFC7164E1858AFBE0057EEE4 /* timeline_rt_border_t@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716431858AFBE0057EEE4 /* timeline_rt_border_t@2x.png */; };
+		CFC716511858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CFC716461858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg */; };
+		CFC716531858B93E0057EEE4 /* SYBWeiBoGEO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC716521858B93E0057EEE4 /* SYBWeiBoGEO.m */; };
+		CFC716571859FF2C0057EEE4 /* NoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716561859FF2C0057EEE4 /* NoImage.png */; };
 		E68FF9F458CD402F8EDAE58C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5433629D8FC348C69BD82076 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,16 +75,18 @@
 		CF3F795F182926D3008166B0 /* SYBWeiboPrivacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboPrivacy.h; sourceTree = "<group>"; };
 		CF3F7960182926D3008166B0 /* SYBWeiboPrivacy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboPrivacy.m; sourceTree = "<group>"; };
 		CF3F796218292AC0008166B0 /* SYBWeiBoGEO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBoGEO.h; sourceTree = "<group>"; };
-		CF3F796318292AC0008166B0 /* SYBWeiBoGEO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoGEO.m; sourceTree = "<group>"; };
 		CF3F796518292AFF008166B0 /* SYBWeiBoComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBoComment.h; sourceTree = "<group>"; };
 		CF3F796618292AFF008166B0 /* SYBWeiBoComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoComment.m; sourceTree = "<group>"; };
 		CF3F79681829343A008166B0 /* SYBWeiBoRemind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBoRemind.h; sourceTree = "<group>"; };
 		CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoRemind.m; sourceTree = "<group>"; };
 		CF3F796B18293545008166B0 /* SYBWeiBoURLShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBoURLShort.h; sourceTree = "<group>"; };
 		CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoURLShort.m; sourceTree = "<group>"; };
+		CF58BB17185A131C00CE3136 /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UserIcon.png; path = images/UserIcon.png; sourceTree = "<group>"; };
+		CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		CF58BB73185F3D9100CE3136 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CF6FBD8F1837DBC9001A35EF /* SYBMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBMenuViewController.h; sourceTree = "<group>"; };
 		CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBMenuViewController.m; sourceTree = "<group>"; };
-		CF6FBD931837DD6A001A35EF /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = ../../aTestApp/aTestApp/left.png; sourceTree = "<group>"; };
 		CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboConstantDefine.h; sourceTree = "<group>"; };
 		CFB0864317E73E16003F5F03 /* SYBWeiBo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBo.h; sourceTree = "<group>"; };
 		CFB0864417E73E16003F5F03 /* SYBWeiBo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBo.m; sourceTree = "<group>"; };
@@ -90,6 +101,14 @@
 		CFB4ED3D181D4CC4004E5846 /* SYBListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBListViewController.m; sourceTree = "<group>"; };
 		CFB4ED44181EBEF3004E5846 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CFB4ED46181EBF20004E5846 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CFC7163A1854954C0057EEE4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CFC716401858AFBE0057EEE4 /* table_header_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = table_header_bg.png; path = images/table_header_bg.png; sourceTree = "<group>"; };
+		CFC716411858AFBE0057EEE4 /* table_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "table_header_bg@2x.png"; path = "images/table_header_bg@2x.png"; sourceTree = "<group>"; };
+		CFC716421858AFBE0057EEE4 /* timeline_rt_border_t.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timeline_rt_border_t.png; path = images/timeline_rt_border_t.png; sourceTree = "<group>"; };
+		CFC716431858AFBE0057EEE4 /* timeline_rt_border_t@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "timeline_rt_border_t@2x.png"; path = "images/timeline_rt_border_t@2x.png"; sourceTree = "<group>"; };
+		CFC716461858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = U74P176T72D61F1409DT20121211115111.jpg; path = images/U74P176T72D61F1409DT20121211115111.jpg; sourceTree = "<group>"; };
+		CFC716521858B93E0057EEE4 /* SYBWeiBoGEO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoGEO.m; sourceTree = "<group>"; };
+		CFC716561859FF2C0057EEE4 /* NoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF58BB74185F3D9100CE3136 /* libicucore.dylib in Frameworks */,
 				CFB4ED47181EBF20004E5846 /* SystemConfiguration.framework in Frameworks */,
 				CFB4ED45181EBEF3004E5846 /* MobileCoreServices.framework in Frameworks */,
 				CF1E010417C7C05300E3FF7F /* Security.framework in Frameworks */,
@@ -144,6 +164,7 @@
 		CF1E00DF17C7B7AA00E3FF7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF58BB73185F3D9100CE3136 /* libicucore.dylib */,
 				CFB4ED46181EBF20004E5846 /* SystemConfiguration.framework */,
 				CFB4ED44181EBEF3004E5846 /* MobileCoreServices.framework */,
 				CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */,
@@ -166,6 +187,7 @@
 				CF6FBD8E18372F06001A35EF /* Controller */,
 				CF1E00E717C7B7AA00E3FF7F /* Supporting Files */,
 				CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */,
+				CFC7163A1854954C0057EEE4 /* Images.xcassets */,
 			);
 			path = WClient;
 			sourceTree = "<group>";
@@ -188,12 +210,22 @@
 		CF2DE51F1849E5CD00FC3403 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF58BB6D185F3C2B00CE3136 /* triparty */,
 				CF1E00EF17C7B7AA00E3FF7F /* SYBAppDelegate.h */,
 				CF1E00F017C7B7AA00E3FF7F /* SYBAppDelegate.m */,
 				CF2DE5201849E62300FC3403 /* UIColor+hex.h */,
 				CF2DE5211849E62300FC3403 /* UIColor+hex.m */,
 			);
 			name = classes;
+			sourceTree = "<group>";
+		};
+		CF58BB6D185F3C2B00CE3136 /* triparty */ = {
+			isa = PBXGroup;
+			children = (
+				CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */,
+				CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */,
+			);
+			name = triparty;
 			sourceTree = "<group>";
 		};
 		CF6FBD8E18372F06001A35EF /* Controller */ = {
@@ -212,7 +244,13 @@
 		CF6FBD921837DD47001A35EF /* images */ = {
 			isa = PBXGroup;
 			children = (
-				CF6FBD931837DD6A001A35EF /* left.png */,
+				CF58BB17185A131C00CE3136 /* UserIcon.png */,
+				CFC716561859FF2C0057EEE4 /* NoImage.png */,
+				CFC716401858AFBE0057EEE4 /* table_header_bg.png */,
+				CFC716411858AFBE0057EEE4 /* table_header_bg@2x.png */,
+				CFC716421858AFBE0057EEE4 /* timeline_rt_border_t.png */,
+				CFC716431858AFBE0057EEE4 /* timeline_rt_border_t@2x.png */,
+				CFC716461858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -236,7 +274,7 @@
 				CF3F795F182926D3008166B0 /* SYBWeiboPrivacy.h */,
 				CF3F7960182926D3008166B0 /* SYBWeiboPrivacy.m */,
 				CF3F796218292AC0008166B0 /* SYBWeiBoGEO.h */,
-				CF3F796318292AC0008166B0 /* SYBWeiBoGEO.m */,
+				CFC716521858B93E0057EEE4 /* SYBWeiBoGEO.m */,
 				CF3F796518292AFF008166B0 /* SYBWeiBoComment.h */,
 				CF3F796618292AFF008166B0 /* SYBWeiBoComment.m */,
 				CF3F79681829343A008166B0 /* SYBWeiBoRemind.h */,
@@ -314,11 +352,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF1E00EB17C7B7AA00E3FF7F /* InfoPlist.strings in Resources */,
+				CFC7164D1858AFBE0057EEE4 /* timeline_rt_border_t.png in Resources */,
+				CFC7163B1854954C0057EEE4 /* Images.xcassets in Resources */,
 				CF1E00F317C7B7AA00E3FF7F /* Default.png in Resources */,
-				CF6FBD941837DD6A001A35EF /* left.png in Resources */,
+				CFC7164C1858AFBE0057EEE4 /* table_header_bg@2x.png in Resources */,
 				CF1E00F517C7B7AA00E3FF7F /* Default@2x.png in Resources */,
+				CF58BB18185A131C00CE3136 /* UserIcon.png in Resources */,
 				CF1E00F717C7B7AA00E3FF7F /* Default-568h@2x.png in Resources */,
+				CFC7164E1858AFBE0057EEE4 /* timeline_rt_border_t@2x.png in Resources */,
+				CFC7164B1858AFBE0057EEE4 /* table_header_bg.png in Resources */,
 				CF1E00FA17C7B7AA00E3FF7F /* MainStoryboard.storyboard in Resources */,
+				CFC716511858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg in Resources */,
+				CFC716571859FF2C0057EEE4 /* NoImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,11 +414,12 @@
 				CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */,
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,
-				CF3F796418292AC0008166B0 /* SYBWeiBoGEO.m in Sources */,
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,
 				CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */,
+				CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */,
+				CFC716531858B93E0057EEE4 /* SYBWeiBoGEO.m in Sources */,
 				CF3F796A1829343A008166B0 /* SYBWeiBoRemind.m in Sources */,
 				CF3F7961182926D3008166B0 /* SYBWeiboPrivacy.m in Sources */,
 				CF3F796D18293545008166B0 /* SYBWeiBoURLShort.m in Sources */,
@@ -463,6 +509,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 841B6172C6414D1DB2E56E60 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = WClient/WClient.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -481,6 +529,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 841B6172C6414D1DB2E56E60 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = WClient/WClient.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

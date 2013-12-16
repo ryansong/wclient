@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIImageView *poImage;
 
 @property (nonatomic, strong) UIView *repoArea;
+@property (nonatomic, strong) UIView *repoBar;
 @property (nonatomic, strong) UILabel *repoUsername;
 @property (nonatomic, strong) UILabel *repoText;
 @property (nonatomic, strong) UIImageView *repoImage;

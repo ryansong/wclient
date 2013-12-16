@@ -48,9 +48,13 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 -(NSURLRequest *)authorizeRequest:(NSString *)c_id
                          res_type:(NSString *)res_tp
                            flogin:(NSString *)fl
+                           client:(NSString *)client
 {
+    if (!client) {
+        client = @"default";
+    }
 
-    NSString *url =  [[NSString alloc] initWithFormat:@"%@%@?client_id=%@&redirect_uri=%@&response_type=%@&forcelogin=%@",KAPIBaseUrl,KAPIRequestAuthorize,c_id,redirect_uri,res_tp,fl];
+    NSString *url =  [[NSString alloc] initWithFormat:@"%@%@?client_id=%@&redirect_uri=%@&response_type=%@&forcelogin=%@&display=%@",KAPIBaseUrl,KAPIRequestAuthorize,c_id,redirect_uri,res_tp,fl,client];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:60.0];
@@ -288,6 +292,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     if (status[@"pic_urls"]) {
         NSArray *urlDicts = status[@"pic_urls"];
         if ([urlDicts count] > 0) {
+            weibo.hasPic = YES;
             NSMutableArray *urls = [[NSMutableArray alloc] init];
             for (NSDictionary *urlDict in urlDicts) {
                 [urls addObject:[urlDict objectForKey:@"thumbnail_pic"]];
@@ -302,6 +307,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     //                    }
     
     if (status[@"retweeted_status"]) {
+        weibo.hasRepo = YES;
         weibo.retweeted_status = [self weiBoFromDict:status[@"retweeted_status"]];
     }
     

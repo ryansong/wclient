@@ -13,5 +13,6 @@
 @property(nonatomic,retain)UIWebView *webView;
 @property(nonatomic,retain)NSMutableData *receivedData;
 @property(nonatomic)NSHTTPURLResponse *response;
+@property (weak, nonatomic) IBOutlet UIImageView *loadImage;
 
 @end
