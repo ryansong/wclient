@@ -9,7 +9,7 @@
 #import "SYBListViewController.h"
 #import "SYBWeiboAPIClient.h"
 #import "SYBWeiBo.h"
-#import "SYBListWeiBoCellView.h"
+#import "SYBWeiboCellView.h"
 #import "SYBMenuViewController.h"
 #import "UIColor+hex.h"
 #import "SYBCellRetweetView.h"
@@ -30,6 +30,8 @@
 {
     CGFloat rowHeight;
     CGFloat repoHeight;
+    
+    BOOL loading;
 }
 
 
@@ -89,6 +91,22 @@ static UIImage *defalutImage;
     [layer setShadowColor:[UIColor blackColor].CGColor];
     layer.masksToBounds = NO;
     
+    
+#pragma add headerView
+    if (_headerView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _listTableView.bounds.size.height, _listTableView.frame.size.width, _listTableView.bounds.size.height)];
+		view.delegate = self;
+		[_listTableView addSubview:view];
+		_headerView = view;
+
+		
+	}
+	
+	//  update the last update date
+	[_headerView refreshLastUpdatedDate];
+
+    
     [_listTableView reloadData];
 }
 
@@ -114,20 +132,28 @@ static UIImage *defalutImage;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"weiboCell";
-    SYBListWeiBoCellView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SYBWeiboCellView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (!cell)
     {
-        cell = [[SYBListWeiBoCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[SYBWeiboCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.tag = indexPath.row;
+    
     SYBWeiBo *status =[_items objectAtIndex:[indexPath row]];
-    [self configCellWithStatus:status WithCell:cell];
+    [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:indexPath];
     
     return cell;
 }
 
--(void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBListWeiBoCellView *)cell
+-(void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBWeiboCellView *)cell
+{
+    [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:nil];
+}
+
+-(void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBWeiboCellView *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
 {
     // set icon view
     yHeight = CELL_CONTENT_MARGIN;
@@ -146,7 +172,14 @@ static UIImage *defalutImage;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage *image = [weakSelf getImageWithURL:status.user.profile_image_url];
         dispatch_async(dispatch_get_main_queue(), ^{
-            cell.iconView.image = image;
+            if (!indexPath && image) {
+                return ;
+            }
+            if (cell.tag == indexPath.row) {
+                cell.iconView.image = image;
+                [cell setNeedsLayout];
+            }
+
         });
     });
     
@@ -392,7 +425,7 @@ success:^(NSArray *result) {
 } failure:^(PBXError errorCode) {
     //TODO:错误处理
     NSLog(@"login failed. error code:%d", errorCode);
-}];
+}];            
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -502,6 +535,16 @@ success:^(NSArray *result) {
         _iconDict = [[NSMutableDictionary alloc] init];
     }
     image = [self loadImage:imageURL];
+    if (image) {
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]] forKey:imageURL];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        image = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:imageURL]];
+        if (!image) {
+            return nil;
+        }
+    }
     [_iconDict setObject:image forKey:imageURL];
     return image;
 }
@@ -542,6 +585,60 @@ success:^(NSArray *result) {
 -(NSMutableAttributedString *)AttributedString:(NSString *)text
 {
     return [self AttributedString:text withFont:nil withColor:nil] ;
+}
+
+-(void) refreshList
+{
+    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
+                                                 success:^(NSArray *result) {
+                                                     _items = result;
+                                                     [_listTableView reloadData];
+                                                 } failure:^(PBXError errorCode) {
+                                                     //TODO:错误处理
+                                                     NSLog(@"login failed. error code:%d", errorCode);
+                                                 }];
+    
+}
+
+#pragma mark Data Source Loading / Reloading Methods
+- (void)reloadTableViewDataSource
+{
+ 
+    loading = YES;
+}
+
+- (void)doneLoadingTableViewData
+{
+    loading = NO;
+    [_headerView egoRefreshScrollViewDataSourceDidFinishedLoading:_listTableView];
+}
+
+#pragma mark EGORefreshTableHeaderDelegate methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
+{
+    [self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
+{
+    return loading;
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_headerView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_headerView egoRefreshScrollViewDidEndDragging:scrollView];
+	
 }
 
 

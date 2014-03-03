@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Song Xiaoming. All rights reserved.
 //
 
-#import "SYBListWeiBoCellView.h"
+#import "SYBWeiboCellView.h"
 
-@implementation SYBListWeiBoCellView
+@implementation SYBWeiboCellView
 @end

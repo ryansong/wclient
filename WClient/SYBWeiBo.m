@@ -10,4 +10,17 @@
 
 @implementation SYBWeiBo
 
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:_created_at forKey:@"created_at"];
+    
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    if (!self) {
+        self = [[SYBWeiBo alloc] init];
+    }
+    
+    return self;
+}
 @end

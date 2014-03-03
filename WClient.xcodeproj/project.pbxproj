@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF06B2931823E9F100D23AEA /* SYBListWeiBoCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBListWeiBoCellView.m */; };
+		CF06B2931823E9F100D23AEA /* SYBWeiboCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
 		CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */; };
 		CF1E00E517C7B7AA00E3FF7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E417C7B7AA00E3FF7F /* CoreGraphics.framework */; };
@@ -25,6 +25,8 @@
 		CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796618292AFF008166B0 /* SYBWeiBoComment.m */; };
 		CF3F796A1829343A008166B0 /* SYBWeiBoRemind.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */; };
 		CF3F796D18293545008166B0 /* SYBWeiBoURLShort.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */; };
+		CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CF46E9BD18C4538E00507208 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF46E9BC18C4538E00507208 /* QuartzCore.framework */; };
 		CF58BB18185A131C00CE3136 /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CF58BB17185A131C00CE3136 /* UserIcon.png */; };
 		CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF58BB74185F3D9100CE3136 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF58BB73185F3D9100CE3136 /* libicucore.dylib */; };
@@ -50,8 +52,8 @@
 /* Begin PBXFileReference section */
 		5433629D8FC348C69BD82076 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		CF06B2911823E9F100D23AEA /* SYBListWeiBoCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBListWeiBoCellView.h; sourceTree = "<group>"; };
-		CF06B2921823E9F100D23AEA /* SYBListWeiBoCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBListWeiBoCellView.m; sourceTree = "<group>"; };
+		CF06B2911823E9F100D23AEA /* SYBWeiboCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboCellView.h; sourceTree = "<group>"; };
+		CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboCellView.m; sourceTree = "<group>"; };
 		CF1E00DD17C7B7AA00E3FF7F /* WClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,6 +83,9 @@
 		CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoRemind.m; sourceTree = "<group>"; };
 		CF3F796B18293545008166B0 /* SYBWeiBoURLShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBoURLShort.h; sourceTree = "<group>"; };
 		CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoURLShort.m; sourceTree = "<group>"; };
+		CF46E9B818C44F3C00507208 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		CF46E9BC18C4538E00507208 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CF58BB17185A131C00CE3136 /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UserIcon.png; path = images/UserIcon.png; sourceTree = "<group>"; };
 		CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF46E9BD18C4538E00507208 /* QuartzCore.framework in Frameworks */,
 				CF58BB74185F3D9100CE3136 /* libicucore.dylib in Frameworks */,
 				CFB4ED47181EBF20004E5846 /* SystemConfiguration.framework in Frameworks */,
 				CFB4ED45181EBEF3004E5846 /* MobileCoreServices.framework in Frameworks */,
@@ -133,8 +139,8 @@
 		CF06B2901823E88400D23AEA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CF06B2911823E9F100D23AEA /* SYBListWeiBoCellView.h */,
-				CF06B2921823E9F100D23AEA /* SYBListWeiBoCellView.m */,
+				CF06B2911823E9F100D23AEA /* SYBWeiboCellView.h */,
+				CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */,
 				CF2DE528184A61DB00FC3403 /* SYBCellRetweetView.h */,
 				CF2DE529184A61DB00FC3403 /* SYBCellRetweetView.m */,
 			);
@@ -164,6 +170,7 @@
 		CF1E00DF17C7B7AA00E3FF7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF46E9BC18C4538E00507208 /* QuartzCore.framework */,
 				CF58BB73185F3D9100CE3136 /* libicucore.dylib */,
 				CFB4ED46181EBF20004E5846 /* SystemConfiguration.framework */,
 				CFB4ED44181EBEF3004E5846 /* MobileCoreServices.framework */,
@@ -222,6 +229,8 @@
 		CF58BB6D185F3C2B00CE3136 /* triparty */ = {
 			isa = PBXGroup;
 			children = (
+				CF46E9B818C44F3C00507208 /* EGORefreshTableHeaderView.h */,
+				CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */,
 				CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */,
 				CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */,
 			);
@@ -407,7 +416,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF06B2931823E9F100D23AEA /* SYBListWeiBoCellView.m in Sources */,
+				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
+				CF06B2931823E9F100D23AEA /* SYBWeiboCellView.m in Sources */,
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
 				CF1E00F117C7B7AA00E3FF7F /* SYBAppDelegate.m in Sources */,
 				CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */,
@@ -519,7 +529,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WClient/WClient-Prefix.pch";
 				INFOPLIST_FILE = "WClient/WClient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -539,7 +549,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WClient/WClient-Prefix.pch";
 				INFOPLIST_FILE = "WClient/WClient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -11,7 +11,7 @@
 #import "SYBWeiboPrivacy.h"
 #import "SYBWeiBoGEO.h"
 
-@interface SYBWeiBo : NSObject
+@interface SYBWeiBo : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSString *created_at;
 @property (nonatomic, strong) NSString *text;

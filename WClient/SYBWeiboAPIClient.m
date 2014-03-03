@@ -103,8 +103,13 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     [_httpClient getPath:KAPIRequestFriendsWeibo parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error;
         
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        //test data for offline
+        [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+   
+
         if (!error) {
             if (dict) {
                 NSMutableArray *result = [[NSMutableArray alloc] init];
@@ -114,17 +119,41 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
                     SYBWeiBo *weibo = [self weiBoFromDict:status];
                     [result addObject:weibo];
                 }
-                
+                //test data for offline
+                [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+
                 if (success) {
                     success(result);
                 }
             }
+        } else {
+            failure(error.code);
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {
             failure(error.code);
         }
+        //for test
+      
+        NSData *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"testData"];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        if (dict) {
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+            NSMutableArray *statuses =  dict[@"statuses"];
+            
+            for ( NSDictionary *status in statuses ) {
+                SYBWeiBo *weibo = [self weiBoFromDict:status];
+                [result addObject:weibo];
+            }
+            //test data for offline
+            [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+            
+            if (success) {
+                success(result);
+            }
+        }
+        
     }];
     
 }

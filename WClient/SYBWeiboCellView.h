@@ -11,7 +11,7 @@
 #import "SYBWeiBo.h"
 @class SYBCellRetweetView;
 
-@interface SYBListWeiBoCellView : UITableViewCell
+@interface SYBWeiboCellView : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel *username;
