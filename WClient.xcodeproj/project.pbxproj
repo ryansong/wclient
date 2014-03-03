@@ -86,6 +86,7 @@
 		CF46E9B818C44F3C00507208 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		CF46E9BC18C4538E00507208 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CF46E9C118C4782900507208 /* APPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPMacro.h; sourceTree = "<group>"; };
 		CF58BB17185A131C00CE3136 /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UserIcon.png; path = images/UserIcon.png; sourceTree = "<group>"; };
 		CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
@@ -185,15 +186,16 @@
 		CF1E00E617C7B7AA00E3FF7F /* WClient */ = {
 			isa = PBXGroup;
 			children = (
+				CF46E9BE18C477DA00507208 /* Macro */,
 				CF2DE51F1849E5CD00FC3403 /* classes */,
-				CFB4ED36181AAFA6004E5846 /* WClient.entitlements */,
 				CF06B2901823E88400D23AEA /* View */,
 				CFB4ED2F181926CF004E5846 /* Model */,
 				CFB4ED2A181925E6004E5846 /* API */,
-				CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */,
 				CF6FBD8E18372F06001A35EF /* Controller */,
 				CF1E00E717C7B7AA00E3FF7F /* Supporting Files */,
 				CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */,
+				CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */,
+				CFB4ED36181AAFA6004E5846 /* WClient.entitlements */,
 				CFC7163A1854954C0057EEE4 /* Images.xcassets */,
 			);
 			path = WClient;
@@ -224,6 +226,14 @@
 				CF2DE5211849E62300FC3403 /* UIColor+hex.m */,
 			);
 			name = classes;
+			sourceTree = "<group>";
+		};
+		CF46E9BE18C477DA00507208 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				CF46E9C118C4782900507208 /* APPMacro.h */,
+			);
+			name = Macro;
 			sourceTree = "<group>";
 		};
 		CF58BB6D185F3C2B00CE3136 /* triparty */ = {

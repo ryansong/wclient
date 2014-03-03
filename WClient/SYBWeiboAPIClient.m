@@ -17,10 +17,16 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 #import <AFNetworking.h>
 #import "SYBWeiBo.h"
 #import <SSKeychain.h>
+#import "APPMacro.h"
 
 
 @interface SYBWeiboAPIClient ()
 @property (nonatomic, strong) AFHTTPClient *httpClient;
+@property (nonatomic, strong) NSString *accessToken;
+
+@property (nonatomic, strong) NSString *client_id;
+@property (nonatomic, strong) NSString *client_secret;
+
 @end
 
 @implementation SYBWeiboAPIClient
@@ -40,6 +46,8 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 {
     self = [super init];
     if (self) {
+        _client_id = CLIENT_ID;
+        _client_secret = CLIENT_SECRET;
         _httpClient = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:KAPIBaseUrl]];
     }
     return self;
@@ -104,8 +112,10 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
         NSError *error;
         
         //test data for offline
-        [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        if (ENV == SYBRunEnviromentOffine) {
+            [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
         
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
    
@@ -134,26 +144,27 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
         if (failure) {
             failure(error.code);
         }
-        //for test
-      
-        NSData *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"testData"];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-        if (dict) {
-            NSMutableArray *result = [[NSMutableArray alloc] init];
-            NSMutableArray *statuses =  dict[@"statuses"];
+        //for offline env
+        if (ENV == SYBRunEnviromentOffine) {
             
-            for ( NSDictionary *status in statuses ) {
-                SYBWeiBo *weibo = [self weiBoFromDict:status];
-                [result addObject:weibo];
-            }
-            //test data for offline
-            [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
-            
-            if (success) {
-                success(result);
+            NSData *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"testData"];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+            if (dict) {
+                NSMutableArray *result = [[NSMutableArray alloc] init];
+                NSMutableArray *statuses =  dict[@"statuses"];
+                
+                for ( NSDictionary *status in statuses ) {
+                    SYBWeiBo *weibo = [self weiBoFromDict:status];
+                    [result addObject:weibo];
+                }
+                //test data for offline
+                [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+                
+                if (success) {
+                    success(result);
+                }
             }
         }
-        
     }];
     
 }
@@ -168,9 +179,6 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     NSString* encodeURL = [api stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *url = [NSURL URLWithString: encodeURL];
-    
-    
-    NSLog(@"encode is %@",url);
     
     //第二步，创建请求
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
@@ -189,12 +197,23 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     return YES;
 }
 
+- (void)sendWeibo:(NSString *)po
+{
+    [self sendWeibo:po images:nil];
+}
+
+- (void)sendWeibo:(NSString *)po images:(NSArray *)images
+{
+    NSString *acctoken = [SSKeychain passwordForService:@"WClient" account:@"username"];
+    NSString *api = [NSString stringWithFormat:@"https://api.weibo.com/2/statuses/update.json?access_token=%@&status=%@",acctoken,po];
+}
+
 - (void)OuthAccess_token:(NSString *)code
                  success:(PBDictionaryBlock)success
                  failure:(PBErrorBlock)failure
 {
-    [_httpClient postPath:KAPIRequestAccess_token parameters:@{@"client_id":client_id,
-                                                             @"client_secret": client_secret,
+    [_httpClient postPath:KAPIRequestAccess_token parameters:@{@"client_id":_client_id,
+                                                             @"client_secret": _client_secret,
                                                              @"grant_type":@"authorization_code",
                                                              @"code": code,
                                                              @"redirect_uri": redirect_uri,}

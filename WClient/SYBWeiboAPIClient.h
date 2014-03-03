@@ -43,4 +43,7 @@ typedef void(^PBEmptyBlock)();
 - (void)OuthAccess_token:(NSString *)code
                  success:(PBDictionaryBlock)success
                  failure:(PBErrorBlock)failure;
+
+- (void)sendWeibo:(NSString *)po;
+- (void)sendWeibo:(NSString *)po images:(NSArray *)images;
 @end

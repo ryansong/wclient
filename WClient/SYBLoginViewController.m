@@ -10,8 +10,12 @@
 #import "SYBWeiboAPIClient.h"
 #import "SSKeychain.h"
 #import "SYBWeiboAPIClient.h"
+#import "APPMacro.h"
 
 @interface SYBLoginViewController ()
+
+@property (nonatomic, strong) NSString *client_id;
+@property (nonatomic, strong) NSString *client_secret;
 
 @end
 
@@ -29,9 +33,13 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _client_id = CLIENT_ID;
+    _client_secret = CLIENT_SECRET;
 
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
@@ -92,7 +100,7 @@
 
 - (void)loadLoginWebView
 {
-    NSURLRequest *request = [[SYBWeiboAPIClient sharedClient] authorizeRequest:@"261263576" res_type:@"code" flogin:@"true" client:@"mobile"];
+    NSURLRequest *request = [[SYBWeiboAPIClient sharedClient] authorizeRequest:_client_id res_type:@"code" flogin:@"true" client:@"mobile"];
     
     [_webView loadRequest:request];
     _webView.delegate = self;

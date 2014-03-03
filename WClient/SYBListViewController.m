@@ -22,8 +22,10 @@
 #define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
 
 @interface SYBListViewController ()
-@property (strong, nonatomic) NSArray *items;
-@property (strong, nonatomic) NSMutableDictionary *iconDict;
+@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) NSMutableDictionary *iconDict;
+@property (nonatomic, strong) NSString *client_id;
+@property (nonatomic, strong) NSString *client_secret;
 @end
 
 @implementation SYBListViewController
@@ -535,8 +537,9 @@ success:^(NSArray *result) {
         _iconDict = [[NSMutableDictionary alloc] init];
     }
     image = [self loadImage:imageURL];
+
+    //buffer image
     if (image) {
-        
         [[NSUserDefaults standardUserDefaults] setObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]] forKey:imageURL];
         [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
