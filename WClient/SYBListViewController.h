@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *listTableView;
 
-@property (nonatomic,weak) IBOutlet UINavigationBar *navigationTitle;
+@property (nonatomic,weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *leftItem;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightItem;
 

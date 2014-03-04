@@ -62,7 +62,7 @@
                     <connections>
                         <outlet property="leftItem" destination="uUI-qF-ms7" id="J37-FU-iM7"/>
                         <outlet property="listTableView" destination="n0X-Zi-0bW" id="5so-DA-Qmg"/>
-                        <outlet property="navigationTitle" destination="aPs-DA-5C8" id="pXj-za-Wj4"/>
+                        <outlet property="navigationBar" destination="aPs-DA-5C8" id="WQX-XH-24x"/>
                         <outlet property="rightItem" destination="bt8-81-7Wi" id="tNj-3k-13q"/>
                     </connections>
                 </viewController>

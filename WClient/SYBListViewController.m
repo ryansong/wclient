@@ -81,9 +81,14 @@ static UIImage *defalutImage;
 
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
                                                     initWithTarget:self
-                                                    action:@selector(handlePan:)];
+                                                            action:@selector(handlePan:)];
     panGestureRecognizer.delegate = self;
     [_listTableView addGestureRecognizer:panGestureRecognizer];
+    
+    UITapGestureRecognizer *tapGesturerecognizer = [[UITapGestureRecognizer alloc]
+                                                    initWithTarget:self
+                                                            action:@selector(handleTap:)];
+    [_navigationBar addGestureRecognizer:tapGesturerecognizer];
     
     //add shadow
     CALayer *layer = [_listTableView layer];
@@ -107,7 +112,6 @@ static UIImage *defalutImage;
 	
 	//  update the last update date
 	[_headerView refreshLastUpdatedDate];
-
     
     [_listTableView reloadData];
 }
@@ -515,6 +519,11 @@ success:^(NSArray *result) {
     [recognizer setTranslation:CGPointZero inView:self.view];
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)recognizer
+{
+    [_listTableView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
+}
+
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)recognizer
 {
     if ([recognizer isMemberOfClass:[UIPanGestureRecognizer class]]) {
@@ -654,6 +663,12 @@ success:^(NSArray *result) {
 	
 	[_headerView egoRefreshScrollViewDidEndDragging:scrollView];
 	
+}
+
+#pragma mark touch events
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
 }
 
 @end

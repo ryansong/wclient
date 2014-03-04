@@ -9,4 +9,13 @@
 #import "SYBWeiboCellView.h"
 
 @implementation SYBWeiboCellView
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+      
+    }
+    return self;
+}
 @end
