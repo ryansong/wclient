@@ -112,7 +112,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
         NSError *error;
         
         //test data for offline
-        if (ENV == SYBRunEnviromentOffine) {
+        if (ENV == SYBRunEnviromentOffLine) {
             [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
@@ -145,7 +145,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
             failure(error.code);
         }
         //for offline env
-        if (ENV == SYBRunEnviromentOffine) {
+        if (ENV == SYBRunEnviromentOffLine) {
             
             NSData *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"testData"];
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];

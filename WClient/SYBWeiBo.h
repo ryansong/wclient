@@ -16,8 +16,8 @@
 @property (nonatomic, strong) NSString *created_at;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSAttributedString *attributedText;
-@property (nonatomic, assign) long weiboId;
-@property (nonatomic, assign) long mid;
+@property (nonatomic, assign) long long weiboId;
+@property (nonatomic, assign) long long mid;
 @property (nonatomic, strong) NSString *source;
 @property (nonatomic, assign) BOOL favorited;
 @property (nonatomic, assign) BOOL truncated;

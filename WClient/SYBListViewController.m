@@ -422,8 +422,10 @@ static UIImage *defalutImage;
 
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
 success:^(NSArray *result) {
+    
     _items = result;
     [_listTableView reloadData];
+    
 } failure:^(PBXError errorCode) {
     //TODO:错误处理
     NSLog(@"login failed. error code:%d", errorCode);
@@ -590,24 +592,34 @@ success:^(NSArray *result) {
     return [self AttributedString:text withFont:nil withColor:nil] ;
 }
 
--(void) refreshList
+-(void) refreshNewWeibos
 {
+    NSInteger since_id = [[NSUserDefaults standardUserDefaults] integerForKey:@"since_id"];
+    NSInteger max_id = [[NSUserDefaults standardUserDefaults] integerForKey:@"max_id"];
+    
+    __unsafe_unretained typeof(self) weakSelf = self;
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
                                                  success:^(NSArray *result) {
-                                                     _items = result;
+                                                     if (!_items) {
+                                                         _items = result;
+                                                     } else if(result) {
+                                                         _items = [result arrayByAddingObjectsFromArray: _items];
+                                                     }
                                                      [_listTableView reloadData];
+                                                     [weakSelf doneLoadingTableViewData];
                                                  } failure:^(PBXError errorCode) {
                                                      //TODO:错误处理
-                                                     NSLog(@"login failed. error code:%d", errorCode);
+                                                     NSLog(@"get weibo failed. error code:%d", errorCode);
+                                                     [weakSelf doneLoadingTableViewData];
                                                  }];
-    
 }
 
 #pragma mark Data Source Loading / Reloading Methods
 - (void)reloadTableViewDataSource
 {
- 
     loading = YES;
+    [self refreshNewWeibos];
+    
 }
 
 - (void)doneLoadingTableViewData
@@ -621,7 +633,7 @@ success:^(NSArray *result) {
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
 {
     [self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
@@ -643,6 +655,5 @@ success:^(NSArray *result) {
 	[_headerView egoRefreshScrollViewDidEndDragging:scrollView];
 	
 }
-
 
 @end
