@@ -69,8 +69,8 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     return request;
 }
 
-- (void)getAllFriendsWeibo:(long)since_id
-                    max_id:(long)max_id
+- (void)getAllFriendsWeibo:(long long)since_id
+                    max_id:(long long)max_id
                       count:(int)count
                   base_app:(int)base_app
                    feature:(int)feature

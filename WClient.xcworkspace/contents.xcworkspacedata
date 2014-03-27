@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:varifyView.xib">
+   </FileRef>
+   <FileRef
       location = "group:WClient.xcodeproj">
    </FileRef>
    <FileRef

@@ -38,14 +38,6 @@
 @property (nonatomic, strong) NSArray *pic_urls;	//	微博配图地址。多图时返回多图链接。无配图返回“[]”
 @property (nonatomic, strong) NSArray *ad; // array
 
-
-@property (nonatomic, strong) NSNumber *rowHeight;
-@property (nonatomic, assign) CGSize repoArea;
-
-@property (nonatomic, assign) CGSize textSize;
-@property (nonatomic, assign) CGSize poImageSize;
-@property (nonatomic, assign) CGFloat usernameWidth;
-
 @property (nonatomic, assign) BOOL hasRepo;
 @property (nonatomic, assign) BOOL hasPic;
 

@@ -18,4 +18,11 @@
     }
     return self;
 }
+
+- (void)prepareForReuse
+{
+    _iconView.image = nil;
+    _poImage.image = nil;
+    
+}
 @end
