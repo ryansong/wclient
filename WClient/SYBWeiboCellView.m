@@ -22,7 +22,7 @@
 - (void)prepareForReuse
 {
     _iconView.image = nil;
-    _poImage.image = nil;
+    _poImage.imageView.image = nil;
     
 }
 @end

@@ -11,9 +11,10 @@
 #import "SYBWeiBo.h"
 #import "SYBWeiboCellView.h"
 #import "SYBMenuViewController.h"
-#import "UIColor+hex.h"
 #import "SYBCellRetweetView.h"
 #import "RegexKitLite.h"
+
+#import "UIColor+hex.h"
 
 #define ALABEL_EXPRESSION @"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}"
 #define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
@@ -53,6 +54,11 @@ static const float REPO_WIDTH = 302.0f;
 static const float TEXTROWHEIGHT = 17.0f;
 static const float REPO_TEXTROWHEIGHT = 16.0f;
 
+static const float IMAGE_HEIGHT = 120.0f;
+static const float IMAGE_WIDTH = 120.0f;
+
+static const float IMAGE_BORDAE_WIDTH = 10.0f;
+
 
 static float yHeight = 0;
 static float reYHight = 0;
@@ -67,7 +73,7 @@ static UIImage *defalutImage;
     NSString *iconPath = [[NSBundle mainBundle] pathForResource:@"UserIcon" ofType:@"png"];
     defalutUserIcon = [UIImage imageWithContentsOfFile:iconPath];
     
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"noImage" ofType:@"png"];
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"NoImage" ofType:@"png"];
     defalutImage = [UIImage imageWithContentsOfFile:imagePath];
 
 }
@@ -251,25 +257,24 @@ static UIImage *defalutImage;
     if (status.hasPic) {
         yHeight += CELL_CONTENT_MARGIN;
         if (!cell.poImage) {
-            cell.poImage = [[UIImageView alloc] init];
-            cell.poImage.contentMode = UIViewContentModeScaleAspectFit;
+            cell.poImage = [[SYBWeiboImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHeight, IMAGE_WIDTH + IMAGE_BORDAE_WIDTH, IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH)];
         }
 #warning todo multiple images
-        cell.poImage.frame = CGRectMake(CELL_CONTENT_MARGIN, yHeight , 120, 120);
-        cell.poImage.image = defalutImage;
+        cell.poImage.frame = CGRectMake(CELL_CONTENT_MARGIN, yHeight , IMAGE_WIDTH + IMAGE_BORDAE_WIDTH, IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH);
+        cell.poImage.imageView.image = defalutImage;
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             UIImage *image = [weakSelf getImageWithURL: [status.pic_urls objectAtIndex:0]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (cell.tag == indexPath.row) {
-                [weakSelf loadImage:image forImageView:cell.poImage];
+                    [weakSelf loadImage:image forView:cell.poImage];
+
                 }
             });
         });
         [cell addSubview:cell.poImage];
         
         yHeight += CGRectGetHeight(cell.poImage.frame);
-        yHeight += CELL_CONTENT_MARGIN;
         cell.poImage.hidden = NO;
     } else {
         cell.poImage.hidden = YES;
@@ -327,19 +332,24 @@ static UIImage *defalutImage;
         repoHeight = reYHight;
         if (reStatus.hasPic == YES) {
             if (!cell.repoImage) {
-                cell.repoImage = [[UIImageView alloc] init];
-                cell.repoImage.contentMode = UIViewContentModeScaleAspectFit;
+                cell.repoImage = [[SYBWeiboImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN,
+                                                                                     repoHeight,
+                                                                                     IMAGE_WIDTH + IMAGE_BORDAE_WIDTH,
+                                                                                     IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH
+                                                                                     )];
             }
-
-            cell.repoImage.frame = CGRectMake(CELL_CONTENT_MARGIN, repoHeight, 120, 120);
+            cell.repoImage.frame = CGRectMake(CELL_CONTENT_MARGIN,
+                                              repoHeight,
+                                              IMAGE_WIDTH + IMAGE_BORDAE_WIDTH,
+                                              IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH
+                                              );
             
-            cell.repoImage.image = defalutImage;
+            cell.repoImage.imageView.image = defalutImage;
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 UIImage *image = [weakSelf getImageWithURL:[reStatus.pic_urls objectAtIndex:0]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf setImageView:cell.repoImage withSize:image.size];
                     if (cell.tag == indexPath.row) {
-                        [weakSelf loadImage:image forImageView:cell.repoImage];
+                        [weakSelf loadImage:image forView:cell.repoImage];
                     }
                 });
             });
@@ -666,7 +676,7 @@ success:^(NSArray *result) {
     
 }
 
-- (void)loadImage:(UIImage *)img forImageView:(UIImageView *)view
+- (void)loadImage:(UIImage *)img forView:(SYBWeiboImageView *)view
 {
     if (!img) {
         return;
@@ -679,19 +689,23 @@ success:^(NSArray *result) {
         return;
     }
 
-    CGRect frame = view.frame;
+    CGRect viewframe = view.frame;
+    CGRect imageViewframe = view.imageView.frame;
     
     if (rateWH < 1) {
         CGFloat width = 120 * rateWH;
-        frame.size.width = width;
+        viewframe.size.width = width + IMAGE_BORDAE_WIDTH;
+        imageViewframe.size.width = width;
         
     } else {
-        CGFloat height = 120 / rateWH;
-        frame.size.height = height;
+        CGFloat width = 120 * rateWH;
+        viewframe.size.width = width + IMAGE_BORDAE_WIDTH;
+        imageViewframe.size.width = width;
     }
     
-    view.frame = frame;
-    view.image = img;
+    view.frame = viewframe;
+    view.imageView.frame = imageViewframe;
+    view.imageView.image = img;
     
 }
 

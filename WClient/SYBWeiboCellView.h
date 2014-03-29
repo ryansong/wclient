@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 #import "SYBWeiBo.h"
+#import "SYBWeiboImageView.h"
+
 @class SYBCellRetweetView;
 
 @interface SYBWeiboCellView : UITableViewCell
@@ -20,12 +22,12 @@
 @property (nonatomic, strong) UILabel *creatin;
 
 @property (nonatomic, strong) UILabel *poTextLabel;
-@property (nonatomic, strong) UIImageView *poImage;
+@property (nonatomic, strong) SYBWeiboImageView *poImage;
 
 @property (nonatomic, strong) UIView *repoArea;
 @property (nonatomic, strong) UIView *repoBar;
 @property (nonatomic, strong) UILabel *repoUsername;
 @property (nonatomic, strong) UILabel *repoText;
-@property (nonatomic, strong) UIImageView *repoImage;
+@property (nonatomic, strong) SYBWeiboImageView *repoImage;
 
 @end
