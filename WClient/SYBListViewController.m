@@ -13,8 +13,11 @@
 #import "SYBMenuViewController.h"
 #import "SYBCellRetweetView.h"
 #import "RegexKitLite.h"
+#import "SYBUserInfoView.h"
 
 #import "UIColor+hex.h"
+
+#import <SSKeychain.h>
 
 #define ALABEL_EXPRESSION @"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}"
 #define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
@@ -28,14 +31,20 @@
 @property (nonatomic, strong) NSString *client_id;
 @property (nonatomic, strong) NSString *client_secret;
 
-@property (nonatomic, strong) SYBWeiboCellView * prototype;
+@property (nonatomic, strong) SYBUserInfoView *userInfo;
+
+@property (nonatomic, strong) SYBWeiboCellView *prototype;
+@property (nonatomic, strong) SYBWeiboImageView *imageView;
+
+@property (nonatomic, strong) UIImageView *fullImageView;
+@property (nonatomic, strong) NSTimer *imageLoadTimer;
+@property (nonatomic, strong) UIProgressView *imageProgress;
 @end
 
 @implementation SYBListViewController
 {
     BOOL loading;
 }
-
 
 static const float MAX_VIEW_SLID_POINT_X = 400.0f;
 static const float MIN_VIEW_SLID_POINT_X = 160.0f;
@@ -49,6 +58,8 @@ static const double SYBDAYSECONDS = 24*60*60;
 
 static const float CELL_CONTENT_WIDTH = 320.0f;
 static const float CELL_CONTENT_MARGIN = 6.0f;
+
+static const float STANDARD_AQUA_SPACE = 20;
 
 static const float REPO_WIDTH = 302.0f;
 static const float TEXTROWHEIGHT = 17.0f;
@@ -64,7 +75,12 @@ static float yHeight = 0;
 static float reYHight = 0;
 
 static UIImage *defalutUserIcon;
-static UIImage *defalutImage;
+static UIImage *noImage;
+static UIImage *defaultImage;
+
+static const NSString *smallImageFolder = @"thumbnail";
+static const NSString *middleImageFolder = @"bmiddle";
+static const NSString *largeImageFolder = @"mw1024";
 
 +(void)initialize
 {
@@ -74,7 +90,11 @@ static UIImage *defalutImage;
     defalutUserIcon = [UIImage imageWithContentsOfFile:iconPath];
     
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"NoImage" ofType:@"png"];
-    defalutImage = [UIImage imageWithContentsOfFile:imagePath];
+    noImage = [UIImage imageWithContentsOfFile:imagePath];
+    
+    NSString *defaultImagePath = [[NSBundle mainBundle] pathForResource:@"Default" ofType:@"png"];
+    defaultImage = [UIImage imageWithContentsOfFile:defaultImagePath];
+
 
 }
 
@@ -90,10 +110,17 @@ static UIImage *defalutImage;
     panGestureRecognizer.delegate = self;
     [_listTableView addGestureRecognizer:panGestureRecognizer];
     
-    UITapGestureRecognizer *tapGesturerecognizer = [[UITapGestureRecognizer alloc]
+    UITapGestureRecognizer *tapNavigationBarRecognizer = [[UITapGestureRecognizer alloc]
                                                     initWithTarget:self
-                                                            action:@selector(handleTap:)];
-    [_navigationBar addGestureRecognizer:tapGesturerecognizer];
+                                                    action:@selector(handleTap:)];
+    [_navigationBar addGestureRecognizer:tapNavigationBarRecognizer];
+    
+    UITapGestureRecognizer *tapListViewRecognizer = [[UITapGestureRecognizer alloc]
+                                                    initWithTarget:self
+                                                    action:@selector(handleTap:)];
+    
+    [_listTableView addGestureRecognizer:tapListViewRecognizer];
+    _listTableView.userInteractionEnabled = YES;
     
     //add shadow
     CALayer *layer = [_listTableView layer];
@@ -180,7 +207,15 @@ static UIImage *defalutImage;
     
     if (!cell.iconView) {
             cell.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHeight, 50, 50)];
+            UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
+                              initWithTarget:self
+                              action:@selector(handleCellTap:)];
+
+            [cell.iconView addGestureRecognizer:tapGestureForCell];
     }
+
+    [cell.iconView setUserInteractionEnabled:YES];
+    
     [cell addSubview:cell.iconView];
     cell.iconView.image = defalutUserIcon;
     
@@ -239,7 +274,7 @@ static UIImage *defalutImage;
         [cell addSubview:cell.poTextLabel];
     }
     
-   CGSize poTextSize =[self getSizeOfString:status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] withWidth:(CELL_CONTENT_WIDTH)];
+   CGSize poTextSize =[self getSizeOfString:status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 2)];
     
 
     [self setView:cell.poTextLabel withSize:poTextSize];
@@ -258,17 +293,24 @@ static UIImage *defalutImage;
         yHeight += CELL_CONTENT_MARGIN;
         if (!cell.poImage) {
             cell.poImage = [[SYBWeiboImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHeight, IMAGE_WIDTH + IMAGE_BORDAE_WIDTH, IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH)];
+
+            UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
+            
+            [cell.poImage addGestureRecognizer:tapImage];
         }
+        
+        cell.poImage.imageURL = [status.pic_urls objectAtIndex:0];
+        
+        cell.poImage.userInteractionEnabled = YES;
 #warning todo multiple images
         cell.poImage.frame = CGRectMake(CELL_CONTENT_MARGIN, yHeight , IMAGE_WIDTH + IMAGE_BORDAE_WIDTH, IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH);
-        cell.poImage.imageView.image = defalutImage;
+        cell.poImage.imageView.image = noImage;
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             UIImage *image = [weakSelf getImageWithURL: [status.pic_urls objectAtIndex:0]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (cell.tag == indexPath.row) {
                     [weakSelf loadImage:image forView:cell.poImage];
-
                 }
             });
         });
@@ -285,13 +327,6 @@ static UIImage *defalutImage;
     if (reStatus) {
         if(!cell.repoArea){
             cell.repoArea = [[UIView alloc] init];
-//            cell.repoArea.layer.backgroundColor = [[UIColor colorWithHex:0xECF0F1] CGColor];
-
-//            CALayer *repoLayer = cell.repoArea.layer;
-//            repoLayer.shadowOffset = CGSizeMake(-5, 5);
-//            repoLayer.shadowColor = [UIColor colorWithHex:0x000000 alpha:1].CGColor;
-//            repoLayer.shadowOpacity = 1;
-            
             [cell addSubview:cell.repoArea];
         }
         
@@ -303,12 +338,12 @@ static UIImage *defalutImage;
         }
         
         if (!cell.repoUsername) {
-            cell.repoUsername = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, 100, 16)];
+            cell.repoUsername = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, 200, 16)];
             cell.repoUsername.font = [UIFont boldSystemFontOfSize:DEFALUTFONTSIZE - 1];
-            
+            cell.repoUsername.textColor = [UIColor colorWithHex:0x3498DB];
             [cell.repoArea addSubview:cell.repoUsername];
         }
-        cell.repoUsername.text = reStatus.user.screen_name;
+        cell.repoUsername.text = [NSString stringWithFormat:@"@%@", reStatus.user.screen_name];
 
         reYHight += cell.repoUsername.frame.size.height;
         reYHight += CELL_CONTENT_MARGIN;
@@ -324,7 +359,7 @@ static UIImage *defalutImage;
         }
         cell.repoText.attributedText = reStatus.attributedText;
         
-        CGSize repoTextSize = [self getSizeOfString:reStatus.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1] withWidth:(CELL_CONTENT_WIDTH - 2 * CELL_CONTENT_MARGIN)];
+        CGSize repoTextSize = [self getSizeOfString:reStatus.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1] withWidth:(CELL_CONTENT_WIDTH - 4 * CELL_CONTENT_MARGIN)];
         [self setView:cell.repoText withSize:repoTextSize];
         
         reYHight += cell.repoText.frame.size.height;
@@ -337,14 +372,20 @@ static UIImage *defalutImage;
                                                                                      IMAGE_WIDTH + IMAGE_BORDAE_WIDTH,
                                                                                      IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH
                                                                                      )];
+                cell.repoImage.userInteractionEnabled = YES;
+                UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
+                [cell.repoImage addGestureRecognizer:tapImage];
+
             }
+            cell.repoImage.imageURL = [reStatus.pic_urls objectAtIndex:0];
+            
             cell.repoImage.frame = CGRectMake(CELL_CONTENT_MARGIN,
                                               repoHeight,
                                               IMAGE_WIDTH + IMAGE_BORDAE_WIDTH,
                                               IMAGE_HEIGHT + IMAGE_BORDAE_WIDTH
                                               );
             
-            cell.repoImage.imageView.image = defalutImage;
+            cell.repoImage.imageView.image = noImage;
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 UIImage *image = [weakSelf getImageWithURL:[reStatus.pic_urls objectAtIndex:0]];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -466,7 +507,7 @@ static UIImage *defalutImage;
 
 - (void)getWeibo{
 
-    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:3692695501814105 count:0 base_app:0 feature:0 trim_user:0
+    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
 success:^(NSArray *result) {
     
     _items = result;
@@ -529,8 +570,71 @@ success:^(NSArray *result) {
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
-    [_listTableView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
+    if ([recognizer isKindOfClass:[UINavigationBar class]]) {
+         [_listTableView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
+    }
+
+        _userInfo.hidden = YES;
+        _userInfo.userIcon.image = nil;
+        _listTableView.scrollEnabled = YES;
 }
+
+- (void)handleCellTap:(UITapGestureRecognizer *)recognizer
+{
+    if (!_userInfo) {
+        _userInfo = [[SYBUserInfoView alloc] init];
+        _userInfo.backgroundColor = [UIColor grayColor];
+
+    } else if (!_userInfo.hidden) {
+            _userInfo.hidden = YES;
+            _userInfo.userIcon.image = nil;
+            _listTableView.scrollEnabled = YES;
+            return;
+    }
+
+    SYBWeiboCellView *selectedCell =nil;
+    UIImageView *selectedImage =nil;
+    if ([recognizer.view isKindOfClass:[UIImageView class]]) {
+        selectedImage = (UIImageView *)recognizer.view;
+    }
+    if (!selectedImage) {
+        return;
+    }
+    
+    if ([[[selectedImage superview] superview] isKindOfClass:[SYBWeiboCellView class]]) {
+        selectedCell = (SYBWeiboCellView *)[[selectedImage superview] superview];
+    }
+    if (!selectedCell) {
+        return;
+    }
+    
+    NSIndexPath *path = [_listTableView indexPathForCell:selectedCell];
+    
+    SYBWeiBo *selectStatus = _items[path.row];
+    
+    _userInfo.userIcon.image = selectedImage.image;
+    _userInfo.username.text = selectStatus.user.screen_name;
+    
+    if (selectStatus.user.verified) {
+        _userInfo.authedIfo.text = selectStatus.user.verified_reason;
+    } else {
+        _userInfo.authedIfo.text = nil;
+    }
+    
+    NSString *followInfo = selectStatus.user.follow_me ? @"已关注你": @"未关注你";
+    if ([@"f" isEqualToString: selectStatus.user.gender]) {
+        followInfo = [@"她" stringByAppendingString:followInfo];
+    } else {
+        followInfo = [@"他" stringByAppendingString:followInfo];
+    }
+    _userInfo.followInfo.text = followInfo;
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:_userInfo];
+    _userInfo.center = [UIApplication sharedApplication].keyWindow.center;
+    _userInfo.hidden = NO;
+    _listTableView.scrollEnabled = NO;
+}
+
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)recognizer
 {
@@ -706,7 +810,61 @@ success:^(NSArray *result) {
     view.frame = viewframe;
     view.imageView.frame = imageViewframe;
     view.imageView.image = img;
-    
 }
 
+- (void)showFullImage:(UIGestureRecognizer *)send
+{
+    _imageView = nil;
+    if ([send.view isKindOfClass:[SYBWeiboImageView class]]) {
+        _imageView = (SYBWeiboImageView *)send.view;
+    }
+
+    if (!_imageView) {
+        return;
+    }
+
+
+
+    [_imageView loadMiddleImageWithProgress];
+    
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    if (!_fullImageView) {
+        _fullImageView = [[UIImageView alloc] initWithFrame:screenRect];
+        _fullImageView.userInteractionEnabled = YES;
+    }
+    _fullImageView.image = defaultImage;
+
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+         _imageLoadTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress:) userInfo:nil repeats:YES];
+    });
+    
+     _imageProgress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    
+    [_fullImageView addSubview:_imageProgress];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:_fullImageView];
+}
+
+- (void)updateProgress:(NSTimer *)timer
+{
+    _imageView.receivedBytes = [_imageView.imageData length];
+    if (_imageView.receivedBytes <=_imageView.totalBytes)
+    {
+            NSLog(@"%d", _imageView.receivedBytes);
+        _imageProgress.progress = (float)_imageView.receivedBytes/ _imageView.totalBytes;
+    } else
+    {
+        [_imageLoadTimer invalidate];
+        _imageLoadTimer = nil;
+    }
+    
+    NSLog(@"%f", _imageProgress.progress);
+}
+
+- (IBAction)signOut:(id)sender {
+        NSString *uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
+        [SSKeychain deletePasswordForService:@"WClient" account:uid];
+}
 @end

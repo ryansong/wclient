@@ -51,7 +51,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="kSN-b4-lM0">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="uUI-qF-ms7"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="uUI-qF-ms7">
+                                            <connections>
+                                                <action selector="signOut:" destination="94D-hX-DBm" id="m0C-ca-uzW"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="bt8-81-7Wi"/>
                                     </navigationItem>
                                 </items>

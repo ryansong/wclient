@@ -46,4 +46,6 @@ typedef void(^PBEmptyBlock)();
 
 - (void)sendWeibo:(NSString *)po;
 - (void)sendWeibo:(NSString *)po images:(NSArray *)images;
+
+- (CGFloat)getProgressDownloadFile:(NSURL *)url;
 @end

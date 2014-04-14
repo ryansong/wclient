@@ -18,6 +18,9 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *leftItem;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightItem;
 
+- (IBAction)signOut:(id)sender;
+
+
 @property (nonatomic, strong) EGORefreshTableHeaderView *headerView;
 
 - (void)reloadTableViewDataSource;

@@ -21,7 +21,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 
 
 @interface SYBWeiboAPIClient ()
-@property (nonatomic, strong) AFHTTPClient *httpClient;
+@property (nonatomic, strong) AFHTTPSessionManager *httpClient;
 @property (nonatomic, strong) NSString *accessToken;
 
 @property (nonatomic, strong) NSString *client_id;
@@ -48,7 +48,8 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     if (self) {
         _client_id = CLIENT_ID;
         _client_secret = CLIENT_SECRET;
-        _httpClient = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:KAPIBaseUrl]];
+        _httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:KAPIBaseUrl]];
+        _httpClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     }
     return self;
 }
@@ -106,25 +107,23 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
         params[@"trim_uer"] = @(trim_user);
     }
     
-    
-    
-    [_httpClient getPath:KAPIRequestFriendsWeibo parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [_httpClient GET:[KAPIBaseUrl stringByAppendingString:KAPIRequestFriendsWeibo] parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         NSError *error;
-        
+
         //test data for offline
         if (ENV == SYBRunEnviromentOffLine) {
             [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
-        
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-   
+
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error];
+
 
         if (!error) {
             if (dict) {
                 NSMutableArray *result = [[NSMutableArray alloc] init];
                 NSMutableArray *statuses =  dict[@"statuses"];
-               
+
                 for ( NSDictionary *status in statuses ) {
                     SYBWeiBo *weibo = [self weiBoFromDict:status];
                     [result addObject:weibo];
@@ -140,32 +139,91 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
             failure(error.code);
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
             failure(error.code);
         }
         //for offline env
         if (ENV == SYBRunEnviromentOffLine) {
-            
+
             NSData *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"testData"];
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
             if (dict) {
                 NSMutableArray *result = [[NSMutableArray alloc] init];
                 NSMutableArray *statuses =  dict[@"statuses"];
-                
+
                 for ( NSDictionary *status in statuses ) {
                     SYBWeiBo *weibo = [self weiBoFromDict:status];
                     [result addObject:weibo];
                 }
                 //test data for offline
                 [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
-                
+
                 if (success) {
                     success(result);
                 }
             }
         }
     }];
+    
+//    [_httpClient getPath:KAPIRequestFriendsWeibo parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSError *error;
+//        
+//        //test data for offline
+//        if (ENV == SYBRunEnviromentOffLine) {
+//            [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//        }
+//        
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+//   
+//
+//        if (!error) {
+//            if (dict) {
+//                NSMutableArray *result = [[NSMutableArray alloc] init];
+//                NSMutableArray *statuses =  dict[@"statuses"];
+//               
+//                for ( NSDictionary *status in statuses ) {
+//                    SYBWeiBo *weibo = [self weiBoFromDict:status];
+//                    [result addObject:weibo];
+//                }
+//                //test data for offline
+//                [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+//
+//                if (success) {
+//                    success(result);
+//                }
+//            }
+//        } else {
+//            failure(error.code);
+//        }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        if (failure) {
+//            failure(error.code);
+//        }
+//        //for offline env
+//        if (ENV == SYBRunEnviromentOffLine) {
+//            
+//            NSData *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"testData"];
+//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+//            if (dict) {
+//                NSMutableArray *result = [[NSMutableArray alloc] init];
+//                NSMutableArray *statuses =  dict[@"statuses"];
+//                
+//                for ( NSDictionary *status in statuses ) {
+//                    SYBWeiBo *weibo = [self weiBoFromDict:status];
+//                    [result addObject:weibo];
+//                }
+//                //test data for offline
+//                [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:@"testData"];
+//                
+//                if (success) {
+//                    success(result);
+//                }
+//            }
+//        }
+//    }];
     
 }
 
@@ -211,31 +269,34 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 - (void)OuthAccess_token:(NSString *)code
                  success:(PBDictionaryBlock)success
                  failure:(PBErrorBlock)failure
+
 {
-    [_httpClient postPath:KAPIRequestAccess_token parameters:@{@"client_id":_client_id,
-                                                             @"client_secret": _client_secret,
-                                                             @"grant_type":@"authorization_code",
-                                                             @"code": code,
-                                                             @"redirect_uri": redirect_uri,}
-                 success:^(AFHTTPRequestOperation *operation, id responseObject){
-                     NSError *error;
-                     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                                          options:NSJSONReadingMutableContainers
-                                                                            error:&error];
-                     if (!error) {
-                         if (dict) {
-                             if (success) {
-                                 success(dict);
-                             }
-                         }
-                     }
-                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     NSLog(@"OuthAccess_token error");
-                     if (failure)
-                     {
-                         failure(error.code);
-                     }
-                 }];
+    [_httpClient POST:[KAPIBaseUrl stringByAppendingString:KAPIRequestAccess_token] parameters:@{@"client_id":_client_id,
+                                                                      @"client_secret": _client_secret,
+                                                                      @"grant_type":@"authorization_code",
+                                                                      @"code": code,
+                                                                      @"redirect_uri": redirect_uri,}
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  NSError *error;
+                  NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                       options:NSJSONReadingMutableContainers
+                                                                         error:&error];
+                  if (!error) {
+                      if (dict) {
+                          if (success) {
+                              success(dict);
+                          }
+                      }
+                  }
+                  
+              } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  NSLog(@"OuthAccess_token error");
+                  if (failure)
+                  {
+                      failure(error.code);
+                  }
+                  
+              }];
 }
 
 - (SYBWeiBo *)weiBoFromDict:(NSDictionary *) status
@@ -360,6 +421,23 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     }
     
     return weibo;
+}
+
+- (CGFloat)getProgressDownloadFile:(NSURL *)url
+{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:@"http://example.com/download.zip"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
+        return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        NSLog(@"File downloaded to: %@", filePath);
+    }];
+    [downloadTask resume];
 }
 
 @end
