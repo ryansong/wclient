@@ -16,6 +16,12 @@ DerivedData
 .idea/
 *.hmap
 *.xccheckout
+*~
+*.swap
+*.swo
 
 #CocoaPods
 Pods
+
+#Developer Info
+APPMacro.h

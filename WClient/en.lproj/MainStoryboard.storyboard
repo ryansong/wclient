@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -37,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="268" sectionHeaderHeight="22" sectionFooterHeight="22" id="n0X-Zi-0bW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="268" sectionHeaderHeight="22" sectionFooterHeight="22" id="n0X-Zi-0bW">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,7 +51,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="kSN-b4-lM0">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="uUI-qF-ms7"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="uUI-qF-ms7">
+                                            <connections>
+                                                <action selector="signOut:" destination="94D-hX-DBm" id="m0C-ca-uzW"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="bt8-81-7Wi"/>
                                     </navigationItem>
                                 </items>
@@ -62,7 +66,7 @@
                     <connections>
                         <outlet property="leftItem" destination="uUI-qF-ms7" id="J37-FU-iM7"/>
                         <outlet property="listTableView" destination="n0X-Zi-0bW" id="5so-DA-Qmg"/>
-                        <outlet property="navigationTitle" destination="aPs-DA-5C8" id="pXj-za-Wj4"/>
+                        <outlet property="navigationBar" destination="aPs-DA-5C8" id="WQX-XH-24x"/>
                         <outlet property="rightItem" destination="bt8-81-7Wi" id="tNj-3k-13q"/>
                     </connections>
                 </viewController>
