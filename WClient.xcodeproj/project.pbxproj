@@ -41,7 +41,6 @@
 		CFB4ED3E181D4CC4004E5846 /* SYBListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB4ED3D181D4CC4004E5846 /* SYBListViewController.m */; };
 		CFB4ED45181EBEF3004E5846 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB4ED44181EBEF3004E5846 /* MobileCoreServices.framework */; };
 		CFB4ED47181EBF20004E5846 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB4ED46181EBF20004E5846 /* SystemConfiguration.framework */; };
-		CFB7D4A31906A88000F5BF24 /* SYBMergeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB7D4A21906A88000F5BF24 /* SYBMergeViewController.m */; };
 		CFC7163B1854954C0057EEE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFC7163A1854954C0057EEE4 /* Images.xcassets */; };
 		CFC7164B1858AFBE0057EEE4 /* table_header_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716401858AFBE0057EEE4 /* table_header_bg.png */; };
 		CFC7164C1858AFBE0057EEE4 /* table_header_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716411858AFBE0057EEE4 /* table_header_bg@2x.png */; };
@@ -116,8 +115,6 @@
 		CFB4ED3D181D4CC4004E5846 /* SYBListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBListViewController.m; sourceTree = "<group>"; };
 		CFB4ED44181EBEF3004E5846 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CFB4ED46181EBF20004E5846 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		CFB7D4A11906A88000F5BF24 /* SYBMergeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBMergeViewController.h; sourceTree = "<group>"; };
-		CFB7D4A21906A88000F5BF24 /* SYBMergeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBMergeViewController.m; sourceTree = "<group>"; };
 		CFC7163A1854954C0057EEE4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CFC716401858AFBE0057EEE4 /* table_header_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = table_header_bg.png; path = images/table_header_bg.png; sourceTree = "<group>"; };
 		CFC716411858AFBE0057EEE4 /* table_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "table_header_bg@2x.png"; path = "images/table_header_bg@2x.png"; sourceTree = "<group>"; };
@@ -160,8 +157,6 @@
 				CFB18B8D18E7E41700FB03E2 /* SYBUserInfoView.h */,
 				CFB18B8E18E7E41700FB03E2 /* SYBUserInfoView.m */,
 				CFB18B9018E7E44000FB03E2 /* SYBUserInfoView.xib */,
-				CFB7D4A11906A88000F5BF24 /* SYBMergeViewController.h */,
-				CFB7D4A21906A88000F5BF24 /* SYBMergeViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -458,7 +453,6 @@
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,
-				CFB7D4A31906A88000F5BF24 /* SYBMergeViewController.m in Sources */,
 				CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */,
 				CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */,
 				CFC716531858B93E0057EEE4 /* SYBWeiBoGEO.m in Sources */,
