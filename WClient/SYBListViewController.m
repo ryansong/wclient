@@ -832,7 +832,7 @@ success:^(NSArray *result) {
         _fullImageView = [[UIImageView alloc] initWithFrame:screenRect];
         _fullImageView.userInteractionEnabled = YES;
     }
-    _fullImageView.image = defaultImage;
+    _fullImageView.image = _imageView.imageView.image;
 
     
     
