@@ -46,7 +46,6 @@ static const CGFloat borderInterval = 10.0f;
     if (!_imageURL) {
         return;
     }
-    _imageURL = @"http://code4app.com/down/c884eeab46a1e1d13c05b595b9e5701b/?id=525e06116803fa7b0a000001";
     AFHTTPSessionManager *manger = [[AFHTTPSessionManager alloc] init];
     NSMutableData *data = nil;
     

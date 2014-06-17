@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
+#import "SYBWeiboCell.h"
 
 
 @interface SYBListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, EGORefreshTableHeaderDelegate>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF06B2931823E9F100D23AEA /* SYBWeiboCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */; };
+		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
 		CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */; };
 		CF1E00E517C7B7AA00E3FF7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E417C7B7AA00E3FF7F /* CoreGraphics.framework */; };
@@ -57,6 +58,8 @@
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF06B2911823E9F100D23AEA /* SYBWeiboCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboCellView.h; sourceTree = "<group>"; };
 		CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboCellView.m; sourceTree = "<group>"; };
+		CF135C791950A83B00AE2E90 /* SYBWeiboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboCell.h; sourceTree = "<group>"; };
+		CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboCell.m; sourceTree = "<group>"; };
 		CF1E00DD17C7B7AA00E3FF7F /* WClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -313,6 +316,8 @@
 				CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */,
 				CF3F796B18293545008166B0 /* SYBWeiBoURLShort.h */,
 				CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */,
+				CF135C791950A83B00AE2E90 /* SYBWeiboCell.h */,
+				CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
 				CF06B2931823E9F100D23AEA /* SYBWeiboCellView.m in Sources */,
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
+				CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */,
 				CFB18B8F18E7E41700FB03E2 /* SYBUserInfoView.m in Sources */,
 				CF1E00F117C7B7AA00E3FF7F /* SYBAppDelegate.m in Sources */,
 				CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */,

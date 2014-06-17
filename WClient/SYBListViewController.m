@@ -182,31 +182,43 @@ static const NSString *largeImageFolder = @"mw1024";
     
     cell.tag = indexPath.row;
     
-    SYBWeiBo *status =[_items objectAtIndex:[indexPath row]];
+    SYBWeiboCell *status =[_items objectAtIndex:[indexPath row]];
     [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:indexPath isForOffscreenUse:NO];
     
     return cell;
 }
 
--(void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBWeiboCellView *)cell isForOffscreenUse:(BOOL)offScreen
+- (void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBWeiboCellView *)cell isForOffscreenUse:(BOOL)offScreen
 {
     if (offScreen) {
         [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:nil isForOffscreenUse:YES];
     } else{
          [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:nil isForOffscreenUse:NO];
     }
+}
+
+- (void)caculateHeigtForCell:(SYBWeiboCell *)weiboCell
+{
+    CGSize poTextSize =[self getSizeOfString:weiboCell.weibo.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 2)];
+    weiboCell.poHeight = poTextSize.height;
+    
+    CGSize repoTextHeight =[self getSizeOfString:weiboCell.weibo.retweeted_status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 4)];
+    weiboCell.repoHeight = repoTextHeight.height;
+    
+    weiboCell.cellHeight = weiboCell.poHeight + weiboCell.repoHeight + 270;
    
 }
 
--(void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBWeiboCellView *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath isForOffscreenUse:(BOOL)offScreen
+- (void)configCellWithStatus:(SYBWeiboCell *)weiboCell WithCell:(SYBWeiboCellView *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath isForOffscreenUse:(BOOL)offScreen
 {
+    SYBWeiBo *status = weiboCell.weibo;
     CGFloat repoHeight = 0;
     CGFloat repoAreaHeight = 0;
     // set icon view
     yHeight = CELL_CONTENT_MARGIN;
     
     if (!cell.iconView) {
-            cell.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHeight, 50, 50)];
+            cell.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, 50, 50)];
             UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
                               initWithTarget:self
                               action:@selector(handleCellTap:)];
@@ -236,15 +248,10 @@ static const NSString *largeImageFolder = @"mw1024";
 
         });
     });
-    
-    //set username label
-    CGSize nameSize = [status.user.screen_name sizeWithFont:[UIFont boldSystemFontOfSize:DEFALUTFONTSIZE] constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
 
     if (!cell.username) {
-        cell.username = [[UILabel alloc] init];
+        cell.username = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN+60, CELL_CONTENT_MARGIN, 160, 21)];
     }
-    
-    [cell.username setFrame: CGRectMake(CELL_CONTENT_MARGIN+60, yHeight,ceilf(nameSize.width), ceilf(nameSize.height))];
     
     cell.username.font = [UIFont boldSystemFontOfSize:DEFALUTFONTSIZE];
     [cell.username setText:status.user.screen_name];
@@ -252,32 +259,30 @@ static const NSString *largeImageFolder = @"mw1024";
     
     //set create time
     NSString *creatDate = [self dateTimeWithCreat_dt:status.created_at];
-    CGSize cdsize = [creatDate sizeWithFont: [UIFont systemFontOfSize:DEFALUTFONTSIZE - 2] constrainedToSize: CGSizeMake(MAXFLOAT, TEXTROWHEIGHT)];
+    CGSize cdsize = CGSizeMake(120, 21);
     
     if (!cell.creatTime) {
         cell.creatTime = [[UILabel alloc] init];
     }
     [cell.creatTime setFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 2]];
+    
     [cell.creatTime setFrame:CGRectMake(CELL_CONTENT_MARGIN + 60, yHeight + 50 - ceilf(cdsize.height),ceilf(cdsize.width), ceilf(cdsize.height))];
     [cell.creatTime setText:creatDate];
     [cell addSubview:cell.creatTime];
     
-    yHeight += 50;
-    yHeight += CELL_CONTENT_MARGIN * 2;
+    yHeight += 50 + CELL_CONTENT_MARGIN * 2;
     
     NSString *poText = status.text;
+    CGRect poRect = CGRectMake(CELL_CONTENT_MARGIN, yHeight + CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 2, weiboCell.poHeight);
     
     if (!cell.poTextLabel) {
-        cell.poTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, yHeight + CELL_CONTENT_MARGIN, 0, 0)];
+        cell.poTextLabel = [[UILabel alloc] initWithFrame:poRect];
         [cell.poTextLabel setNumberOfLines:0];
         [cell.poTextLabel setFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE]];
         [cell addSubview:cell.poTextLabel];
+    } else {
+        cell.poTextLabel.frame = poRect;
     }
-    
-   CGSize poTextSize =[self getSizeOfString:status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 2)];
-    
-
-    [self setView:cell.poTextLabel withSize:poTextSize];
     
     if (!status.attributedText) {
         status.attributedText = [self AttributedString:poText];
@@ -348,11 +353,15 @@ static const NSString *largeImageFolder = @"mw1024";
         reYHight += cell.repoUsername.frame.size.height;
         reYHight += CELL_CONTENT_MARGIN;
         
+        CGRect repoTextRect = CGRectMake(CELL_CONTENT_MARGIN, reYHight, CELL_CONTENT_WIDTH - 4 * CELL_CONTENT_MARGIN, weiboCell.repoHeight);
+
         if (!cell.repoText) {
-            cell.repoText = [[UILabel alloc] initWithFrame:CGRectMake(CELL_CONTENT_MARGIN, reYHight, 0, 0)];
+            cell.repoText = [[UILabel alloc] initWithFrame:repoTextRect];
             cell.repoText.numberOfLines = 0;
             cell.repoText.font = [UIFont systemFontOfSize:DEFALUTFONTSIZE - 1];
             [cell.repoArea addSubview:cell.repoText];
+        } else {
+            cell.repoText.frame = repoTextRect;
         }
         if (!reStatus.attributedText) {
             reStatus.attributedText = [self AttributedString:reStatus.text];
@@ -443,19 +452,6 @@ static const NSString *largeImageFolder = @"mw1024";
     [self setView:view withSize:CGSizeMake(width, height)];
 }
 
--(CGFloat)widthByString:(NSString *)text UIFont:(UIFont *)font height:(CGFloat)height
-{
-   CGSize size = [self sizeByString:text UIFont:font height:height];
-    size = [self celifSize:size];
-    return size.width;
-}
-
--(CGSize)sizeByString:(NSString *)text UIFont:(UIFont *)font height:(CGFloat)height
-{
-    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(MAXFLOAT, height) lineBreakMode:NSLineBreakByCharWrapping];
-    return [self celifSize:size];
-}
-
 -(CGSize)celifSize:(CGSize)size
 {
     size.height = ceilf(size.height);
@@ -505,12 +501,22 @@ static const NSString *largeImageFolder = @"mw1024";
     return creat_dt;
  }
 
+- (NSArray *)weiboCellsFromWeibos:(NSArray *)weibos
+{
+    NSMutableArray *cells = [[NSMutableArray alloc] init];
+    for (SYBWeiBo *weibo in weibos) {
+        SYBWeiboCell *weiboCell = [[SYBWeiboCell alloc] init];
+        weiboCell.weibo = weibo;
+        [cells addObject:weiboCell];
+    }
+    return cells;
+}
+
 - (void)getWeibo{
 
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
 success:^(NSArray *result) {
-    
-    _items = result;
+    _items = [self weiboCellsFromWeibos:result];
     [_listTableView reloadData];
     
 } failure:^(PBXError errorCode) {
@@ -521,15 +527,14 @@ success:^(NSArray *result) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
-
-    if (!_prototype) {
-        _prototype = [[SYBWeiboCellView alloc] init];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    if (weiboCell.cellHeight != 0) {
+        return weiboCell.cellHeight;
     }
-    
-    [self configCellWithStatus:status WithCell:(SYBWeiboCellView *)_prototype isForOffscreenUse:YES];
-    
-    return _prototype.frame.size.height;
+    [self caculateHeigtForCell:weiboCell];
+
+    return weiboCell.cellHeight;
+    return 400;
 }
 
 - (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
@@ -719,8 +724,9 @@ success:^(NSArray *result) {
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
                                                  success:^(NSArray *result) {
                                                      if (!_items) {
-                                                         _items = result;
+                                                         _items = [self weiboCellsFromWeibos:result];
                                                      } else if(result) {
+                                                         result = [self weiboCellsFromWeibos:result];
                                                          _items = [result arrayByAddingObjectsFromArray: _items];
                                                      }
                                                      [_listTableView reloadData];
