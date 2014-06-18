@@ -188,24 +188,32 @@ static const NSString *largeImageFolder = @"mw1024";
     return cell;
 }
 
-- (void)configCellWithStatus:(SYBWeiBo *)status WithCell:(SYBWeiboCellView *)cell isForOffscreenUse:(BOOL)offScreen
-{
-    if (offScreen) {
-        [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:nil isForOffscreenUse:YES];
-    } else{
-         [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:nil isForOffscreenUse:NO];
-    }
-}
-
 - (void)caculateHeigtForCell:(SYBWeiboCell *)weiboCell
 {
     CGSize poTextSize =[self getSizeOfString:weiboCell.weibo.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 2)];
     weiboCell.poHeight = poTextSize.height;
+    if (weiboCell.weibo.retweeted_status) {
+        CGSize repoTextHeight =[self getSizeOfString:weiboCell.weibo.retweeted_status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 4)];
+        weiboCell.repoHeight = repoTextHeight.height;
+
+    }
+
+    weiboCell.cellHeight = weiboCell.poHeight + 120;
+    //with po image
+    if ([weiboCell.weibo hasPic]) {
+        weiboCell.cellHeight += 120;
+        return;
+    }
     
-    CGSize repoTextHeight =[self getSizeOfString:weiboCell.weibo.retweeted_status.text withFont:[UIFont systemFontOfSize:DEFALUTFONTSIZE - 1] withWidth:(CELL_CONTENT_WIDTH - CELL_CONTENT_MARGIN * 4)];
-    weiboCell.repoHeight = repoTextHeight.height;
+    if (![weiboCell.weibo hasRepo]) {
+        return;
+    }
     
-    weiboCell.cellHeight = weiboCell.poHeight + weiboCell.repoHeight + 270;
+    weiboCell.cellHeight += weiboCell.repoHeight + 40;
+    if (![weiboCell.weibo.retweeted_status hasPic]) {
+        return;
+    }
+    weiboCell.cellHeight += 120 ;
    
 }
 
@@ -534,7 +542,6 @@ success:^(NSArray *result) {
     [self caculateHeigtForCell:weiboCell];
 
     return weiboCell.cellHeight;
-    return 400;
 }
 
 - (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
