@@ -7,8 +7,11 @@
 //
 
 #import "SYBMenuViewController.h"
+#import "SYBListViewController.h"
 
 @interface SYBMenuViewController ()
+
+@property (nonatomic, strong) UINavigationController *rootController;
 
 @end
 
@@ -33,6 +36,15 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     [self.view addSubview:imageView];
+    
+    _rootController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"navigationController"];
+    [self addChildViewController:_rootController];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.view addSubview:_rootController.view];
+    [_rootController didMoveToParentViewController:nil];
 }
 
 - (void)didReceiveMemoryWarning

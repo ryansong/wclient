@@ -39,6 +39,7 @@
 @property (nonatomic, strong) UIImageView *fullImageView;
 @property (nonatomic, strong) NSTimer *imageLoadTimer;
 @property (nonatomic, strong) UIProgressView *imageProgress;
+@property (nonatomic, strong) UIViewController *parentController;
 @end
 
 @implementation SYBListViewController
@@ -108,7 +109,9 @@ static const NSString *largeImageFolder = @"mw1024";
                                                     initWithTarget:self
                                                             action:@selector(handlePan:)];
     panGestureRecognizer.delegate = self;
-    [_listTableView addGestureRecognizer:panGestureRecognizer];
+    
+    _parentController = self.parentViewController;
+    [_parentController.view addGestureRecognizer:panGestureRecognizer];
     
     UITapGestureRecognizer *tapNavigationBarRecognizer = [[UITapGestureRecognizer alloc]
                                                     initWithTarget:self
@@ -553,17 +556,17 @@ success:^(NSArray *result) {
 
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer
 {
-    CGPoint orignCenterPoint = _listTableView.center;
+    CGPoint orignCenterPoint = _parentController.view.center;
     float x = orignCenterPoint.x;
     
-    CGPoint transformPoint = [recognizer translationInView:_listTableView];
+    CGPoint transformPoint = [recognizer translationInView:_parentController.view];
     x += transformPoint.x;
     
     if(x > MAX_VIEW_SLID_POINT_X) {
         x = MAX_VIEW_SLID_POINT_X;
     }
 
-    [_listTableView setCenter:CGPointMake(x, orignCenterPoint.y)];
+    [_parentController.view setCenter:CGPointMake(x, orignCenterPoint.y)];
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.75
@@ -572,14 +575,14 @@ success:^(NSArray *result) {
                          animations:^(void)
          {
              if (x > DIVIDWIDTH ) {
-                 _listTableView.center = CGPointMake(MAX_VIEW_SLID_POINT_X, orignCenterPoint.y);
+                 _parentController.view.center = CGPointMake(MAX_VIEW_SLID_POINT_X, orignCenterPoint.y);
              } else {
-                 _listTableView.center = CGPointMake(MIN_VIEW_SLID_POINT_X,orignCenterPoint.y);
+                 _parentController.view.center = CGPointMake(MIN_VIEW_SLID_POINT_X,orignCenterPoint.y);
              }
          } completion:^(BOOL isFinish) {
          }];
     }
-    [recognizer setTranslation:CGPointZero inView:self.view];
+    [recognizer setTranslation:CGPointZero inView:_parentController.view];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
