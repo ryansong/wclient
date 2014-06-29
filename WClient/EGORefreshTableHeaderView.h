@@ -43,7 +43,7 @@ typedef enum{
 	UILabel *_statusLabel;
 	CALayer *_arrowImage;
 	UIActivityIndicatorView *_activityView;
-	
+    UIEdgeInsets defaultInsets;
 
 }
 

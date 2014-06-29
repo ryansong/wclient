@@ -141,19 +141,21 @@ static const NSString *largeImageFolder = @"mw1024";
 		view.delegate = self;
 		[_listTableView addSubview:view];
 		_headerView = view;
-
-		
 	}
 	
 	//  update the last update date
-	[_headerView refreshLastUpdatedDate];
-    
-    [_listTableView reloadData];
+//	[_headerView refreshLastUpdatedDate];
 }
 
 - (void)loadView
 {
     [super loadView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_listTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -772,7 +774,6 @@ success:^(NSArray *result) {
     return loading;
 }
 
-#pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -835,8 +836,6 @@ success:^(NSArray *result) {
     if (!_imageView) {
         return;
     }
-
-
 
     [_imageView loadMiddleImageWithProgress];
     

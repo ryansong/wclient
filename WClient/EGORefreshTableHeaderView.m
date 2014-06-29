@@ -39,10 +39,11 @@
 
 @synthesize delegate=_delegate;
 
-
 - (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
     if((self = [super initWithFrame:frame])) {
 		
+        
+        defaultInsets = UIEdgeInsetsMake(44.0f, 0.0f, 0.0f, 0.0f);
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
 
@@ -178,16 +179,17 @@
 	_state = aState;
 }
 
-
-#pragma mark -
 #pragma mark ScrollView Methods
 
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
 	
+    defaultInsets = scrollView.contentInset;
+    CGFloat mixOffset = scrollView.contentInset.top;
+    
 	if (_state == EGOOPullRefreshLoading) {
 		
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
-		offset = MIN(offset, 60);
+		offset = MIN(offset, mixOffset);
 		scrollView.contentInset = UIEdgeInsetsMake(offset, 0.0f, 0.0f, 0.0f);
 		
 	} else if (scrollView.isDragging) {
@@ -204,7 +206,7 @@
 		}
 		
 		if (scrollView.contentInset.top != 0) {
-			scrollView.contentInset = UIEdgeInsetsZero;
+			scrollView.contentInset = defaultInsets;
 		}
 		
 	}
@@ -227,7 +229,7 @@
 		[self setState:EGOOPullRefreshLoading];
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
-		scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+		scrollView.contentInset = defaultInsets;
 		[UIView commitAnimations];
 		
 	}
@@ -238,7 +240,7 @@
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
-	[scrollView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+	[scrollView setContentInset:defaultInsets];
 	[UIView commitAnimations];
 	
 	[self setState:EGOOPullRefreshNormal];
