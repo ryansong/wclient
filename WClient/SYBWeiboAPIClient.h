@@ -19,11 +19,18 @@ typedef void(^PBErrorBlock)(PBXError);
 typedef void(^PBEmptyBlock)();
 
 #import <Foundation/Foundation.h>
+#import "SYBWeiboUser.h"
 
 @interface SYBWeiboAPIClient : NSObject
 @property (nonatomic,strong) NSString *token;
 
 + (instancetype)sharedClient;
+
+- (void)getUserInfoWithSource:(NSString *)source
+                                    uid:(NSString *)uid
+                            screen_name:(NSString *)screen_name
+                                success:(PBDictionaryBlock)success
+                                failure:(PBErrorBlock)failure;;
 
 - (void)getAllFriendsWeibo:(long long)since_id
                     max_id:(long long)max_id

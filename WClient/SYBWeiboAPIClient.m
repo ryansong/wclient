@@ -70,6 +70,53 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     return request;
 }
 
+- (void)getUserInfoWithSource:(NSString *)source
+                          uid:(NSString *)uid
+                  screen_name:(NSString *)screen_name
+                      success:(PBDictionaryBlock)success
+                      failure:(PBErrorBlock)failure
+{
+    NSMutableDictionary *params = [NSMutableDictionary  dictionary];
+    params[@"access_token"] = _token;
+    
+    if (source) {
+        params[@"source"] = source;
+    } else {
+        // default value
+        params[@"source"] = @"AppKey";
+    }
+    
+    if (uid) {
+        params[@"uid"] = uid;
+    } else {
+       params[@"uid"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+    }
+    
+    if (screen_name) {
+        params[@"screen_name"] = screen_name;
+    }
+    
+    [_httpClient GET:@"users/show.json" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSError *error;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error];
+        if (!error) {
+            if (dict) {
+                if (success) {
+                    success(dict);
+                }
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error.code);
+        }
+    }];
+    
+}
+
 - (void)getAllFriendsWeibo:(long long)since_id
                     max_id:(long long)max_id
                       count:(int)count

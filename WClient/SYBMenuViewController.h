@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYBMenuViewController : UIViewController
+@interface SYBMenuViewController : UIViewController <UIActionSheetDelegate, UITableViewDataSource>
 
 @end

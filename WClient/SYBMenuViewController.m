@@ -8,10 +8,17 @@
 
 #import "SYBMenuViewController.h"
 #import "SYBListViewController.h"
+#import "SYBWeiboUser.h"
+#import "SYBWeiboAPIClient.h"
+#import "SSKeychain.h"
 
 @interface SYBMenuViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UITableView *configMenuListView;
+@property (nonatomic, strong) UIActionSheet *loginActionSheet;
 @property (nonatomic, strong) UINavigationController *rootController;
+@property (nonatomic, strong) SYBWeiboUser *user;
 
 @end
 
@@ -29,28 +36,68 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"left" ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    _loginActionSheet = [[UIActionSheet alloc] initWithTitle:@"Profile"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:@"Login Off"
+                                           otherButtonTitles:nil];
+
+    [[SYBWeiboAPIClient sharedClient] getUserInfoWithSource:nil
+                                                        uid:nil
+                                                screen_name:nil
+                                                    success:^(NSDictionary *dict) {
+                                                        _user = [[SYBWeiboUser alloc] init];
+                                                        _user.idstr = dict[@"idstr"];
+                                                        _user.screen_name = dict[@"screen_name"];
+                                                        _user.location = dict[@"location"];
+                                                        _user.profile_image_url = dict[@"profile_image_url"];
+                                                        _user.profile_url = dict[@"profile_url"];
+                                                        
+                                                        _userImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user.profile_image_url]]];
+                                                        
+                                                    } failure:^(PBXError error) {
+                                                        
+                                                    }];
+
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    [self.view addSubview:imageView];
+    UITapGestureRecognizer *iconGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(tapIconGestureRecognizer:)];
+    [_userImageView addGestureRecognizer:iconGestureRecognizer];
     
     _rootController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"navigationController"];
     [self addChildViewController:_rootController];
+
+    [self.view addSubview:_rootController.view];
+    [_rootController didMoveToParentViewController:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.view addSubview:_rootController.view];
-    [_rootController didMoveToParentViewController:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tapIconGestureRecognizer:(UITapGestureRecognizer *)panGestureRecognizer
+{
+    [_loginActionSheet showInView:self.view];
+    
+}
+
+#pragma -UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // choose logoff
+    if (buttonIndex == 0) {
+        self.user = nil;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
+     
+        [self performSegueWithIdentifier:@"logoff" sender:self];
+    }
 }
 
 @end
