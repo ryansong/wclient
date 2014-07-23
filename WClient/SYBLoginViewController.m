@@ -42,7 +42,7 @@
     _client_secret = CLIENT_SECRET;
 
     if (!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+        _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [self.view addSubview: _webView];
     }
     _webView.hidden  = YES;
