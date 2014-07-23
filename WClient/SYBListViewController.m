@@ -829,37 +829,56 @@ success:^(NSArray *result) {
     view.imageView.image = img;
 }
 
+- (void)scrollViewTap:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [tapGestureRecognizer.view removeFromSuperview];
+}
+
 - (void)showFullImage:(UIGestureRecognizer *)send
 {
-    _imageView = nil;
-    if ([send.view isKindOfClass:[SYBWeiboImageView class]]) {
-        _imageView = (SYBWeiboImageView *)send.view;
-    }
+    UIScrollView *scrollImageView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-    if (!_imageView) {
-        return;
-    }
-
-    [_imageView loadMiddleImageWithProgress];
+    UITapGestureRecognizer *scrollViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTap:)];
     
-    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-    if (!_fullImageView) {
-        _fullImageView = [[UIImageView alloc] initWithFrame:screenRect];
-        _fullImageView.userInteractionEnabled = YES;
-    }
-    _fullImageView.image = _imageView.imageView.image;
-
+    [scrollImageView addGestureRecognizer:scrollViewTap];
     
+    UIImageView *imageview = [[UIImageView alloc] init];
+    imageview.contentMode = UIViewContentModeScaleAspectFit;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         _imageLoadTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress:) userInfo:nil repeats:YES];
+//        UIImage *image = [[UIImage imageWithData:[[NSData dataWithContentsOfURL:[NSURL URLWithString:@"url"]]]];
+//                                                 imageview.image = image;
     });
     
-     _imageProgress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    
-    [_fullImageView addSubview:_imageProgress];
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:_fullImageView];
+//    _imageView = nil;
+//    if ([send.view isKindOfClass:[SYBWeiboImageView class]]) {
+//        _imageView = (SYBWeiboImageView *)send.view;
+//    }
+//
+//    if (!_imageView) {
+//        return;
+//    }
+//
+////    [_imageView loadMiddleImageWithProgress];
+//    
+//    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+//    if (!_fullImageView) {
+//        _fullImageView = [[UIImageView alloc] initWithFrame:screenRect];
+//        _fullImageView.userInteractionEnabled = YES;
+//    }
+//    _fullImageView.image = _imageView.imageView.image;
+//
+//    
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//         _imageLoadTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress:) userInfo:nil repeats:YES];
+//    });
+//    
+//     _imageProgress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+//    
+//    [_fullImageView addSubview:_imageProgress];
+//    
+//    [[UIApplication sharedApplication].keyWindow addSubview:_fullImageView];
 }
 
 - (void)updateProgress:(NSTimer *)timer
