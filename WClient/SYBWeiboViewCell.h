@@ -13,7 +13,7 @@
 
 @class SYBCellRetweetView;
 
-@interface SYBWeiboCellView : UITableViewCell
+@interface SYBWeiboViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel *username;

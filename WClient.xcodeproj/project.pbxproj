@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF06B2931823E9F100D23AEA /* SYBWeiboCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */; };
+		5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */; };
+		CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */; };
 		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
 		CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */; };
@@ -55,9 +56,11 @@
 
 /* Begin PBXFileReference section */
 		5433629D8FC348C69BD82076 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewController.h; sourceTree = "<group>"; };
+		5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewController.m; sourceTree = "<group>"; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		CF06B2911823E9F100D23AEA /* SYBWeiboCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboCellView.h; sourceTree = "<group>"; };
-		CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboCellView.m; sourceTree = "<group>"; };
+		CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewCell.h; sourceTree = "<group>"; };
+		CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewCell.m; sourceTree = "<group>"; };
 		CF135C791950A83B00AE2E90 /* SYBWeiboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboCell.h; sourceTree = "<group>"; };
 		CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboCell.m; sourceTree = "<group>"; };
 		CF1E00DD17C7B7AA00E3FF7F /* WClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,8 +156,8 @@
 			children = (
 				CFB18B8A18E6D69000FB03E2 /* SYBWeiboImageView.h */,
 				CFB18B8B18E6D69000FB03E2 /* SYBWeiboImageView.m */,
-				CF06B2911823E9F100D23AEA /* SYBWeiboCellView.h */,
-				CF06B2921823E9F100D23AEA /* SYBWeiboCellView.m */,
+				CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */,
+				CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */,
 				CF2DE528184A61DB00FC3403 /* SYBCellRetweetView.h */,
 				CF2DE529184A61DB00FC3403 /* SYBCellRetweetView.m */,
 				CFB18B8D18E7E41700FB03E2 /* SYBUserInfoView.h */,
@@ -272,6 +275,8 @@
 				CFB4ED3D181D4CC4004E5846 /* SYBListViewController.m */,
 				CF6FBD8F1837DBC9001A35EF /* SYBMenuViewController.h */,
 				CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */,
+				5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */,
+				5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -447,12 +452,13 @@
 			files = (
 				CFB18B8C18E6D69000FB03E2 /* SYBWeiboImageView.m in Sources */,
 				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
-				CF06B2931823E9F100D23AEA /* SYBWeiboCellView.m in Sources */,
+				CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */,
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
 				CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */,
 				CFB18B8F18E7E41700FB03E2 /* SYBUserInfoView.m in Sources */,
 				CF1E00F117C7B7AA00E3FF7F /* SYBAppDelegate.m in Sources */,
 				CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */,
+				5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */,
 				CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */,
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,

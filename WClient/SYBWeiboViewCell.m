@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Song Xiaoming. All rights reserved.
 //
 
-#import "SYBWeiboCellView.h"
+#import "SYBWeiboViewCell.h"
 
-@implementation SYBWeiboCellView
+@implementation SYBWeiboViewCell
 
 - (id)init
 {

@@ -9,11 +9,12 @@
 #import "SYBListViewController.h"
 #import "SYBWeiboAPIClient.h"
 #import "SYBWeiBo.h"
-#import "SYBWeiboCellView.h"
+#import "SYBWeiboViewCell.h"
 #import "SYBMenuViewController.h"
 #import "SYBCellRetweetView.h"
 #import "RegexKitLite.h"
 #import "SYBUserInfoView.h"
+#import "SYBWeiboViewController.h"
 
 #import "UIColor+hex.h"
 
@@ -33,7 +34,7 @@
 
 @property (nonatomic, strong) SYBUserInfoView *userInfo;
 
-@property (nonatomic, strong) SYBWeiboCellView *prototype;
+@property (nonatomic, strong) SYBWeiboViewCell *prototype;
 @property (nonatomic, strong) SYBWeiboImageView *imageView;
 
 @property (nonatomic, strong) UIImageView *fullImageView;
@@ -166,6 +167,8 @@ static NSString * const largeImageFolder = @"mw1024";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma -- UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!_items) {
@@ -177,11 +180,11 @@ static NSString * const largeImageFolder = @"mw1024";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"weiboCell";
-    SYBWeiboCellView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SYBWeiboViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (!cell)
     {
-        cell = [[SYBWeiboCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[SYBWeiboViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     cell.tag = indexPath.row;
@@ -221,7 +224,7 @@ static NSString * const largeImageFolder = @"mw1024";
    
 }
 
-- (void)configCellWithStatus:(SYBWeiboCell *)weiboCell WithCell:(SYBWeiboCellView *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath isForOffscreenUse:(BOOL)offScreen
+- (void)configCellWithStatus:(SYBWeiboCell *)weiboCell WithCell:(SYBWeiboViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath isForOffscreenUse:(BOOL)offScreen
 {
     SYBWeiBo *status = weiboCell.weibo;
     CGFloat repoHeight = 0;
@@ -539,6 +542,8 @@ success:^(NSArray *result) {
 }];            
 }
 
+#pragma --  UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
@@ -548,6 +553,14 @@ success:^(NSArray *result) {
     [self caculateHeigtForCell:weiboCell];
 
     return weiboCell.cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = weiboCell.weibo;
+    
+    [self viewWeibo:status];
 }
 
 - (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
@@ -610,7 +623,7 @@ success:^(NSArray *result) {
             return;
     }
 
-    SYBWeiboCellView *selectedCell =nil;
+    SYBWeiboViewCell *selectedCell =nil;
     UIImageView *selectedImage =nil;
     if ([recognizer.view isKindOfClass:[UIImageView class]]) {
         selectedImage = (UIImageView *)recognizer.view;
@@ -619,8 +632,8 @@ success:^(NSArray *result) {
         return;
     }
     
-    if ([[[selectedImage superview] superview] isKindOfClass:[SYBWeiboCellView class]]) {
-        selectedCell = (SYBWeiboCellView *)[[selectedImage superview] superview];
+    if ([[[selectedImage superview] superview] isKindOfClass:[SYBWeiboViewCell class]]) {
+        selectedCell = (SYBWeiboViewCell *)[[selectedImage superview] superview];
     }
     if (!selectedCell) {
         return;
@@ -909,6 +922,14 @@ success:^(NSArray *result) {
         return _fullImageView;
     }
     return nil;
+}
+
+- (void)viewWeibo:(SYBWeiBo *)status
+{
+    SYBWeiboViewController *weiboViewController = [[SYBWeiboViewController alloc] init];
+    weiboViewController.status = status;
+    
+    [self.navigationController pushViewController:weiboViewController animated:YES];
 }
 
 @end
