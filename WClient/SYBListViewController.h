@@ -11,7 +11,11 @@
 #import "SYBWeiboCell.h"
 
 
-@interface SYBListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, EGORefreshTableHeaderDelegate>
+@interface SYBListViewController : UIViewController <UITableViewDataSource,
+                                                    UITableViewDelegate,
+                                                    UIGestureRecognizerDelegate,
+                                                    EGORefreshTableHeaderDelegate,
+                                                    UIScrollViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *listTableView;
 

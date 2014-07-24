@@ -40,6 +40,9 @@
 @property (nonatomic, strong) NSTimer *imageLoadTimer;
 @property (nonatomic, strong) UIProgressView *imageProgress;
 @property (nonatomic, strong) UIViewController *parentController;
+
+@property (nonatomic, strong) NSString *fullImageUrl;
+
 @end
 
 @implementation SYBListViewController
@@ -60,11 +63,7 @@ static const double SYBDAYSECONDS = 24*60*60;
 static const float CELL_CONTENT_WIDTH = 320.0f;
 static const float CELL_CONTENT_MARGIN = 6.0f;
 
-static const float STANDARD_AQUA_SPACE = 20;
-
 static const float REPO_WIDTH = 302.0f;
-static const float TEXTROWHEIGHT = 17.0f;
-static const float REPO_TEXTROWHEIGHT = 16.0f;
 
 static const float IMAGE_HEIGHT = 120.0f;
 static const float IMAGE_WIDTH = 120.0f;
@@ -79,9 +78,9 @@ static UIImage *defalutUserIcon;
 static UIImage *noImage;
 static UIImage *defaultImage;
 
-static const NSString *smallImageFolder = @"thumbnail";
-static const NSString *middleImageFolder = @"bmiddle";
-static const NSString *largeImageFolder = @"mw1024";
+static NSString * const smallImageFolder = @"thumbnail";
+static NSString * const middleImageFolder = @"bmiddle";
+static NSString * const largeImageFolder = @"mw1024";
 
 +(void)initialize
 {
@@ -257,6 +256,8 @@ static const NSString *largeImageFolder = @"mw1024";
             }
             if (cell.tag == indexPath.row) {
                 cell.iconView.image = image;
+            } else {
+                NSLog(@"tag did work");
             }
 
         });
@@ -831,54 +832,52 @@ success:^(NSArray *result) {
 
 - (void)scrollViewTap:(UITapGestureRecognizer *)tapGestureRecognizer
 {
+    [self.navigationController setNavigationBarHidden:NO];
+    
     [tapGestureRecognizer.view removeFromSuperview];
 }
 
-- (void)showFullImage:(UIGestureRecognizer *)send
+- (void)showFullImage:(UIGestureRecognizer *)tapGestureRecognizer
 {
-    UIScrollView *scrollImageView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIScrollView *scrollImageView = [[UIScrollView alloc] initWithFrame:CGRectMake(10, [UIScreen mainScreen].bounds.size.height -50, 40, 40)];
+    scrollImageView.backgroundColor = [UIColor blackColor];
+    scrollImageView.maximumZoomScale = 2;
+    scrollImageView.minimumZoomScale = 1;
+    
+    scrollImageView.delegate = self;
+    
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [scrollImageView addSubview:activityView];
+    activityView.center = CGPointMake(scrollImageView.frame.size.width/2, scrollImageView.frame.size.height/2);
+    [activityView startAnimating];
 
     UITapGestureRecognizer *scrollViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTap:)];
     
     [scrollImageView addGestureRecognizer:scrollViewTap];
     
-    UIImageView *imageview = [[UIImageView alloc] init];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     imageview.contentMode = UIViewContentModeScaleAspectFit;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        UIImage *image = [[UIImage imageWithData:[[NSData dataWithContentsOfURL:[NSURL URLWithString:@"url"]]]];
-//                                                 imageview.image = image;
-    });
+    [scrollImageView addSubview:imageview];
+    [self.view addSubview:scrollImageView];
     
-//    _imageView = nil;
-//    if ([send.view isKindOfClass:[SYBWeiboImageView class]]) {
-//        _imageView = (SYBWeiboImageView *)send.view;
-//    }
-//
-//    if (!_imageView) {
-//        return;
-//    }
-//
-////    [_imageView loadMiddleImageWithProgress];
-//    
-//    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-//    if (!_fullImageView) {
-//        _fullImageView = [[UIImageView alloc] initWithFrame:screenRect];
-//        _fullImageView.userInteractionEnabled = YES;
-//    }
-//    _fullImageView.image = _imageView.imageView.image;
-//
-//    
-//    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//         _imageLoadTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgress:) userInfo:nil repeats:YES];
-//    });
-//    
-//     _imageProgress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-//    
-//    [_fullImageView addSubview:_imageProgress];
-//    
-//    [[UIApplication sharedApplication].keyWindow addSubview:_fullImageView];
+    SYBWeiboImageView *tapedView = (SYBWeiboImageView *)tapGestureRecognizer.view;
+    _fullImageUrl = tapedView.imageURL ;
+   _fullImageUrl = [_fullImageUrl stringByReplacingOccurrencesOfString:smallImageFolder withString:largeImageFolder];
+    
+    __weak SYBListViewController *weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *image = [weakSelf getImageWithURL:weakSelf.fullImageUrl];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityView stopAnimating];
+            
+            imageview.image = image;
+            _fullImageView = imageview;
+            
+            scrollImageView.frame = [UIScreen mainScreen].bounds;
+            weakSelf.navigationController.navigationBarHidden = YES;
+        });
+    });
 }
 
 - (void)updateProgress:(NSTimer *)timer
@@ -901,4 +900,15 @@ success:^(NSArray *result) {
         NSString *uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
         [SSKeychain deletePasswordForService:@"WClient" account:uid];
 }
+
+#pragma -- UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    if (_fullImageView) {
+        return _fullImageView;
+    }
+    return nil;
+}
+
 @end
