@@ -246,9 +246,9 @@ static NSString * const largeImageFolder = @"mw1024";
     [cell addSubview:cell.iconView];
     cell.iconView.image = defalutUserIcon;
     
-    CALayer *imageLayer = cell.iconView.layer;
-    [imageLayer setMasksToBounds:YES];
-    [imageLayer setCornerRadius:10.0f];
+//    CALayer *imageLayer = cell.iconView.layer;
+//    [imageLayer setMasksToBounds:YES];
+//    [imageLayer setCornerRadius:10.0f];
 
     __unsafe_unretained typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -451,11 +451,17 @@ static NSString * const largeImageFolder = @"mw1024";
     CGRect sourceFrame = cell.creatin.frame;
     sourceFrame.origin.y = yHeight;
     cell.creatin.frame = sourceFrame;
-    cell.creatin.text = [NSString stringWithFormat:@"%@ %@", @"来自",status.source];
+    cell.creatin.text = [NSString stringWithFormat:@"%@ %@", COMESFROM,status.source];
     
 
     CGRect cellFrame = cell.frame;
-    cellFrame.size.height = yHeight + 14 +CELL_CONTENT_MARGIN;
+    cellFrame.size.height = yHeight + 24 +CELL_CONTENT_MARGIN;
+
+    // add comment area
+    cell.likeButton = [[UIButton alloc] initWithFrame:CGRectMake(200, cellFrame.size.height - 10, 10, 10)];
+    [cell.likeButton setTitle:@"Like" forState:UIControlStateNormal];
+    [cell addSubview:cell.likeButton];
+    
     
     cell.frame = cellFrame;
 }

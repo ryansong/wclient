@@ -30,4 +30,8 @@
 @property (nonatomic, strong) UILabel *repoText;
 @property (nonatomic, strong) SYBWeiboImageView *repoImage;
 
+@property (nonatomic, strong) UIButton *likeButton;
+@property (nonatomic, strong) UIButton *retwitterButton;
+@property (nonatomic, strong) UIButton *commentButton;
+
 @end

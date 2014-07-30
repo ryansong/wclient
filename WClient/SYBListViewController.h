@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "SYBWeiboCell.h"
+#import "APPMacro.h"
 
 
 @interface SYBListViewController : UIViewController <UITableViewDataSource,
