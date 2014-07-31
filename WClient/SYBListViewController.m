@@ -239,16 +239,14 @@ static NSString * const largeImageFolder = @"mw1024";
                               action:@selector(handleCellTap:)];
 
             [cell.iconView addGestureRecognizer:tapGestureForCell];
+            CALayer *imageLayer = cell.iconView.layer;
+            [imageLayer setMasksToBounds:YES];
+            [imageLayer setCornerRadius:10.0f];
+            [cell.iconView setUserInteractionEnabled:YES];
     }
-
-    [cell.iconView setUserInteractionEnabled:YES];
     
     [cell addSubview:cell.iconView];
     cell.iconView.image = defalutUserIcon;
-    
-//    CALayer *imageLayer = cell.iconView.layer;
-//    [imageLayer setMasksToBounds:YES];
-//    [imageLayer setCornerRadius:10.0f];
 
     __unsafe_unretained typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
