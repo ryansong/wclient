@@ -13,6 +13,7 @@ static NSString *const CLIENT_ID = @"261263576";
 static NSString *const CLIENT_SECRET = @"6597bf2ba67b745e6af1c5b7f4b33e6e";
 
 static NSString *const COMESFROM = @"来自";
+static NSString *const LIKE = @"like";
 
 typedef enum{
     SYBRunEnviromentOffLine = 0,

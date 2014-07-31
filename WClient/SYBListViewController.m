@@ -192,6 +192,7 @@ static NSString * const largeImageFolder = @"mw1024";
     SYBWeiboCell *status =[_items objectAtIndex:[indexPath row]];
     [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:indexPath isForOffscreenUse:NO];
     
+    
     return cell;
 }
 
@@ -220,6 +221,7 @@ static NSString * const largeImageFolder = @"mw1024";
     if (![weiboCell.weibo.retweeted_status hasPic]) {
         return;
     }
+    weiboCell.cellHeight += 24 ;
     weiboCell.cellHeight += 120 ;
    
 }
@@ -456,11 +458,12 @@ static NSString * const largeImageFolder = @"mw1024";
     cellFrame.size.height = yHeight + 24 +CELL_CONTENT_MARGIN;
 
     // add comment area
-    cell.likeButton = [[UIButton alloc] initWithFrame:CGRectMake(200, cellFrame.size.height - 10, 10, 10)];
-    [cell.likeButton setTitle:@"Like" forState:UIControlStateNormal];
-    [cell addSubview:cell.likeButton];
-    
-    
+    if (!cell.likeButton) {
+        cell.likeButton = [[UIButton alloc] initWithFrame:CGRectMake(200, cellFrame.size.height - 20, 30, 20)];
+        [cell.likeButton setTitle:LIKE forState:UIControlStateNormal];
+        [cell addSubview:cell.likeButton];
+        cell.likeButton.backgroundColor = [UIColor redColor];
+    }
     cell.frame = cellFrame;
 }
 
