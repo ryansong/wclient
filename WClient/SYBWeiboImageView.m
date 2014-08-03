@@ -46,8 +46,6 @@ static const CGFloat borderInterval = 10.0f;
     if (!_imageURL) {
         return;
     }
-    AFHTTPSessionManager *manger = [[AFHTTPSessionManager alloc] init];
-    NSMutableData *data = nil;
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

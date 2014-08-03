@@ -15,23 +15,22 @@
 
 @interface SYBWeiboViewCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *iconView;
-@property (nonatomic, strong) UILabel *username;
-@property (nonatomic, strong) UILabel *creatTime;
-@property (nonatomic, strong) UILabel *repost_comment;
-@property (nonatomic, strong) UILabel *creatin;
+@property (nonatomic, weak) IBOutlet UIImageView *iconView;
+@property (nonatomic, weak) IBOutlet UILabel *username;
+@property (nonatomic, weak) IBOutlet UILabel *creatTimeAndSource;
+@property (nonatomic, weak) IBOutlet UILabel *repost_comment;
 
-@property (nonatomic, strong) UILabel *poTextLabel;
-@property (nonatomic, strong) SYBWeiboImageView *poImage;
+@property (nonatomic, weak) IBOutlet UILabel *poTextView;
+@property (nonatomic, weak) IBOutlet SYBWeiboImageView *poImage;
 
-@property (nonatomic, strong) UIView *repoArea;
-@property (nonatomic, strong) UIView *repoBar;
-@property (nonatomic, strong) UILabel *repoUsername;
-@property (nonatomic, strong) UILabel *repoText;
-@property (nonatomic, strong) SYBWeiboImageView *repoImage;
+@property (nonatomic, weak) IBOutlet UIView *repoArea;
+@property (nonatomic, weak) IBOutlet UIView *repoBar;
+@property (nonatomic, weak) IBOutlet UILabel *repoUsername;
+@property (nonatomic, weak) IBOutlet UILabel *repoTextView;
+@property (nonatomic, weak) IBOutlet SYBWeiboImageView *repoImage;
 
-@property (nonatomic, strong) UIButton *likeButton;
-@property (nonatomic, strong) UIButton *retwitterButton;
-@property (nonatomic, strong) UIButton *commentButton;
+@property (nonatomic, weak) IBOutlet UIButton *likeButton;
+@property (nonatomic, weak) IBOutlet UIButton *retwitterButton;
+@property (nonatomic, weak) IBOutlet UIButton *commentButton;
 
 @end
