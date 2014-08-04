@@ -335,17 +335,17 @@ static NSString * const largeImageFolder = @"mw1024";
     cell.retwitterButton.frame = retwitterFrame;
     
     if (status.attitudes_count > 0) {
-        NSString *like = [NSString stringWithFormat:@"%@(%d)", NSLocalizedString(@"like", nil), status.attitudes_count];
+        NSString *like = [NSString stringWithFormat:@" %d", status.attitudes_count];
         [cell.likeButton setTitle:like forState:UIControlStateNormal];
     }
 
     if (status.reposts_count > 0) {
-        NSString *retweet = [NSString stringWithFormat:@"%@(%d)", NSLocalizedString(@"retweet", nil), status.reposts_count];
+        NSString *retweet = [NSString stringWithFormat:@" %d", status.reposts_count];
         [cell.retwitterButton setTitle:retweet forState:UIControlStateNormal];
     }
 
     if (status.comments_count > 0) {
-        NSString *commnet = [NSString stringWithFormat:@"%@(%d)", NSLocalizedString(@"comment", nil), status.comments_count];
+        NSString *commnet = [NSString stringWithFormat:@" %d",status.comments_count];
         [cell.commentButton setTitle:commnet forState:UIControlStateNormal];
     }
 
