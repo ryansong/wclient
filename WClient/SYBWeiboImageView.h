@@ -20,6 +20,6 @@
 @property (nonatomic, assign) NSUInteger totalBytes;
 @property (nonatomic, assign) NSUInteger receivedBytes;
 
-- (void)loadMiddleImageWithProgress;
+//- (void)loadMiddleImageWithProgress;
 
 @end

@@ -183,6 +183,19 @@ static NSString * const largeImageFolder = @"mw1024";
     {
         cell = [[SYBWeiboViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
+    
+    UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
+                                                 initWithTarget:self
+                                                 action:@selector(handleCellTap:)];
+    [cell.iconView addGestureRecognizer:tapGestureForCell];
+    
+    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
+    
+    [cell.poImage addGestureRecognizer:tapImage];
+    
+    UITapGestureRecognizer *tapRepoImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
+    [cell.repoImage addGestureRecognizer:tapRepoImage];
 
     cell.tag = indexPath.row;
     SYBWeiboCell *status =[_items objectAtIndex:[indexPath row]];
@@ -192,7 +205,6 @@ static NSString * const largeImageFolder = @"mw1024";
 
 - (void)caculateHeigtForCell:(SYBWeiboCell *)weiboCell
 {
-    float fPadding = 16.0; // 8.0px x 2
     CGSize poTextSize =  [weiboCell.weibo.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
     weiboCell.poHeight = poTextSize.height;
     
@@ -202,7 +214,7 @@ static NSString * const largeImageFolder = @"mw1024";
     
     //with po image
     if ([weiboCell.weibo hasPic]) {
-        weiboCell.cellHeight += 120 +CELL_CONTENT_MARGIN + IMAGE_WIDTH + IMAGE_BORDAE_WIDTH;
+        weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH + IMAGE_BORDAE_WIDTH;
         return;
     }
     
@@ -262,7 +274,7 @@ static NSString * const largeImageFolder = @"mw1024";
             UIImage *image = [weakSelf getImageWithURL: [status.pic_urls objectAtIndex:0]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (cell.tag == indexPath.row) {
-                    [weakSelf loadImage:image forView:cell.poImage];
+                    cell.poImage.imageView.image = image;
                 }
             });
         });
@@ -287,7 +299,7 @@ static NSString * const largeImageFolder = @"mw1024";
                         UIImage *image = [weakSelf getImageWithURL:[reStatus.pic_urls objectAtIndex:0]];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if (cell.tag == indexPath.row) {
-                                [weakSelf loadImage:image forView:cell.repoImage];
+                                cell.repoImage.imageView.image = image;
                             }
                         });
                     });
@@ -295,13 +307,12 @@ static NSString * const largeImageFolder = @"mw1024";
         }
     }
 
-
     cell.poImage.hidden = YES;
     cell.repoArea.hidden = YES;
     cell.repoImage.hidden = YES;
     if (status.hasPic) {
         cell.poImage.hidden = NO;
-        cell.poImage.frame = CGRectMake(cell.poImage.frame.origin.x, cell.poTextView.frame.origin.y + cell.poImage.frame.size.height + CELL_CONTENT_MARGIN, cell.poImage.frame.size.width, cell.poImage.frame.size.height);
+        cell.poImage.frame = CGRectMake(cell.poImage.frame.origin.x, cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.poImage.frame.size.width, cell.poImage.frame.size.height);
         
          cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.poImage.frame.origin.y + cell.poImage.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
     } else if (status.retweeted_status){
@@ -320,8 +331,6 @@ static NSString * const largeImageFolder = @"mw1024";
         cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.repoArea.frame.origin.y + cell.repoArea.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
     } else {
         cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
-        
-
     }
     
     CGRect commentFrame = cell.commentButton.frame;
@@ -687,38 +696,6 @@ success:^(NSArray *result) {
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-}
-
-- (void)loadImage:(UIImage *)img forView:(SYBWeiboImageView *)view
-{
-    if (!img) {
-        return;
-    }
-    
-    CGSize imagSize = img.size;
-    CGFloat rateWH = imagSize.width/imagSize.height;
-   
-    if (rateWH == 1) {
-        return;
-    }
-
-    CGRect viewframe = view.frame;
-    CGRect imageViewframe = view.imageView.frame;
-    
-    if (rateWH < 1) {
-        CGFloat width = 120 * rateWH;
-        viewframe.size.width = width + IMAGE_BORDAE_WIDTH;
-        imageViewframe.size.width = width;
-        
-    } else {
-        CGFloat width = 120 * rateWH;
-        viewframe.size.width = width + IMAGE_BORDAE_WIDTH;
-        imageViewframe.size.width = width;
-    }
-    
-    view.frame = viewframe;
-    view.imageView.frame = imageViewframe;
-    view.imageView.image = img;
 }
 
 - (void)scrollViewTap:(UITapGestureRecognizer *)tapGestureRecognizer

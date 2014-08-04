@@ -31,18 +31,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
-    UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
-                                                 initWithTarget:self
-                                                 action:@selector(handleCellTap:)];
-    [_iconView addGestureRecognizer:tapGestureForCell];
-    
-    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
-    
-    [_poImage addGestureRecognizer:tapImage];
-
-    UITapGestureRecognizer *tapRepoImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
-    [_repoImage addGestureRecognizer:tapRepoImage];
 }
 
 - (void)prepareForReuse
