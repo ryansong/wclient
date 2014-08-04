@@ -16,6 +16,7 @@
 		56B1831A198F558F0062F4CA /* bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18314198F558F0062F4CA /* bubble@2x.png */; };
 		56B1831B198F558F0062F4CA /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18315198F558F0062F4CA /* forward@2x.png */; };
 		56B1831C198F558F0062F4CA /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18316198F558F0062F4CA /* like@2x.png */; };
+		56B1831F198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1831E198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m */; };
 		CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */; };
 		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
@@ -74,6 +75,8 @@
 		56B18314198F558F0062F4CA /* bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble@2x.png"; sourceTree = "<group>"; };
 		56B18315198F558F0062F4CA /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@2x.png"; sourceTree = "<group>"; };
 		56B18316198F558F0062F4CA /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
+		56B1831D198F6A4C0062F4CA /* SYBWeiboPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboPopoverViewController.h; sourceTree = "<group>"; };
+		56B1831E198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboPopoverViewController.m; sourceTree = "<group>"; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewCell.h; sourceTree = "<group>"; };
 		CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewCell.m; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */,
 				5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */,
 				5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */,
+				56B1831D198F6A4C0062F4CA /* SYBWeiboPopoverViewController.h */,
+				56B1831E198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56B1831F198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m in Sources */,
 				CFB18B8C18E6D69000FB03E2 /* SYBWeiboImageView.m in Sources */,
 				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
 				CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */,

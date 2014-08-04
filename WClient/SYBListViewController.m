@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 Song Xiaoming. All rights reserved.
 //
 
+#import <SSKeychain.h>
 #import "SYBListViewController.h"
 #import "SYBWeiboAPIClient.h"
 #import "SYBWeiBo.h"
@@ -15,10 +16,9 @@
 #import "RegexKitLite.h"
 #import "SYBUserInfoView.h"
 #import "SYBWeiboViewController.h"
+#import "SYBWeiboPopoverViewController.h"
 
 #import "UIColor+hex.h"
-
-#import <SSKeychain.h>
 
 #define ALABEL_EXPRESSION @"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}"
 #define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
@@ -96,25 +96,25 @@ static NSString * const largeImageFolder = @"mw1024";
     [super viewDidLoad];
     [self getWeibo];
 
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
-                                                    initWithTarget:self
-                                                            action:@selector(handlePan:)];
-    panGestureRecognizer.delegate = self;
+//    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
+//                                                    initWithTarget:self
+//                                                            action:@selector(handlePan:)];
+//    panGestureRecognizer.delegate = self;
+//    
+//    _parentController = self.parentViewController;
+//    [_parentController.view addGestureRecognizer:panGestureRecognizer];
     
-    _parentController = self.parentViewController;
-    [_parentController.view addGestureRecognizer:panGestureRecognizer];
-    
-    UITapGestureRecognizer *tapNavigationBarRecognizer = [[UITapGestureRecognizer alloc]
-                                                    initWithTarget:self
-                                                    action:@selector(handleTap:)];
-    [_navigationBar addGestureRecognizer:tapNavigationBarRecognizer];
-    
-    UITapGestureRecognizer *tapListViewRecognizer = [[UITapGestureRecognizer alloc]
-                                                    initWithTarget:self
-                                                    action:@selector(handleTap:)];
-    
-    [_listTableView addGestureRecognizer:tapListViewRecognizer];
-    _listTableView.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tapNavigationBarRecognizer = [[UITapGestureRecognizer alloc]
+//                                                    initWithTarget:self
+//                                                    action:@selector(handleTap:)];
+//    [_navigationBar addGestureRecognizer:tapNavigationBarRecognizer];
+//    
+//    UITapGestureRecognizer *tapListViewRecognizer = [[UITapGestureRecognizer alloc]
+//                                                    initWithTarget:self
+//                                                    action:@selector(handleTap:)];
+//    
+//    [_listTableView addGestureRecognizer:tapListViewRecognizer];
+//    _listTableView.userInteractionEnabled = YES;
     
     //add shadow
     CALayer *layer = [_listTableView layer];
@@ -500,8 +500,13 @@ success:^(NSArray *result) {
 {
     SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
     SYBWeiBo *status = weiboCell.weibo;
+
+    SYBWeiboPopoverViewController *popoverViewController = [[SYBWeiboPopoverViewController alloc] initWithNibName:nil bundle:nil];
+    popoverViewController.status = status;
     
-    [self viewWeibo:status];
+//    [self.navigationController pushViewController:popoverViewController animated:NO];
+    
+//    [self viewWeibo:status];
 }
 
 - (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
