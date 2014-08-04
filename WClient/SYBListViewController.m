@@ -62,9 +62,10 @@ static const double SYBDAYSECONDS = 24*60*60;
 static const float CELL_CONTENT_WIDTH = 320.0f;
 static const float CELL_CONTENT_MARGIN = 6.0f;
 
-static const float IMAGE_WIDTH = 120.0f;
-
-static const float IMAGE_BORDAE_WIDTH = 10.0f;
+static const float CELL_ICON_HEIGHT = 50.0f;
+static const float CELL_REPOUSERNAME_HEIGHT = 21.0f;
+static const float IMAGE_WIDTH = 130.0;
+static const float CELL_ATTIBUTED_HEIGHT = 10.0f;
 
 static UIImage *defalutUserIcon;
 static UIImage *noImage;
@@ -201,24 +202,34 @@ static NSString * const largeImageFolder = @"mw1024";
     CGSize poTextSize =  [weiboCell.weibo.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
     weiboCell.poHeight = poTextSize.height;
     
-    weiboCell.cellHeight = 10 + 50 + CELL_CONTENT_MARGIN;
-    weiboCell.cellHeight += weiboCell.poHeight;
-    weiboCell.cellHeight += CELL_CONTENT_MARGIN + 10 + CELL_CONTENT_MARGIN;
+    // height of user icon&username
+    weiboCell.cellHeight = CELL_CONTENT_MARGIN + CELL_ICON_HEIGHT;
+    //height of weibo text
+    weiboCell.cellHeight +=  CELL_CONTENT_MARGIN + weiboCell.poHeight;
+    //height of weibo attibuted
+    weiboCell.cellHeight += CELL_CONTENT_MARGIN + CELL_ATTIBUTED_HEIGHT + CELL_CONTENT_MARGIN;
     
     //with po image
     if ([weiboCell.weibo hasPic]) {
-        weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH + IMAGE_BORDAE_WIDTH;
+        weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH;
         return;
     }
     
     if (weiboCell.weibo.retweeted_status) {
         CGSize repoTextHeight = [weiboCell.weibo.retweeted_status.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
         weiboCell.repoHeight = repoTextHeight.height;
-        weiboCell.cellHeight += weiboCell.repoHeight + CELL_CONTENT_MARGIN *2 + 30;
+        
+        //MARGIN for repoArea
+        weiboCell.cellHeight += CELL_CONTENT_MARGIN;
+        // height of repo username
+        weiboCell.cellHeight += CELL_CONTENT_MARGIN + CELL_REPOUSERNAME_HEIGHT;
+        weiboCell.cellHeight += CELL_CONTENT_MARGIN + weiboCell.repoHeight;
         
         if ([weiboCell.weibo.retweeted_status hasPic]) {
-            weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH + IMAGE_BORDAE_WIDTH ;
+            weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH;
         }
+        
+        weiboCell.cellHeight += CELL_CONTENT_MARGIN + CELL_ATTIBUTED_HEIGHT + CELL_CONTENT_MARGIN;
     }
 }
 
@@ -315,10 +326,42 @@ static NSString * const largeImageFolder = @"mw1024";
         if (status.retweeted_status.hasPic) {
             cell.repoImage.hidden = NO;
             cell.repoImage.frame = CGRectMake(cell.repoImage.frame.origin.x, cell.repoTextView.frame.origin.y + cell.repoTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoImage.frame.size.width, cell.repoImage.frame.size.height);
+
+            cell.repoLikeButton.frame = CGRectMake(cell.repoLikeButton.frame.origin.x, cell.repoImage.frame.origin.y + cell.repoImage.frame.size.height + CELL_CONTENT_MARGIN, cell.repoLikeButton.frame.size.width, cell.repoLikeButton.frame.size.height);
             
-            cell.repoArea.frame = CGRectMake(cell.repoArea.frame.origin.x,  cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoArea.frame.size.width, cell.repoImage.frame.origin.y + cell.repoImage.frame.size.height + CELL_CONTENT_MARGIN);
+            cell.repoArea.frame = CGRectMake(cell.repoArea.frame.origin.x,  cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoArea.frame.size.width, cell.repoLikeButton.frame.origin.y + cell.repoLikeButton.frame.size.height + CELL_CONTENT_MARGIN);
         } else {
-            cell.repoArea.frame = CGRectMake(cell.repoArea.frame.origin.x,  cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoArea.frame.size.width, cell.repoTextView.frame.origin.y + cell.repoTextView.frame.size.height + CELL_CONTENT_MARGIN);
+            
+             cell.repoLikeButton.frame = CGRectMake(cell.repoLikeButton.frame.origin.x, cell.repoTextView.frame.origin.y + cell.repoTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoLikeButton.frame.size.width, cell.repoLikeButton.frame.size.height);
+            
+            cell.repoArea.frame = CGRectMake(cell.repoArea.frame.origin.x,  cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoArea.frame.size.width, cell.repoLikeButton.frame.origin.y + cell.repoLikeButton.frame.size.height + CELL_CONTENT_MARGIN);
+        }
+        
+        CGRect repoCommentFrame = cell.repoCommentButton.frame;
+        repoCommentFrame.origin.y = cell.repoLikeButton.frame.origin.y;
+        cell.repoCommentButton.frame = repoCommentFrame;
+        
+        CGRect repoRetwitterFrame = cell.repoRetwitterButton.frame;
+        repoRetwitterFrame.origin.y = cell.repoLikeButton.frame.origin.y;
+        cell.repoRetwitterButton.frame = repoRetwitterFrame;
+        
+        CGRect retwitterFrame = cell.retwitterButton.frame;
+        retwitterFrame.origin.y = cell.likeButton.frame.origin.y;
+        cell.retwitterButton.frame = retwitterFrame;
+        
+        if (status.retweeted_status.attitudes_count > 0) {
+            NSString *repoLike = [NSString stringWithFormat:@" %d", status.retweeted_status.attitudes_count];
+            [cell.repoLikeButton setTitle:repoLike forState:UIControlStateNormal];
+        }
+        
+        if (status.retweeted_status.reposts_count > 0) {
+            NSString *erpoRetweet = [NSString stringWithFormat:@" %d", status.retweeted_status.reposts_count];
+            [cell.repoRetwitterButton setTitle:erpoRetweet forState:UIControlStateNormal];
+        }
+        
+        if (status.retweeted_status.comments_count > 0) {
+            NSString *repoCommnet = [NSString stringWithFormat:@" %d",status.retweeted_status.comments_count];
+            [cell.repoCommentButton setTitle:repoCommnet forState:UIControlStateNormal];
         }
         
         cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.repoArea.frame.origin.y + cell.repoArea.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
