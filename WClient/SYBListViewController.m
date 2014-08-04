@@ -55,8 +55,6 @@ static const float MAX_VIEW_SLID_POINT_X = 400.0f;
 static const float MIN_VIEW_SLID_POINT_X = 160.0f;
 static const float DIVIDWIDTH = 320.0f;
 
-static const float DEFALUTFONTSIZE = 14;
-
 static const double SYBMINTUESECONDS = 60;
 static const double SYBHOURSECONDS = 60*60;
 static const double SYBDAYSECONDS = 24*60*60;
@@ -64,14 +62,9 @@ static const double SYBDAYSECONDS = 24*60*60;
 static const float CELL_CONTENT_WIDTH = 320.0f;
 static const float CELL_CONTENT_MARGIN = 6.0f;
 
-
-static const float IMAGE_HEIGHT = 120.0f;
 static const float IMAGE_WIDTH = 120.0f;
 
 static const float IMAGE_BORDAE_WIDTH = 10.0f;
-
-
-static float yHeight = 0;
 
 static UIImage *defalutUserIcon;
 static UIImage *noImage;
@@ -341,6 +334,21 @@ static NSString * const largeImageFolder = @"mw1024";
     retwitterFrame.origin.y = cell.likeButton.frame.origin.y;
     cell.retwitterButton.frame = retwitterFrame;
     
+    if (status.attitudes_count > 0) {
+        NSString *like = [NSString stringWithFormat:@"%@(%d)", NSLocalizedString(@"like", nil), status.attitudes_count];
+        [cell.likeButton setTitle:like forState:UIControlStateNormal];
+    }
+
+    if (status.reposts_count > 0) {
+        NSString *retweet = [NSString stringWithFormat:@"%@(%d)", NSLocalizedString(@"retweet", nil), status.reposts_count];
+        [cell.retwitterButton setTitle:retweet forState:UIControlStateNormal];
+    }
+
+    if (status.comments_count > 0) {
+        NSString *commnet = [NSString stringWithFormat:@"%@(%d)", NSLocalizedString(@"comment", nil), status.comments_count];
+        [cell.commentButton setTitle:commnet forState:UIControlStateNormal];
+    }
+
     CGRect cellFrame = cell.frame;
     cellFrame.size.height = cell.likeButton.frame.origin.y + cell.likeButton.frame.size.height+ CELL_CONTENT_WIDTH;
     cell.frame = cellFrame;

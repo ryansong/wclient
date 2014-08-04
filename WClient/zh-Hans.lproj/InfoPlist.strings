@@ -1,0 +1,5 @@
+/* Localized versions of Info.plist keys */
+
+"@like" = "赞";
+"@retweet" = "转发";
+"@comment" = "评论";

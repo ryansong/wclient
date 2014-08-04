@@ -1,2 +1,5 @@
 /* Localized versions of Info.plist keys */
 
+"@like" = "like";
+"@retweet" = "retweet";
+"@comment" = "comment";

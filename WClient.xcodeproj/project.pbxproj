@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */; };
+		56B1830F198F50830062F4CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56B1830B198F50830062F4CA /* InfoPlist.strings */; };
+		56B18310198F50830062F4CA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56B1830D198F50830062F4CA /* MainStoryboard.storyboard */; };
 		CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */; };
 		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
@@ -19,7 +21,6 @@
 		CF1E00F317C7B7AA00E3FF7F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1E00F217C7B7AA00E3FF7F /* Default.png */; };
 		CF1E00F517C7B7AA00E3FF7F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1E00F417C7B7AA00E3FF7F /* Default@2x.png */; };
 		CF1E00F717C7B7AA00E3FF7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1E00F617C7B7AA00E3FF7F /* Default-568h@2x.png */; };
-		CF1E00FA17C7B7AA00E3FF7F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */; };
 		CF1E010417C7C05300E3FF7F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E010317C7C05300E3FF7F /* Security.framework */; };
 		CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DE5211849E62300FC3403 /* UIColor+hex.m */; };
 		CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DE529184A61DB00FC3403 /* SYBCellRetweetView.m */; };
@@ -58,6 +59,9 @@
 		5433629D8FC348C69BD82076 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewController.h; sourceTree = "<group>"; };
 		5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewController.m; sourceTree = "<group>"; };
+		56B1830A198F4D680062F4CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		56B1830C198F50830062F4CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		56B1830E198F50830062F4CA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewCell.h; sourceTree = "<group>"; };
 		CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewCell.m; sourceTree = "<group>"; };
@@ -68,7 +72,6 @@
 		CF1E00E217C7B7AA00E3FF7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CF1E00E417C7B7AA00E3FF7F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CF1E00E817C7B7AA00E3FF7F /* WClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WClient-Info.plist"; sourceTree = "<group>"; };
-		CF1E00EA17C7B7AA00E3FF7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CF1E00EC17C7B7AA00E3FF7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF1E00EE17C7B7AA00E3FF7F /* WClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WClient-Prefix.pch"; sourceTree = "<group>"; };
 		CF1E00EF17C7B7AA00E3FF7F /* SYBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYBAppDelegate.h; sourceTree = "<group>"; };
@@ -76,7 +79,6 @@
 		CF1E00F217C7B7AA00E3FF7F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CF1E00F417C7B7AA00E3FF7F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CF1E00F617C7B7AA00E3FF7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		CF1E00F917C7B7AA00E3FF7F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CF1E010317C7C05300E3FF7F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CF1E010B17C8683200E3FF7F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CF2DE5201849E62300FC3403 /* UIColor+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hex.h"; sourceTree = "<group>"; };
@@ -213,7 +215,7 @@
 				CF6FBD8E18372F06001A35EF /* Controller */,
 				CF1E00E717C7B7AA00E3FF7F /* Supporting Files */,
 				CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */,
-				CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */,
+				56B1830D198F50830062F4CA /* MainStoryboard.storyboard */,
 				CFB4ED36181AAFA6004E5846 /* WClient.entitlements */,
 				CFC7163A1854954C0057EEE4 /* Images.xcassets */,
 			);
@@ -226,6 +228,7 @@
 				CF6FBD921837DD47001A35EF /* images */,
 				CF1E00E817C7B7AA00E3FF7F /* WClient-Info.plist */,
 				CF1E00E917C7B7AA00E3FF7F /* InfoPlist.strings */,
+				56B1830B198F50830062F4CA /* InfoPlist.strings */,
 				CF1E00EC17C7B7AA00E3FF7F /* main.m */,
 				CF1E00EE17C7B7AA00E3FF7F /* WClient-Prefix.pch */,
 				CF1E00F217C7B7AA00E3FF7F /* Default.png */,
@@ -377,6 +380,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = CF1E00D417C7B7AA00E3FF7F;
 			productRefGroup = CF1E00DE17C7B7AA00E3FF7F /* Products */;
@@ -394,17 +398,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF1E00EB17C7B7AA00E3FF7F /* InfoPlist.strings in Resources */,
+				56B1830F198F50830062F4CA /* InfoPlist.strings in Resources */,
 				CFC7164D1858AFBE0057EEE4 /* timeline_rt_border_t.png in Resources */,
 				CFC7163B1854954C0057EEE4 /* Images.xcassets in Resources */,
 				CF1E00F317C7B7AA00E3FF7F /* Default.png in Resources */,
 				CFC7164C1858AFBE0057EEE4 /* table_header_bg@2x.png in Resources */,
+				56B18310198F50830062F4CA /* MainStoryboard.storyboard in Resources */,
 				CF1E00F517C7B7AA00E3FF7F /* Default@2x.png in Resources */,
 				CF58BB18185A131C00CE3136 /* UserIcon.png in Resources */,
 				CF1E00F717C7B7AA00E3FF7F /* Default-568h@2x.png in Resources */,
 				CFB18B9118E7E44000FB03E2 /* SYBUserInfoView.xib in Resources */,
 				CFC7164E1858AFBE0057EEE4 /* timeline_rt_border_t@2x.png in Resources */,
 				CFC7164B1858AFBE0057EEE4 /* table_header_bg.png in Resources */,
-				CF1E00FA17C7B7AA00E3FF7F /* MainStoryboard.storyboard in Resources */,
 				CFC716511858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg in Resources */,
 				CFC716571859FF2C0057EEE4 /* NoImage.png in Resources */,
 			);
@@ -478,20 +483,28 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CF1E00E917C7B7AA00E3FF7F /* InfoPlist.strings */ = {
+		56B1830B198F50830062F4CA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CF1E00EA17C7B7AA00E3FF7F /* en */,
+				56B1830C198F50830062F4CA /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CF1E00F817C7B7AA00E3FF7F /* MainStoryboard.storyboard */ = {
+		56B1830D198F50830062F4CA /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CF1E00F917C7B7AA00E3FF7F /* en */,
+				56B1830E198F50830062F4CA /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		CF1E00E917C7B7AA00E3FF7F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56B1830A198F4D680062F4CA /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
