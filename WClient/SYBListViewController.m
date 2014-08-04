@@ -381,6 +381,9 @@ static NSString * const largeImageFolder = @"mw1024";
 {
     NSDateFormatter* formater = [[NSDateFormatter alloc] init];
     [formater setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [formater setLocale:usLocale];
+    
     NSDate* createdDate = [formater dateFromString:created_dt];
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:createdDate];
     
