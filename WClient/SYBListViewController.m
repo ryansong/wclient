@@ -18,6 +18,8 @@
 #import "SYBWeiboViewController.h"
 #import "SYBWeiboPopoverViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "SYBWeiboPopoverViewController.h"
+
 
 #import "UIColor+hex.h"
 
@@ -473,8 +475,6 @@ success:^(NSArray *result) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
-//    SYBWeiBo *status = weiboCell.weibo;
 //
 //    SYBWeiboPopoverViewController *popoverViewController = [[SYBWeiboPopoverViewController alloc] initWithNibName:nil bundle:nil];
 //    popoverViewController.status = status;
@@ -817,6 +817,16 @@ success:^(NSArray *result) {
     weiboViewController.status = status;
     
     [self.navigationController pushViewController:weiboViewController animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[SYBWeiboPopoverViewController class]]) {
+        NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
+        SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+        
+        ((SYBWeiboPopoverViewController *)segue.destinationViewController).status = weiboCell.weibo;
+    }
 }
 
 @end

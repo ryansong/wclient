@@ -10,6 +10,7 @@ static NSString *const KAPIRedirectUri = @"https://api.weibo.com/oauth2/default.
 static NSString *const KAPIBaseUrl = @"https://api.weibo.com";
 static NSString *const KAPIRequestAuthorize = @"/oauth2/authorize";
 static NSString *const KAPIRequestAccess_token = @"/oauth2/access_token";
+static NSString *const KAPIRequestShowComments = @"/2/comments/show.json";
 static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
 
 
@@ -18,6 +19,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 #import "SYBWeiBo.h"
 #import <SSKeychain.h>
 #import "APPMacro.h"
+#import "SYBWeiBoComment.h"
 
 
 @interface SYBWeiboAPIClient ()
@@ -274,6 +276,84 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     
 }
 
+- (void)getCommnetsWithWeiboID:(long long)weiboID
+                      since_id:(long long)since_id
+                        max_id:(long long)max_id
+                         count:(int)count
+                          page:(int)page
+              filter_by_author:(int)filter
+                       success:(PBArrayBlock)success
+                       failure:(PBErrorBlock)failure
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"access_token"] = _token;
+   
+    if (weiboID) {
+        params[@"id"] = @(weiboID);
+    }
+
+    if (since_id) {
+        params[@"since_id"] = @(since_id);
+    } else {
+        params[@"since_id"] = @(0);
+    }
+    
+    if (max_id) {
+        params[@"max_id"] = @(max_id);
+    } else {
+        params[@"max_id"] = @(0);
+    }
+    
+    if (count) {
+        params[@"count"] = @(count);
+    }
+    
+    if (page) {
+        params[@"page"] = @(page);
+    }
+
+    if (filter) {
+        params[@"filter_by_author"] = @(filter);
+    }
+    
+    [_httpClient GET:KAPIRequestShowComments parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:4]);
+        
+        NSError *error;
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+
+        NSMutableArray *weiboComments = [NSMutableArray array];
+        if (error) {
+            failure(PBXErrorUnknown);
+            return;
+        } else {
+            NSDictionary *comments = dict[@"comments"];
+            for (NSDictionary *comment in comments) {
+                SYBWeiBoComment *weiboComment = [[SYBWeiBoComment alloc] init];
+                weiboComment.created_at = comment[@"created_at"];
+                weiboComment.text = comment[@"text"];
+                weiboComment.commentID = [comment[@"id"] longLongValue];
+                weiboComment.idstr = comment[@"idstr"];
+                weiboComment.mid = comment[@"mid"];
+                weiboComment.source = comment[@"source"];
+                weiboComment.status = [self weiBoFromDict:comment[@"status"]];
+                weiboComment.user = [self userFromDict:comment[@"user"]];
+                
+                [weiboComments addObject:weiboComment];
+            }
+        }
+        
+        if (success) {
+            success(weiboComments);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         failure(PBXErrorUnknown);
+    }];
+    
+}
+
 - (BOOL) sendWeiBo
 {
     NSString *acctoken = [SSKeychain passwordForService:@"WClient" account:@"username"];
@@ -345,6 +425,49 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
                   
               }];
 }
+
+- (SYBWeiboUser *)userFromDict:(NSDictionary *)userDict
+{
+     SYBWeiboUser *user = [[SYBWeiboUser alloc] init];
+    
+    user.uid = [userDict[@"uid"] longValue];
+    user.idstr = userDict[@"idstr"];
+    user.screen_name = userDict[@"screen_name"];
+    user.name = userDict[@"name"];
+    user.province = [userDict[@"province"] intValue];
+    user.city = [userDict[@"city"] intValue];
+    user.location = userDict[@"location"];
+    user.description = userDict[@"description"];
+    user.url = userDict[@"url"];
+    user.profile_image_url = userDict[@"profile_image_url"];
+    user.profile_url = userDict[@"profile_url"];
+    user.domain = userDict[@"domain"];
+    user.weihao = userDict[@"weihao"];
+    user.gender = userDict[@"gender"];
+    user.followers_count = [userDict[@"followers_count"] intValue];
+    user.friends_count = [userDict[@"friends_count"] intValue];
+    user.statuses_count = [userDict[@"statuses_count"] intValue];
+    user.favourites_count = [userDict[@"favourites_count"] intValue];
+    user.created_at = userDict[@"created_at"];
+    user.following = [userDict[@"following"] boolValue];
+    user.allow_all_act_msg = [userDict[@"allow_all_act_msg"] boolValue];
+    user.geo_enabled = [userDict[@"geo_enabled"] boolValue];
+    user.verified = [userDict[@"verified"] boolValue];
+    user.verified_type = [userDict[@"verified_type"] intValue];
+    user.remark = userDict[@"remark"];
+    //a property of weiboUser
+    //user.status = userDict[@"status"];
+    user.allow_all_comment = [userDict[@"allow_all_comment"] boolValue];
+    user.avatar_large = userDict[@"avatar_large"];
+    user.verified_reason = userDict[@"verified_reason"];
+    user.follow_me = [userDict[@"follow_me"] boolValue];
+    user.online_status = [userDict[@"online_status"] intValue];
+    user.bi_followers_count = [userDict[@"bi_followers_count"] intValue];
+    user.lang = userDict[@"lang"];
+
+    return user;
+}
+
 
 - (SYBWeiBo *)weiBoFromDict:(NSDictionary *) status
 {

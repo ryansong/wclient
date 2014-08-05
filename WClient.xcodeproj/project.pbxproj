@@ -41,6 +41,7 @@
 		CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796618292AFF008166B0 /* SYBWeiBoComment.m */; };
 		CF3F796A1829343A008166B0 /* SYBWeiBoRemind.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */; };
 		CF3F796D18293545008166B0 /* SYBWeiBoURLShort.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */; };
+		CF44FA7519913DBB00BB4FF1 /* SYBAttibutedViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF44FA7419913DBB00BB4FF1 /* SYBAttibutedViewCell.m */; };
 		CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF46E9BD18C4538E00507208 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF46E9BC18C4538E00507208 /* QuartzCore.framework */; };
 		CF58BB18185A131C00CE3136 /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CF58BB17185A131C00CE3136 /* UserIcon.png */; };
@@ -128,6 +129,8 @@
 		CF3F79691829343A008166B0 /* SYBWeiBoRemind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoRemind.m; sourceTree = "<group>"; };
 		CF3F796B18293545008166B0 /* SYBWeiBoURLShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiBoURLShort.h; sourceTree = "<group>"; };
 		CF3F796C18293545008166B0 /* SYBWeiBoURLShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoURLShort.m; sourceTree = "<group>"; };
+		CF44FA7319913DBB00BB4FF1 /* SYBAttibutedViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBAttibutedViewCell.h; sourceTree = "<group>"; };
+		CF44FA7419913DBB00BB4FF1 /* SYBAttibutedViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBAttibutedViewCell.m; sourceTree = "<group>"; };
 		CF46E9B818C44F3C00507208 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		CF46E9BC18C4538E00507208 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -219,6 +222,8 @@
 				CFB18B8D18E7E41700FB03E2 /* SYBUserInfoView.h */,
 				CFB18B8E18E7E41700FB03E2 /* SYBUserInfoView.m */,
 				CFB18B9018E7E44000FB03E2 /* SYBUserInfoView.xib */,
+				CF44FA7319913DBB00BB4FF1 /* SYBAttibutedViewCell.h */,
+				CF44FA7419913DBB00BB4FF1 /* SYBAttibutedViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				56B183AF1990C1260062F4CA /* UIViewController+ECSlidingViewController.m in Sources */,
 				CF3F7961182926D3008166B0 /* SYBWeiboPrivacy.m in Sources */,
 				CF3F796D18293545008166B0 /* SYBWeiBoURLShort.m in Sources */,
+				CF44FA7519913DBB00BB4FF1 /* SYBAttibutedViewCell.m in Sources */,
 				CFB4ED3E181D4CC4004E5846 /* SYBListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

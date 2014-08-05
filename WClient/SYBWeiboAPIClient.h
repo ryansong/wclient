@@ -30,7 +30,7 @@ typedef void(^PBEmptyBlock)();
                                     uid:(NSString *)uid
                             screen_name:(NSString *)screen_name
                                 success:(PBDictionaryBlock)success
-                                failure:(PBErrorBlock)failure;;
+                                failure:(PBErrorBlock)failure;
 
 - (void)getAllFriendsWeibo:(long long)since_id
                     max_id:(long long)max_id
@@ -40,6 +40,15 @@ typedef void(^PBEmptyBlock)();
                  trim_user:(int)trim_user
                    success:(PBArrayBlock)success
                    failure:(PBErrorBlock)failure;
+
+- (void)getCommnetsWithWeiboID:(long long)weiboID
+                      since_id:(long long)since_id
+                        max_id:(long long)max_id
+                         count:(int)count
+                          page:(int)page
+              filter_by_author:(int)filter
+                       success:(PBArrayBlock)success
+                       failure:(PBErrorBlock)failure;
 
 - (NSURLRequest *)authorizeRequest:(NSString *)c_id
                           res_type:(NSString *)res_tp
