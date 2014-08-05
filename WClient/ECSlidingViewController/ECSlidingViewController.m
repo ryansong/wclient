@@ -383,7 +383,6 @@
 }
 
 - (UIView *)gestureView {
-    _gestureView.backgroundColor = [UIColor redColor];
     if (_gestureView) return _gestureView;
     
     _gestureView = [[UIView alloc] initWithFrame:CGRectZero];
