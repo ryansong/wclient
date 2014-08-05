@@ -17,6 +17,12 @@
 		56B1831B198F558F0062F4CA /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18315198F558F0062F4CA /* forward@2x.png */; };
 		56B1831C198F558F0062F4CA /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18316198F558F0062F4CA /* like@2x.png */; };
 		56B1831F198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1831E198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m */; };
+		56B183AA1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1839E1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m */; };
+		56B183AB1990C1260062F4CA /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A01990C1260062F4CA /* ECSlidingAnimationController.m */; };
+		56B183AC1990C1260062F4CA /* ECSlidingInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A31990C1260062F4CA /* ECSlidingInteractiveTransition.m */; };
+		56B183AD1990C1260062F4CA /* ECSlidingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A51990C1260062F4CA /* ECSlidingSegue.m */; };
+		56B183AE1990C1260062F4CA /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A71990C1260062F4CA /* ECSlidingViewController.m */; };
+		56B183AF1990C1260062F4CA /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A91990C1260062F4CA /* UIViewController+ECSlidingViewController.m */; };
 		CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */; };
 		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
@@ -77,6 +83,19 @@
 		56B18316198F558F0062F4CA /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
 		56B1831D198F6A4C0062F4CA /* SYBWeiboPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboPopoverViewController.h; sourceTree = "<group>"; };
 		56B1831E198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboPopoverViewController.m; sourceTree = "<group>"; };
+		56B1839D1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		56B1839E1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
+		56B1839F1990C1260062F4CA /* ECSlidingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingAnimationController.h; sourceTree = "<group>"; };
+		56B183A01990C1260062F4CA /* ECSlidingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingAnimationController.m; sourceTree = "<group>"; };
+		56B183A11990C1260062F4CA /* ECSlidingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingConstants.h; sourceTree = "<group>"; };
+		56B183A21990C1260062F4CA /* ECSlidingInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingInteractiveTransition.h; sourceTree = "<group>"; };
+		56B183A31990C1260062F4CA /* ECSlidingInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingInteractiveTransition.m; sourceTree = "<group>"; };
+		56B183A41990C1260062F4CA /* ECSlidingSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingSegue.h; sourceTree = "<group>"; };
+		56B183A51990C1260062F4CA /* ECSlidingSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingSegue.m; sourceTree = "<group>"; };
+		56B183A61990C1260062F4CA /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
+		56B183A71990C1260062F4CA /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
+		56B183A81990C1260062F4CA /* UIViewController+ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ECSlidingViewController.h"; sourceTree = "<group>"; };
+		56B183A91990C1260062F4CA /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewCell.h; sourceTree = "<group>"; };
 		CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewCell.m; sourceTree = "<group>"; };
@@ -168,6 +187,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56B1839B1990C1170062F4CA /* triparty */ = {
+			isa = PBXGroup;
+			children = (
+				56B1839C1990C1260062F4CA /* ECSlidingViewController */,
+			);
+			name = triparty;
+			sourceTree = "<group>";
+		};
+		56B1839C1990C1260062F4CA /* ECSlidingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				56B1839D1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.h */,
+				56B1839E1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m */,
+				56B1839F1990C1260062F4CA /* ECSlidingAnimationController.h */,
+				56B183A01990C1260062F4CA /* ECSlidingAnimationController.m */,
+				56B183A11990C1260062F4CA /* ECSlidingConstants.h */,
+				56B183A21990C1260062F4CA /* ECSlidingInteractiveTransition.h */,
+				56B183A31990C1260062F4CA /* ECSlidingInteractiveTransition.m */,
+				56B183A41990C1260062F4CA /* ECSlidingSegue.h */,
+				56B183A51990C1260062F4CA /* ECSlidingSegue.m */,
+				56B183A61990C1260062F4CA /* ECSlidingViewController.h */,
+				56B183A71990C1260062F4CA /* ECSlidingViewController.m */,
+				56B183A81990C1260062F4CA /* UIViewController+ECSlidingViewController.h */,
+				56B183A91990C1260062F4CA /* UIViewController+ECSlidingViewController.m */,
+			);
+			path = ECSlidingViewController;
+			sourceTree = "<group>";
+		};
 		CF06B2901823E88400D23AEA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +269,7 @@
 		CF1E00E617C7B7AA00E3FF7F /* WClient */ = {
 			isa = PBXGroup;
 			children = (
+				56B1839B1990C1170062F4CA /* triparty */,
 				CF46E9BE18C477DA00507208 /* Macro */,
 				CF2DE51F1849E5CD00FC3403 /* classes */,
 				CF06B2901823E88400D23AEA /* View */,
@@ -484,17 +532,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56B183AC1990C1260062F4CA /* ECSlidingInteractiveTransition.m in Sources */,
 				56B1831F198F6A4C0062F4CA /* SYBWeiboPopoverViewController.m in Sources */,
 				CFB18B8C18E6D69000FB03E2 /* SYBWeiboImageView.m in Sources */,
 				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
+				56B183AB1990C1260062F4CA /* ECSlidingAnimationController.m in Sources */,
 				CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */,
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
 				CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */,
 				CFB18B8F18E7E41700FB03E2 /* SYBUserInfoView.m in Sources */,
+				56B183AE1990C1260062F4CA /* ECSlidingViewController.m in Sources */,
 				CF1E00F117C7B7AA00E3FF7F /* SYBAppDelegate.m in Sources */,
 				CF3F796718292AFF008166B0 /* SYBWeiBoComment.m in Sources */,
+				56B183AD1990C1260062F4CA /* ECSlidingSegue.m in Sources */,
 				5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */,
 				CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */,
+				56B183AA1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
@@ -504,6 +557,7 @@
 				CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */,
 				CFC716531858B93E0057EEE4 /* SYBWeiBoGEO.m in Sources */,
 				CF3F796A1829343A008166B0 /* SYBWeiBoRemind.m in Sources */,
+				56B183AF1990C1260062F4CA /* UIViewController+ECSlidingViewController.m in Sources */,
 				CF3F7961182926D3008166B0 /* SYBWeiboPrivacy.m in Sources */,
 				CF3F796D18293545008166B0 /* SYBWeiBoURLShort.m in Sources */,
 				CFB4ED3E181D4CC4004E5846 /* SYBListViewController.m in Sources */,

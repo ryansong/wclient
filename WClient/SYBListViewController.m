@@ -17,6 +17,7 @@
 #import "SYBUserInfoView.h"
 #import "SYBWeiboViewController.h"
 #import "SYBWeiboPopoverViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
 
 #import "UIColor+hex.h"
 
@@ -95,7 +96,9 @@ static NSString * const largeImageFolder = @"mw1024";
 {
     [super viewDidLoad];
     [self getWeibo];
-
+    
+    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
 //    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
 //                                                    initWithTarget:self
 //                                                            action:@selector(handlePan:)];
@@ -498,14 +501,12 @@ success:^(NSArray *result) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
-    SYBWeiBo *status = weiboCell.weibo;
-
-    SYBWeiboPopoverViewController *popoverViewController = [[SYBWeiboPopoverViewController alloc] initWithNibName:nil bundle:nil];
-    popoverViewController.status = status;
-    
+//    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+//    SYBWeiBo *status = weiboCell.weibo;
+//
+//    SYBWeiboPopoverViewController *popoverViewController = [[SYBWeiboPopoverViewController alloc] initWithNibName:nil bundle:nil];
+//    popoverViewController.status = status;
 //    [self.navigationController pushViewController:popoverViewController animated:NO];
-    
 //    [self viewWeibo:status];
 }
 

@@ -11,6 +11,7 @@
 #import "SYBWeiboUser.h"
 #import "SYBWeiboAPIClient.h"
 #import "SSKeychain.h"
+#import "UIViewController+ECSlidingViewController.h"
 
 @interface SYBMenuViewController ()
 
@@ -65,11 +66,11 @@
                                                                                             action:@selector(tapIconGestureRecognizer:)];
     [_userImageView addGestureRecognizer:iconGestureRecognizer];
     
-    _rootController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"navigationController"];
-    [self addChildViewController:_rootController];
-
-    [self.view addSubview:_rootController.view];
-    [_rootController didMoveToParentViewController:nil];
+//    _rootController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"navigationController"];
+//    [self addChildViewController:_rootController];
+//
+//    [self.view addSubview:_rootController.view];
+//    [_rootController didMoveToParentViewController:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,6 +99,24 @@
      
         [self performSegueWithIdentifier:@"logoff" sender:self];
     }
+}
+
+#pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
+    return cell;
 }
 
 @end
