@@ -96,6 +96,7 @@
     if (buttonIndex == 0) {
         self.user = nil;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
      
         [self performSegueWithIdentifier:@"logoff" sender:self];
     }
