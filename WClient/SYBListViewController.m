@@ -108,38 +108,8 @@ static NSString * const largeImageFolder = @"mw1024";
     self.slidingViewController.customAnchoredGestures = @[];
     [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-
-    
-//    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
-//                                                    initWithTarget:self
-//                                                            action:@selector(handlePan:)];
-//    panGestureRecognizer.delegate = self;
-//    
-//    _parentController = self.parentViewController;
-//    [_parentController.view addGestureRecognizer:panGestureRecognizer];
-    
-//    UITapGestureRecognizer *tapNavigationBarRecognizer = [[UITapGestureRecognizer alloc]
-//                                                    initWithTarget:self
-//                                                    action:@selector(handleTap:)];
-//    [_navigationBar addGestureRecognizer:tapNavigationBarRecognizer];
-//    
-//    UITapGestureRecognizer *tapListViewRecognizer = [[UITapGestureRecognizer alloc]
-//                                                    initWithTarget:self
-//                                                    action:@selector(handleTap:)];
-//    
-//    [_listTableView addGestureRecognizer:tapListViewRecognizer];
-//    _listTableView.userInteractionEnabled = YES;
-    
-    //add shadow
-    CALayer *layer = [_listTableView layer];
-    [layer setShadowOffset:CGSizeMake(-10, 10)];
-    [layer setShadowRadius:20];
-    [layer setShadowOpacity:1];
-    [layer setShadowColor:[UIColor blackColor].CGColor];
-    layer.masksToBounds = NO;
     
     [_listTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    
     [_listTableView setSeparatorColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Divider_line@2x.png"]]];
     
 #pragma add headerView
@@ -150,9 +120,6 @@ static NSString * const largeImageFolder = @"mw1024";
 		[_listTableView addSubview:view];
 		_headerView = view;
 	}
-	
-	//  update the last update date
-//	[_headerView refreshLastUpdatedDate];
 }
 
 - (void)loadView
@@ -164,12 +131,6 @@ static NSString * const largeImageFolder = @"mw1024";
 {
     [super viewWillAppear:animated];
     [_listTableView reloadData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma -- UITableViewDataSource

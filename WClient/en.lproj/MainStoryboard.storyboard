@@ -17,7 +17,7 @@
                     <navigationItem key="navigationItem" id="Afh-53-4XO"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="topViewControllerStoryboardId" value="topViewNavigationController"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="underLeftViewControllerStoryboardId" value="underLedtViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="underLeftViewControllerStoryboardId" value="underLedtViewNavigationController"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1o-sj-JgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,6 +221,7 @@
                                             <outlet property="repoUsername" destination="81O-C5-f32" id="b3m-oz-DvQ"/>
                                             <outlet property="retwitterButton" destination="Aj8-iS-3pS" id="jZx-UD-Smz"/>
                                             <outlet property="username" destination="kWk-f3-cLw" id="Gtj-DE-OwH"/>
+                                            <segue destination="4HE-3p-rfX" kind="custom" customClass="ECSlidingSegue" id="dlb-sO-gRz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -264,7 +265,7 @@
                                     </segments>
                                 </segmentedControl>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="EJu-fI-0Ow">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attibutedCell" rowHeight="60" id="EJu-fI-0Ow">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJu-fI-0Ow" id="cQN-a4-Ohr">
@@ -298,7 +299,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="lCe-iS-zqv"/>
                 </viewController>
@@ -309,7 +310,7 @@
         <!--Weibo View Controller-->
         <scene sceneID="7yU-ey-zbD">
             <objects>
-                <viewController id="gBn-xi-PO3" customClass="SYBWeiboViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SYBWeiboViewController" id="gBn-xi-PO3" customClass="SYBWeiboViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fge-O1-mcB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -450,7 +451,7 @@
         <!--Navigation Controller-->
         <scene sceneID="3XV-CL-0pq">
             <objects>
-                <navigationController storyboardIdentifier="underLedtViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WNm-sg-1NG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="underLedtViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WNm-sg-1NG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cxh-Yn-KHP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
