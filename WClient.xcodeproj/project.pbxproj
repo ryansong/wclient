@@ -187,14 +187,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		56B1839B1990C1170062F4CA /* triparty */ = {
-			isa = PBXGroup;
-			children = (
-				56B1839C1990C1260062F4CA /* ECSlidingViewController */,
-			);
-			name = triparty;
-			sourceTree = "<group>";
-		};
 		56B1839C1990C1260062F4CA /* ECSlidingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +261,6 @@
 		CF1E00E617C7B7AA00E3FF7F /* WClient */ = {
 			isa = PBXGroup;
 			children = (
-				56B1839B1990C1170062F4CA /* triparty */,
 				CF46E9BE18C477DA00507208 /* Macro */,
 				CF2DE51F1849E5CD00FC3403 /* classes */,
 				CF06B2901823E88400D23AEA /* View */,
@@ -324,6 +315,7 @@
 		CF58BB6D185F3C2B00CE3136 /* triparty */ = {
 			isa = PBXGroup;
 			children = (
+				56B1839C1990C1260062F4CA /* ECSlidingViewController */,
 				CF46E9B818C44F3C00507208 /* EGORefreshTableHeaderView.h */,
 				CF46E9B918C44F3C00507208 /* EGORefreshTableHeaderView.m */,
 				CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */,
