@@ -16,9 +16,9 @@
 #import "RegexKitLite.h"
 #import "SYBUserInfoView.h"
 #import "SYBWeiboViewController.h"
-#import "SYBWeiboCommentViewController.h"
+#import "SYBWeiboActionViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
-#import "SYBWeiboCommentViewController.h"
+#import "SYBWeiboActionViewController.h"
 
 
 #import "UIColor+hex.h"
@@ -812,11 +812,11 @@ success:^(NSArray *result) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[SYBWeiboCommentViewController class]]) {
+    if ([segue.destinationViewController isKindOfClass:[SYBWeiboActionViewController class]]) {
         NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
         SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
         
-        ((SYBWeiboCommentViewController *)segue.destinationViewController).status = weiboCell.weibo;
+        ((SYBWeiboActionViewController *)segue.destinationViewController).status = weiboCell.weibo;
     }
 }
 

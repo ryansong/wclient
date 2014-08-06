@@ -12,7 +12,7 @@ static NSString *const KAPIRequestAuthorize = @"/oauth2/authorize";
 static NSString *const KAPIRequestAccess_token = @"/oauth2/access_token";
 static NSString *const KAPIRequestShowComments = @"/2/comments/show.json";
 static NSString *const KAPIRequestShowRetweets = @"/2/statuses/repost_timeline.json";
-
+static NSString *const KAPIRequestShowAttitudes = @"2/attitudes/show.json";
 static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
 
 
@@ -23,6 +23,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 #import "APPMacro.h"
 #import "SYBWeiBoComment.h"
 #import "SYBWeiboRetweet.h"
+#import "SYBWeiboAttitude.h"
 
 
 @interface SYBWeiboAPIClient ()
@@ -439,6 +440,67 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
         failure(PBXErrorUnknown);
     }];
     
+}
+
+- (void)getAttitudesWithWeiboID:(long long)weiboID
+                          count:(int)count
+                           page:(int)page
+                        success:(PBArrayBlock)success
+                        failure:(PBErrorBlock)failure;
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"access_token"] = _token;
+    
+    if (weiboID) {
+        params[@"id"] = @(weiboID);
+    }
+    
+    if (count) {
+        params[@"count"] = @(count);
+    }
+    
+    if (page) {
+        params[@"page"] = @(page);
+    }
+    
+    [_httpClient GET:KAPIRequestShowAttitudes
+          parameters:params
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 
+                 NSMutableArray *weiboAttitudes = [[NSMutableArray alloc] init];
+                 
+                 NSError *error;
+                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+                 
+                 if (error) {
+                     failure(PBXErrorUnknown);
+                     return;
+                 } else {
+                     NSDictionary *attitudes = dict[@"attitudes"];
+                     for (NSDictionary *attitude in attitudes) {
+                         SYBWeiboAttitude *weiboAttitude = [[SYBWeiboAttitude alloc] init];
+                         weiboAttitude.attitudeID = [attitude[@"id"] longLongValue];
+                         weiboAttitude.created_at = attitude[@"created_at"];
+                         weiboAttitude.attitude = attitude[@"attitude"];
+                         weiboAttitude.last_attitude = attitude[@"last_attitude"];
+                         weiboAttitude.source = attitude[@"source"];
+                         weiboAttitude.user = [self userFromDict:attitude[@"user"]];
+                         weiboAttitude.status = [self weiBoFromDict:attitude[@"status"]];
+                         weiboAttitude.hasvisible = [attitude[@"hasvisible"] boolValue];
+                         weiboAttitude.previous_cursor = [attitude[@"previous_cursor"] intValue];
+                         weiboAttitude.next_cursor = [attitude[@"next_cursor"] longLongValue];
+                         weiboAttitude.total_number = [attitude[@"total_number"] intValue];
+                         
+                         [weiboAttitudes addObject:weiboAttitude];
+                     }
+                     
+                 }
+        
+    
+                 
+             } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
 - (BOOL) sendWeiBo

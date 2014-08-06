@@ -59,6 +59,12 @@ typedef void(^PBEmptyBlock)();
                        success:(PBArrayBlock)success
                        failure:(PBErrorBlock)failure;
 
+- (void)getAttitudesWithWeiboID:(long long)weiboID
+                         count:(int)count
+                          page:(int)page
+                       success:(PBArrayBlock)success
+                       failure:(PBErrorBlock)failure;
+
 - (NSURLRequest *)authorizeRequest:(NSString *)c_id
                           res_type:(NSString *)res_tp
                             flogin:(NSString *)fl

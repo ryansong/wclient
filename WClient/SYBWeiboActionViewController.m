@@ -6,13 +6,14 @@
 //  Copyright (c) 2014年 Song Xiaoming. All rights reserved.
 //
 
-#import "SYBWeiboCommentViewController.h"
+#import "SYBWeiboActionViewController.h"
 #import "SYBWeiboAPIClient.h"
 #import "SYBWeiBoComment.h"
 #import "SYBAttibutedViewCell.h"
 #import "SYBWeiboRetweet.h"
+#import "SYBWeiboAttitude.h"
 
-@implementation SYBWeiboCommentViewController
+@implementation SYBWeiboActionViewController
 
 - (void)viewDidLoad
 {
@@ -21,7 +22,7 @@
     _retweetCount = _status.reposts_count;
     _commentCount = _status.comments_count;
     
-    _contentType = SYBWeiboDetailContentTypeComment;
+    _contentType = SYBWeiboActionTypeComment;
     _contentSwitch.selectedSegmentIndex = _contentType;
     
 }
@@ -64,7 +65,7 @@
 {
     SYBAttibutedViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"attibutedCell"];
     
-    if (_contentType == SYBWeiboDetailContentTypeComment) {
+    if (_contentType == SYBWeiboActionTypeComment) {
         SYBWeiBoComment *comment = [_items objectAtIndex:indexPath.row];
         cell.username.text = comment.user.name;
         cell.commentText.text = comment.text;
@@ -74,12 +75,22 @@
                 cell.iconview.image = image;
             });
         });
-    } else if (_contentType == SYBWeiboDetailContentTypeRetweet){
+    } else if (_contentType == SYBWeiboActionTypeRetweet){
         SYBWeiboRetweet *retweet = [_items objectAtIndex:indexPath.row];
         cell.username.text = retweet.user.name;
         cell.commentText.text = retweet.text;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:retweet.user.profile_image_url]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.iconview.image = image;
+            });
+        });
+    } else if (_contentType == SYBWeiboActionTypeAttitude){
+        SYBWeiboAttitude *attitude = [_items objectAtIndex:indexPath.row];
+        cell.username.text = attitude.user.name;
+        cell.commentText.text = attitude.attitude;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:attitude.user.profile_image_url]]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.iconview.image = image;
             });
@@ -93,11 +104,14 @@
 
 - (IBAction)itemChanged:(id)sender {
     if (_contentSwitch.selectedSegmentIndex == 0){
-        _contentType = SYBWeiboDetailContentTypeAttitude;
+        _contentType = SYBWeiboActionTypeAttitude;
         _items = _likeArray;
-        [_listTableView reloadData];
+        if (_items) {
+            [_listTableView reloadData];
+        }
+        [self getAttitudes];
     } else if (_contentSwitch.selectedSegmentIndex == 1) {
-        _contentType = SYBWeiboDetailContentTypeRetweet;
+        _contentType = SYBWeiboActionTypeRetweet;
         _items = _retweetArray;
         if (_items) {
             [_listTableView reloadData];
@@ -105,7 +119,7 @@
         [self getRetweets];
     } else {
         // default switch to comment
-        _contentType = SYBWeiboDetailContentTypeComment;
+        _contentType = SYBWeiboActionTypeComment;
         _items = _commentArray;
         [_listTableView reloadData];
     }
@@ -122,7 +136,7 @@
                                                      success:^(NSArray *results){
                                                          _retweetArray = results;
                                                          _items = _retweetArray;
-                                                         if (_contentType == SYBWeiboDetailContentTypeRetweet) {
+                                                         if (_contentType == SYBWeiboActionTypeRetweet) {
                                                              [_listTableView reloadData];
                                                          }
         
@@ -130,4 +144,22 @@
         
     }];
 }
+
+- (void)getAttitudes
+{
+    [[SYBWeiboAPIClient sharedClient] getAttitudesWithWeiboID:_status.weiboId
+                                                        count:50
+                                                         page:1
+                                                      success:^(NSArray *results) {
+                                                          _likeArray = results;
+                                                          _items = _likeArray;
+                                                          if (_contentType == SYBWeiboActionTypeAttitude) {
+                                                              [_listTableView reloadData];
+                                                          }
+    
+                                                      } failure:^(PBXError error) {
+    
+                                                      }];
+}
+
 @end

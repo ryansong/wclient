@@ -16,7 +16,7 @@
 		56B1831A198F558F0062F4CA /* bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18314198F558F0062F4CA /* bubble@2x.png */; };
 		56B1831B198F558F0062F4CA /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18315198F558F0062F4CA /* forward@2x.png */; };
 		56B1831C198F558F0062F4CA /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56B18316198F558F0062F4CA /* like@2x.png */; };
-		56B1831F198F6A4C0062F4CA /* SYBWeiboCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1831E198F6A4C0062F4CA /* SYBWeiboCommentViewController.m */; };
+		56B1831F198F6A4C0062F4CA /* SYBWeiboActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1831E198F6A4C0062F4CA /* SYBWeiboActionViewController.m */; };
 		56B183AA1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1839E1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m */; };
 		56B183AB1990C1260062F4CA /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A01990C1260062F4CA /* ECSlidingAnimationController.m */; };
 		56B183AC1990C1260062F4CA /* ECSlidingInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A31990C1260062F4CA /* ECSlidingInteractiveTransition.m */; };
@@ -24,6 +24,7 @@
 		56B183AE1990C1260062F4CA /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A71990C1260062F4CA /* ECSlidingViewController.m */; };
 		56B183AF1990C1260062F4CA /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A91990C1260062F4CA /* UIViewController+ECSlidingViewController.m */; };
 		56B183B219920A9E0062F4CA /* SYBWeiboRetweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183B119920A9E0062F4CA /* SYBWeiboRetweet.m */; };
+		56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183B4199228190062F4CA /* SYBWeiboAttitude.m */; };
 		CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */; };
 		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
@@ -83,8 +84,8 @@
 		56B18314198F558F0062F4CA /* bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble@2x.png"; sourceTree = "<group>"; };
 		56B18315198F558F0062F4CA /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@2x.png"; sourceTree = "<group>"; };
 		56B18316198F558F0062F4CA /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
-		56B1831D198F6A4C0062F4CA /* SYBWeiboCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboCommentViewController.h; sourceTree = "<group>"; };
-		56B1831E198F6A4C0062F4CA /* SYBWeiboCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboCommentViewController.m; sourceTree = "<group>"; };
+		56B1831D198F6A4C0062F4CA /* SYBWeiboActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboActionViewController.h; sourceTree = "<group>"; };
+		56B1831E198F6A4C0062F4CA /* SYBWeiboActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboActionViewController.m; sourceTree = "<group>"; };
 		56B1839D1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
 		56B1839E1990C1260062F4CA /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
 		56B1839F1990C1260062F4CA /* ECSlidingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingAnimationController.h; sourceTree = "<group>"; };
@@ -100,6 +101,8 @@
 		56B183A91990C1260062F4CA /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
 		56B183B019920A9E0062F4CA /* SYBWeiboRetweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboRetweet.h; sourceTree = "<group>"; };
 		56B183B119920A9E0062F4CA /* SYBWeiboRetweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboRetweet.m; sourceTree = "<group>"; };
+		56B183B3199228190062F4CA /* SYBWeiboAttitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboAttitude.h; sourceTree = "<group>"; };
+		56B183B4199228190062F4CA /* SYBWeiboAttitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboAttitude.m; sourceTree = "<group>"; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewCell.h; sourceTree = "<group>"; };
 		CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewCell.m; sourceTree = "<group>"; };
@@ -343,8 +346,8 @@
 				CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */,
 				5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */,
 				5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */,
-				56B1831D198F6A4C0062F4CA /* SYBWeiboCommentViewController.h */,
-				56B1831E198F6A4C0062F4CA /* SYBWeiboCommentViewController.m */,
+				56B1831D198F6A4C0062F4CA /* SYBWeiboActionViewController.h */,
+				56B1831E198F6A4C0062F4CA /* SYBWeiboActionViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -383,6 +386,8 @@
 			children = (
 				CFB0864317E73E16003F5F03 /* SYBWeiBo.h */,
 				CFB0864417E73E16003F5F03 /* SYBWeiBo.m */,
+				56B183B3199228190062F4CA /* SYBWeiboAttitude.h */,
+				56B183B4199228190062F4CA /* SYBWeiboAttitude.m */,
 				CFB4ED3018193180004E5846 /* SYBWeiboUser.h */,
 				CFB4ED3118193180004E5846 /* SYBWeiboUser.m */,
 				CF3F795F182926D3008166B0 /* SYBWeiboPrivacy.h */,
@@ -535,7 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56B183AC1990C1260062F4CA /* ECSlidingInteractiveTransition.m in Sources */,
-				56B1831F198F6A4C0062F4CA /* SYBWeiboCommentViewController.m in Sources */,
+				56B1831F198F6A4C0062F4CA /* SYBWeiboActionViewController.m in Sources */,
 				CFB18B8C18E6D69000FB03E2 /* SYBWeiboImageView.m in Sources */,
 				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
 				56B183AB1990C1260062F4CA /* ECSlidingAnimationController.m in Sources */,
@@ -555,6 +560,7 @@
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
+				56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,
 				CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */,
 				CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */,

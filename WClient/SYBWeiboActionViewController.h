@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "SYBWeiBo.h"
 
-typedef NS_ENUM(NSUInteger, SYBWeiboDetailContentType) {
-    SYBWeiboDetailContentTypeAttitude,
-    SYBWeiboDetailContentTypeRetweet,
-    SYBWeiboDetailContentTypeComment,
+typedef NS_ENUM(NSUInteger, SYBWeiboActionType) {
+    SYBWeiboActionTypeAttitude,
+    SYBWeiboActionTypeRetweet,
+    SYBWeiboActionTypeComment,
 };
 
-@interface SYBWeiboCommentViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SYBWeiboActionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *listTableView;
 @property (nonatomic, strong) SYBWeiBo *status;
@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, SYBWeiboDetailContentType) {
 @property (nonatomic, assign) NSInteger commentCount;
 
 @property (nonatomic, strong) NSArray *items;
-@property (nonatomic, assign) SYBWeiboDetailContentType contentType;;
+@property (nonatomic, assign) SYBWeiboActionType contentType;;
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *contentSwitch;
 

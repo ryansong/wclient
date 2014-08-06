@@ -244,10 +244,10 @@
             </objects>
             <point key="canvasLocation" x="370" y="-255"/>
         </scene>
-        <!--Weibo Comment View Controller-->
+        <!--Weibo Action View Controller-->
         <scene sceneID="n3A-tm-d6Q">
             <objects>
-                <viewController id="4HE-3p-rfX" customClass="SYBWeiboCommentViewController" sceneMemberID="viewController">
+                <viewController id="4HE-3p-rfX" customClass="SYBWeiboActionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4R-ya-c2O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -265,7 +265,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dZT-6B-m5k">
-                                <rect key="frame" x="0.0" y="30" width="320" height="5308"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="538"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="FQO-6I-mgO">
@@ -315,6 +315,7 @@
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="lCe-iS-zqv"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="contentSwitch" destination="6mq-Kl-Jl9" id="1AW-Fm-kCZ"/>
