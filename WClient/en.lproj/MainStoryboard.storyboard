@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ajX-Ll-ucY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ajX-Ll-ucY">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -244,21 +244,38 @@
             </objects>
             <point key="canvasLocation" x="370" y="-255"/>
         </scene>
-        <!--Weibo Popover View Controller-->
+        <!--Weibo Comment View Controller-->
         <scene sceneID="n3A-tm-d6Q">
             <objects>
-                <viewController id="4HE-3p-rfX" customClass="SYBWeiboPopoverViewController" sceneMemberID="viewController">
-                    <view key="view" alpha="0.5" contentMode="scaleToFill" id="V4R-ya-c2O">
+                <viewController id="4HE-3p-rfX" customClass="SYBWeiboCommentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V4R-ya-c2O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="6mq-Kl-Jl9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="like"/>
+                                    <segment title="retweet"/>
+                                    <segment title="comment"/>
+                                </segments>
+                                <connections>
+                                    <action selector="itemChanged:" destination="4HE-3p-rfX" eventType="valueChanged" id="Z3C-tg-UFV"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dZT-6B-m5k">
-                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="5308"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="FQO-6I-mgO">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attibutedCell" rowHeight="60" id="EJu-fI-0Ow" customClass="SYBAttibutedViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="66" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJu-fI-0Ow" id="cQN-a4-Ohr">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -296,10 +313,11 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="lCe-iS-zqv"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="contentSwitch" destination="6mq-Kl-Jl9" id="1AW-Fm-kCZ"/>
                         <outlet property="listTableView" destination="dZT-6B-m5k" id="jO5-mE-4Jy"/>
                     </connections>
                 </viewController>

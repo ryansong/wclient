@@ -11,6 +11,8 @@ static NSString *const KAPIBaseUrl = @"https://api.weibo.com";
 static NSString *const KAPIRequestAuthorize = @"/oauth2/authorize";
 static NSString *const KAPIRequestAccess_token = @"/oauth2/access_token";
 static NSString *const KAPIRequestShowComments = @"/2/comments/show.json";
+static NSString *const KAPIRequestShowRetweets = @"/2/statuses/repost_timeline.json";
+
 static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
 
 
@@ -20,6 +22,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 #import <SSKeychain.h>
 #import "APPMacro.h"
 #import "SYBWeiBoComment.h"
+#import "SYBWeiboRetweet.h"
 
 
 @interface SYBWeiboAPIClient ()
@@ -317,13 +320,11 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     }
     
     [_httpClient GET:KAPIRequestShowComments parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:4]);
-        
-        NSError *error;
-        
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-
         NSMutableArray *weiboComments = [NSMutableArray array];
+
+        NSError *error;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        
         if (error) {
             failure(PBXErrorUnknown);
             return;
@@ -350,6 +351,92 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
          failure(PBXErrorUnknown);
+    }];
+    
+}
+
+- (void)getRetweetsWithWeiboID:(long long)weiboID
+                      since_id:(long long)since_id
+                        max_id:(long long)max_id
+                         count:(int)count
+                          page:(int)page
+              filter_by_author:(int)filter
+                       success:(PBArrayBlock)success
+                       failure:(PBErrorBlock)failure
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"access_token"] = _token;
+    
+    if (weiboID) {
+        params[@"id"] = @(weiboID);
+    }
+    
+    if (since_id) {
+        params[@"since_id"] = @(since_id);
+    } else {
+        params[@"since_id"] = @(0);
+    }
+    
+    if (max_id) {
+        params[@"max_id"] = @(max_id);
+    } else {
+        params[@"max_id"] = @(0);
+    }
+    
+    if (count) {
+        params[@"count"] = @(count);
+    }
+    
+    if (page) {
+        params[@"page"] = @(page);
+    }
+    
+    if (filter) {
+        params[@"filter_by_author"] = @(filter);
+    }
+    
+    [_httpClient GET:KAPIRequestShowRetweets parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSMutableArray *weiboRetweets = [NSMutableArray array];
+        
+        NSError *error;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error) {
+            failure(PBXErrorUnknown);
+            return;
+        } else {
+            NSDictionary *retweets = dict[@"reposts"];
+            for (NSDictionary *retweet in retweets) {
+                SYBWeiboRetweet *weiboRetweet = [[SYBWeiboRetweet alloc] init];
+
+                weiboRetweet.idstr = retweet[@"idstr"];
+                weiboRetweet.created_at = retweet[@"created_at"];
+                weiboRetweet.weiboID = [retweet[@"id"] longLongValue];
+                weiboRetweet.text = retweet[@"text"];
+                weiboRetweet.source = retweet[@"source"];
+                weiboRetweet.favorited = [retweet[@"favorited"] boolValue];
+                weiboRetweet.truncated = [retweet[@"truncated"] boolValue];
+                weiboRetweet.mid = [retweet[@"mid"] longLongValue];
+                weiboRetweet.bmiddle_pic = retweet[@"bmiddle_pic"];
+                weiboRetweet.original_pic = retweet[@"original_pic"];
+                weiboRetweet.thumbnail_pic = retweet[@"thumbnail_pic"];
+                weiboRetweet.reposts_count = [retweet[@"reposts_count"] integerValue];
+                weiboRetweet.comments_count = [retweet[@"comments_count"] integerValue];
+                weiboRetweet.annotations = [retweet[@"annotations"] allObjects];
+                weiboRetweet.geo = [self geoFromDict:retweet[@"geo"]];
+                weiboRetweet.retweeted_status = [self weiBoFromDict:retweet[@"status"]];
+                weiboRetweet.user = [self userFromDict:retweet[@"user"]];
+                
+                [weiboRetweets addObject:weiboRetweet];
+            }
+        }
+        
+        if (success) {
+            success(weiboRetweets);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(PBXErrorUnknown);
     }];
     
 }
@@ -469,7 +556,15 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
 }
 
 
-- (SYBWeiBo *)weiBoFromDict:(NSDictionary *) status
+- (SYBWeiBoGEO *)geoFromDict:(NSDictionary *)geoDict
+{
+    SYBWeiBoGEO *geo = [[SYBWeiBoGEO alloc] init];
+    //todo
+    
+    return geo;
+}
+
+- (SYBWeiBo *)weiBoFromDict:(NSDictionary *)status
 {
     SYBWeiBo *weibo = [[SYBWeiBo alloc] init];
     weibo.created_at = status[@"created_at"];

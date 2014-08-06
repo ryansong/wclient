@@ -50,6 +50,15 @@ typedef void(^PBEmptyBlock)();
                        success:(PBArrayBlock)success
                        failure:(PBErrorBlock)failure;
 
+- (void)getRetweetsWithWeiboID:(long long)weiboID
+                      since_id:(long long)since_id
+                        max_id:(long long)max_id
+                         count:(int)count
+                          page:(int)page
+              filter_by_author:(int)filter
+                       success:(PBArrayBlock)success
+                       failure:(PBErrorBlock)failure;
+
 - (NSURLRequest *)authorizeRequest:(NSString *)c_id
                           res_type:(NSString *)res_tp
                             flogin:(NSString *)fl

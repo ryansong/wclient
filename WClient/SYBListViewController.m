@@ -16,9 +16,9 @@
 #import "RegexKitLite.h"
 #import "SYBUserInfoView.h"
 #import "SYBWeiboViewController.h"
-#import "SYBWeiboPopoverViewController.h"
+#import "SYBWeiboCommentViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
-#import "SYBWeiboPopoverViewController.h"
+#import "SYBWeiboCommentViewController.h"
 
 
 #import "UIColor+hex.h"
@@ -473,15 +473,6 @@ success:^(NSArray *result) {
     return weiboCell.cellHeight;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//
-//    SYBWeiboPopoverViewController *popoverViewController = [[SYBWeiboPopoverViewController alloc] initWithNibName:nil bundle:nil];
-//    popoverViewController.status = status;
-//    [self.navigationController pushViewController:popoverViewController animated:NO];
-//    [self viewWeibo:status];
-}
-
 - (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
 {
     return  [aString sizeWithFont:font constrainedToSize:CGSizeMake(theWidth, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
@@ -821,11 +812,11 @@ success:^(NSArray *result) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[SYBWeiboPopoverViewController class]]) {
+    if ([segue.destinationViewController isKindOfClass:[SYBWeiboCommentViewController class]]) {
         NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
         SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
         
-        ((SYBWeiboPopoverViewController *)segue.destinationViewController).status = weiboCell.weibo;
+        ((SYBWeiboCommentViewController *)segue.destinationViewController).status = weiboCell.weibo;
     }
 }
 
