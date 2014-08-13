@@ -23,7 +23,6 @@
     _commentCount = _status.comments_count;
     
     _contentType = SYBWeiboActionTypeComment;
-    _contentSwitch.selectedSegmentIndex = _contentType;
     
 }
 
@@ -100,29 +99,37 @@
     return cell;
 }
 
-
-
-- (IBAction)itemChanged:(id)sender {
-    if (_contentSwitch.selectedSegmentIndex == 0){
-        _contentType = SYBWeiboActionTypeAttitude;
-        _items = _likeArray;
-        if (_items) {
-            [_listTableView reloadData];
-        }
-        [self getAttitudes];
-    } else if (_contentSwitch.selectedSegmentIndex == 1) {
-        _contentType = SYBWeiboActionTypeRetweet;
-        _items = _retweetArray;
-        if (_items) {
-            [_listTableView reloadData];
-        }
-        [self getRetweets];
-    } else {
-        // default switch to comment
-        _contentType = SYBWeiboActionTypeComment;
-        _items = _commentArray;
+- (void)viewAttitubed:(id)sender
+{
+    _contentType = SYBWeiboActionTypeAttitude;
+    _items = _likeArray;
+    if (_items) {
         [_listTableView reloadData];
     }
+    [self getAttitudes];
+}
+
+- (void)viewRetweet:(id)sender
+{
+    _contentType = SYBWeiboActionTypeRetweet;
+    _items = _retweetArray;
+    if (_items) {
+        [_listTableView reloadData];
+    }
+    [self getRetweets];
+}
+
+- (void)viewComment:(id)sender
+{
+    // default switch to comment
+    _contentType = SYBWeiboActionTypeComment;
+    _items = _commentArray;
+    [_listTableView reloadData];
+}
+
+- (void)viewTweet:(id)sender
+{
+    // todo
 }
 
 - (void)getRetweets

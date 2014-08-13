@@ -30,10 +30,9 @@ typedef NS_ENUM(NSUInteger, SYBWeiboActionType) {
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) SYBWeiboActionType contentType;;
 
-@property (nonatomic, weak) IBOutlet UISegmentedControl *contentSwitch;
-
-- (IBAction)commentSelected:(id)sender;
-- (IBAction)retweetSelected:(id)sender;
-- (IBAction)itemChanged:(id)sender;
+- (IBAction)viewAttitubed:(id)sender;
+- (IBAction)viewComment:(id)sender;
+- (IBAction)viewRetweet:(id)sender;
+- (IBAction)viewTweet:(id)sender;
 
 @end
