@@ -15,6 +15,8 @@ static NSString *const KAPIRequestShowRetweets = @"/2/statuses/repost_timeline.j
 static NSString *const KAPIRequestShowAttitudes = @"2/attitudes/show.json";
 static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
 
+static NSString *const KAPIRequestCommentWeibo = @"/2/comments/create.json";
+
 
 #import "SYBWeiboAPIClient.h"
 #import <AFNetworking.h>
@@ -354,6 +356,57 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
          failure(PBXErrorUnknown);
     }];
     
+}
+
+- (void)postCommentOnWeibo:(long long)weiboID
+                   comment:(NSString *)comment
+               comment_ori:(int)isRetweet
+                       rip:(NSString *)rip
+                   success:(PBDictionaryBlock)success
+                   failure:(PBErrorBlock)failure
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    
+    params[@"access_token"] = _token;
+    
+    if (weiboID) {
+        params[@"id"] = @(weiboID);
+    }
+    if (isRetweet != 0) {
+        isRetweet = 1;
+    }
+    params[@"comment_ori"] = @(isRetweet);
+    
+    if (!rip) {
+        rip = @"";
+    }
+    params[@"rip"] = rip;
+    
+    if (!comment) {
+        comment = @"";
+    }
+    params[@"comment"] = [comment stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [_httpClient POST:KAPIRequestCommentWeibo parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+       
+        NSMutableArray *results = [NSMutableArray array];
+        
+        NSError *error;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error) {
+            failure(PBXErrorUnknown);
+            return;
+        }
+        if (success) {
+            success(dict);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(PBXErrorUnknown);
+        }
+    }];
 }
 
 - (void)getRetweetsWithWeiboID:(long long)weiboID
@@ -766,5 +819,7 @@ static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.js
     }];
     [downloadTask resume];
 }
+
+
 
 @end

@@ -19,6 +19,8 @@
 #import "SYBWeiboActionViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "SYBWeiboActionViewController.h"
+#import "SYBCommentViewController.h"
+#import "SYBCommentTransition.h"
 
 
 #import "UIColor+hex.h"
@@ -154,6 +156,8 @@ static NSString * const largeImageFolder = @"mw1024";
     {
         cell = [[SYBWeiboViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
+    cell.cellDelegate = self;
     
     
     UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
@@ -819,5 +823,58 @@ success:^(NSArray *result) {
         ((SYBWeiboActionViewController *)segue.destinationViewController).status = weiboCell.weibo;
     }
 }
+
+#pragma --UIViewControllerTransitioningDelegate
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    id<UIViewControllerAnimatedTransitioning> animationController;
+    
+    SYBCommentTransition *transition = [[SYBCommentTransition alloc] init];
+    transition.duration = 0.3;
+    transition.presenting = YES;
+    animationController = transition;
+    
+    return animationController;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    id<UIViewControllerAnimatedTransitioning> animationController;
+    
+    SYBCommentTransition *transition = [[SYBCommentTransition alloc] init];
+    transition.duration = 0.3;
+    transition.presenting = NO;
+    animationController = transition;
+    
+    return animationController;
+}
+
+
+#pragma --SYBWeiboCellActionDelegate
+
+- (void)commentWeibo:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    
+    SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
+    commentViewController.status = weiboCell.weibo;
+    commentViewController.modalPresentationStyle = UIModalPresentationCustom;
+    commentViewController.transitioningDelegate = self;
+    [self presentViewController:commentViewController animated:YES completion:nil];
+}
+
+- (void)retweetWeibo:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    
+    SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
+    commentViewController.status = weiboCell.weibo;
+    commentViewController.modalPresentationStyle = UIModalPresentationCustom;
+    commentViewController.transitioningDelegate = self;
+    [self presentViewController:commentViewController animated:YES completion:nil];
+}
+
 
 @end

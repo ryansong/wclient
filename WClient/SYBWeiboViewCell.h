@@ -13,6 +13,15 @@
 
 @class SYBCellRetweetView;
 
+@protocol SYBWeiboCellActionDelegate <NSObject>
+
+- (void)commentWeibo:(UITableViewCell *)cell;
+- (void)retweetWeibo:(UITableViewCell *)cell;
+
+@optional
+- (void)postWeiboAttitude:(UITableViewCell *)cell;
+@end
+
 @interface SYBWeiboViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *iconView;
@@ -34,5 +43,11 @@
 @property (nonatomic, weak) IBOutlet UIButton *likeButton;
 @property (nonatomic, weak) IBOutlet UIButton *retwitterButton;
 @property (nonatomic, weak) IBOutlet UIButton *commentButton;
+
+@property (nonatomic, assign) id<SYBWeiboCellActionDelegate> cellDelegate;
+
+- (IBAction)retweetWeibo:(id)sender;
+- (IBAction)commentOnWeibo:(id)sender;
+- (IBAction)postAttitude:(id)sender;
 
 @end
