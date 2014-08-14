@@ -101,6 +101,8 @@
 
 - (void)viewAttitubed:(id)sender
 {
+    _identifier.contentOffset = CGPointMake(240, 0);
+    
     _contentType = SYBWeiboActionTypeAttitude;
     _items = _likeArray;
     if (_items) {
@@ -111,6 +113,7 @@
 
 - (void)viewRetweet:(id)sender
 {
+     _identifier.contentOffset = CGPointMake(160, 0);
     _contentType = SYBWeiboActionTypeRetweet;
     _items = _retweetArray;
     if (_items) {
@@ -121,6 +124,7 @@
 
 - (void)viewComment:(id)sender
 {
+    _identifier.contentOffset = CGPointMake(80, 0);
     // default switch to comment
     _contentType = SYBWeiboActionTypeComment;
     _items = _commentArray;
@@ -129,6 +133,8 @@
 
 - (void)viewTweet:(id)sender
 {
+    _identifier.contentOffset = CGPointMake(0, 0);
+
     // todo
 }
 

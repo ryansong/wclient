@@ -27,6 +27,8 @@ typedef NS_ENUM(NSUInteger, SYBWeiboActionType) {
 @property (nonatomic, strong) NSArray *commentArray;
 @property (nonatomic, assign) NSInteger commentCount;
 
+@property (nonatomic, weak) IBOutlet UIScrollView *identifier;
+
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) SYBWeiboActionType contentType;;
 
