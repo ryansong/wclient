@@ -8,6 +8,7 @@
 
 #import "SYBCommentTransition.h"
 #import "SYBCommentViewController.h"
+#import "SYBWeiboActionViewController.h"
 
 @implementation SYBCommentTransition
 
@@ -26,7 +27,8 @@
     UIView *containerView = [transitionContext containerView];
     
     if (_presenting) {
-        if ([toVC isKindOfClass:[SYBCommentViewController class]]){
+        if ([toVC isKindOfClass:[SYBCommentViewController class]] || [toVC
+                                                                      isKindOfClass:[SYBWeiboActionViewController class]]){
             
             [containerView addSubview:toView];
             

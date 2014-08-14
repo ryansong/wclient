@@ -9,6 +9,8 @@
 #import "SYBCommentViewController.h"
 #import "SYBWeiboAPIClient.h"
 
+CGFloat const detemineOffset = 40;
+
 @interface SYBCommentViewController ()
 
 @end
@@ -30,6 +32,21 @@
     [super viewDidLoad];
 
     _username.text = _status.user.name;
+    
+    UIPanGestureRecognizer *panDismiss = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(panDismiss:)];
+    [self.view addGestureRecognizer:panDismiss];
+}
+
+- (void)panDismiss:(UIPanGestureRecognizer *)panGestureRecognizer
+{
+    if (panGestureRecognizer.state == UIGestureRecognizerStateEnded ) {
+        CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
+        
+    } else {
+       CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
+        self.view.frame = CGRectOffset(self.view.frame, 0, offset.y);
+    }
 }
 
 - (void)didReceiveMemoryWarning
