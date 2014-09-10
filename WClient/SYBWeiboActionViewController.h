@@ -35,5 +35,6 @@ typedef NS_ENUM(NSUInteger, SYBWeiboActionType) {
 - (IBAction)commentSelected:(id)sender;
 - (IBAction)retweetSelected:(id)sender;
 - (IBAction)itemChanged:(id)sender;
+- (IBAction)didPan:(id)sender;
 
 @end

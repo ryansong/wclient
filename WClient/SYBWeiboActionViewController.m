@@ -24,7 +24,6 @@
     
     _contentType = SYBWeiboActionTypeComment;
     _contentSwitch.selectedSegmentIndex = _contentType;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,8 +55,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (_items) {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         return [_items count];
     }
+    
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     return 0;
 }
 
@@ -122,6 +124,27 @@
         _contentType = SYBWeiboActionTypeComment;
         _items = _commentArray;
         [_listTableView reloadData];
+    }
+}
+
+- (IBAction)didPan:(id)sender {
+    UIPanGestureRecognizer *panGesture = nil;
+    if ([sender isKindOfClass:[UIPanGestureRecognizer class]]) {
+        panGesture = (UIPanGestureRecognizer *)sender;
+    }
+    
+    if (panGesture.state == UIGestureRecognizerStateEnded) {
+        [self didMoveToParentViewController:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    } else if (panGesture.state == UIGestureRecognizerStateBegan) {
+        [self willMoveToParentViewController:nil];
+        CGPoint offPoint = [panGesture translationInView:panGesture.view];
+        self.view.frame = CGRectOffset(self.view.frame, offPoint.x, 0);
+        [panGesture setTranslation:CGPointZero inView:panGesture.view];
+    } else {
+        CGPoint offPoint = [panGesture translationInView:panGesture.view];
+        self.view.frame = CGRectOffset(self.view.frame, offPoint.x, 0);
+        [panGesture setTranslation:CGPointZero inView:panGesture.view];
     }
 }
 

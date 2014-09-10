@@ -812,6 +812,11 @@ success:^(NSArray *result) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqual:@"attibuted"]) {
+        ((UIViewController *)segue.destinationViewController).navigationController.navigationBarHidden = NO;
+    }
+    
+    
     if ([segue.destinationViewController isKindOfClass:[SYBWeiboActionViewController class]]) {
         NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
         SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];

@@ -252,11 +252,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="6mq-Kl-Jl9">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="6mq-Kl-Jl9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <segments>
-                                    <segment title="like"/>
+                                    <segment title="like" enabled="NO"/>
                                     <segment title="retweet"/>
                                     <segment title="comment"/>
                                 </segments>
@@ -265,9 +266,10 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dZT-6B-m5k">
-                                <rect key="frame" x="0.0" y="30" width="320" height="538"/>
+                                <rect key="frame" x="0.0" y="29" width="320" height="539"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="FQO-6I-mgO">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -310,9 +312,14 @@
                                 <connections>
                                     <outlet property="dataSource" destination="4HE-3p-rfX" id="zlI-Xw-hzx"/>
                                     <outlet property="delegate" destination="4HE-3p-rfX" id="jpE-Ta-p3K"/>
+                                    <outletCollection property="gestureRecognizers" destination="63d-6t-Nkf" appends="YES" id="wrc-uH-kEU"/>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="63d-6t-Nkf" appends="YES" id="QZb-PS-H9p"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="lCe-iS-zqv"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -323,6 +330,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clt-zQ-U6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="63d-6t-Nkf">
+                    <connections>
+                        <action selector="didPan:" destination="4HE-3p-rfX" id="lbL-lS-BDD"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="831" y="-255"/>
         </scene>
