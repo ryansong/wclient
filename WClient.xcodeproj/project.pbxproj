@@ -25,6 +25,9 @@
 		56B183AF1990C1260062F4CA /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183A91990C1260062F4CA /* UIViewController+ECSlidingViewController.m */; };
 		56B183B219920A9E0062F4CA /* SYBWeiboRetweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183B119920A9E0062F4CA /* SYBWeiboRetweet.m */; };
 		56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183B4199228190062F4CA /* SYBWeiboAttitude.m */; };
+		56EF4919199C891A00B1A569 /* SYBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF4918199C891A00B1A569 /* SYBCommentViewController.m */; };
+		56EF491D199C9E0200B1A569 /* SYBCommentTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF491C199C9E0200B1A569 /* SYBCommentTransition.m */; };
+		56EF4921199CD08000B1A569 /* SYBPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF4920199CD08000B1A569 /* SYBPopoverSegue.m */; };
 		CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */; };
 		CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF135C7A1950A83B00AE2E90 /* SYBWeiboCell.m */; };
 		CF1E00E117C7B7AA00E3FF7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E00E017C7B7AA00E3FF7F /* UIKit.framework */; };
@@ -103,6 +106,12 @@
 		56B183B119920A9E0062F4CA /* SYBWeiboRetweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboRetweet.m; sourceTree = "<group>"; };
 		56B183B3199228190062F4CA /* SYBWeiboAttitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboAttitude.h; sourceTree = "<group>"; };
 		56B183B4199228190062F4CA /* SYBWeiboAttitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboAttitude.m; sourceTree = "<group>"; };
+		56EF4917199C891A00B1A569 /* SYBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBCommentViewController.h; sourceTree = "<group>"; };
+		56EF4918199C891A00B1A569 /* SYBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBCommentViewController.m; sourceTree = "<group>"; };
+		56EF491B199C9E0200B1A569 /* SYBCommentTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBCommentTransition.h; sourceTree = "<group>"; };
+		56EF491C199C9E0200B1A569 /* SYBCommentTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBCommentTransition.m; sourceTree = "<group>"; };
+		56EF491F199CD08000B1A569 /* SYBPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBPopoverSegue.h; sourceTree = "<group>"; };
+		56EF4920199CD08000B1A569 /* SYBPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBPopoverSegue.m; sourceTree = "<group>"; };
 		841B6172C6414D1DB2E56E60 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF06B2911823E9F100D23AEA /* SYBWeiboViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewCell.h; sourceTree = "<group>"; };
 		CF06B2921823E9F100D23AEA /* SYBWeiboViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewCell.m; sourceTree = "<group>"; };
@@ -216,6 +225,24 @@
 			path = ECSlidingViewController;
 			sourceTree = "<group>";
 		};
+		56EF491A199C9DD600B1A569 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				56EF491B199C9E0200B1A569 /* SYBCommentTransition.h */,
+				56EF491C199C9E0200B1A569 /* SYBCommentTransition.m */,
+			);
+			name = Transition;
+			sourceTree = "<group>";
+		};
+		56EF491E199CD03400B1A569 /* segue */ = {
+			isa = PBXGroup;
+			children = (
+				56EF491F199CD08000B1A569 /* SYBPopoverSegue.h */,
+				56EF4920199CD08000B1A569 /* SYBPopoverSegue.m */,
+			);
+			name = segue;
+			sourceTree = "<group>";
+		};
 		CF06B2901823E88400D23AEA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +299,8 @@
 		CF1E00E617C7B7AA00E3FF7F /* WClient */ = {
 			isa = PBXGroup;
 			children = (
+				56EF491E199CD03400B1A569 /* segue */,
+				56EF491A199C9DD600B1A569 /* Transition */,
 				CF46E9BE18C477DA00507208 /* Macro */,
 				CF2DE51F1849E5CD00FC3403 /* classes */,
 				CF06B2901823E88400D23AEA /* View */,
@@ -279,6 +308,8 @@
 				CFB4ED2A181925E6004E5846 /* API */,
 				CF6FBD8E18372F06001A35EF /* Controller */,
 				CF1E00E717C7B7AA00E3FF7F /* Supporting Files */,
+				CF1E00EF17C7B7AA00E3FF7F /* SYBAppDelegate.h */,
+				CF1E00F017C7B7AA00E3FF7F /* SYBAppDelegate.m */,
 				CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */,
 				56B1830D198F50830062F4CA /* MainStoryboard.storyboard */,
 				CFB4ED36181AAFA6004E5846 /* WClient.entitlements */,
@@ -307,8 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				CF58BB6D185F3C2B00CE3136 /* triparty */,
-				CF1E00EF17C7B7AA00E3FF7F /* SYBAppDelegate.h */,
-				CF1E00F017C7B7AA00E3FF7F /* SYBAppDelegate.m */,
 				CF2DE5201849E62300FC3403 /* UIColor+hex.h */,
 				CF2DE5211849E62300FC3403 /* UIColor+hex.m */,
 			);
@@ -348,6 +377,8 @@
 				5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */,
 				56B1831D198F6A4C0062F4CA /* SYBWeiboActionViewController.h */,
 				56B1831E198F6A4C0062F4CA /* SYBWeiboActionViewController.m */,
+				56EF4917199C891A00B1A569 /* SYBCommentViewController.h */,
+				56EF4918199C891A00B1A569 /* SYBCommentViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -544,7 +575,9 @@
 				CFB18B8C18E6D69000FB03E2 /* SYBWeiboImageView.m in Sources */,
 				CF46E9BA18C44F3C00507208 /* EGORefreshTableHeaderView.m in Sources */,
 				56B183AB1990C1260062F4CA /* ECSlidingAnimationController.m in Sources */,
+				56EF491D199C9E0200B1A569 /* SYBCommentTransition.m in Sources */,
 				CF06B2931823E9F100D23AEA /* SYBWeiboViewCell.m in Sources */,
+				56EF4919199C891A00B1A569 /* SYBCommentViewController.m in Sources */,
 				CF1E00ED17C7B7AA00E3FF7F /* main.m in Sources */,
 				CF135C7B1950A83B00AE2E90 /* SYBWeiboCell.m in Sources */,
 				CFB18B8F18E7E41700FB03E2 /* SYBUserInfoView.m in Sources */,
@@ -559,6 +592,7 @@
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
+				56EF4921199CD08000B1A569 /* SYBPopoverSegue.m in Sources */,
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
 				56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,

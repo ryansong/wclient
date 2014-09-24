@@ -42,4 +42,18 @@
     _repoImage.imageView.image = nil;
     
 }
+
+- (IBAction)postAttitude:(id)sender {
+    [_cellDelegate postWeiboAttitude:self];
+}
+
+- (IBAction)retweetWeibo:(id)sender {
+    [_cellDelegate retweetWeibo:self];
+}
+
+- (IBAction)commentOnWeibo:(id)sender {
+    [_cellDelegate commentWeibo:self];
+}
+
+
 @end

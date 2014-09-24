@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "SYBWeiboCell.h"
+#import "SYBWeiboViewCell.h"
 #import "APPMacro.h"
-
 
 @interface SYBListViewController : UIViewController <UITableViewDataSource,
                                                     UITableViewDelegate,
                                                     UIGestureRecognizerDelegate,
                                                     EGORefreshTableHeaderDelegate,
-                                                    UIScrollViewDelegate>
+                                                    UIScrollViewDelegate,
+                                                    SYBWeiboCellActionDelegate,
+                                                    UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *listTableView;
 
@@ -25,7 +27,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightItem;
 
 - (IBAction)signOut:(id)sender;
-
 
 @property (nonatomic, strong) EGORefreshTableHeaderView *headerView;
 

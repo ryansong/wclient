@@ -63,11 +63,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="weiboCell" rowHeight="488" id="KrT-Vh-Wxj" customClass="SYBWeiboViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCell" rowHeight="488" id="KrT-Vh-Wxj" customClass="SYBWeiboViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="488"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KrT-Vh-Wxj" id="5ba-hE-2JV">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="487"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="487"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mxl-Xg-R6M">
@@ -124,31 +124,41 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="32F-Yc-wOd">
-                                                            <rect key="frame" x="230" y="135" width="40" height="10"/>
+                                                            <rect key="frame" x="230" y="135" width="40" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                             <state key="normal" image="forward.png">
                                                                 <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="retweetWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="7Wh-nr-XEG"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ELF-fl-qrp">
-                                                            <rect key="frame" x="270" y="135" width="40" height="10"/>
+                                                            <rect key="frame" x="270" y="135" width="40" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                             <state key="normal" image="bubble.png">
                                                                 <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="commentOnWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="mmV-DY-iD6"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ut5-WA-FYY">
-                                                            <rect key="frame" x="190" y="135" width="40" height="10"/>
+                                                            <rect key="frame" x="190" y="135" width="40" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                             <state key="normal" image="like.png">
                                                                 <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="postAttitude:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="vxH-HL-xja"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
@@ -159,31 +169,41 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vzd-03-NX3">
-                                                    <rect key="frame" x="190" y="442" width="40" height="10"/>
+                                                    <rect key="frame" x="190" y="442" width="40" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                     <state key="normal" image="like.png">
                                                         <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="postAttitude:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="4Wz-Kn-ghq"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Aj8-iS-3pS">
-                                                    <rect key="frame" x="230" y="442" width="40" height="10"/>
+                                                    <rect key="frame" x="230" y="442" width="40" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                     <state key="normal" image="forward.png">
                                                         <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="retweetWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="Fdw-Mf-JiH"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y5o-PE-QM0">
-                                                    <rect key="frame" x="270" y="442" width="40" height="10"/>
+                                                    <rect key="frame" x="270" y="442" width="40" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                     <state key="normal" image="bubble.png">
                                                         <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="commentOnWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="P0n-oY-9qd"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" id="sex-kT-m6o" customClass="SYBWeiboImageView">
                                                     <rect key="frame" x="20" y="297" width="130" height="130"/>
@@ -221,7 +241,7 @@
                                             <outlet property="repoUsername" destination="81O-C5-f32" id="b3m-oz-DvQ"/>
                                             <outlet property="retwitterButton" destination="Aj8-iS-3pS" id="jZx-UD-Smz"/>
                                             <outlet property="username" destination="kWk-f3-cLw" id="Gtj-DE-OwH"/>
-                                            <segue destination="4HE-3p-rfX" kind="push" identifier="attibuted" customClass="ECSlidingSegue" id="dlb-sO-gRz"/>
+                                            <segue destination="4HE-3p-rfX" kind="custom" identifier="weiboAction" customClass="SYBPopoverSegue" id="VRp-gu-EVD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -303,9 +323,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="commentText" destination="fA0-Aa-khk" id="fOK-dy-Tm6"/>
-                                            <outlet property="iconview" destination="Jd0-Vc-ZKh" id="9KY-En-ory"/>
-                                            <outlet property="username" destination="c5X-1n-w2Q" id="sta-rq-rPK"/>
+                                            <outlet property="dataSource" destination="4HE-3p-rfX" id="zlI-Xw-hzx"/>
+                                            <outlet property="delegate" destination="4HE-3p-rfX" id="jpE-Ta-p3K"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -321,11 +340,10 @@
                             <outletCollection property="gestureRecognizers" destination="63d-6t-Nkf" appends="YES" id="QZb-PS-H9p"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="lCe-iS-zqv"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="contentSwitch" destination="6mq-Kl-Jl9" id="1AW-Fm-kCZ"/>
+                        <outlet property="identifier" destination="aFc-Nk-OYc" id="wN7-T6-IzR"/>
                         <outlet property="listTableView" destination="dZT-6B-m5k" id="jO5-mE-4Jy"/>
                     </connections>
                 </viewController>
@@ -337,6 +355,98 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="831" y="-255"/>
+        </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="uYp-qe-v2k">
+            <objects>
+                <viewController storyboardIdentifier="commentViewController" id="f7Z-tS-2c7" customClass="SYBCommentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z8H-z8-uRQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="HQF-c8-qz6">
+                                <rect key="frame" x="20" y="40" width="280" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="YCB-Yk-oCf">
+                                        <rect key="frame" x="0.0" y="34" width="280" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
+                                    </textView>
+                                    <view contentMode="scaleToFill" id="ha6-kH-ChV">
+                                        <rect key="frame" x="0.0" y="39" width="280" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIc-Om-vK2">
+                                        <rect key="frame" x="218" y="279" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
+                                        <color key="textColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9YU-XJ-2Oj">
+                                        <rect key="frame" x="9" y="1" width="45" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelComment:" destination="f7Z-tS-2c7" eventType="touchUpInside" id="f2Q-dM-cyT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wNZ-Rf-mgO">
+                                        <rect key="frame" x="227" y="1" width="38" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="tweet">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doComment:" destination="f7Z-tS-2c7" eventType="touchUpInside" id="nWX-5k-pay"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zwm-8y-Vbv">
+                                        <rect key="frame" x="99" y="0.0" width="63" height="14"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3aX-g1-9ky">
+                                        <rect key="frame" x="91" y="19" width="78" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="exl-zf-5Lo">
+                                        <rect key="frame" x="9" y="270" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="retweet">
+                                            <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickRetweet:" destination="f7Z-tS-2c7" eventType="touchUpInside" id="nT9-B6-Br6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="comment" destination="YCB-Yk-oCf" id="RgD-YV-cOF"/>
+                        <outlet property="commentCount" destination="vIc-Om-vK2" id="8zU-bl-WuN"/>
+                        <outlet property="commentView" destination="HQF-c8-qz6" id="VlS-K7-GZs"/>
+                        <outlet property="retweetButton" destination="exl-zf-5Lo" id="0m2-EO-O7A"/>
+                        <outlet property="username" destination="3aX-g1-9ky" id="LtT-3J-yTw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRd-Ud-TN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="370" y="432"/>
         </scene>
         <!--Weibo View Controller-->
         <scene sceneID="7yU-ey-zbD">
@@ -420,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvc-mh-mw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="384"/>
+            <point key="canvasLocation" x="831" y="432"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qR5-L4-v28">

@@ -27,14 +27,14 @@ typedef NS_ENUM(NSUInteger, SYBWeiboActionType) {
 @property (nonatomic, strong) NSArray *commentArray;
 @property (nonatomic, assign) NSInteger commentCount;
 
+@property (nonatomic, weak) IBOutlet UIScrollView *identifier;
+
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) SYBWeiboActionType contentType;;
 
-@property (nonatomic, weak) IBOutlet UISegmentedControl *contentSwitch;
-
-- (IBAction)commentSelected:(id)sender;
-- (IBAction)retweetSelected:(id)sender;
-- (IBAction)itemChanged:(id)sender;
-- (IBAction)didPan:(id)sender;
+- (IBAction)viewAttitubed:(id)sender;
+- (IBAction)viewComment:(id)sender;
+- (IBAction)viewRetweet:(id)sender;
+- (IBAction)viewTweet:(id)sender;
 
 @end

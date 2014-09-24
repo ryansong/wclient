@@ -65,6 +65,15 @@ typedef void(^PBEmptyBlock)();
                        success:(PBArrayBlock)success
                        failure:(PBErrorBlock)failure;
 
+
+- (void)postCommentOnWeibo:(long long)weiboID
+                   comment:(NSString *)comment
+               comment_ori:(int)isRetweet
+                       rip:(NSString *)rip
+                   success:(PBDictionaryBlock)success
+                   failure:(PBErrorBlock)failure;
+
+
 - (NSURLRequest *)authorizeRequest:(NSString *)c_id
                           res_type:(NSString *)res_tp
                             flogin:(NSString *)fl
