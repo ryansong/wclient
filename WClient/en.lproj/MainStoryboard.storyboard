@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ajX-Ll-ucY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ajX-Ll-ucY">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -380,8 +380,8 @@
                                         <color key="textColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9YU-XJ-2Oj">
-                                        <rect key="frame" x="10" y="1" width="45" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9YU-XJ-2Oj">
+                                        <rect key="frame" x="10" y="5" width="45" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="cancel">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -390,8 +390,8 @@
                                             <action selector="cancelComment:" destination="f7Z-tS-2c7" eventType="touchUpInside" id="f2Q-dM-cyT"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wNZ-Rf-mgO">
-                                        <rect key="frame" x="232" y="1" width="38" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wNZ-Rf-mgO">
+                                        <rect key="frame" x="224" y="5" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="tweet">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -430,11 +430,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="comment" destination="YCB-Yk-oCf" id="RgD-YV-cOF"/>
-                        <outlet property="commentCount" destination="vIc-Om-vK2" id="8zU-bl-WuN"/>
-                        <outlet property="commentView" destination="HQF-c8-qz6" id="VlS-K7-GZs"/>
-                        <outlet property="retweetButton" destination="exl-zf-5Lo" id="jdv-57-77H"/>
-                        <outlet property="username" destination="3aX-g1-9ky" id="LtT-3J-yTw"/>
+                        <outlet property="comment" destination="YCB-Yk-oCf" id="cJi-SP-XJK"/>
+                        <outlet property="commentCount" destination="vIc-Om-vK2" id="WTS-Z3-L2K"/>
+                        <outlet property="commentView" destination="HQF-c8-qz6" id="U04-lu-nzO"/>
+                        <outlet property="postComment" destination="wNZ-Rf-mgO" id="PxE-vT-gCu"/>
+                        <outlet property="retweetSwitch" destination="exl-zf-5Lo" id="4vr-Fb-lW5"/>
+                        <outlet property="username" destination="3aX-g1-9ky" id="FDj-PT-jjH"/>
+                        <outlet property="viewTitle" destination="Zwm-8y-Vbv" id="3fh-dK-Jhu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRd-Ud-TN0" userLabel="First Responder" sceneMemberID="firstResponder"/>

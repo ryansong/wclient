@@ -16,6 +16,7 @@ static NSString *const KAPIRequestShowAttitudes = @"2/attitudes/show.json";
 static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
 
 static NSString *const KAPIRequestCommentWeibo = @"/2/comments/create.json";
+static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
 
 
 #import "SYBWeiboAPIClient.h"
@@ -407,6 +408,55 @@ static NSString *const KAPIRequestCommentWeibo = @"/2/comments/create.json";
             failure(PBXErrorUnknown);
         }
     }];
+}
+
+
+- (void)repostWeibo:(long long)weiboID
+             status:(NSString *)status
+          isComment:(int)isComment
+                rip:(NSString *)rip
+            success:(PBDictionaryBlock)success
+            failure:(PBErrorBlock)failure
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    
+    params[@"access_token"] = _token;
+    
+    if (weiboID) {
+        params[@"id"] = @(weiboID);
+    }
+    
+    if (!rip) {
+        rip = @"";
+    }
+    params[@"rip"] = rip;
+    
+    if (!status) {
+        status = @"";
+    }
+    params[@"comment"] = [status stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [_httpClient POST:KAPIRequestRepostWeibo parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //        NSMutableArray *results = [NSMutableArray array];
+        
+        NSError *error;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error) {
+            failure(PBXErrorUnknown);
+            return;
+        }
+        if (success) {
+            success(dict);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(PBXErrorUnknown);
+        }
+    }];
+    
 }
 
 - (void)getRetweetsWithWeiboID:(long long)weiboID

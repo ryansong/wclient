@@ -18,11 +18,14 @@ typedef NS_ENUM(NSInteger, SYBCommentViewType){
 
 @property (nonatomic, strong) SYBWeiBo *status;
 @property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property (weak, nonatomic) IBOutlet UITextView *comment;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
 
 @property (weak, nonatomic) IBOutlet UIView *commentView;
-@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+@property (weak, nonatomic) IBOutlet UIButton *retweetSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *postComment;
+
 
 @property (nonatomic ,assign) SYBCommentViewType viewType;
 

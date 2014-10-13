@@ -37,12 +37,32 @@ CGFloat const detemineOffset = 40;
     UIPanGestureRecognizer *panDismiss = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(panDismiss:)];
     [self.view addGestureRecognizer:panDismiss];
+    
+    if (_viewType == SYBCOMMENTORITYPENOCOMMENT) {
+        _viewTitle.text = Comment;
+        [_postComment setTitle:Comment forState:UIControlStateNormal];
+        
+        //todo
+        // comment same time
+        
+        
+    } else {
+        _viewTitle.text = Retweet;
+        [_postComment setTitle:@"Retweet" forState:UIControlStateNormal];
+        
+        //todo
+        // retweet same time
+        
+    }
+    
+    //todo
+    [_retweetSwitch removeFromSuperview];
 }
 
 - (void)panDismiss:(UIPanGestureRecognizer *)panGestureRecognizer
 {
     if (panGestureRecognizer.state == UIGestureRecognizerStateEnded ) {
-        CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
+//        CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
         
     } else {
        CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
@@ -57,6 +77,7 @@ CGFloat const detemineOffset = 40;
 }
 
 - (IBAction)cancelComment:(id)sender {
+    
     [self dismissViewControllerAnimated:YES completion:NO];
 }
 
@@ -68,25 +89,41 @@ CGFloat const detemineOffset = 40;
 
 - (void)postCommentOnWeibo
 {
-    SYBCOMMENTORITYPE comment_ori = SYBCOMMENTORITYPENOCOMMENT;
-    if (_retweetButton.isSelected) {
-        comment_ori = SYBCOMMENTORITYPERETWEET;
+    SYBWeiboAPIClient *sharedClient = [SYBWeiboAPIClient sharedClient];
+    
+    if (_viewType == SYBCommentViewTypeCommnet){
+    
+        SYBCOMMENTORITYPE comment_ori = SYBCOMMENTORITYPENOCOMMENT;
+        if (_retweetSwitch.isSelected) {
+            comment_ori = SYBCOMMENTORITYPERETWEET;
+        }
+        
+        
+        [sharedClient postCommentOnWeibo:_status.weiboId
+                                  comment:_comment.text
+                              comment_ori:comment_ori
+                                      rip:nil
+                                  success:^(NSDictionary * dict) {
+        
+                              } failure:^(PBXError error) {
+        
+                              }];
+    } else {
+       [sharedClient repostWeibo:_status.weiboId
+                          status:_comment.text
+                       isComment:1
+                             rip:nil
+                         success:^(NSDictionary *dict) {
+           
+       }
+                         failure:^(PBXError error) {
+           
+       }];
     }
-    
-    SYBWeiboAPIClient *_sharedClient = [SYBWeiboAPIClient sharedClient];
-    [_sharedClient postCommentOnWeibo:_status.weiboId
-                              comment:_comment.text
-                          comment_ori:comment_ori
-                                  rip:nil
-                              success:^(NSDictionary * dict) {
-    
-                          } failure:^(PBXError error) {
-    
-                          }];
 }
 
 - (IBAction)clickRetweet:(id)sender {
-    _retweetButton.selected = !_retweetButton.isSelected;
+    _retweetSwitch.selected = !_retweetSwitch.isSelected;
 }
 
 

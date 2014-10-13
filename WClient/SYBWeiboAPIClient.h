@@ -73,6 +73,13 @@ typedef void(^PBEmptyBlock)();
                    success:(PBDictionaryBlock)success
                    failure:(PBErrorBlock)failure;
 
+- (void)repostWeibo:(long long)weiboID
+             status:(NSString *)status
+          isComment:(int)isComment
+                rip:(NSString *)rip
+            success:(PBDictionaryBlock)success
+            failure:(PBErrorBlock)failure;
+
 
 - (NSURLRequest *)authorizeRequest:(NSString *)c_id
                           res_type:(NSString *)res_tp

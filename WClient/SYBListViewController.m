@@ -780,7 +780,7 @@ success:^(NSArray *result) {
     _imageView.receivedBytes = [_imageView.imageData length];
     if (_imageView.receivedBytes <=_imageView.totalBytes)
     {
-            NSLog(@"%d", _imageView.receivedBytes);
+            NSLog(@"%lu", (unsigned long)_imageView.receivedBytes);
         _imageProgress.progress = (float)_imageView.receivedBytes/ _imageView.totalBytes;
     } else
     {
@@ -866,6 +866,7 @@ success:^(NSArray *result) {
     
     SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
     commentViewController.status = weiboCell.weibo;
+    commentViewController.viewType = SYBCommentViewTypeCommnet;
     commentViewController.modalPresentationStyle = UIModalPresentationCustom;
     commentViewController.transitioningDelegate = self;
     [self presentViewController:commentViewController animated:YES completion:nil];
@@ -878,6 +879,7 @@ success:^(NSArray *result) {
     
     SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
     commentViewController.status = weiboCell.weibo;
+    commentViewController.viewType = SYBCommentViewTypeRetweet;
     commentViewController.modalPresentationStyle = UIModalPresentationCustom;
     commentViewController.transitioningDelegate = self;
     [self presentViewController:commentViewController animated:YES completion:nil];

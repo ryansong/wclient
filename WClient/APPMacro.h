@@ -15,6 +15,11 @@ static NSString *const CLIENT_SECRET = @"6597bf2ba67b745e6af1c5b7f4b33e6e";
 static NSString *const COMESFROM = @"来自";
 static NSString *const LIKE = @"like";
 
+
+static NSString *const Comment = @"Comment";
+static NSString *const Retweet = @"Retweet";
+
+
 typedef enum{
     SYBRunEnviromentOffLine = 0,
     SYBRunEnviromentOnline,

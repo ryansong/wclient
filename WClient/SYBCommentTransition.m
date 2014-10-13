@@ -65,7 +65,7 @@
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             toView.transform= CGAffineTransformMakeScale(1.0, 1.0);
+//                             toView.transform= CGAffineTransformMakeScale(1.0, 1.0);
                              fromView.frame = CGRectOffset(screenFrame, -screenFrame.size.width, 0);
                              toVC.view.alpha = 1;
                          } completion:^(BOOL finished) {
