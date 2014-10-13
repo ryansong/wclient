@@ -32,6 +32,8 @@
             
             [containerView addSubview:toView];
             
+            [fromVC.view setUserInteractionEnabled:NO];
+            
             CGRect screenFrame = [UIScreen mainScreen].bounds;
             CGRect originFrame = toView.frame;
             toView.frame = CGRectOffset(originFrame, -screenFrame.size.width, 0);
@@ -42,8 +44,8 @@
                              animations:^{
                                  fromVC.view.alpha = 0.5;
                                  toView.frame = originFrame;
-                                 toView.transform = CGAffineTransformMakeScale(0.8, 0.8);
-                                 fromView.transform= CGAffineTransformMakeScale(0.97, 0.97);
+//                                 toView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+//                                 fromView.transform= CGAffineTransformMakeScale(0.97, 0.97);
                              } completion:^(BOOL finished) {
                                  [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                              }];
@@ -53,7 +55,9 @@
     } else {
         [containerView addSubview:toView];
         
-        toView.transform= CGAffineTransformMakeScale(0.9, 0.9);
+        [toVC.view setUserInteractionEnabled:YES];
+        
+//        toView.transform= CGAffineTransformMakeScale(0.9, 0.9);
         toVC.view.alpha = 0.5;
         CGRect screenFrame = [UIScreen mainScreen].bounds;
         

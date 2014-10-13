@@ -823,7 +823,7 @@ success:^(NSArray *result) {
 
             UIViewController *detailViewController = segue.destinationViewController;
             
-            detailViewController.transitioningDelegate = self;
+//            detailViewController.transitioningDelegate = self;
             detailViewController.modalPresentationStyle = UIModalPresentationCustom;
             
             ((SYBWeiboActionViewController *)segue.destinationViewController).status = weiboCell.weibo;

@@ -85,5 +85,7 @@ CGFloat const detemineOffset = 40;
 
 - (IBAction)clickRetweet:(id)sender {
     _retweetButton.selected = !_retweetButton.isSelected;
+    
+    [self dismissViewControllerAnimated:YES completion:NO];
 }
 @end
