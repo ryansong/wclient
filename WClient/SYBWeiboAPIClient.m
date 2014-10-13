@@ -389,7 +389,7 @@ static NSString *const KAPIRequestCommentWeibo = @"/2/comments/create.json";
     
     [_httpClient POST:KAPIRequestCommentWeibo parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
        
-        NSMutableArray *results = [NSMutableArray array];
+//        NSMutableArray *results = [NSMutableArray array];
         
         NSError *error;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];

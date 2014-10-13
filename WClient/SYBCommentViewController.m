@@ -8,6 +8,7 @@
 
 #import "SYBCommentViewController.h"
 #import "SYBWeiboAPIClient.h"
+#import "SYBWeiboAPIClient.h"
 
 CGFloat const detemineOffset = 40;
 
@@ -61,14 +62,15 @@ CGFloat const detemineOffset = 40;
 
 - (IBAction)doComment:(id)sender {
     [self postCommentOnWeibo];
+    
     [self dismissViewControllerAnimated:YES completion:NO];
 }
 
 - (void)postCommentOnWeibo
 {
-    int comment_ori = 0;
+    SYBCOMMENTORITYPE comment_ori = SYBCOMMENTORITYPENOCOMMENT;
     if (_retweetButton.isSelected) {
-        comment_ori = 1;
+        comment_ori = SYBCOMMENTORITYPERETWEET;
     }
     
     SYBWeiboAPIClient *_sharedClient = [SYBWeiboAPIClient sharedClient];
@@ -85,7 +87,7 @@ CGFloat const detemineOffset = 40;
 
 - (IBAction)clickRetweet:(id)sender {
     _retweetButton.selected = !_retweetButton.isSelected;
-    
-    [self dismissViewControllerAnimated:YES completion:NO];
 }
+
+
 @end
