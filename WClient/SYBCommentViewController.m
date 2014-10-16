@@ -38,7 +38,7 @@ CGFloat const detemineOffset = 40;
                                                                                  action:@selector(panDismiss:)];
     [self.view addGestureRecognizer:panDismiss];
     
-    if (_viewType == SYBCOMMENTORITYPENOCOMMENT) {
+    if (_viewType == SYBCommentOriComment) {
         _viewTitle.text = Comment;
         [_postComment setTitle:Comment forState:UIControlStateNormal];
         
@@ -49,6 +49,8 @@ CGFloat const detemineOffset = 40;
     } else {
         _viewTitle.text = Retweet;
         [_postComment setTitle:@"Retweet" forState:UIControlStateNormal];
+        
+        //
         
         //todo
         // retweet same time
@@ -93,9 +95,9 @@ CGFloat const detemineOffset = 40;
     
     if (_viewType == SYBCommentViewTypeCommnet){
     
-        SYBCOMMENTORITYPE comment_ori = SYBCOMMENTORITYPENOCOMMENT;
+        SYBCommentOriType comment_ori = SYBCommentOriComment;
         if (_retweetSwitch.isSelected) {
-            comment_ori = SYBCOMMENTORITYPERETWEET;
+            comment_ori = SYBCommentOriRetweet;
         }
         
         

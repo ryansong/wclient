@@ -872,6 +872,26 @@ success:^(NSArray *result) {
     [self presentViewController:commentViewController animated:YES completion:nil];
 }
 
+
+- (void)commentSubWeibo:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    
+    SYBWeiBo *subWeibo = weiboCell.weibo.retweeted_status;
+    
+    if (!subWeibo) {
+        return;
+    }
+    
+    SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
+    commentViewController.status = subWeibo;
+    commentViewController.viewType = SYBCommentViewTypeCommnet;
+    commentViewController.modalPresentationStyle = UIModalPresentationCustom;
+    commentViewController.transitioningDelegate = self;
+    [self presentViewController:commentViewController animated:YES completion:nil];
+}
+
 - (void)retweetWeibo:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
@@ -879,6 +899,25 @@ success:^(NSArray *result) {
     
     SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
     commentViewController.status = weiboCell.weibo;
+    commentViewController.viewType = SYBCommentViewTypeRetweet;
+    commentViewController.modalPresentationStyle = UIModalPresentationCustom;
+    commentViewController.transitioningDelegate = self;
+    [self presentViewController:commentViewController animated:YES completion:nil];
+}
+
+- (void)retweetSubWeibo:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    
+    SYBWeiBo *subWeibo = weiboCell.weibo.retweeted_status;
+    
+    if (!subWeibo) {
+        return;
+    }
+    
+    SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
+    commentViewController.status = subWeibo;
     commentViewController.viewType = SYBCommentViewTypeRetweet;
     commentViewController.modalPresentationStyle = UIModalPresentationCustom;
     commentViewController.transitioningDelegate = self;

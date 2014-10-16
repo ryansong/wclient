@@ -48,11 +48,22 @@
 }
 
 - (IBAction)retweetWeibo:(id)sender {
-    [_cellDelegate retweetWeibo:self];
+    
+    if (sender == self.repoRetwitterButton)
+    {
+        [_cellDelegate retweetSubWeibo:self];
+    } else if (sender == self.retwitterButton) {
+        [_cellDelegate retweetWeibo:self];
+    }
 }
 
 - (IBAction)commentOnWeibo:(id)sender {
-    [_cellDelegate commentWeibo:self];
+    if (sender == self.repoCommentButton)
+    {
+        [_cellDelegate commentSubWeibo:self];
+    } else if (sender == self.commentButton) {
+        [_cellDelegate commentWeibo:self];
+    }
 }
 
 

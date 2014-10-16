@@ -26,9 +26,9 @@ typedef enum{
     
 } SYBRunEnviroment;
 
-typedef NS_ENUM(NSUInteger, SYBCOMMENTORITYPE){
-    SYBCOMMENTORITYPENOCOMMENT,
-    SYBCOMMENTORITYPERETWEET,
+typedef NS_ENUM(NSUInteger, SYBCommentOriType  ){
+    SYBCommentOriComment,
+    SYBCommentOriRetweet,
 };
 
 static SYBRunEnviroment const ENV = SYBRunEnviromentOffLine;
