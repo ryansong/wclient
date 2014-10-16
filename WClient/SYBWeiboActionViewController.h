@@ -32,9 +32,6 @@ typedef NS_ENUM(NSUInteger, SYBWeiboActionType) {
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) SYBWeiboActionType contentType;;
 
-- (IBAction)viewAttitubed:(id)sender;
-- (IBAction)viewComment:(id)sender;
-- (IBAction)viewRetweet:(id)sender;
-- (IBAction)viewTweet:(id)sender;
+- (IBAction)itemChanged:(id)sender;
 
 @end

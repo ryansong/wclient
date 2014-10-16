@@ -279,7 +279,7 @@
                                     <segment title="comment"/>
                                 </segments>
                                 <connections>
-                                    <action selector="itemChanged:" destination="4HE-3p-rfX" eventType="valueChanged" id="Z3C-tg-UFV"/>
+                                    <action selector="itemChanged:" destination="4HE-3p-rfX" eventType="valueChanged" id="t0t-Vg-ka1"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dZT-6B-m5k">

@@ -102,7 +102,7 @@
     return cell;
 }
 
-- (void)viewAttitubed:(id)sender
+- (void)viewAttitubed
 {
     _identifier.contentOffset = CGPointMake(240, 0);
     
@@ -114,7 +114,7 @@
     [self getAttitudes];
 }
 
-- (void)viewRetweet:(id)sender
+- (void)viewRetweet
 {
      _identifier.contentOffset = CGPointMake(160, 0);
     _contentType = SYBWeiboActionTypeRetweet;
@@ -125,20 +125,40 @@
     [self getRetweets];
 }
 
-- (void)viewComment:(id)sender
+- (void)viewComment
 {
     _identifier.contentOffset = CGPointMake(80, 0);
+    
+    // if switch to comment
+    if (_contentType != SYBWeiboActionTypeComment) {
+        _contentType = SYBWeiboActionTypeComment;
+        [self getRetweets];
+    }
     // default switch to comment
     _contentType = SYBWeiboActionTypeComment;
     _items = _commentArray;
     [_listTableView reloadData];
 }
 
-- (void)viewTweet:(id)sender
-{
-    _identifier.contentOffset = CGPointMake(0, 0);
+// todo
+// view original Tweet
+//- (void)viewTweet
+//{
+//    _identifier.contentOffset = CGPointMake(0, 0);
+//
+//    // todo
+//}
 
-    // todo
+- (IBAction)itemChanged:(id)sender {
+    
+    NSInteger selectedItem = ((UISegmentedControl *)sender).selectedSegmentIndex;
+    if (selectedItem == SYBWeiboActionTypeAttitude ) {
+        [self viewAttitubed];
+    } else if (selectedItem == SYBCommentOriRetweet) {
+        [self viewRetweet];
+    } else if (selectedItem == SYBCommentOriComment) {
+        [self viewComment];
+    }
 }
 
 - (IBAction)didPan:(id)sender {
