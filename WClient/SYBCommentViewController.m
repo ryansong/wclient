@@ -12,11 +12,13 @@
 
 CGFloat const detemineOffset = 40;
 
-@interface SYBCommentViewController ()
+@interface SYBCommentViewController ()<UITextViewDelegate>
 
 @end
 
 @implementation SYBCommentViewController
+
+NSInteger commentLimit = 140;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,10 +35,6 @@ CGFloat const detemineOffset = 40;
     [super viewDidLoad];
 
     _username.text = _status.user.name;
-    
-    UIPanGestureRecognizer *panDismiss = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                                 action:@selector(panDismiss:)];
-    [self.view addGestureRecognizer:panDismiss];
     
     if (_viewType == SYBCommentOriComment) {
         _viewTitle.text = Comment;
@@ -66,8 +64,21 @@ CGFloat const detemineOffset = 40;
         
     }
     
+    _comment.delegate = self;
+    
+    // update the count of comment
+    NSString *commnet = _comment.text;
+    NSInteger currentLength = commnet.length;
+    NSString *avariableCommentCount = [[NSNumber numberWithInteger:(commentLimit - currentLength)] stringValue];
+    _commentCount.text = avariableCommentCount;
+
+    
     //todo
     [_retweetSwitch removeFromSuperview];
+    
+    UIPanGestureRecognizer *panDismiss = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(panDismiss:)];
+    [self.view addGestureRecognizer:panDismiss];
 }
 
 - (void)panDismiss:(UIPanGestureRecognizer *)panGestureRecognizer
@@ -136,5 +147,15 @@ CGFloat const detemineOffset = 40;
     _retweetSwitch.selected = !_retweetSwitch.isSelected;
 }
 
+#pragma mark UITextViewDelegate
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    //update the count of comment
+    NSString *commnet = textView.text;
+    NSInteger currentLength = commnet.length;
+    NSString *avariableCommentCount = [[NSNumber numberWithInteger:(commentLimit - currentLength)] stringValue];
+    _commentCount.text = avariableCommentCount;
+}
 
 @end
