@@ -12,6 +12,7 @@
 
 @implementation SYBCommentTransition
 
+
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     return _duration;
@@ -27,8 +28,7 @@
     UIView *containerView = [transitionContext containerView];
     
     if (_presenting) {
-        if ([toVC isKindOfClass:[SYBCommentViewController class]] || [toVC
-                                                                      isKindOfClass:[SYBWeiboActionViewController class]]){
+        if ([toVC isKindOfClass:[SYBCommentViewController class]]){
             
             [containerView addSubview:toView];
             

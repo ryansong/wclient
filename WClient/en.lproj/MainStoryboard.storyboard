@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="-573" y="-1019"/>
         </scene>
-        <!--List View Controller-->
+        <!--TimeLine-->
         <scene sceneID="1nk-Xi-hzT">
             <objects>
-                <viewController id="94D-hX-DBm" customClass="SYBListViewController" sceneMemberID="viewController">
+                <viewController title="TimeLine" id="94D-hX-DBm" customClass="SYBListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I69-6B-bOR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -238,7 +238,6 @@
                                             <outlet property="repoUsername" destination="81O-C5-f32" id="b3m-oz-DvQ"/>
                                             <outlet property="retwitterButton" destination="Aj8-iS-3pS" id="jZx-UD-Smz"/>
                                             <outlet property="username" destination="kWk-f3-cLw" id="Gtj-DE-OwH"/>
-                                            <segue destination="4HE-3p-rfX" kind="custom" identifier="weiboAction" customClass="SYBPopoverSegue" id="VRp-gu-EVD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -264,10 +263,10 @@
         <!--Weibo Action View Controller-->
         <scene sceneID="n3A-tm-d6Q">
             <objects>
-                <viewController id="4HE-3p-rfX" customClass="SYBWeiboActionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SYBWeiboActionViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="4HE-3p-rfX" customClass="SYBWeiboActionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4R-ya-c2O">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="6mq-Kl-Jl9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
@@ -283,7 +282,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dZT-6B-m5k">
-                                <rect key="frame" x="0.0" y="29" width="320" height="539"/>
+                                <rect key="frame" x="0.0" y="29" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -334,7 +333,8 @@
                         </connections>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
                     <connections>
                         <outlet property="listTableView" destination="dZT-6B-m5k" id="jO5-mE-4Jy"/>
                     </connections>

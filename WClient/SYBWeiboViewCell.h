@@ -21,6 +21,9 @@
 - (void)commentSubWeibo:(UITableViewCell *)cell;
 - (void)retweetSubWeibo:(UITableViewCell *)cell;
 
+- (void)viewRepoWeibo:(UITableViewCell *)cell;
+- (void)viewWeibo:(UITableViewCell *)cell;
+
 @optional
 - (void)postWeiboAttitude:(UITableViewCell *)cell;
 @end

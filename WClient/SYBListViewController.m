@@ -21,6 +21,7 @@
 #import "SYBWeiboActionViewController.h"
 #import "SYBCommentViewController.h"
 #import "SYBCommentTransition.h"
+#import "SYBActionTransition.h"
 
 
 #import "UIColor+hex.h"
@@ -50,6 +51,8 @@
 @property (nonatomic, strong) NSString *fullImageUrl;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
+
+@property (nonatomic, strong) UIStoryboard *mainStoryboard;
 
 @end
 
@@ -124,6 +127,8 @@ static NSString * const largeImageFolder = @"mw1024";
 		[_listTableView addSubview:view];
 		_headerView = view;
 	}
+    
+    _mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 }
 
 - (void)loadView
@@ -806,35 +811,42 @@ success:^(NSArray *result) {
     return nil;
 }
 
-- (void)viewWeibo:(SYBWeiBo *)status
-{
-    SYBWeiboViewController *weiboViewController = [[SYBWeiboViewController alloc] init];
-    weiboViewController.status = status;
-    
-    [self.navigationController pushViewController:weiboViewController animated:YES];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"weiboAction"]) {
-        if ([segue.destinationViewController isKindOfClass:[SYBWeiboActionViewController class]]) {
-            NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
-            SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
-
-            UIViewController *detailViewController = segue.destinationViewController;
-            
-//            detailViewController.transitioningDelegate = self;
-            detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-            
-            ((SYBWeiboActionViewController *)segue.destinationViewController).status = weiboCell.weibo;
-        }
-    }
-   }
+//- (void)viewWeibo:(SYBWeiBo *)status
+//{
+//    SYBWeiboViewController *weiboViewController = [[SYBWeiboViewController alloc] init];
+//    weiboViewController.status = status;
+//    
+//    [self.navigationController pushViewController:weiboViewController animated:YES];
+//}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([segue.identifier isEqualToString:@"weiboAction"]) {
+//        if ([segue.destinationViewController isKindOfClass:[SYBWeiboActionViewController class]]) {
+//            NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
+//            SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+//
+//            UIViewController *detailViewController = segue.destinationViewController;
+//            
+////            detailViewController.transitioningDelegate = self;
+//            detailViewController.modalPresentationStyle = UIModalPresentationCustom;
+//            
+//            ((SYBWeiboActionViewController *)segue.destinationViewController).status = weiboCell.weibo;
+//        }
+//    }
+//   }
 
 #pragma --UIViewControllerTransitioningDelegate
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
     id<UIViewControllerAnimatedTransitioning> animationController;
+    
+    if ([presented isKindOfClass:[SYBWeiboActionViewController class]]) {
+        SYBActionTransition *transition = [[SYBActionTransition alloc] init];
+        transition.duration = 0.3;
+        transition.presenting = YES;
+        animationController = transition;
+        return animationController;
+    }
     
     SYBCommentTransition *transition = [[SYBCommentTransition alloc] init];
     transition.duration = 0.3;
@@ -847,6 +859,14 @@ success:^(NSArray *result) {
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
     id<UIViewControllerAnimatedTransitioning> animationController;
+    
+    if ([dismissed isKindOfClass:[SYBWeiboActionViewController class]]) {
+        SYBActionTransition *transition = [[SYBActionTransition alloc] init];
+        transition.duration = 1.0f;
+        transition.presenting = NO;
+        animationController = transition;
+        return animationController;
+    }
     
     SYBCommentTransition *transition = [[SYBCommentTransition alloc] init];
     transition.duration = 0.3;
@@ -924,5 +944,34 @@ success:^(NSArray *result) {
     [self presentViewController:commentViewController animated:YES completion:nil];
 }
 
+- (void)viewWeibo:(id)sender
+{
+    NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    
+    SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];
+    actionViewController.transitioningDelegate = self;
+    actionViewController.modalPresentationStyle = UIModalPresentationCustom;
+    actionViewController.status = weiboCell.weibo;
+    
+    [self presentViewController:actionViewController animated:YES completion:^{
+        
+    }];
+}
+
+- (void)viewRepoWeibo:(id)sender
+{
+    NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
+    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    
+    SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];
+    actionViewController.transitioningDelegate = self;
+    actionViewController.modalPresentationStyle = UIModalPresentationCustom;
+    actionViewController.status = weiboCell.weibo.retweeted_status;
+    
+    [self presentViewController:actionViewController animated:YES completion:^{
+        
+    }];
+}
 
 @end

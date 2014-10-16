@@ -24,25 +24,13 @@
     
     _contentType = SYBWeiboActionTypeComment;
 
+    // default view in comment
+    [self getComments];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [[SYBWeiboAPIClient sharedClient] getCommnetsWithWeiboID:_status.weiboId
-                                                    since_id:0
-                                                      max_id:0
-                                                       count:50
-                                                        page:1 filter_by_author:0
-                                                     success:^(NSArray *comments) {
-                                                         _commentArray = comments;
-                                                         _items = _commentArray;
-                                                         [_listTableView reloadData];
-        
-    } failure:^(PBXError error) {
-        
-    }];
 }
 
 #pragma mark - Table view data source
@@ -105,13 +93,12 @@
 - (void)viewAttitubed
 {
     _identifier.contentOffset = CGPointMake(240, 0);
-    
     _contentType = SYBWeiboActionTypeAttitude;
     _items = _likeArray;
-    if (_items) {
-        [_listTableView reloadData];
+    [_listTableView reloadData];
+    if (!_items || [_items count] == 0) {
+        [self getAttitudes];
     }
-    [self getAttitudes];
 }
 
 - (void)viewRetweet
@@ -119,10 +106,12 @@
      _identifier.contentOffset = CGPointMake(160, 0);
     _contentType = SYBWeiboActionTypeRetweet;
     _items = _retweetArray;
-    if (_items) {
-        [_listTableView reloadData];
+    [_listTableView reloadData];
+    
+    if (!_items || [_items count] == 0) {
+        [self getRetweets];
+        return;
     }
-    [self getRetweets];
 }
 
 - (void)viewComment
@@ -130,14 +119,14 @@
     _identifier.contentOffset = CGPointMake(80, 0);
     
     // if switch to comment
-    if (_contentType != SYBWeiboActionTypeComment) {
-        _contentType = SYBWeiboActionTypeComment;
-        [self getRetweets];
-    }
-    // default switch to comment
     _contentType = SYBWeiboActionTypeComment;
     _items = _commentArray;
     [_listTableView reloadData];
+    if (!_items || [_items count] == 0) {
+        [self getComments];
+        return;
+    }
+    
 }
 
 // todo
@@ -154,9 +143,9 @@
     NSInteger selectedItem = ((UISegmentedControl *)sender).selectedSegmentIndex;
     if (selectedItem == SYBWeiboActionTypeAttitude ) {
         [self viewAttitubed];
-    } else if (selectedItem == SYBCommentOriRetweet) {
+    } else if (selectedItem == SYBWeiboActionTypeRetweet) {
         [self viewRetweet];
-    } else if (selectedItem == SYBCommentOriComment) {
+    } else if (selectedItem == SYBWeiboActionTypeComment) {
         [self viewComment];
     }
 }
@@ -217,6 +206,24 @@
                                                       } failure:^(PBXError error) {
     
                                                       }];
+}
+
+- (void)getComments
+{
+    [[SYBWeiboAPIClient sharedClient] getCommnetsWithWeiboID:_status.weiboId
+                                                    since_id:0
+                                                      max_id:0
+                                                       count:50
+                                                        page:1 filter_by_author:0
+                                                     success:^(NSArray *comments) {
+                                                         _commentArray = comments;
+                                                         _items = _commentArray;
+                                                         [_listTableView reloadData];
+                                                         
+                                                     } failure:^(PBXError error) {
+                                                         
+                                                     }];
+
 }
 
 @end
