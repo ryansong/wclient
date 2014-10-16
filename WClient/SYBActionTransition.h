@@ -13,5 +13,4 @@
 @property (nonatomic, assign) NSTimeInterval duration;
 @property (nonatomic, assign) BOOL presenting;
 
-
 @end

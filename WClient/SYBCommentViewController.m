@@ -42,15 +42,24 @@ CGFloat const detemineOffset = 40;
         _viewTitle.text = Comment;
         [_postComment setTitle:Comment forState:UIControlStateNormal];
         
+        // set cursor
+        _comment.selectedRange = NSMakeRange(0, 0);
+        [_comment becomeFirstResponder];
+        
         //todo
         // comment same time
         
         
     } else {
         _viewTitle.text = Retweet;
-        [_postComment setTitle:@"Retweet" forState:UIControlStateNormal];
+        [_postComment setTitle:Retweet forState:UIControlStateNormal];
         
-        //
+        
+        // set origin repo text
+        [_comment setText:_status.text];
+        // set cursor
+        _comment.selectedRange = NSMakeRange(0, 0);
+        [_comment becomeFirstResponder];
         
         //todo
         // retweet same time
@@ -64,7 +73,6 @@ CGFloat const detemineOffset = 40;
 - (void)panDismiss:(UIPanGestureRecognizer *)panGestureRecognizer
 {
     if (panGestureRecognizer.state == UIGestureRecognizerStateEnded ) {
-//        CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
         
     } else {
        CGPoint offset = [panGestureRecognizer translationInView:panGestureRecognizer.view];
