@@ -10,8 +10,6 @@
 
 @implementation SYBActionTransition
 
-CGFloat offset = 40.f;
-
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     return _duration;
@@ -37,9 +35,6 @@ CGFloat offset = 40.f;
         toViewRect.origin.y = screenRect.size.height;
         toView.frame = toViewRect;
         
-        finialRect.origin.y = offset;
-//        finialRect.size.height -= offset;
-        
         [containerView addSubview:fromView];
         [containerView addSubview:toView];
         
@@ -53,19 +48,10 @@ CGFloat offset = 40.f;
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];
         
-//        [UIView animateWithDuration:_duration
-//                         animations:^{
-//                             toView.frame = finialRect;
-//                         } completion:^(BOOL finished) {
-//                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-//                         }];
-    
-        
     } else {
-        CGRect toViewRect = toView.frame;
-        toViewRect.origin.y = screenRect.size.height;
         
-        CGRect finialRect = toViewRect;
+        CGRect finialRect = toView.frame;
+        
         finialRect.origin.y = screenRect.size.height;
         
         [containerView addSubview:fromView];
@@ -76,17 +62,10 @@ CGFloat offset = 40.f;
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             toView.frame = finialRect;
+                            fromView.frame = finialRect;
                          } completion:^(BOOL finished) {
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];
-        
-//        [UIView animateWithDuration:_duration
-//                         animations:^{
-//                             toView.frame = finialRect;
-//                         } completion:^(BOOL finished) {
-//                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-//                         }];
     }
 }
 

@@ -92,7 +92,6 @@
 
 - (void)viewAttitubed
 {
-    _identifier.contentOffset = CGPointMake(240, 0);
     _contentType = SYBWeiboActionTypeAttitude;
     _items = _likeArray;
     [_listTableView reloadData];
@@ -103,7 +102,6 @@
 
 - (void)viewRetweet
 {
-     _identifier.contentOffset = CGPointMake(160, 0);
     _contentType = SYBWeiboActionTypeRetweet;
     _items = _retweetArray;
     [_listTableView reloadData];
@@ -116,8 +114,6 @@
 
 - (void)viewComment
 {
-    _identifier.contentOffset = CGPointMake(80, 0);
-    
     // if switch to comment
     _contentType = SYBWeiboActionTypeComment;
     _items = _commentArray;
@@ -150,25 +146,8 @@
     }
 }
 
-- (IBAction)didPan:(id)sender {
-    UIPanGestureRecognizer *panGesture = nil;
-    if ([sender isKindOfClass:[UIPanGestureRecognizer class]]) {
-        panGesture = (UIPanGestureRecognizer *)sender;
-    }
-    
-    if (panGesture.state == UIGestureRecognizerStateEnded) {
-        [self didMoveToParentViewController:nil];
-        [self dismissViewControllerAnimated:NO completion:nil];
-    } else if (panGesture.state == UIGestureRecognizerStateBegan) {
-        [self willMoveToParentViewController:nil];
-        CGPoint offPoint = [panGesture translationInView:panGesture.view];
-        self.view.frame = CGRectOffset(self.view.frame, offPoint.x, 0);
-        [panGesture setTranslation:CGPointZero inView:panGesture.view];
-    } else {
-        CGPoint offPoint = [panGesture translationInView:panGesture.view];
-        self.view.frame = CGRectOffset(self.view.frame, offPoint.x, 0);
-        [panGesture setTranslation:CGPointZero inView:panGesture.view];
-    }
+- (IBAction)dismissBtnClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)getRetweets

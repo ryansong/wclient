@@ -811,30 +811,6 @@ success:^(NSArray *result) {
     return nil;
 }
 
-//- (void)viewWeibo:(SYBWeiBo *)status
-//{
-//    SYBWeiboViewController *weiboViewController = [[SYBWeiboViewController alloc] init];
-//    weiboViewController.status = status;
-//    
-//    [self.navigationController pushViewController:weiboViewController animated:YES];
-//}
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([segue.identifier isEqualToString:@"weiboAction"]) {
-//        if ([segue.destinationViewController isKindOfClass:[SYBWeiboActionViewController class]]) {
-//            NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
-//            SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
-//
-//            UIViewController *detailViewController = segue.destinationViewController;
-//            
-////            detailViewController.transitioningDelegate = self;
-//            detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-//            
-//            ((SYBWeiboActionViewController *)segue.destinationViewController).status = weiboCell.weibo;
-//        }
-//    }
-//   }
-
 #pragma --UIViewControllerTransitioningDelegate
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
