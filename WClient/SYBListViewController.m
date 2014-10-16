@@ -922,7 +922,7 @@ success:^(NSArray *result) {
 
 - (void)viewWeibo:(id)sender
 {
-    NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [_listTableView indexPathForCell:sender];
     SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
     
     SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];
@@ -937,7 +937,7 @@ success:^(NSArray *result) {
 
 - (void)viewRepoWeibo:(id)sender
 {
-    NSIndexPath *indexPath = [_listTableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [_listTableView indexPathForCell:sender];
     SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
     
     SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];

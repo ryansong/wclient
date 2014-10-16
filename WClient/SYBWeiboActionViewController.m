@@ -24,13 +24,16 @@
     
     _contentType = SYBWeiboActionTypeComment;
 
-    // default view in comment
-    [self getComments];
+    
+    _listTableView.tableFooterView = [[UIView alloc] init];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    // default view in comment
+    [self getComments];
 }
 
 #pragma mark - Table view data source

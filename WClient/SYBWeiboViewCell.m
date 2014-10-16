@@ -40,6 +40,7 @@
         
         [_repoArea addGestureRecognizer:repoGesture];
         
+        _repoArea.userInteractionEnabled = YES;
         
     }
     
