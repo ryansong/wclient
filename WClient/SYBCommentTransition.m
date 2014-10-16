@@ -44,8 +44,6 @@
                              animations:^{
                                  fromVC.view.alpha = 0.5;
                                  toView.frame = originFrame;
-//                                 toView.transform = CGAffineTransformMakeScale(0.8, 0.8);
-//                                 fromView.transform= CGAffineTransformMakeScale(0.97, 0.97);
                              } completion:^(BOOL finished) {
                                  [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                              }];
@@ -53,21 +51,16 @@
         
 
     } else {
-        [containerView addSubview:toView];
         
         [toVC.view setUserInteractionEnabled:YES];
-        
-//        toView.transform= CGAffineTransformMakeScale(0.9, 0.9);
-        toVC.view.alpha = 0.5;
         CGRect screenFrame = [UIScreen mainScreen].bounds;
         
         [UIView animateWithDuration:_duration
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-//                             toView.transform= CGAffineTransformMakeScale(1.0, 1.0);
                              fromView.frame = CGRectOffset(screenFrame, -screenFrame.size.width, 0);
-                             toVC.view.alpha = 1;
+                             toVC.view.alpha = 1.0f;
                          } completion:^(BOOL finished) {
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];

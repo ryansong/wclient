@@ -35,13 +35,11 @@
         toViewRect.origin.y = screenRect.size.height;
         toView.frame = toViewRect;
         
-        [containerView addSubview:fromView];
         [containerView addSubview:toView];
-        
         
         [UIView animateWithDuration:_duration
                               delay:0.0
-                            options:UIViewAnimationOptionCurveLinear
+                            options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              toView.frame = finialRect;
                          } completion:^(BOOL finished) {
@@ -54,13 +52,9 @@
         
         finialRect.origin.y = screenRect.size.height;
         
-        [containerView addSubview:fromView];
-        [containerView addSubview:toView];
-        
-        
         [UIView animateWithDuration:_duration
                               delay:0.0
-                            options:UIViewAnimationOptionBeginFromCurrentState
+                            options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                             fromView.frame = finialRect;
                          } completion:^(BOOL finished) {
