@@ -36,7 +36,7 @@ NSInteger commentLimit = 140;
 
     _username.text = _status.user.name;
     
-    if (_viewType == SYBCommentOriComment) {
+    if (_viewType == SYBCommentViewTypeCommnet) {
         _viewTitle.text = Comment;
         [_postComment setTitle:Comment forState:UIControlStateNormal];
         
@@ -52,9 +52,11 @@ NSInteger commentLimit = 140;
         _viewTitle.text = Retweet;
         [_postComment setTitle:Retweet forState:UIControlStateNormal];
         
-        
         // set origin repo text
-        [_comment setText:_status.text];
+        if (_status.retweeted_status) {
+            NSString *commentText = [[NSString alloc] initWithFormat:@"%@%@%@", @"//@", _status.user.name, _status.text];
+            [_comment setText: commentText];
+        }
         // set cursor
         _comment.selectedRange = NSMakeRange(0, 0);
         [_comment becomeFirstResponder];
