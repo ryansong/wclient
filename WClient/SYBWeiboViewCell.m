@@ -31,6 +31,12 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
     if (self) {
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeibo)];
         
@@ -39,17 +45,8 @@
         UITapGestureRecognizer *repoGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRepoWeibo)];
         
         [_repoArea addGestureRecognizer:repoGesture];
-        
         _repoArea.userInteractionEnabled = YES;
-        
     }
-    
-    return self;
-}
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
 }
 
 - (void)prepareForReuse
@@ -96,5 +93,11 @@
     [self.cellDelegate viewRepoWeibo:self];
 }
 
+
+- (void)dealloc
+{
+    [self addGestureRecognizer:nil];
+    [_repoArea addGestureRecognizer:nil];
+}
 
 @end
