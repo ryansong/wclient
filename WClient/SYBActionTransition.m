@@ -38,25 +38,27 @@
         [containerView addSubview:toView];
         
         [UIView animateWithDuration:_duration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseInOut
+                              delay:0
+             usingSpringWithDamping:1.0
+              initialSpringVelocity:11
+                            options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             toView.frame = finialRect;
+                                toView.frame = finialRect;
                          } completion:^(BOOL finished) {
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];
-        
     } else {
         
         CGRect finialRect = toView.frame;
-        
         finialRect.origin.y = screenRect.size.height;
         
         [UIView animateWithDuration:_duration
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseInOut
+                              delay:0
+             usingSpringWithDamping:1.0
+              initialSpringVelocity:11
+                            options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                            fromView.frame = finialRect;
+                             fromView.frame = finialRect;
                          } completion:^(BOOL finished) {
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];
