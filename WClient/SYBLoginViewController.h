@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYBLoginViewController : UIViewController <UIWebViewDelegate>
-
-@property(nonatomic,retain)UIWebView *webView;
-@property(nonatomic,retain)NSMutableData *receivedData;
-@property(nonatomic)NSHTTPURLResponse *response;
-@property (weak, nonatomic) IBOutlet UIImageView *loadImage;
+@interface SYBLoginViewController : UIViewController <UIWebViewDelegate,
+                                                        UITextFieldDelegate>
 
 @end
