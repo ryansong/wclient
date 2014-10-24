@@ -24,6 +24,10 @@
 
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPWD;
+
+
 
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *passwd;
@@ -31,6 +35,8 @@
 @property (nonatomic, assign) BOOL clientLogin;
 
 - (IBAction)login:(id)sender;
+- (IBAction)registerAccount:(id)sender;
+- (IBAction)getPassword:(id)sender;
 
 @end
 
@@ -58,6 +64,12 @@
     
     _username.delegate = self;
     _password.delegate = self;
+    
+    NSAttributedString *registerString = [[NSAttributedString alloc] initWithString:@"注册新账号" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
+    [_registerBtn setAttributedTitle:registerString forState:UIControlStateNormal];
+    
+    NSAttributedString *forgetString = [[NSAttributedString alloc] initWithString:@"忘记密码" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
+    [_forgetPWD setAttributedTitle:forgetString forState:UIControlStateNormal];
 
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -165,7 +177,7 @@
                 
                 [self performSegueWithIdentifier:@"login" sender:self];
             } failure:^(PBXError error) {
-             NSLog(@"Outh access_token error : %u", error);
+             NSLog(@"Outh access_token error : %lu", error);
             }];
         }
     }
@@ -197,5 +209,15 @@
     
     return YES;
     
+}
+- (IBAction)getPassword:(id)sender {
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kForgotpwdLink]];
+}
+
+
+- (IBAction)registerAccount:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kRegesterLink]
+     ];
 }
 @end

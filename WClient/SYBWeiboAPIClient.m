@@ -641,8 +641,8 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
 
 - (void)sendWeibo:(NSString *)po images:(NSArray *)images
 {
-    NSString *acctoken = [SSKeychain passwordForService:@"WClient" account:@"username"];
-    NSString *api = [NSString stringWithFormat:@"https://api.weibo.com/2/statuses/update.json?access_token=%@&status=%@",acctoken,po];
+//    NSString *acctoken = [SSKeychain passwordForService:@"WClient" account:@"username"];
+//    NSString *api = [NSString stringWithFormat:@"https://api.weibo.com/2/statuses/update.json?access_token=%@&status=%@",acctoken,po];
 }
 
 - (void)OuthAccess_token:(NSString *)code

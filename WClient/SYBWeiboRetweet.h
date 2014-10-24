@@ -26,8 +26,8 @@
 @property (nonatomic, strong) NSString *bmiddle_pic;	//	中等尺寸图片地址
 @property (nonatomic, strong) NSString *original_pic;	//	原始图片地址
 @property (nonatomic, strong) NSString *thumbnail_pic;	//	缩略图片地址
-@property (nonatomic, assign) int reposts_count;	//转发数
-@property (nonatomic, assign) int comments_count;	//评论数
+@property (nonatomic, assign) NSInteger reposts_count;	//转发数
+@property (nonatomic, assign) NSInteger comments_count;	//评论数
 @property (nonatomic, strong) NSArray *annotations;	//微博附加注释信息
 @property (nonatomic, strong) SYBWeiBoGEO *geo;	//地理信息字段
 @property (nonatomic, strong) SYBWeiboUser *user;	//微博作者的用户信息字段

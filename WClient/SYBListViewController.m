@@ -465,7 +465,7 @@ success:^(NSArray *result) {
     
 } failure:^(PBXError errorCode) {
     //TODO:错误处理
-    NSLog(@"login failed. error code:%d", errorCode);
+    NSLog(@"login failed. error code:%ld", errorCode);
 }];            
 }
 
@@ -678,7 +678,7 @@ success:^(NSArray *result) {
                                                      [weakSelf doneLoadingTableViewData];
                                                  } failure:^(PBXError errorCode) {
                                                      //TODO:错误处理
-                                                     NSLog(@"get weibo failed. error code:%d", errorCode);
+                                                     NSLog(@"get weibo failed. error code:%ld", errorCode);
                                                      [weakSelf doneLoadingTableViewData];
                                                  }];
 }
