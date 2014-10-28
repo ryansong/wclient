@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */; };
+		56722A8219FF961100EDE375 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 56722A8019FF961100EDE375 /* profile.png */; };
+		56722A8319FF961100EDE375 /* sina-weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 56722A8119FF961100EDE375 /* sina-weibo.png */; };
 		5679DC8719EFB21F004221C9 /* SYBActionTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5679DC8619EFB21F004221C9 /* SYBActionTransition.m */; };
 		56B1830F198F50830062F4CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56B1830B198F50830062F4CA /* InfoPlist.strings */; };
 		56B18310198F50830062F4CA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56B1830D198F50830062F4CA /* MainStoryboard.storyboard */; };
@@ -80,6 +82,8 @@
 		5433629D8FC348C69BD82076 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewController.h; sourceTree = "<group>"; };
 		5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewController.m; sourceTree = "<group>"; };
+		56722A8019FF961100EDE375 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		56722A8119FF961100EDE375 /* sina-weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina-weibo.png"; sourceTree = "<group>"; };
 		5679DC8519EFB21F004221C9 /* SYBActionTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBActionTransition.h; sourceTree = "<group>"; };
 		5679DC8619EFB21F004221C9 /* SYBActionTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBActionTransition.m; sourceTree = "<group>"; };
 		56B1830A198F4D680062F4CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 		CF6FBD921837DD47001A35EF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				56722A8019FF961100EDE375 /* profile.png */,
+				56722A8119FF961100EDE375 /* sina-weibo.png */,
 				56B18311198F558F0062F4CA /* like.png */,
 				56B18312198F558F0062F4CA /* forward.png */,
 				56B18313198F558F0062F4CA /* bubble.png */,
@@ -540,6 +546,8 @@
 				CFC7164E1858AFBE0057EEE4 /* timeline_rt_border_t@2x.png in Resources */,
 				CFC7164B1858AFBE0057EEE4 /* table_header_bg.png in Resources */,
 				56B1831C198F558F0062F4CA /* like@2x.png in Resources */,
+				56722A8319FF961100EDE375 /* sina-weibo.png in Resources */,
+				56722A8219FF961100EDE375 /* profile.png in Resources */,
 				CFC716511858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg in Resources */,
 				CFC716571859FF2C0057EEE4 /* NoImage.png in Resources */,
 			);
