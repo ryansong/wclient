@@ -49,9 +49,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
-                                        <connections>
-                                            <segue destination="c1J-o1-Sb8" kind="modal" identifier="login" modalPresentationStyle="currentContext" modalTransitionStyle="flipHorizontal" id="zKn-Sk-gC8"/>
-                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rNQ-GT-21k">
                                         <rect key="frame" x="14" y="143" width="75" height="16"/>
@@ -87,22 +84,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="RdT-cM-d7m">
+                                <rect key="frame" x="150" y="244" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nmr-q4-G0s"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="activity" destination="RdT-cM-d7m" id="v8e-nB-fAb"/>
                         <outlet property="forgetPWD" destination="gUx-VS-MHK" id="dzP-XP-xmY"/>
                         <outlet property="loadImage" destination="qzE-gr-1ZX" id="hcd-fh-7od"/>
                         <outlet property="password" destination="ggb-YE-dn6" id="Qsw-p9-oNp"/>
                         <outlet property="registerBtn" destination="rNQ-GT-21k" id="KBS-yU-wUY"/>
                         <outlet property="username" destination="oRs-yD-PrG" id="oRL-D8-cyQ"/>
+                        <segue destination="c1J-o1-Sb8" kind="modal" identifier="login" id="7FB-z5-PTE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2433" y="-365"/>
+            <point key="canvasLocation" x="-2354" y="-365"/>
         </scene>
         <!--TimeLine-->
         <scene sceneID="1nk-Xi-hzT">
@@ -620,6 +623,7 @@
                     <connections>
                         <outlet property="configMenuListView" destination="5Re-6Z-O5k" id="qVF-UK-QN6"/>
                         <outlet property="userImageView" destination="8Be-ZN-VnY" id="v7x-Pj-Xja"/>
+                        <segue destination="2" kind="modal" id="MBc-Gn-plh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6Z-q0-DNo" userLabel="First Responder" sceneMemberID="firstResponder"/>

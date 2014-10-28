@@ -97,8 +97,10 @@
         self.user = nil;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
      
-        [self performSegueWithIdentifier:@"logoff" sender:self];
+//        [self performSegueWithIdentifier:@"logoff" sender:self];
     }
 }
 

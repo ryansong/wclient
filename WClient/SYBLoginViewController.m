@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPWD;
 
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activity;
 
 
 @property (nonatomic, copy) NSString *userID;
@@ -85,7 +86,7 @@
 
 - (void)start
 {
-    NSString *uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
+    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
     if (!uid)
     { //As Not Login
         [self openLoginView];
@@ -159,14 +160,15 @@
         [webView stringByEvaluatingJavaScriptFromString:jsSettingUserID];
         [webView stringByEvaluatingJavaScriptFromString:jsSettingPWD];
         [webView stringByEvaluatingJavaScriptFromString:@"document.forms[0].submit();"];
+
+        return;
     }
     
     if ([tokenstring hasPrefix:@"https://api.weibo.com/oauth2/default.html"])
     {
         NSString *code = [tokenstring substringFromIndex:47];
         if (code)
-        {
-         [[SYBWeiboAPIClient sharedClient] OuthAccess_token:code
+        { [[SYBWeiboAPIClient sharedClient] OuthAccess_token:code
                                                 success:^(NSDictionary *dict)
             {
                 NSString *uid = dict[@"uid"];
@@ -176,14 +178,26 @@
                 [[SYBWeiboAPIClient sharedClient] setToken:access_token];
                 
                 [self performSegueWithIdentifier:@"login" sender:self];
+                
+                [_activity stopAnimating];
+                self.view.userInteractionEnabled = YES;
             } failure:^(PBXError error) {
              NSLog(@"Outh access_token error : %lu", error);
+                [_activity stopAnimating];
+                self.view.userInteractionEnabled = YES;
+                [UIAlertController alertControllerWithTitle:@"Login Failed" message:nil preferredStyle:UIAlertControllerStyleAlert];
             }];
+        }
+        else {
+            NSLog(@"%@",code);
         }
     }
 }
 
 - (IBAction)login:(id)sender {
+    
+    [_activity startAnimating];
+    self.view.userInteractionEnabled = NO;
     
     _userID = _username.text;
     _passwd = _password.text;
@@ -210,6 +224,7 @@
     return YES;
     
 }
+
 - (IBAction)getPassword:(id)sender {
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kForgotpwdLink]];
@@ -220,4 +235,10 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kRegesterLink]
      ];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+}
+
 @end

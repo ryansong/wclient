@@ -38,13 +38,13 @@
 {
     [super awakeFromNib];
     if (self) {
-        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeibo)];
+        _gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeibo)];
         
-        [self addGestureRecognizer:gesture];
+        [self addGestureRecognizer:_gesture];
         
-        UITapGestureRecognizer *repoGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRepoWeibo)];
+        _repoGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRepoWeibo)];
         
-        [_repoArea addGestureRecognizer:repoGesture];
+        [_repoArea addGestureRecognizer:_repoGesture];
         _repoArea.userInteractionEnabled = YES;
     }
 }
@@ -96,8 +96,8 @@
 
 - (void)dealloc
 {
-    [self addGestureRecognizer:nil];
-    [_repoArea addGestureRecognizer:nil];
+    [self removeGestureRecognizer:_gesture];
+    [_repoArea removeGestureRecognizer:_repoGesture];
 }
 
 @end

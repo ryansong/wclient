@@ -105,16 +105,15 @@ static NSString * const largeImageFolder = @"mw1024";
 {
     [super viewDidLoad];
     [self getWeibo];
-    
-    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    // hack to get selectedBackgroundView's presentation layer to update after rotation.
-    self.slidingViewController.delegate = nil;
-    
-    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-    self.slidingViewController.customAnchoredGestures = @[];
-    [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
-    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+//    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+//    
+//    // hack to get selectedBackgroundView's presentation layer to update after rotation.
+//    self.slidingViewController.delegate = nil;
+//    
+//    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+//    self.slidingViewController.customAnchoredGestures = @[];
+//    [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
+//    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     [_listTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_listTableView setSeparatorColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Divider_line@2x.png"]]];
@@ -139,6 +138,7 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self getWeibo];
     [_listTableView reloadData];
 }
 
@@ -797,7 +797,7 @@ success:^(NSArray *result) {
 }
 
 - (IBAction)signOut:(id)sender {
-        NSString *uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"];
+        NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
         [SSKeychain deletePasswordForService:@"WClient" account:uid];
 }
 
