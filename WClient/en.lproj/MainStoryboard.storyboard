@@ -168,20 +168,6 @@
                                                     <rect key="frame" x="0.0" y="124" width="320" height="165"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JXj-iS-1Mm">
-                                                            <rect key="frame" x="20" y="35" width="280" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <attributedString key="attributedText">
-                                                                <fragment content="Label">
-                                                                    <attributes>
-                                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                        <font key="NSFont" size="17" name="HelveticaNeue-Thin"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="81O-C5-f32">
                                                             <rect key="frame" x="20" y="6" width="161" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -230,6 +216,20 @@
                                                                 <action selector="postAttitude:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="vxH-HL-xja"/>
                                                             </connections>
                                                         </button>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" id="JXj-iS-1Mm">
+                                                            <rect key="frame" x="20" y="35" width="280" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="Label">
+                                                                    <attributes>
+                                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <font key="NSFont" size="14" name="HelveticaNeue-Thin"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                                     <userDefinedRuntimeAttributes>
@@ -278,14 +278,14 @@
                                                     <rect key="frame" x="20" y="297" width="130" height="130"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </view>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Jm-yN-SF2">
+                                                <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Jm-yN-SF2">
                                                     <rect key="frame" x="20" y="62" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
                                                                 <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <font key="NSFont" size="17" name="HelveticaNeue-Thin"/>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue-Thin"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>

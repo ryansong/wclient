@@ -185,7 +185,7 @@ static NSString * const largeImageFolder = @"mw1024";
 
 - (void)caculateHeigtForCell:(SYBWeiboCell *)weiboCell
 {
-    CGSize poTextSize =  [weiboCell.weibo.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize poTextSize =  [weiboCell.weibo.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
     weiboCell.poHeight = poTextSize.height;
     
     // height of user icon&username
@@ -202,7 +202,7 @@ static NSString * const largeImageFolder = @"mw1024";
     }
     
     if (weiboCell.weibo.retweeted_status) {
-        CGSize repoTextHeight = [weiboCell.weibo.retweeted_status.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:17] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize repoTextHeight = [weiboCell.weibo.retweeted_status.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
         weiboCell.repoHeight = repoTextHeight.height;
         
         //MARGIN for repoArea
