@@ -105,15 +105,6 @@ static NSString * const largeImageFolder = @"mw1024";
 {
     [super viewDidLoad];
     [self getWeibo];
-//    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-//    
-//    // hack to get selectedBackgroundView's presentation layer to update after rotation.
-//    self.slidingViewController.delegate = nil;
-//    
-//    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-//    self.slidingViewController.customAnchoredGestures = @[];
-//    [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
-//    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     [_listTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_listTableView setSeparatorColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Divider_line@2x.png"]]];
@@ -127,6 +118,8 @@ static NSString * const largeImageFolder = @"mw1024";
 		_headerView = view;
 	}
     
+    _listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _listTableView.frame.size.width, 44)];
+    
     _mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 }
 
@@ -138,7 +131,6 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getWeibo];
     [_listTableView reloadData];
 }
 

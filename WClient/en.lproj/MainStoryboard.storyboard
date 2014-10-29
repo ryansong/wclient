@@ -635,10 +635,11 @@
             <objects>
                 <tabBarController id="c1J-o1-Sb8" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="rUL-Go-gg3">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="rUL-Go-gg3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="94D-hX-DBm" kind="relationship" relationship="viewControllers" id="Sxp-nV-K7c"/>
