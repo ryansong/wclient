@@ -146,12 +146,26 @@
 {
 //    timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(showWebView) userInfo:nil repeats:NO];
 }
+
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
     NSString *tokenstring = self.webView.request.URL.absoluteString;
+    NSString *relativeURL = self.webView.request.URL.relativeString;
     
     // didload login view
     if ([tokenstring hasPrefix:@"https://api.weibo.com/oauth2/authorize"] && _clientLogin) {
+        
+        // login error
+        if ([relativeURL isEqualToString:@"https://api.weibo.com/oauth2/authorize"])
+        {
+            [self showLoginError];
+            _clientLogin = NO;
+            [_activity stopAnimating];
+            self.view.userInteractionEnabled = YES;
+            
+            return;
+        }
         
         NSString *jsSettingUserID = [NSString stringWithFormat:@"document.getElementsByName('userId')[0].value=%@;", _userID];
         
@@ -194,6 +208,17 @@
     }
 }
 
+
+- (void)showLoginError{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录失败"
+                                                        message:@"用户名密码校验失败"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+    
+    [alertView show];
+}
+
 - (IBAction)login:(id)sender {
     
     [_activity startAnimating];
@@ -203,8 +228,6 @@
     _passwd = _password.text;
     
     _clientLogin = YES;
-    
-    _webView.hidden = YES;
     [self loadLoginWebView];
 }
 
