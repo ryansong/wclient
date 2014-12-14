@@ -17,7 +17,6 @@
 #import "SYBUserInfoView.h"
 #import "SYBWeiboViewController.h"
 #import "SYBWeiboActionViewController.h"
-#import "UIViewController+ECSlidingViewController.h"
 #import "SYBWeiboActionViewController.h"
 #import "SYBCommentViewController.h"
 #import "SYBCommentTransition.h"

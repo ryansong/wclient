@@ -11,7 +11,6 @@
 #import "SYBWeiboUser.h"
 #import "SYBWeiboAPIClient.h"
 #import "SSKeychain.h"
-#import "UIViewController+ECSlidingViewController.h"
 
 @interface SYBMenuViewController ()
 
