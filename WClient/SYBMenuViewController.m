@@ -14,11 +14,15 @@
 
 @interface SYBMenuViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
-@property (weak, nonatomic) IBOutlet UITableView *configMenuListView;
 @property (nonatomic, strong) UIActionSheet *loginActionSheet;
 @property (nonatomic, strong) UINavigationController *rootController;
 @property (nonatomic, strong) SYBWeiboUser *user;
+
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UITableView *configMenuListView;
+@property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UILabel *userInfo;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end
 
@@ -51,10 +55,12 @@
                                                         _user.idstr = dict[@"idstr"];
                                                         _user.screen_name = dict[@"screen_name"];
                                                         _user.location = dict[@"location"];
-                                                        _user.profile_image_url = dict[@"profile_image_url"];
+                                                        _user.profile_image_url = dict[@"avatar_large"];
                                                         _user.profile_url = dict[@"profile_url"];
                                                         
                                                         _userImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user.profile_image_url]]];
+                                                        _userInfo.text = dict[@"description"];
+                                                        _username.text = dict[@"screen_name"];
                                                         
                                                     } failure:^(PBXError error) {
                                                         
@@ -64,12 +70,6 @@
     UITapGestureRecognizer *iconGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                             action:@selector(tapIconGestureRecognizer:)];
     [_userImageView addGestureRecognizer:iconGestureRecognizer];
-    
-//    _rootController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"navigationController"];
-//    [self addChildViewController:_rootController];
-//
-//    [self.view addSubview:_rootController.view];
-//    [_rootController didMoveToParentViewController:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
