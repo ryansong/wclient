@@ -50,7 +50,6 @@
 @property (nonatomic, weak) IBOutlet UIButton *retwitterButton;
 @property (nonatomic, weak) IBOutlet UIButton *commentButton;
 
-
 @property (nonatomic, strong) UITapGestureRecognizer *gesture;
 @property (nonatomic, strong) UITapGestureRecognizer *repoGesture;
 
