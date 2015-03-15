@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SYBWeiBo.h"
+#import "SYBWeiboViewCell.h"
 
 @interface SYBWeiboCell : NSObject
 
@@ -15,5 +16,7 @@
 @property (nonatomic, assign) CGFloat poHeight;
 @property (nonatomic, assign) CGFloat repoHeight;
 @property (nonatomic, assign) CGFloat cellHeight;
+
+@property (nonatomic, assign) WeiboCellType cellType;
 
 @end

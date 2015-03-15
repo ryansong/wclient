@@ -10,7 +10,6 @@
 
 @implementation SYBWeiBo
 
-
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:_created_at forKey:@"created_at"];
     

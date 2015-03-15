@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -119,113 +119,519 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCell" rowHeight="488" id="KrT-Vh-Wxj" customClass="SYBWeiboViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="488"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCellImage" rowHeight="303" id="IM0-1r-5ff" customClass="SYBWeiboViewCell">
+                                        <rect key="frame" x="0.0" y="40" width="320" height="488"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KrT-Vh-Wxj" id="5ba-hE-2JV">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IM0-1r-5ff" id="JMk-Oi-vU6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="487"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxl-Xg-R6M">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pDo-ro-m4e">
                                                     <rect key="frame" x="20" y="6" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="WYN-Gl-sTE"/>
+                                                        <constraint firstAttribute="width" constant="50" id="sWi-qd-4YC"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWk-f3-cLw">
-                                                    <rect key="frame" x="78" y="7" width="222" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIJ-qJ-Nky">
+                                                    <rect key="frame" x="78" y="7" width="36" height="19"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" red="0.082352941176470587" green="0.46666666666666667" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.46666666670000001" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-ni-mCL">
-                                                    <rect key="frame" x="78" y="36" width="222" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da6-N1-3Cf">
+                                                    <rect key="frame" x="78" y="34" width="32" height="17"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V7T-UQ-7bx">
-                                                    <rect key="frame" x="0.0" y="104" width="320" height="228"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66i-a5-TCA">
+                                                    <rect key="frame" x="264" y="264" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="DfW-sg-RAY"/>
+                                                        <constraint firstAttribute="height" constant="20" id="wZn-uv-Iap"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="forward.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="retweetWeibo:" destination="IM0-1r-5ff" eventType="touchUpInside" id="99h-w3-jX3"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18x-1D-CxL">
+                                                    <rect key="frame" x="292" y="264" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="3uj-Q7-Axe"/>
+                                                        <constraint firstAttribute="height" constant="20" id="W73-iI-Hgh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="bubble.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="commentOnWeibo:" destination="IM0-1r-5ff" eventType="touchUpInside" id="gCC-6o-FHG"/>
+                                                    </connections>
+                                                </button>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMG-g9-0f7">
+                                                    <rect key="frame" x="8" y="73" width="304" height="32"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                                </textView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbo-ZW-fCp" customClass="SYBWeiboImageView">
+                                                    <rect key="frame" x="20" y="124" width="130" height="130"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="130" id="gRK-OM-YID"/>
+                                                        <constraint firstAttribute="width" constant="130" id="swb-2Z-7wD"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ku-JG-vNL">
+                                                    <rect key="frame" x="236" y="264" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="4mr-RK-Qpy"/>
+                                                        <constraint firstAttribute="width" constant="20" id="OqT-87-aYy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="like.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="postAttitude:" destination="IM0-1r-5ff" eventType="touchUpInside" id="aQw-fH-Sao"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="66i-a5-TCA" firstAttribute="leading" secondItem="6Ku-JG-vNL" secondAttribute="trailing" constant="8" id="1nb-AT-FzQ"/>
+                                                <constraint firstItem="XMG-g9-0f7" firstAttribute="top" secondItem="pDo-ro-m4e" secondAttribute="bottom" constant="17" id="BNi-5V-dk1"/>
+                                                <constraint firstItem="uIJ-qJ-Nky" firstAttribute="leading" secondItem="pDo-ro-m4e" secondAttribute="trailing" constant="8" id="Cvg-ND-UOg"/>
+                                                <constraint firstItem="18x-1D-CxL" firstAttribute="top" secondItem="Gbo-ZW-fCp" secondAttribute="bottom" constant="10" id="HRL-ag-FEx"/>
+                                                <constraint firstItem="Gbo-ZW-fCp" firstAttribute="top" secondItem="XMG-g9-0f7" secondAttribute="bottom" constant="19" id="MTc-Rw-MGF"/>
+                                                <constraint firstItem="6Ku-JG-vNL" firstAttribute="centerY" secondItem="66i-a5-TCA" secondAttribute="centerY" id="Rgf-5K-RHM"/>
+                                                <constraint firstItem="da6-N1-3Cf" firstAttribute="leading" secondItem="pDo-ro-m4e" secondAttribute="trailing" constant="8" id="ayR-b0-5TK"/>
+                                                <constraint firstItem="XMG-g9-0f7" firstAttribute="leading" secondItem="JMk-Oi-vU6" secondAttribute="leadingMargin" id="c8T-0U-ast"/>
+                                                <constraint firstItem="pDo-ro-m4e" firstAttribute="leading" secondItem="JMk-Oi-vU6" secondAttribute="leadingMargin" constant="12" id="cbG-Cf-nne"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gbo-ZW-fCp" secondAttribute="bottom" constant="40" id="dHV-x6-6PP"/>
+                                                <constraint firstItem="18x-1D-CxL" firstAttribute="centerY" secondItem="66i-a5-TCA" secondAttribute="centerY" id="dNg-QM-cMS"/>
+                                                <constraint firstItem="18x-1D-CxL" firstAttribute="trailing" secondItem="JMk-Oi-vU6" secondAttribute="trailingMargin" id="eaH-BP-ZjB"/>
+                                                <constraint firstItem="uIJ-qJ-Nky" firstAttribute="top" secondItem="JMk-Oi-vU6" secondAttribute="topMargin" constant="-1" id="f4M-nU-2do"/>
+                                                <constraint firstItem="pDo-ro-m4e" firstAttribute="top" secondItem="JMk-Oi-vU6" secondAttribute="topMargin" constant="-2" id="mAu-Iz-mw6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Gbo-ZW-fCp" secondAttribute="trailing" constant="162" id="nbj-7e-z5Y"/>
+                                                <constraint firstItem="Gbo-ZW-fCp" firstAttribute="leading" secondItem="JMk-Oi-vU6" secondAttribute="leadingMargin" constant="12" id="sxY-v1-dTH"/>
+                                                <constraint firstItem="18x-1D-CxL" firstAttribute="leading" secondItem="66i-a5-TCA" secondAttribute="trailing" constant="8" id="vxU-x8-P4d"/>
+                                                <constraint firstItem="XMG-g9-0f7" firstAttribute="trailing" secondItem="JMk-Oi-vU6" secondAttribute="trailingMargin" id="wbw-eE-7lj"/>
+                                                <constraint firstItem="da6-N1-3Cf" firstAttribute="top" secondItem="uIJ-qJ-Nky" secondAttribute="bottom" constant="8" id="wqb-21-8a1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentButton" destination="18x-1D-CxL" id="77v-QV-TgK"/>
+                                            <outlet property="creatTimeAndSource" destination="da6-N1-3Cf" id="OZY-VP-STU"/>
+                                            <outlet property="iconView" destination="pDo-ro-m4e" id="nYb-4A-SLY"/>
+                                            <outlet property="likeButton" destination="6Ku-JG-vNL" id="h1D-du-3k0"/>
+                                            <outlet property="poImage" destination="Gbo-ZW-fCp" id="B66-Ug-Wqo"/>
+                                            <outlet property="poTextView" destination="XMG-g9-0f7" id="6ad-L6-gb7"/>
+                                            <outlet property="retwitterButton" destination="66i-a5-TCA" id="5cp-Wd-Qj0"/>
+                                            <outlet property="username" destination="uIJ-qJ-Nky" id="on7-kK-FGu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCellRepotext" rowHeight="448" id="BdV-iI-XAa" customClass="SYBWeiboViewCell">
+                                        <rect key="frame" x="0.0" y="40" width="320" height="488"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BdV-iI-XAa" id="OtC-e4-bMf">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="487"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFp-Ce-OME">
+                                                    <rect key="frame" x="20" y="6" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="hf2-3h-k2r"/>
+                                                        <constraint firstAttribute="width" constant="50" id="pmH-Nx-u2f"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxN-RF-1Fy">
+                                                    <rect key="frame" x="78" y="7" width="36" height="19"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.46666666670000001" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MP8-WY-Vvj">
+                                                    <rect key="frame" x="78" y="34" width="32" height="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSD-Jz-R7g">
+                                                    <rect key="frame" x="0.0" y="307" width="320" height="92"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81O-C5-f32">
-                                                            <rect key="frame" x="20" y="6" width="161" height="21"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfD-1N-YfY">
+                                                            <rect key="frame" x="8" y="33" width="304" height="26"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment>
+                                                                    <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                                        </textView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qz-ND-5hD">
+                                                            <rect key="frame" x="20" y="6" width="32" height="17"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SOa-6H-bbd" customClass="SYBWeiboImageView">
-                                                            <rect key="frame" x="25" y="69" width="130" height="130"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="JXj-iS-1Mm">
-                                                            <rect key="frame" x="20" y="35" width="280" height="21"/>
-                                                            <attributedString key="attributedText">
-                                                                <fragment content="Label">
-                                                                    <attributes>
-                                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                        <font key="NSFont" size="14" name="HelveticaNeue-Thin"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32F-Yc-wOd">
-                                                            <rect key="frame" x="232" y="197" width="40" height="20"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
-                                                            <state key="normal" image="forward.png">
-                                                                <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="retweetWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="7Wh-nr-XEG"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELF-fl-qrp">
-                                                            <rect key="frame" x="272" y="197" width="40" height="20"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
-                                                            <state key="normal" image="bubble.png">
-                                                                <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="commentOnWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="mmV-DY-iD6"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ut5-WA-FYY">
-                                                            <rect key="frame" x="192" y="197" width="40" height="20"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
-                                                            <state key="normal" image="like.png">
-                                                                <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="postAttitude:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="vxH-HL-xja"/>
-                                                            </connections>
-                                                        </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="1qz-ND-5hD" firstAttribute="leading" secondItem="VSD-Jz-R7g" secondAttribute="leading" constant="20" id="ByP-mZ-aGH"/>
+                                                        <constraint firstItem="1qz-ND-5hD" firstAttribute="top" secondItem="VSD-Jz-R7g" secondAttribute="top" constant="6" id="Kc7-B4-zSp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dfD-1N-YfY" secondAttribute="trailing" constant="8" id="Tl2-Xu-9Pe"/>
+                                                        <constraint firstItem="dfD-1N-YfY" firstAttribute="leading" secondItem="VSD-Jz-R7g" secondAttribute="leading" constant="8" id="WRc-sS-dWi"/>
+                                                        <constraint firstItem="dfD-1N-YfY" firstAttribute="top" secondItem="1qz-ND-5hD" secondAttribute="bottom" constant="10" id="cKN-nA-Ixu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="dfD-1N-YfY" secondAttribute="bottom" constant="33" id="loN-6V-UKx"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzd-03-NX3">
-                                                    <rect key="frame" x="192" y="450" width="10" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kQ-Cw-Z3g">
+                                                    <rect key="frame" x="264" y="405" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="926-w7-6Ra"/>
+                                                        <constraint firstAttribute="width" constant="20" id="kKU-Ud-1OD"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
-                                                    <state key="normal" image="like.png">
-                                                        <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="forward.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="postAttitude:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="4Wz-Kn-ghq"/>
+                                                        <action selector="retweetWeibo:" destination="BdV-iI-XAa" eventType="touchUpInside" id="Sqm-pU-BfV"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aj8-iS-3pS">
-                                                    <rect key="frame" x="262" y="450" width="10" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7i-hT-OHY">
+                                                    <rect key="frame" x="292" y="405" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Gyc-1h-hDn"/>
+                                                        <constraint firstAttribute="width" constant="20" id="giH-uH-h8f"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="bubble.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="commentOnWeibo:" destination="BdV-iI-XAa" eventType="touchUpInside" id="elO-lx-ePZ"/>
+                                                    </connections>
+                                                </button>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-Ec-Po0">
+                                                    <rect key="frame" x="8" y="64" width="304" height="234"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNX-oJ-FDd">
+                                                    <rect key="frame" x="236" y="405" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="4Sn-hg-SnK"/>
+                                                        <constraint firstAttribute="height" constant="20" id="ZLH-EY-VH5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="like.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="postAttitude:" destination="BdV-iI-XAa" eventType="touchUpInside" id="H0A-IR-0w9"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bxp-Ec-Po0" firstAttribute="trailing" secondItem="OtC-e4-bMf" secondAttribute="trailingMargin" id="279-uq-mjN"/>
+                                                <constraint firstItem="qxN-RF-1Fy" firstAttribute="leading" secondItem="nFp-Ce-OME" secondAttribute="trailing" constant="8" symbolic="YES" id="2sN-eN-mdF"/>
+                                                <constraint firstItem="MP8-WY-Vvj" firstAttribute="top" secondItem="qxN-RF-1Fy" secondAttribute="bottom" constant="8" id="31H-1R-4Iv"/>
+                                                <constraint firstItem="4kQ-Cw-Z3g" firstAttribute="leading" secondItem="QNX-oJ-FDd" secondAttribute="trailing" constant="8" id="87Q-Bc-tDa"/>
+                                                <constraint firstItem="4kQ-Cw-Z3g" firstAttribute="centerY" secondItem="m7i-hT-OHY" secondAttribute="centerY" id="Ceb-N8-jRL"/>
+                                                <constraint firstItem="m7i-hT-OHY" firstAttribute="top" secondItem="VSD-Jz-R7g" secondAttribute="bottom" constant="6" id="Ctg-jE-UiQ"/>
+                                                <constraint firstItem="qxN-RF-1Fy" firstAttribute="top" secondItem="OtC-e4-bMf" secondAttribute="topMargin" constant="-1" id="DVf-0O-vwe"/>
+                                                <constraint firstItem="nFp-Ce-OME" firstAttribute="leading" secondItem="OtC-e4-bMf" secondAttribute="leadingMargin" constant="12" id="Imb-mM-GIT"/>
+                                                <constraint firstItem="m7i-hT-OHY" firstAttribute="leading" secondItem="4kQ-Cw-Z3g" secondAttribute="trailing" constant="8" id="M7N-GT-z9a"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VSD-Jz-R7g" secondAttribute="trailing" constant="-8" id="Meq-3s-Wh5"/>
+                                                <constraint firstItem="QNX-oJ-FDd" firstAttribute="centerY" secondItem="4kQ-Cw-Z3g" secondAttribute="centerY" id="PD7-mY-mUT"/>
+                                                <constraint firstItem="MP8-WY-Vvj" firstAttribute="leading" secondItem="nFp-Ce-OME" secondAttribute="trailing" constant="8" symbolic="YES" id="Qtv-To-x71"/>
+                                                <constraint firstItem="bxp-Ec-Po0" firstAttribute="top" secondItem="nFp-Ce-OME" secondAttribute="bottom" constant="8" symbolic="YES" id="b4E-Fv-xHI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VSD-Jz-R7g" secondAttribute="bottom" constant="40" id="bWx-Ms-FAU"/>
+                                                <constraint firstItem="nFp-Ce-OME" firstAttribute="top" secondItem="OtC-e4-bMf" secondAttribute="topMargin" constant="-2" id="fbW-EB-rSe"/>
+                                                <constraint firstItem="VSD-Jz-R7g" firstAttribute="leading" secondItem="OtC-e4-bMf" secondAttribute="leadingMargin" constant="-8" id="pig-dq-XfD"/>
+                                                <constraint firstItem="bxp-Ec-Po0" firstAttribute="leading" secondItem="OtC-e4-bMf" secondAttribute="leadingMargin" id="shZ-dd-cAA"/>
+                                                <constraint firstItem="VSD-Jz-R7g" firstAttribute="top" secondItem="bxp-Ec-Po0" secondAttribute="bottom" constant="9" id="ubS-fi-mes"/>
+                                                <constraint firstItem="m7i-hT-OHY" firstAttribute="trailing" secondItem="OtC-e4-bMf" secondAttribute="trailingMargin" id="yrL-Gn-ReI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentButton" destination="m7i-hT-OHY" id="L0G-FU-mPh"/>
+                                            <outlet property="creatTimeAndSource" destination="MP8-WY-Vvj" id="X3x-t1-Nb2"/>
+                                            <outlet property="iconView" destination="nFp-Ce-OME" id="1Te-5W-XfD"/>
+                                            <outlet property="likeButton" destination="QNX-oJ-FDd" id="0v0-Q0-pPK"/>
+                                            <outlet property="poTextView" destination="bxp-Ec-Po0" id="GJ6-uf-McH"/>
+                                            <outlet property="repoArea" destination="VSD-Jz-R7g" id="m5q-gM-x7Z"/>
+                                            <outlet property="repoTextView" destination="dfD-1N-YfY" id="GsA-1t-WLg"/>
+                                            <outlet property="repoUsername" destination="1qz-ND-5hD" id="MQe-wi-h2t"/>
+                                            <outlet property="retwitterButton" destination="4kQ-Cw-Z3g" id="ZXV-oO-1Vi"/>
+                                            <outlet property="username" destination="qxN-RF-1Fy" id="Rir-ts-GfX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCellRepoImage" rowHeight="752" id="B2e-AN-SOE" customClass="SYBWeiboViewCell">
+                                        <rect key="frame" x="0.0" y="40" width="320" height="488"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B2e-AN-SOE" id="9hC-Bf-xW1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="487"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QeW-1F-GAb">
+                                                    <rect key="frame" x="20" y="6" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="Ei4-Eq-KSL"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Vqt-Ns-6Vp"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27Z-p4-a8v">
+                                                    <rect key="frame" x="78" y="14" width="36" height="19"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.46666666670000001" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePQ-u4-sU1">
+                                                    <rect key="frame" x="78" y="42" width="32" height="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" verticalHuggingPriority="244" translatesAutoresizingMaskIntoConstraints="NO" id="EdO-nR-E63">
+                                                    <rect key="frame" x="0.0" y="308" width="320" height="403"/>
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8BK-Ap-x48">
+                                                            <rect key="frame" x="8" y="31" width="304" height="234"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment>
+                                                                    <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                                        </textView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tr0-V0-oOD" customClass="SYBWeiboImageView">
+                                                            <rect key="frame" x="20" y="273" width="120" height="120"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="120" id="HuZ-TM-8ft"/>
+                                                                <constraint firstAttribute="width" constant="120" id="aFe-Xe-UmN"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="245" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoT-bK-54F">
+                                                            <rect key="frame" x="20" y="6" width="32" height="17"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="8BK-Ap-x48" secondAttribute="trailing" constant="8" id="7Hs-ps-ga8"/>
+                                                        <constraint firstItem="8BK-Ap-x48" firstAttribute="leading" secondItem="EdO-nR-E63" secondAttribute="leading" constant="8" id="8kw-DB-Mzd"/>
+                                                        <constraint firstItem="tr0-V0-oOD" firstAttribute="leading" secondItem="EdO-nR-E63" secondAttribute="leading" constant="20" id="IXI-Cf-3c2"/>
+                                                        <constraint firstItem="tr0-V0-oOD" firstAttribute="top" secondItem="8BK-Ap-x48" secondAttribute="bottom" constant="8" id="JUs-hY-td5"/>
+                                                        <constraint firstItem="8BK-Ap-x48" firstAttribute="top" secondItem="aoT-bK-54F" secondAttribute="bottom" constant="8" id="RIf-7x-ocY"/>
+                                                        <constraint firstItem="aoT-bK-54F" firstAttribute="leading" secondItem="EdO-nR-E63" secondAttribute="leading" constant="20" id="ZpT-3e-QVd"/>
+                                                        <constraint firstAttribute="bottom" secondItem="tr0-V0-oOD" secondAttribute="bottom" constant="10" id="nNu-tp-lsy"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qW6-l2-WO1">
+                                                    <rect key="frame" x="8" y="66" width="304" height="224"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-aZ-IG5">
+                                                    <rect key="frame" x="264" y="721" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="YCk-EY-fcW"/>
+                                                        <constraint firstAttribute="width" constant="20" id="cSq-xE-V3f"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="forward.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="retweetWeibo:" destination="B2e-AN-SOE" eventType="touchUpInside" id="5Cd-Vq-hIZ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOW-YK-SFe">
+                                                    <rect key="frame" x="292" y="721" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="WaP-Ee-Tso"/>
+                                                        <constraint firstAttribute="height" constant="20" id="Y55-br-W3E"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="bubble.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="commentOnWeibo:" destination="B2e-AN-SOE" eventType="touchUpInside" id="rkq-bT-LHS"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lq-D5-vPm">
+                                                    <rect key="frame" x="236" y="721" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="0lg-lB-Scx"/>
+                                                        <constraint firstAttribute="height" constant="20" id="h8l-iA-kbK"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="like.png">
+                                                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="postAttitude:" destination="B2e-AN-SOE" eventType="touchUpInside" id="F01-CD-pbI"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EdO-nR-E63" secondAttribute="trailing" constant="-8" id="2xP-jQ-Qh2"/>
+                                                <constraint firstItem="EdO-nR-E63" firstAttribute="top" secondItem="qW6-l2-WO1" secondAttribute="bottom" constant="18" id="5c5-aU-4Na"/>
+                                                <constraint firstItem="ePQ-u4-sU1" firstAttribute="top" secondItem="27Z-p4-a8v" secondAttribute="bottom" constant="9" id="61G-m2-sDU"/>
+                                                <constraint firstItem="ePQ-u4-sU1" firstAttribute="leading" secondItem="QeW-1F-GAb" secondAttribute="trailing" constant="8" id="Et6-1z-AuC"/>
+                                                <constraint firstItem="qW6-l2-WO1" firstAttribute="top" secondItem="QeW-1F-GAb" secondAttribute="bottom" constant="10" id="H5L-Md-JMa"/>
+                                                <constraint firstItem="KbH-aZ-IG5" firstAttribute="leading" secondItem="4lq-D5-vPm" secondAttribute="trailing" constant="8" id="Hmc-66-sMe"/>
+                                                <constraint firstItem="IOW-YK-SFe" firstAttribute="top" secondItem="EdO-nR-E63" secondAttribute="bottom" constant="10" id="JbR-ay-gic"/>
+                                                <constraint firstItem="QeW-1F-GAb" firstAttribute="leading" secondItem="9hC-Bf-xW1" secondAttribute="leadingMargin" constant="12" id="L2Q-xa-7JC"/>
+                                                <constraint firstItem="QeW-1F-GAb" firstAttribute="top" secondItem="9hC-Bf-xW1" secondAttribute="topMargin" constant="-2" id="M8U-qj-IFC"/>
+                                                <constraint firstItem="qW6-l2-WO1" firstAttribute="trailing" secondItem="9hC-Bf-xW1" secondAttribute="trailingMargin" id="amk-gj-cbg"/>
+                                                <constraint firstItem="aoT-bK-54F" firstAttribute="top" secondItem="qW6-l2-WO1" secondAttribute="bottom" constant="24" id="bfV-Ld-ayh"/>
+                                                <constraint firstItem="qW6-l2-WO1" firstAttribute="leading" secondItem="9hC-Bf-xW1" secondAttribute="leadingMargin" id="dag-3w-gQh"/>
+                                                <constraint firstItem="27Z-p4-a8v" firstAttribute="leading" secondItem="QeW-1F-GAb" secondAttribute="trailing" constant="8" id="fgp-UM-UXx"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EdO-nR-E63" secondAttribute="bottom" constant="32" id="ix0-UW-Il9"/>
+                                                <constraint firstItem="27Z-p4-a8v" firstAttribute="top" secondItem="9hC-Bf-xW1" secondAttribute="topMargin" constant="6" id="jkW-qS-DVf"/>
+                                                <constraint firstItem="IOW-YK-SFe" firstAttribute="trailing" secondItem="9hC-Bf-xW1" secondAttribute="trailingMargin" id="lur-Ta-XOs"/>
+                                                <constraint firstItem="KbH-aZ-IG5" firstAttribute="centerY" secondItem="IOW-YK-SFe" secondAttribute="centerY" id="mRQ-J7-pSd"/>
+                                                <constraint firstItem="KbH-aZ-IG5" firstAttribute="centerY" secondItem="4lq-D5-vPm" secondAttribute="centerY" id="oKu-dz-eEO"/>
+                                                <constraint firstItem="IOW-YK-SFe" firstAttribute="leading" secondItem="KbH-aZ-IG5" secondAttribute="trailing" constant="8" id="rfs-Yo-dXy"/>
+                                                <constraint firstItem="EdO-nR-E63" firstAttribute="leading" secondItem="9hC-Bf-xW1" secondAttribute="leadingMargin" constant="-8" id="yzk-yC-YXw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentButton" destination="IOW-YK-SFe" id="2Sm-gc-Oyz"/>
+                                            <outlet property="creatTimeAndSource" destination="ePQ-u4-sU1" id="AVe-6m-dk0"/>
+                                            <outlet property="iconView" destination="QeW-1F-GAb" id="hhG-ym-s1m"/>
+                                            <outlet property="likeButton" destination="4lq-D5-vPm" id="b63-bb-BZf"/>
+                                            <outlet property="poTextView" destination="qW6-l2-WO1" id="Pi4-R2-kPy"/>
+                                            <outlet property="repoArea" destination="EdO-nR-E63" id="vyD-vZ-tVe"/>
+                                            <outlet property="repoImage" destination="tr0-V0-oOD" id="OX5-Rh-4pf"/>
+                                            <outlet property="repoTextView" destination="8BK-Ap-x48" id="9cF-cm-S1o"/>
+                                            <outlet property="repoUsername" destination="aoT-bK-54F" id="LaP-dU-sNd"/>
+                                            <outlet property="retwitterButton" destination="KbH-aZ-IG5" id="J6x-fm-5uf"/>
+                                            <outlet property="username" destination="27Z-p4-a8v" id="j5Q-xs-Btk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCellText" rowHeight="212" id="KrT-Vh-Wxj" customClass="SYBWeiboViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="488"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KrT-Vh-Wxj" id="5ba-hE-2JV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="487"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mxl-Xg-R6M">
+                                                    <rect key="frame" x="20" y="8" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="Xtv-5L-kXB"/>
+                                                        <constraint firstAttribute="height" constant="50" id="kSN-az-qap"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWk-f3-cLw">
+                                                    <rect key="frame" x="78" y="7" width="36" height="19"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.082352941176470587" green="0.46666666666666667" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-ni-mCL">
+                                                    <rect key="frame" x="78" y="34" width="32" height="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aj8-iS-3pS">
+                                                    <rect key="frame" x="264" y="154" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="DFw-Ga-MSt"/>
+                                                        <constraint firstAttribute="height" constant="20" id="fPH-Ci-ayx"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                     <state key="normal" image="forward.png">
                                                         <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,8 +641,12 @@
                                                         <action selector="retweetWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="Fdw-Mf-JiH"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5o-PE-QM0">
-                                                    <rect key="frame" x="272" y="450" width="40" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5o-PE-QM0">
+                                                    <rect key="frame" x="292" y="154" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="BLg-mD-7lY"/>
+                                                        <constraint firstAttribute="width" constant="20" id="nWo-lq-d9w"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                                     <state key="normal" image="bubble.png">
                                                         <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
@@ -246,38 +656,64 @@
                                                         <action selector="commentOnWeibo:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="P0n-oY-9qd"/>
                                                     </connections>
                                                 </button>
-                                                <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jm-yN-SF2">
-                                                    <rect key="frame" x="20" y="64" width="280" height="16"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYv-yR-lV3">
+                                                    <rect key="frame" x="8" y="64" width="304" height="82"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="Label">
+                                                        <fragment>
+                                                            <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. </string>
                                                             <attributes>
-                                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <font key="NSFont" size="14" name="HelveticaNeue-Thin"/>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sex-kT-m6o" customClass="SYBWeiboImageView">
-                                                    <rect key="frame" x="25" y="340" width="130" height="130"/>
-                                                </view>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzd-03-NX3">
+                                                    <rect key="frame" x="236" y="154" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="DyT-Ry-tm5"/>
+                                                        <constraint firstAttribute="height" constant="20" id="atl-SA-UVz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                                                    <state key="normal" image="like.png">
+                                                        <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="postAttitude:" destination="KrT-Vh-Wxj" eventType="touchUpInside" id="4Wz-Kn-ghq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="y5o-PE-QM0" firstAttribute="leading" secondItem="Aj8-iS-3pS" secondAttribute="trailing" constant="8" id="3Ek-QM-ccz"/>
+                                                <constraint firstItem="Vzd-03-NX3" firstAttribute="top" secondItem="nYv-yR-lV3" secondAttribute="bottom" constant="8" id="4NQ-uB-UL2"/>
+                                                <constraint firstItem="hEp-ni-mCL" firstAttribute="leading" secondItem="mxl-Xg-R6M" secondAttribute="trailing" constant="8" id="4Oe-EG-KQB"/>
+                                                <constraint firstItem="y5o-PE-QM0" firstAttribute="top" secondItem="nYv-yR-lV3" secondAttribute="bottom" constant="8" id="7Lm-4s-aBI"/>
+                                                <constraint firstItem="nYv-yR-lV3" firstAttribute="leading" secondItem="5ba-hE-2JV" secondAttribute="leadingMargin" id="B1p-ON-QlS"/>
+                                                <constraint firstItem="mxl-Xg-R6M" firstAttribute="leading" secondItem="5ba-hE-2JV" secondAttribute="leadingMargin" constant="12" id="Cgy-4V-W9U"/>
+                                                <constraint firstItem="y5o-PE-QM0" firstAttribute="centerY" secondItem="Aj8-iS-3pS" secondAttribute="centerY" id="Ig6-QT-4Ey"/>
+                                                <constraint firstItem="mxl-Xg-R6M" firstAttribute="top" secondItem="5ba-hE-2JV" secondAttribute="topMargin" id="Lsg-R9-ZVz"/>
+                                                <constraint firstItem="nYv-yR-lV3" firstAttribute="top" secondItem="mxl-Xg-R6M" secondAttribute="bottom" constant="6" id="QDJ-ku-w2E"/>
+                                                <constraint firstItem="Aj8-iS-3pS" firstAttribute="leading" secondItem="Vzd-03-NX3" secondAttribute="trailing" constant="8" id="QT8-p2-l84"/>
+                                                <constraint firstItem="kWk-f3-cLw" firstAttribute="leading" secondItem="mxl-Xg-R6M" secondAttribute="trailing" constant="8" id="TA3-sW-uMa"/>
+                                                <constraint firstItem="nYv-yR-lV3" firstAttribute="trailing" secondItem="5ba-hE-2JV" secondAttribute="trailingMargin" id="TBP-ht-0Q1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nYv-yR-lV3" secondAttribute="bottom" constant="57" id="fug-U9-Hyo"/>
+                                                <constraint firstItem="y5o-PE-QM0" firstAttribute="trailing" secondItem="5ba-hE-2JV" secondAttribute="trailingMargin" id="lFK-CH-2IO"/>
+                                                <constraint firstItem="Aj8-iS-3pS" firstAttribute="top" secondItem="nYv-yR-lV3" secondAttribute="bottom" constant="8" id="oau-UV-IN4"/>
+                                                <constraint firstItem="Aj8-iS-3pS" firstAttribute="centerY" secondItem="Vzd-03-NX3" secondAttribute="centerY" id="prh-ea-gij"/>
+                                                <constraint firstItem="hEp-ni-mCL" firstAttribute="top" secondItem="kWk-f3-cLw" secondAttribute="bottom" constant="8" id="uVB-sw-Hk0"/>
+                                                <constraint firstItem="kWk-f3-cLw" firstAttribute="top" secondItem="5ba-hE-2JV" secondAttribute="topMargin" constant="-1" id="xFK-a4-5ci"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentButton" destination="y5o-PE-QM0" id="0uR-8q-vsk"/>
                                             <outlet property="creatTimeAndSource" destination="hEp-ni-mCL" id="ljY-mU-nJj"/>
                                             <outlet property="iconView" destination="mxl-Xg-R6M" id="vxk-14-KZt"/>
                                             <outlet property="likeButton" destination="Vzd-03-NX3" id="bCz-B4-3vR"/>
-                                            <outlet property="poImage" destination="sex-kT-m6o" id="YXW-Gu-Ffz"/>
-                                            <outlet property="poTextView" destination="2Jm-yN-SF2" id="BLc-R7-Xun"/>
-                                            <outlet property="repoArea" destination="V7T-UQ-7bx" id="ycW-jo-GfN"/>
-                                            <outlet property="repoCommentButton" destination="ELF-fl-qrp" id="iWU-hW-as9"/>
-                                            <outlet property="repoImage" destination="SOa-6H-bbd" id="cry-Mh-YUF"/>
-                                            <outlet property="repoLikeButton" destination="Ut5-WA-FYY" id="H37-6H-rVC"/>
-                                            <outlet property="repoRetwitterButton" destination="32F-Yc-wOd" id="whs-Rw-jYg"/>
-                                            <outlet property="repoTextView" destination="JXj-iS-1Mm" id="jja-7f-CsL"/>
-                                            <outlet property="repoUsername" destination="81O-C5-f32" id="b3m-oz-DvQ"/>
+                                            <outlet property="poTextView" destination="nYv-yR-lV3" id="qXa-mp-XmE"/>
                                             <outlet property="retwitterButton" destination="Aj8-iS-3pS" id="jZx-UD-Smz"/>
                                             <outlet property="username" destination="kWk-f3-cLw" id="Gtj-DE-OwH"/>
                                         </connections>
@@ -303,7 +739,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aw-kW-sxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1416" y="-368"/>
+            <point key="canvasLocation" x="-1427" y="-1549"/>
         </scene>
         <!--Weibo Action View Controller-->
         <scene sceneID="n3A-tm-d6Q">

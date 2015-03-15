@@ -11,6 +11,13 @@
 #import "SYBWeiBo.h"
 #import "SYBWeiboImageView.h"
 
+typedef NS_ENUM(NSUInteger, WeiboCellType){
+    WeiboCellTypeText,
+    WeiboCellTypeImage,
+    WeiboCellTypeRepoText,
+    WeiboCellTypeRepoImage
+};
+
 @class SYBCellRetweetView;
 
 @protocol SYBWeiboCellActionDelegate <NSObject>
@@ -34,13 +41,13 @@
 @property (nonatomic, weak) IBOutlet UILabel *username;
 @property (nonatomic, weak) IBOutlet UILabel *creatTimeAndSource;
 
-@property (nonatomic, weak) IBOutlet UILabel *poTextView;
+@property (nonatomic, weak) IBOutlet UITextView *poTextView;
 @property (nonatomic, weak) IBOutlet SYBWeiboImageView *poImage;
 
 @property (nonatomic, weak) IBOutlet UIView *repoArea;
 @property (nonatomic, weak) IBOutlet UIView *repoBar;
 @property (nonatomic, weak) IBOutlet UILabel *repoUsername;
-@property (nonatomic, weak) IBOutlet UILabel *repoTextView;
+@property (nonatomic, weak) IBOutlet UITextView *repoTextView;
 @property (nonatomic, weak) IBOutlet SYBWeiboImageView *repoImage;
 @property (nonatomic, weak) IBOutlet UIButton *repoLikeButton;
 @property (nonatomic, weak) IBOutlet UIButton *repoRetwitterButton;

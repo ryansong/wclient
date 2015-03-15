@@ -12,6 +12,21 @@
 
 static const CGFloat borderInterval = 10.0f;
 
+- (instancetype)init
+{
+    return [super init];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -35,8 +50,21 @@ static const CGFloat borderInterval = 10.0f;
         
         [self setBackgroundColor:[UIColor whiteColor]];
         }
-        
+}
 
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    _imageView.frame = self.bounds;
+    [self bringSubviewToFront:_imageView];
 
 }
 

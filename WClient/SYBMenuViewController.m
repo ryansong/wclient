@@ -72,10 +72,6 @@
     [_userImageView addGestureRecognizer:iconGestureRecognizer];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

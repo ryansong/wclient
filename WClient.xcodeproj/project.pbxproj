@@ -68,8 +68,22 @@
 		CFC716511858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CFC716461858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg */; };
 		CFC716531858B93E0057EEE4 /* SYBWeiBoGEO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC716521858B93E0057EEE4 /* SYBWeiBoGEO.m */; };
 		CFC716571859FF2C0057EEE4 /* NoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC716561859FF2C0057EEE4 /* NoImage.png */; };
+		CFCAA3801A970AA200136635 /* NSDate+date.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA37F1A970AA200136635 /* NSDate+date.m */; };
+		CFCAA3C31A97173600136635 /* WClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3C21A97173600136635 /* WClientTests.m */; };
+		CFCAA3D91A98D3B700136635 /* NSDateDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3D81A98D3B700136635 /* NSDateDateTests.m */; };
+		CFCAA3DA1A98D3E900136635 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E010B17C8683200E3FF7F /* SenTestingKit.framework */; };
 		E68FF9F458CD402F8EDAE58C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5433629D8FC348C69BD82076 /* libPods.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFCAA3C41A97173600136635 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF1E00D517C7B7AA00E3FF7F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF1E00DC17C7B7AA00E3FF7F;
+			remoteInfo = WClient;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		21AEE441C449EBAA39502A62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +186,12 @@
 		CFC716461858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = U74P176T72D61F1409DT20121211115111.jpg; path = images/U74P176T72D61F1409DT20121211115111.jpg; sourceTree = "<group>"; };
 		CFC716521858B93E0057EEE4 /* SYBWeiBoGEO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiBoGEO.m; sourceTree = "<group>"; };
 		CFC716561859FF2C0057EEE4 /* NoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImage.png; sourceTree = "<group>"; };
+		CFCAA37E1A970AA200136635 /* NSDate+date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+date.h"; sourceTree = "<group>"; };
+		CFCAA37F1A970AA200136635 /* NSDate+date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+date.m"; sourceTree = "<group>"; };
+		CFCAA3BE1A97173600136635 /* WClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFCAA3C11A97173600136635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFCAA3C21A97173600136635 /* WClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WClientTests.m; sourceTree = "<group>"; };
+		CFCAA3D81A98D3B700136635 /* NSDateDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateDateTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +208,14 @@
 				CF1E00E317C7B7AA00E3FF7F /* Foundation.framework in Frameworks */,
 				CF1E00E517C7B7AA00E3FF7F /* CoreGraphics.framework in Frameworks */,
 				E68FF9F458CD402F8EDAE58C /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCAA3BB1A97173600136635 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCAA3DA1A98D3E900136635 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +275,7 @@
 				CF1E010B17C8683200E3FF7F /* SenTestingKit.framework */,
 				CF1E010317C7C05300E3FF7F /* Security.framework */,
 				CF1E00E617C7B7AA00E3FF7F /* WClient */,
+				CFCAA3BF1A97173600136635 /* WClientTests */,
 				CF1E00DF17C7B7AA00E3FF7F /* Frameworks */,
 				CF1E00DE17C7B7AA00E3FF7F /* Products */,
 				50D3A80BCF846B5013B4F1FD /* Pods */,
@@ -257,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1E00DD17C7B7AA00E3FF7F /* WClient.app */,
+				CFCAA3BE1A97173600136635 /* WClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,6 +350,8 @@
 				CF58BB6D185F3C2B00CE3136 /* triparty */,
 				CF2DE5201849E62300FC3403 /* UIColor+hex.h */,
 				CF2DE5211849E62300FC3403 /* UIColor+hex.m */,
+				CFCAA37E1A970AA200136635 /* NSDate+date.h */,
+				CFCAA37F1A970AA200136635 /* NSDate+date.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -420,6 +452,24 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		CFCAA3BF1A97173600136635 /* WClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFCAA3C21A97173600136635 /* WClientTests.m */,
+				CFCAA3D81A98D3B700136635 /* NSDateDateTests.m */,
+				CFCAA3C01A97173600136635 /* Supporting Files */,
+			);
+			path = WClientTests;
+			sourceTree = "<group>";
+		};
+		CFCAA3C01A97173600136635 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFCAA3C11A97173600136635 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -442,6 +492,24 @@
 			productReference = CF1E00DD17C7B7AA00E3FF7F /* WClient.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CFCAA3BD1A97173600136635 /* WClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFCAA3C61A97173600136635 /* Build configuration list for PBXNativeTarget "WClientTests" */;
+			buildPhases = (
+				CFCAA3BA1A97173600136635 /* Sources */,
+				CFCAA3BB1A97173600136635 /* Frameworks */,
+				CFCAA3BC1A97173600136635 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFCAA3C51A97173600136635 /* PBXTargetDependency */,
+			);
+			name = WClientTests;
+			productName = WClientTests;
+			productReference = CFCAA3BE1A97173600136635 /* WClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -453,6 +521,7 @@
 				ORGANIZATIONNAME = "Song Xiaoming";
 				TargetAttributes = {
 					CF1E00DC17C7B7AA00E3FF7F = {
+						DevelopmentTeam = HX65M4299R;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -461,6 +530,10 @@
 								enabled = 0;
 							};
 						};
+					};
+					CFCAA3BD1A97173600136635 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = CF1E00DC17C7B7AA00E3FF7F;
 					};
 				};
 			};
@@ -478,6 +551,7 @@
 			projectRoot = "";
 			targets = (
 				CF1E00DC17C7B7AA00E3FF7F /* WClient */,
+				CFCAA3BD1A97173600136635 /* WClientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -510,6 +584,13 @@
 				56722A8219FF961100EDE375 /* profile.png in Resources */,
 				CFC716511858AFBE0057EEE4 /* U74P176T72D61F1409DT20121211115111.jpg in Resources */,
 				CFC716571859FF2C0057EEE4 /* NoImage.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCAA3BC1A97173600136635 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +648,7 @@
 				5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */,
 				CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */,
 				56B183B219920A9E0062F4CA /* SYBWeiboRetweet.m in Sources */,
+				CFCAA3801A970AA200136635 /* NSDate+date.m in Sources */,
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
@@ -586,7 +668,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFCAA3BA1A97173600136635 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCAA3D91A98D3B700136635 /* NSDateDateTests.m in Sources */,
+				CFCAA3C31A97173600136635 /* WClientTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFCAA3C51A97173600136635 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF1E00DC17C7B7AA00E3FF7F /* WClient */;
+			targetProxy = CFCAA3C41A97173600136635 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		56B1830B198F50830062F4CA /* InfoPlist.strings */ = {
@@ -679,10 +778,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = WClient/WClient.entitlements;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WClient/WClient-Prefix.pch";
 				INFOPLIST_FILE = "WClient/WClient-Info.plist";
@@ -699,16 +795,66 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = WClient/WClient.entitlements;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WClient/WClient-Prefix.pch";
 				INFOPLIST_FILE = "WClient/WClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CFCAA3C71A97173600136635 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = WClientTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WClient.app/WClient";
+			};
+			name = Debug;
+		};
+		CFCAA3C81A97173600136635 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = WClientTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WClient.app/WClient";
 			};
 			name = Release;
 		};
@@ -729,6 +875,15 @@
 			buildConfigurations = (
 				CF1E010117C7B7AB00E3FF7F /* Debug */,
 				CF1E010217C7B7AB00E3FF7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFCAA3C61A97173600136635 /* Build configuration list for PBXNativeTarget "WClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFCAA3C71A97173600136635 /* Debug */,
+				CFCAA3C81A97173600136635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

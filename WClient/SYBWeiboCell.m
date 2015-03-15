@@ -11,4 +11,21 @@
 
 @implementation SYBWeiboCell
 
+- (WeiboCellType)cellType
+{
+    if (_weibo.retweeted_status) {
+        if (_weibo.retweeted_status.pic_urls && [_weibo.retweeted_status.pic_urls count] > 0) {
+            return WeiboCellTypeRepoImage;
+        } else {
+            return WeiboCellTypeRepoText;
+        }
+    } else {
+        if (_weibo.pic_urls && [_weibo.pic_urls count] > 0) {
+            return WeiboCellTypeImage;
+        } else {
+            return WeiboCellTypeText;
+        }
+    }
+}
+
 @end

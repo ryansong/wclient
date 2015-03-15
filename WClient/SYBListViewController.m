@@ -31,6 +31,12 @@
 #define AT_IN_WEIBO_EXPRESSION @"(@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30})"
 #define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
 
+
+static NSString *textCellIdentifier = @"weiboCellText";
+static NSString *imageCellIdentifier = @"weiboCellImage";
+static NSString *repoTextCellIdentifier = @"weiboCellRepotext";
+static NSString *repoImageCellIdentifier = @"weiboCellRepoImage";
+
 @interface SYBListViewController ()
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) NSMutableDictionary *iconDict;
@@ -103,7 +109,8 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self getWeibo];
+    
+    _listTableView.rowHeight = UITableViewAutomaticDimension;
     
     [_listTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_listTableView setSeparatorColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Divider_line@2x.png"]]];
@@ -118,8 +125,10 @@ static NSString * const largeImageFolder = @"mw1024";
 	}
     
     _listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _listTableView.frame.size.width, 44)];
-    
     _mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    
+    
+    [self getWeibo];
 }
 
 - (void)loadView
@@ -133,7 +142,7 @@ static NSString * const largeImageFolder = @"mw1024";
     [_listTableView reloadData];
 }
 
-#pragma -- UITableViewDataSource
+#pragma mark -- UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -145,14 +154,32 @@ static NSString * const largeImageFolder = @"mw1024";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"weiboCell";
-    SYBWeiboViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *CellIdentifier;
+    
+    SYBWeiboCell *status = [_items objectAtIndex:[indexPath row]];
 
-    if (!cell)
-    {
-        cell = [[SYBWeiboViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    switch (status.cellType) {
+        case WeiboCellTypeText:
+            CellIdentifier = textCellIdentifier;
+            break;
+            
+        case WeiboCellTypeImage:
+            CellIdentifier = imageCellIdentifier;
+            break;
+            
+        case WeiboCellTypeRepoText:
+            CellIdentifier = repoTextCellIdentifier;
+            break;
+
+        case WeiboCellTypeRepoImage:
+            CellIdentifier = repoImageCellIdentifier;
+            break;
+            
+        default:
+            break;
     }
     
+    SYBWeiboViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.cellDelegate = self;
     
     
@@ -169,15 +196,51 @@ static NSString * const largeImageFolder = @"mw1024";
     [cell.repoImage addGestureRecognizer:tapRepoImage];
 
     cell.tag = indexPath.row;
-    SYBWeiboCell *status =[_items objectAtIndex:[indexPath row]];
-    [self configCellWithStatus:status WithCell:cell cellForRowAtIndexPath:indexPath isForOffscreenUse:NO];
+    
+    [self setViewCell:cell withIndex:indexPath];
+    
+    // update layout after set text
+    [cell layoutIfNeeded];
+    
     return cell;
 }
 
 - (void)caculateHeigtForCell:(SYBWeiboCell *)weiboCell
 {
-    CGSize poTextSize =  [weiboCell.weibo.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-    weiboCell.poHeight = poTextSize.height;
+    if (!_prototype) {
+        _prototype = [_listTableView dequeueReusableCellWithIdentifier:@"weiboCellRepotext"];
+    }
+    _prototype.poTextView.text = nil;
+    _prototype.repoTextView.text = nil;
+    
+    _prototype.poTextView.text = weiboCell.weibo.text;
+    [_prototype.poTextView sizeToFit];
+    weiboCell.poHeight = _prototype.poTextView.frame.size.height;
+
+    switch (weiboCell.cellType) {
+        case WeiboCellTypeText:
+            break;
+            
+        case WeiboCellTypeImage:
+
+            break;
+            
+        case WeiboCellTypeRepoText:
+            _prototype.repoTextView.text = weiboCell.weibo.retweeted_status.text;
+            [_prototype.repoTextView sizeToFit];
+            weiboCell.repoHeight = _prototype.repoTextView.frame.size.height;
+            break;
+            
+        case WeiboCellTypeRepoImage:
+            _prototype.repoTextView.text = weiboCell.weibo.retweeted_status.text;
+            [_prototype.repoTextView sizeToFit];
+            weiboCell.repoHeight = _prototype.repoTextView.frame.size.height;
+            break;
+            
+        default:
+            break;
+    }
+
     
     // height of user icon&username
     weiboCell.cellHeight = CELL_CONTENT_MARGIN + CELL_ICON_HEIGHT;
@@ -193,8 +256,7 @@ static NSString * const largeImageFolder = @"mw1024";
     }
     
     if (weiboCell.weibo.retweeted_status) {
-        CGSize repoTextHeight = [weiboCell.weibo.retweeted_status.text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14] constrainedToSize:CGSizeMake(280, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-        weiboCell.repoHeight = repoTextHeight.height;
+   
         
         //MARGIN for repoArea
         weiboCell.cellHeight += CELL_CONTENT_MARGIN;
@@ -210,10 +272,47 @@ static NSString * const largeImageFolder = @"mw1024";
     }
 }
 
-- (void)configCellWithStatus:(SYBWeiboCell *)weiboCell WithCell:(SYBWeiboViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath isForOffscreenUse:(BOOL)offScreen
+- (void)setViewCell:(UITableViewCell *)viewCell withIndex:(NSIndexPath *)indexPath
 {
-    SYBWeiBo *status = weiboCell.weibo;
+    SYBWeiboViewCell *configCell = ((SYBWeiboViewCell *)viewCell);
+   SYBWeiBo *status = [[_items objectAtIndex:indexPath.row] weibo];
+    configCell.poTextView.text = status.text;
+    
+    configCell.username.text = status.user.name;
+    configCell.creatTimeAndSource.text = [NSString stringWithFormat:@"%@ %@", status.created_at, status.source];
+    
+     SYBWeiboCell *weiboCell = [_items objectAtIndex:[indexPath row]];
 
+    if (weiboCell.cellType == WeiboCellTypeImage) {
+        
+        configCell.poImage.imageURL = status.pic_urls[0];
+        dispatch_async(dispatch_queue_create(0, 0), ^{
+            UIImage *cellImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:status.pic_urls[0]]]];
+            if (cellImage) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    configCell.poImage.imageView.image = cellImage;
+                });
+            }
+        });
+    } else if (weiboCell.cellType == WeiboCellTypeRepoText) {
+        configCell.repoUsername.text = status.retweeted_status.user.name;
+        configCell.repoTextView.text = status.retweeted_status.text;
+    } else if (weiboCell.cellType == WeiboCellTypeRepoImage) {
+        configCell.repoUsername.text = status.retweeted_status.user.name;
+        configCell.repoTextView.text = status.retweeted_status.text;
+
+        configCell.repoImage.imageURL = status.retweeted_status.pic_urls[0];
+        dispatch_async(dispatch_queue_create(0, 0), ^{
+            UIImage *cellImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:status.retweeted_status.pic_urls[0]]]];
+            if (cellImage) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    configCell.repoImage.imageView.image = cellImage;
+                });
+            }
+        });
+
+    }
+    
     __unsafe_unretained typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage *image = [weakSelf getImageWithURL:status.user.profile_image_url];
@@ -221,180 +320,12 @@ static NSString * const largeImageFolder = @"mw1024";
             if (!indexPath && image) {
                 return ;
             }
-            if (cell.tag == indexPath.row) {
-                cell.iconView.image = image;
+            if (configCell.tag == indexPath.row) {
+                configCell.iconView.image = image;
             }
         });
     });
-    
-    [cell.username setText:status.user.screen_name];
-    
-    //set create time
-    NSString *creatDate = [self dateTimeWithCreat_dt:status.created_at];
-    NSString *creatTimeAndSource = [NSString stringWithFormat:@"%@ %@", creatDate, status.source];
-    [cell.creatTimeAndSource setText:creatTimeAndSource];
-    
-    CGRect poRect = cell.poTextView.frame;
-    poRect.size.height = weiboCell.poHeight;
-    cell.poTextView.frame = poRect;
-    
-    NSString *poText = status.text;
-    if (!status.attributedText) {
-        status.attributedText = [self AttributedString:poText];
-    }
-    cell.poTextView.attributedText = status.attributedText;
-    
-    // attach pic
-    if (status.hasPic) {
-        cell.poImage.imageURL = [status.pic_urls objectAtIndex:0];
-        
-        cell.poImage.userInteractionEnabled = YES;
-        cell.poImage.imageView.image = noImage;
-        
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            UIImage *image = [weakSelf getImageWithURL: [status.pic_urls objectAtIndex:0]];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (cell.tag == indexPath.row) {
-                    cell.poImage.imageView.image = image;
-                }
-            });
-        });
-        [cell addSubview:cell.poImage];
-    } else {
-        if (status.retweeted_status) {
-            SYBWeiBo *reStatus = status.retweeted_status;
-            
-            cell.repoUsername.text = [NSString stringWithFormat:@"@%@", reStatus.user.screen_name];
-            
-            CGRect repoTextRect = cell.repoTextView.frame;
-            repoTextRect.size.height = weiboCell.repoHeight;
-            cell.repoTextView.frame = repoTextRect;
-            
-            if (!reStatus.attributedText) {
-                reStatus.attributedText = [self AttributedString:reStatus.text];
-            }
-            cell.repoTextView.attributedText = reStatus.attributedText;
-                if (reStatus.hasPic) {
-                    cell.repoImage.imageURL = [reStatus.pic_urls objectAtIndex:0];
-                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                        UIImage *image = [weakSelf getImageWithURL:[reStatus.pic_urls objectAtIndex:0]];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            if (cell.tag == indexPath.row) {
-                                cell.repoImage.imageView.image = image;
-                            }
-                        });
-                    });
-                }
-        }
-    }
 
-    cell.poImage.hidden = YES;
-    cell.repoArea.hidden = YES;
-    cell.repoImage.hidden = YES;
-    if (status.hasPic) {
-        cell.poImage.hidden = NO;
-        cell.poImage.frame = CGRectMake(cell.poImage.frame.origin.x, cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.poImage.frame.size.width, cell.poImage.frame.size.height);
-        
-         cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.poImage.frame.origin.y + cell.poImage.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
-    } else if (status.retweeted_status){
-        cell.repoArea.hidden = NO;
-        cell.repoImage.hidden = YES;
-        
-        if (status.retweeted_status.hasPic) {
-            cell.repoImage.hidden = NO;
-            cell.repoImage.frame = CGRectMake(cell.repoImage.frame.origin.x, cell.repoTextView.frame.origin.y + cell.repoTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoImage.frame.size.width, cell.repoImage.frame.size.height);
-
-            cell.repoLikeButton.frame = CGRectMake(cell.repoLikeButton.frame.origin.x, cell.repoImage.frame.origin.y + cell.repoImage.frame.size.height + CELL_CONTENT_MARGIN, cell.repoLikeButton.frame.size.width, cell.repoLikeButton.frame.size.height);
-            
-            cell.repoArea.frame = CGRectMake(cell.repoArea.frame.origin.x,  cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoArea.frame.size.width, cell.repoLikeButton.frame.origin.y + cell.repoLikeButton.frame.size.height + CELL_CONTENT_MARGIN);
-        } else {
-            
-             cell.repoLikeButton.frame = CGRectMake(cell.repoLikeButton.frame.origin.x, cell.repoTextView.frame.origin.y + cell.repoTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoLikeButton.frame.size.width, cell.repoLikeButton.frame.size.height);
-            
-            cell.repoArea.frame = CGRectMake(cell.repoArea.frame.origin.x,  cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.repoArea.frame.size.width, cell.repoLikeButton.frame.origin.y + cell.repoLikeButton.frame.size.height + CELL_CONTENT_MARGIN);
-        }
-        
-        CGRect repoCommentFrame = cell.repoCommentButton.frame;
-        repoCommentFrame.origin.y = cell.repoLikeButton.frame.origin.y;
-        cell.repoCommentButton.frame = repoCommentFrame;
-        
-        CGRect repoRetwitterFrame = cell.repoRetwitterButton.frame;
-        repoRetwitterFrame.origin.y = cell.repoLikeButton.frame.origin.y;
-        cell.repoRetwitterButton.frame = repoRetwitterFrame;
-        
-        CGRect retwitterFrame = cell.retwitterButton.frame;
-        retwitterFrame.origin.y = cell.likeButton.frame.origin.y;
-        cell.retwitterButton.frame = retwitterFrame;
-        
-        if (status.retweeted_status.attitudes_count > 0) {
-            NSString *repoLike = [NSString stringWithFormat:@" %d", status.retweeted_status.attitudes_count];
-            [cell.repoLikeButton setTitle:repoLike forState:UIControlStateNormal];
-        }
-        
-        if (status.retweeted_status.reposts_count > 0) {
-            NSString *erpoRetweet = [NSString stringWithFormat:@" %d", status.retweeted_status.reposts_count];
-            [cell.repoRetwitterButton setTitle:erpoRetweet forState:UIControlStateNormal];
-        }
-        
-        if (status.retweeted_status.comments_count > 0) {
-            NSString *repoCommnet = [NSString stringWithFormat:@" %d",status.retweeted_status.comments_count];
-            [cell.repoCommentButton setTitle:repoCommnet forState:UIControlStateNormal];
-        }
-        
-        cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.repoArea.frame.origin.y + cell.repoArea.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
-    } else {
-        cell.likeButton.frame = CGRectMake(cell.likeButton.frame.origin.x, cell.poTextView.frame.origin.y + cell.poTextView.frame.size.height + CELL_CONTENT_MARGIN, cell.likeButton.frame.size.width, cell.likeButton.frame.size.height);
-    }
-    
-    CGRect commentFrame = cell.commentButton.frame;
-    commentFrame.origin.y = cell.likeButton.frame.origin.y;
-    cell.commentButton.frame = commentFrame;
-    
-    CGRect retwitterFrame = cell.retwitterButton.frame;
-    retwitterFrame.origin.y = cell.likeButton.frame.origin.y;
-    cell.retwitterButton.frame = retwitterFrame;
-    
-    if (status.attitudes_count > 0) {
-        NSString *like = [NSString stringWithFormat:@" %d", status.attitudes_count];
-        [cell.likeButton setTitle:like forState:UIControlStateNormal];
-    }
-
-    if (status.reposts_count > 0) {
-        NSString *retweet = [NSString stringWithFormat:@" %d", status.reposts_count];
-        [cell.retwitterButton setTitle:retweet forState:UIControlStateNormal];
-    }
-
-    if (status.comments_count > 0) {
-        NSString *commnet = [NSString stringWithFormat:@" %d",status.comments_count];
-        [cell.commentButton setTitle:commnet forState:UIControlStateNormal];
-    }
-
-    CGRect cellFrame = cell.frame;
-    cellFrame.size.height = cell.likeButton.frame.origin.y + cell.likeButton.frame.size.height+ CELL_CONTENT_WIDTH;
-    cell.frame = cellFrame;
-}
-
-- (void)setImageView:(UIImageView *)imageView withSize:(CGSize)size
-{
-    [self setView:imageView withSize:size];
-}
-
-- (void)setView:(UIView *)view withWidth:(CGFloat)width withHeight:(CGFloat)height
-{
-    [self setView:view withSize:CGSizeMake(width, height)];
-}
-
-- (CGSize)celifSize:(CGSize)size
-{
-    size.height = ceilf(size.height);
-    size.width = ceilf(size.width);
-    return size;
-}
-
-- (void)setView:(UIView *)view withSize:(CGSize)size
-{
-    size = [self celifSize:size];
-    view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, size.width, size.height);
 }
 
 - (NSString *)dateTimeWithCreat_dt:(NSString *)created_dt
@@ -456,26 +387,8 @@ success:^(NSArray *result) {
     
 } failure:^(PBXError errorCode) {
     //TODO:错误处理
-    NSLog(@"login failed. error code:%ld", errorCode);
+    NSLog(@"login failed. error code:%lu", errorCode);
 }];            
-}
-
-#pragma --  UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
-    if (weiboCell.cellHeight != 0) {
-        return weiboCell.cellHeight;
-    }
-    [self caculateHeigtForCell:weiboCell];
-
-    return weiboCell.cellHeight;
-}
-
-- (CGSize)getSizeOfString:(NSString *)aString withFont:(UIFont *)font withWidth:(CGFloat)theWidth
-{
-    return  [aString sizeWithFont:font constrainedToSize:CGSizeMake(theWidth, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer
@@ -723,8 +636,7 @@ success:^(NSArray *result) {
 
 - (void)scrollViewTap:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-    [self.navigationController setNavigationBarHidden:NO];
-    
+    self.tabBarController.tabBar.hidden = NO;
     [tapGestureRecognizer.view removeFromSuperview];
 }
 
@@ -766,7 +678,7 @@ success:^(NSArray *result) {
             _fullImageView = imageview;
             
             scrollImageView.frame = [UIScreen mainScreen].bounds;
-            weakSelf.navigationController.navigationBarHidden = YES;
+            weakSelf.tabBarController.tabBar.hidden = YES;
         });
     });
 }
@@ -785,11 +697,6 @@ success:^(NSArray *result) {
     }
     
     NSLog(@"%f", _imageProgress.progress);
-}
-
-- (IBAction)signOut:(id)sender {
-        NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
-        [SSKeychain deletePasswordForService:@"WClient" account:uid];
 }
 
 #pragma -- UIScrollViewDelegate
