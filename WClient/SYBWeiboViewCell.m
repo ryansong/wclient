@@ -51,9 +51,7 @@
 
 - (void)prepareForReuse
 {
-    NSString *iconPath = [[NSBundle mainBundle] pathForResource:@"UserIcon" ofType:@"png"];
-   UIImage *defalutUserIcon = [UIImage imageWithContentsOfFile:iconPath];
-    _iconView.image = defalutUserIcon;
+    _iconView.image = [UIImage imageNamed:@"UserIcon"];
     _poImage.imageView.image = nil;
     _repoImage.imageView.image = nil;
     
