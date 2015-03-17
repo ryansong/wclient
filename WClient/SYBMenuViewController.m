@@ -12,7 +12,7 @@
 #import "SYBWeiboAPIClient.h"
 #import "SSKeychain.h"
 
-@interface SYBMenuViewController ()
+@interface SYBMenuViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIActionSheet *loginActionSheet;
 @property (nonatomic, strong) UINavigationController *rootController;
@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *userInfo;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+
+@property (nonatomic, strong) NSArray *groupArray;
 
 @end
 
@@ -62,6 +64,15 @@
                                                         _userInfo.text = dict[@"description"];
                                                         _username.text = dict[@"screen_name"];
                                                         
+                                                        NSString *friends_count = [NSString stringWithFormat:@"关注%@",[dict[@"friends_count"] stringValue]];
+                                                        [self.following setTitle:friends_count forState:UIControlStateNormal];
+                                                        
+                                                        NSString *followers_count = [NSString stringWithFormat:@"粉丝%@",[dict[@"followers_count"] stringValue]];
+                                                        [self.follower setTitle:followers_count forState:UIControlStateNormal];
+                                                        
+                                                        NSString *statuses_count = [NSString stringWithFormat:@"微博%@",[dict[@"statuses_count"] stringValue]];
+                                                        [self.twitter setTitle:statuses_count forState:UIControlStateNormal];
+                                                        
                                                     } failure:^(PBXError error) {
                                                         
                                                     }];
@@ -71,6 +82,27 @@
                                                                                             action:@selector(tapIconGestureRecognizer:)];
     [_userImageView addGestureRecognizer:iconGestureRecognizer];
 }
+
+#pragma mark -- UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.groupArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     static NSString *const cellIdenitifier = @"groupIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenitifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdenitifier];
+    }
+    
+    return cell;
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

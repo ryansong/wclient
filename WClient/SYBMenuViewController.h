@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SYBMenuViewController : UIViewController <UIActionSheetDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIButton *following;
+@property (weak, nonatomic) IBOutlet UIButton *follower;
+@property (weak, nonatomic) IBOutlet UIButton *twitter;
+@property (weak, nonatomic) IBOutlet UITableView *groupList;
 
 @end
