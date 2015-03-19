@@ -78,7 +78,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="U74P176T72D61F1409DT20121211115111.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qzE-gr-1ZX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="U74P176T72D61F1409DT20121211115111.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qzE-gr-1ZX">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="RdT-cM-d7m">
@@ -86,6 +86,12 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="qzE-gr-1ZX" secondAttribute="trailing" constant="-16" id="1ja-Uv-Ha5"/>
+                            <constraint firstItem="OJH-fx-Yh0" firstAttribute="top" secondItem="qzE-gr-1ZX" secondAttribute="bottom" id="2o1-bK-VLa"/>
+                            <constraint firstItem="qzE-gr-1ZX" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="-16" id="EpW-16-vBI"/>
+                            <constraint firstItem="qzE-gr-1ZX" firstAttribute="top" secondItem="vkl-PF-LEi" secondAttribute="bottom" constant="-20" id="Vn7-fe-IAs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Nmr-q4-G0s"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -115,8 +121,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="488" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="n0X-Zi-0bW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="488" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="n0X-Zi-0bW">
+                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weiboCellImage" rowHeight="303" id="IM0-1r-5ff" customClass="SYBWeiboViewCell">
@@ -736,6 +742,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n0X-Zi-0bW" firstAttribute="top" secondItem="iG6-1q-ZO5" secondAttribute="bottom" id="C9K-8z-tgD"/>
+                            <constraint firstItem="uAo-iL-CY4" firstAttribute="top" secondItem="n0X-Zi-0bW" secondAttribute="bottom" id="KUA-o8-RHK"/>
+                            <constraint firstItem="n0X-Zi-0bW" firstAttribute="leading" secondItem="I69-6B-bOR" secondAttribute="leadingMargin" constant="-16" id="cOe-HM-ujB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n0X-Zi-0bW" secondAttribute="trailing" constant="-16" id="rEX-HE-PMB"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Timeline" image="sina-weibo.png" id="ZAE-bv-zEV"/>
                     <navigationItem key="navigationItem" id="AMk-aB-s3a">
@@ -1102,6 +1114,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Xg6-Zr-StN" secondAttribute="trailing" constant="-16" id="36h-cA-92E"/>
+                            <constraint firstItem="MJp-dF-M5w" firstAttribute="top" secondItem="Xg6-Zr-StN" secondAttribute="bottom" id="7fX-9z-czI"/>
+                            <constraint firstItem="Xg6-Zr-StN" firstAttribute="top" secondItem="XyF-Hp-EDj" secondAttribute="bottom" constant="-20" id="8Ia-Ob-WXn"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Xg6-Zr-StN" secondAttribute="bottom" constant="49" id="ZYa-bG-MzV"/>
                             <constraint firstItem="Xg6-Zr-StN" firstAttribute="leading" secondItem="IMi-iA-hqQ" secondAttribute="leadingMargin" constant="-16" id="aFq-de-CCG"/>
                             <constraint firstItem="Xg6-Zr-StN" firstAttribute="top" secondItem="IMi-iA-hqQ" secondAttribute="topMargin" id="vcL-Vu-Vas"/>

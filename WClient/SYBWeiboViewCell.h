@@ -11,13 +11,6 @@
 #import "SYBWeiBo.h"
 #import "SYBWeiboImageView.h"
 
-typedef NS_ENUM(NSUInteger, WeiboCellType){
-    WeiboCellTypeText,
-    WeiboCellTypeImage,
-    WeiboCellTypeRepoText,
-    WeiboCellTypeRepoImage
-};
-
 @class SYBCellRetweetView;
 
 @protocol SYBWeiboCellActionDelegate <NSObject>

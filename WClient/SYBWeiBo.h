@@ -11,6 +11,13 @@
 #import "SYBWeiboPrivacy.h"
 #import "SYBWeiBoGEO.h"
 
+typedef NS_ENUM(NSUInteger, WeiboCellType){
+    WeiboCellTypeText,
+    WeiboCellTypeImage,
+    WeiboCellTypeRepoText,
+    WeiboCellTypeRepoImage
+};
+
 @interface SYBWeiBo : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSString *created_at;

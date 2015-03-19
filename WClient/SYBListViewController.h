@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
-#import "SYBWeiboCell.h"
 #import "SYBWeiboViewCell.h"
 #import "APPMacro.h"
 

@@ -21,6 +21,7 @@
 #import "SYBCommentViewController.h"
 #import "SYBCommentTransition.h"
 #import "SYBActionTransition.h"
+#import "SYBWeiBo+tableViewCell.h"
 
 
 #import "UIColor+hex.h"
@@ -30,6 +31,8 @@
 #define URL_EXPRESSION @"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])"
 #define AT_IN_WEIBO_EXPRESSION @"(@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30})"
 #define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
+
+#define MAX_TWITTER_COUNT 100
 
 
 static NSString *textCellIdentifier = @"weiboCellText";
@@ -73,14 +76,6 @@ static const float DIVIDWIDTH = 320.0f;
 static const double SYBMINTUESECONDS = 60;
 static const double SYBHOURSECONDS = 60*60;
 static const double SYBDAYSECONDS = 24*60*60;
-
-static const float CELL_CONTENT_WIDTH = 320.0f;
-static const float CELL_CONTENT_MARGIN = 6.0f;
-
-static const float CELL_ICON_HEIGHT = 50.0f;
-static const float CELL_REPOUSERNAME_HEIGHT = 21.0f;
-static const float IMAGE_WIDTH = 130.0;
-static const float CELL_ATTIBUTED_HEIGHT = 10.0f;
 
 static UIImage *defalutUserIcon;
 static UIImage *noImage;
@@ -156,9 +151,9 @@ static NSString * const largeImageFolder = @"mw1024";
 {
     NSString *CellIdentifier;
     
-    SYBWeiboCell *status = [_items objectAtIndex:[indexPath row]];
+    SYBWeiBo *status = [_items objectAtIndex:[indexPath row]];
 
-    switch (status.cellType) {
+    switch ([status cellType]) {
         case WeiboCellTypeText:
             CellIdentifier = textCellIdentifier;
             break;
@@ -205,85 +200,17 @@ static NSString * const largeImageFolder = @"mw1024";
     return cell;
 }
 
-- (void)caculateHeigtForCell:(SYBWeiboCell *)weiboCell
-{
-    if (!_prototype) {
-        _prototype = [_listTableView dequeueReusableCellWithIdentifier:@"weiboCellRepotext"];
-    }
-    _prototype.poTextView.text = nil;
-    _prototype.repoTextView.text = nil;
-    
-    _prototype.poTextView.text = weiboCell.weibo.text;
-    [_prototype.poTextView sizeToFit];
-    weiboCell.poHeight = _prototype.poTextView.frame.size.height;
-
-    switch (weiboCell.cellType) {
-        case WeiboCellTypeText:
-            break;
-            
-        case WeiboCellTypeImage:
-
-            break;
-            
-        case WeiboCellTypeRepoText:
-            _prototype.repoTextView.text = weiboCell.weibo.retweeted_status.text;
-            [_prototype.repoTextView sizeToFit];
-            weiboCell.repoHeight = _prototype.repoTextView.frame.size.height;
-            break;
-            
-        case WeiboCellTypeRepoImage:
-            _prototype.repoTextView.text = weiboCell.weibo.retweeted_status.text;
-            [_prototype.repoTextView sizeToFit];
-            weiboCell.repoHeight = _prototype.repoTextView.frame.size.height;
-            break;
-            
-        default:
-            break;
-    }
-
-    
-    // height of user icon&username
-    weiboCell.cellHeight = CELL_CONTENT_MARGIN + CELL_ICON_HEIGHT;
-    //height of weibo text
-    weiboCell.cellHeight +=  CELL_CONTENT_MARGIN + weiboCell.poHeight;
-    //height of weibo attibuted
-    weiboCell.cellHeight += CELL_CONTENT_MARGIN + CELL_ATTIBUTED_HEIGHT + CELL_CONTENT_MARGIN;
-    
-    //with po image
-    if ([weiboCell.weibo hasPic]) {
-        weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH;
-        return;
-    }
-    
-    if (weiboCell.weibo.retweeted_status) {
-   
-        
-        //MARGIN for repoArea
-        weiboCell.cellHeight += CELL_CONTENT_MARGIN;
-        // height of repo username
-        weiboCell.cellHeight += CELL_CONTENT_MARGIN + CELL_REPOUSERNAME_HEIGHT;
-        weiboCell.cellHeight += CELL_CONTENT_MARGIN + weiboCell.repoHeight;
-        
-        if ([weiboCell.weibo.retweeted_status hasPic]) {
-            weiboCell.cellHeight += CELL_CONTENT_MARGIN + IMAGE_WIDTH;
-        }
-        
-        weiboCell.cellHeight += CELL_CONTENT_MARGIN + CELL_ATTIBUTED_HEIGHT + CELL_CONTENT_MARGIN *4;
-    }
-}
 
 - (void)setViewCell:(UITableViewCell *)viewCell withIndex:(NSIndexPath *)indexPath
 {
     SYBWeiboViewCell *configCell = ((SYBWeiboViewCell *)viewCell);
-   SYBWeiBo *status = [[_items objectAtIndex:indexPath.row] weibo];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     configCell.poTextView.text = status.text;
     
     configCell.username.text = status.user.name;
     configCell.creatTimeAndSource.text = [NSString stringWithFormat:@"%@ %@", status.created_at, status.source];
-    
-     SYBWeiboCell *weiboCell = [_items objectAtIndex:[indexPath row]];
 
-    if (weiboCell.cellType == WeiboCellTypeImage) {
+    if (status.cellType == WeiboCellTypeImage) {
         
         configCell.poImage.imageURL = status.pic_urls[0];
         dispatch_async(dispatch_queue_create(0, 0), ^{
@@ -294,10 +221,10 @@ static NSString * const largeImageFolder = @"mw1024";
                 });
             }
         });
-    } else if (weiboCell.cellType == WeiboCellTypeRepoText) {
+    } else if (status.cellType == WeiboCellTypeRepoText) {
         configCell.repoUsername.text = status.retweeted_status.user.name;
         configCell.repoTextView.text = status.retweeted_status.text;
-    } else if (weiboCell.cellType == WeiboCellTypeRepoImage) {
+    } else if (status.cellType == WeiboCellTypeRepoImage) {
         configCell.repoUsername.text = status.retweeted_status.user.name;
         configCell.repoTextView.text = status.retweeted_status.text;
 
@@ -367,27 +294,17 @@ static NSString * const largeImageFolder = @"mw1024";
     return creat_dt;
  }
 
-- (NSArray *)weiboCellsFromWeibos:(NSArray *)weibos
-{
-    NSMutableArray *cells = [[NSMutableArray alloc] init];
-    for (SYBWeiBo *weibo in weibos) {
-        SYBWeiboCell *weiboCell = [[SYBWeiboCell alloc] init];
-        weiboCell.weibo = weibo;
-        [cells addObject:weiboCell];
-    }
-    return cells;
-}
-
 - (void)getWeibo{
 
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
 success:^(NSArray *result) {
-    _items = [self weiboCellsFromWeibos:result];
+   
+    _items = [result copy];
     [_listTableView reloadData];
     
 } failure:^(PBXError errorCode) {
     //TODO:错误处理
-    NSLog(@"login failed. error code:%lu", errorCode);
+    NSLog(@"login failed. error code:%lul", errorCode);
 }];            
 }
 
@@ -569,14 +486,63 @@ success:^(NSArray *result) {
 
 -(void) refreshNewWeibos
 {
+
+    long long sinceID = 0;
+    if (self.items) {
+      SYBWeiBo *firstItem =  self.items.firstObject;
+        if (firstItem) {
+            sinceID = firstItem.weiboId;
+        }
+    }
+    
     __unsafe_unretained typeof(self) weakSelf = self;
-    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
+    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:sinceID max_id:0 count:0 base_app:0 feature:0 trim_user:0
                                                  success:^(NSArray *result) {
-                                                     if (!_items) {
-                                                         _items = [self weiboCellsFromWeibos:result];
+                                                     if (!self.items) {
+                                                         self.items =  [result copy];
                                                      } else if(result) {
-                                                         result = [self weiboCellsFromWeibos:result];
-                                                         _items = [result arrayByAddingObjectsFromArray: _items];
+                                                         _items = [[result arrayByAddingObjectsFromArray: _items] copy];
+                                                     }
+                                                     
+                                                     [_listTableView reloadData];
+                                                     [weakSelf doneLoadingTableViewData];
+                                                 } failure:^(PBXError errorCode) {
+                                                     //TODO:错误处理
+                                                     NSLog(@"get weibo failed. error code:%lu", errorCode);
+                                                     [weakSelf doneLoadingTableViewData];
+                                                 }];
+}
+
+
+-(void)getEarlierTwitters
+{
+    
+    long long sinceID = 0;
+    long long maxID = 0;
+    
+    if (self.items) {
+        SYBWeiBo *firstItem =  self.items.firstObject;
+        if (firstItem) {
+            sinceID = firstItem.weiboId;
+        }
+        
+        SYBWeiBo *lastItem = self.items.lastObject;
+        if (lastItem) {
+            maxID = lastItem.weiboId;
+        }
+    }
+    
+    __unsafe_unretained typeof(self) weakSelf = self;
+    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:sinceID max_id:maxID count:0 base_app:0 feature:0 trim_user:0
+                                                 success:^(NSArray *result) {
+                                                     if (!self.items) {
+                                                         self.items = [result copy];
+                                                     } else if(result) {
+                                                         if ([result count] < MAX_TWITTER_COUNT) {
+                                                             self.items = [[result arrayByAddingObjectsFromArray: self.items] copy];
+                                                         } else {
+                                                             self.items = [result copy];
+                                                         }
                                                      }
                                                      [_listTableView reloadData];
                                                      [weakSelf doneLoadingTableViewData];
@@ -756,10 +722,10 @@ success:^(NSArray *result) {
 - (void)commentWeibo:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
     SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
-    commentViewController.status = weiboCell.weibo;
+    commentViewController.status = status;
     commentViewController.viewType = SYBCommentViewTypeCommnet;
     commentViewController.modalPresentationStyle = UIModalPresentationCustom;
     commentViewController.transitioningDelegate = self;
@@ -770,9 +736,9 @@ success:^(NSArray *result) {
 - (void)commentSubWeibo:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
-    SYBWeiBo *subWeibo = weiboCell.weibo.retweeted_status;
+    SYBWeiBo *subWeibo = status.retweeted_status;
     
     if (!subWeibo) {
         return;
@@ -789,10 +755,10 @@ success:^(NSArray *result) {
 - (void)retweetWeibo:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
     SYBCommentViewController *commentViewController = [[SYBCommentViewController alloc] initWithNibName:nil bundle:nil];
-    commentViewController.status = weiboCell.weibo;
+    commentViewController.status = status;
     commentViewController.viewType = SYBCommentViewTypeRetweet;
     commentViewController.modalPresentationStyle = UIModalPresentationCustom;
     commentViewController.transitioningDelegate = self;
@@ -802,9 +768,9 @@ success:^(NSArray *result) {
 - (void)retweetSubWeibo:(UITableViewCell *)cell
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:cell];
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
-    SYBWeiBo *subWeibo = weiboCell.weibo.retweeted_status;
+    SYBWeiBo *subWeibo = status.retweeted_status;
     
     if (!subWeibo) {
         return;
@@ -821,12 +787,12 @@ success:^(NSArray *result) {
 - (void)viewWeibo:(id)sender
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:sender];
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
     SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];
     actionViewController.transitioningDelegate = self;
     actionViewController.modalPresentationStyle = UIModalPresentationCustom;
-    actionViewController.status = weiboCell.weibo;
+    actionViewController.status = status;
     
     [self presentViewController:actionViewController animated:YES completion:^{
         
@@ -836,12 +802,12 @@ success:^(NSArray *result) {
 - (void)viewRepoWeibo:(id)sender
 {
     NSIndexPath *indexPath = [_listTableView indexPathForCell:sender];
-    SYBWeiboCell *weiboCell = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
     SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];
     actionViewController.transitioningDelegate = self;
     actionViewController.modalPresentationStyle = UIModalPresentationCustom;
-    actionViewController.status = weiboCell.weibo.retweeted_status;
+    actionViewController.status = status.retweeted_status;
     
     [self presentViewController:actionViewController animated:YES completion:^{
         
