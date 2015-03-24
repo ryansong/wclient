@@ -47,15 +47,12 @@ static NSString *repoImageCellIdentifier = @"weiboCellRepoImage";
 @property (nonatomic, strong) NSString *client_secret;
 
 @property (nonatomic, strong) SYBUserInfoView *userInfo;
-
-@property (nonatomic, strong) SYBWeiboViewCell *prototype;
 @property (nonatomic, strong) SYBWeiboImageView *imageView;
 
 @property (nonatomic, strong) UIImageView *fullImageView;
 @property (nonatomic, strong) NSTimer *imageLoadTimer;
 @property (nonatomic, strong) UIProgressView *imageProgress;
 @property (nonatomic, strong) UIViewController *parentController;
-
 @property (nonatomic, strong) NSString *fullImageUrl;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
@@ -119,8 +116,8 @@ static NSString * const largeImageFolder = @"mw1024";
 		_headerView = view;
 	}
     
-    _listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _listTableView.frame.size.width, 44)];
-    _mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.listTableView.frame.size.width, 44)];
+    self.mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     
     
     [self getWeibo];
@@ -134,24 +131,24 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_listTableView reloadData];
+    [self.listTableView reloadData];
 }
 
 #pragma mark -- UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!_items) {
+    if (!self.items) {
         return 0;
     }
-    return _items.count;
+    return self.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier;
     
-    SYBWeiBo *status = [_items objectAtIndex:[indexPath row]];
+    SYBWeiBo *status = [self.items objectAtIndex:[indexPath row]];
 
     switch ([status cellType]) {
         case WeiboCellTypeText:
@@ -204,7 +201,7 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)setViewCell:(UITableViewCell *)viewCell withIndex:(NSIndexPath *)indexPath
 {
     SYBWeiboViewCell *configCell = ((SYBWeiboViewCell *)viewCell);
-    SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
+    SYBWeiBo *status = [self.items objectAtIndex:indexPath.row];
     configCell.poTextView.text = status.text;
     
     configCell.username.text = status.user.name;
@@ -299,8 +296,8 @@ static NSString * const largeImageFolder = @"mw1024";
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0
 success:^(NSArray *result) {
    
-    _items = [result copy];
-    [_listTableView reloadData];
+    self.items = [result copy];
+    [self.listTableView reloadData];
     
 } failure:^(PBXError errorCode) {
     //TODO:错误处理
@@ -310,17 +307,17 @@ success:^(NSArray *result) {
 
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer
 {
-    CGPoint orignCenterPoint = _parentController.view.center;
+    CGPoint orignCenterPoint = self.parentController.view.center;
     float x = orignCenterPoint.x;
     
-    CGPoint transformPoint = [recognizer translationInView:_parentController.view];
+    CGPoint transformPoint = [recognizer translationInView:self.parentController.view];
     x += transformPoint.x;
     
     if(x > MAX_VIEW_SLID_POINT_X) {
         x = MAX_VIEW_SLID_POINT_X;
     }
 
-    [_parentController.view setCenter:CGPointMake(x, orignCenterPoint.y)];
+    [self.parentController.view setCenter:CGPointMake(x, orignCenterPoint.y)];
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.75
@@ -329,37 +326,37 @@ success:^(NSArray *result) {
                          animations:^(void)
          {
              if (x > DIVIDWIDTH ) {
-                 _parentController.view.center = CGPointMake(MAX_VIEW_SLID_POINT_X, orignCenterPoint.y);
+                 self.parentController.view.center = CGPointMake(MAX_VIEW_SLID_POINT_X, orignCenterPoint.y);
              } else {
-                 _parentController.view.center = CGPointMake(MIN_VIEW_SLID_POINT_X,orignCenterPoint.y);
+                 self.parentController.view.center = CGPointMake(MIN_VIEW_SLID_POINT_X,orignCenterPoint.y);
              }
          } completion:^(BOOL isFinish) {
          }];
     }
-    [recognizer setTranslation:CGPointZero inView:_parentController.view];
+    [recognizer setTranslation:CGPointZero inView:self.parentController.view];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
     if ([recognizer isKindOfClass:[UINavigationBar class]]) {
-         [_listTableView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
+         [self.listTableView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
     }
 
-        _userInfo.hidden = YES;
-        _userInfo.userIcon.image = nil;
-        _listTableView.scrollEnabled = YES;
+        self.userInfo.hidden = YES;
+        self.userInfo.userIcon.image = nil;
+        self.listTableView.scrollEnabled = YES;
 }
 
 - (void)handleCellTap:(UITapGestureRecognizer *)recognizer
 {
-    if (!_userInfo) {
-        _userInfo = [[SYBUserInfoView alloc] init];
-        _userInfo.backgroundColor = [UIColor grayColor];
+    if (!self.userInfo) {
+        self.userInfo = [[SYBUserInfoView alloc] init];
+        self.userInfo.backgroundColor = [UIColor grayColor];
 
-    } else if (!_userInfo.hidden) {
-            _userInfo.hidden = YES;
-            _userInfo.userIcon.image = nil;
-            _listTableView.scrollEnabled = YES;
+    } else if (!self.userInfo.hidden) {
+            self.userInfo.hidden = YES;
+            self.userInfo.userIcon.image = nil;
+            self.listTableView.scrollEnabled = YES;
             return;
     }
 
@@ -379,17 +376,17 @@ success:^(NSArray *result) {
         return;
     }
     
-    NSIndexPath *path = [_listTableView indexPathForCell:selectedCell];
+    NSIndexPath *path = [self.listTableView indexPathForCell:selectedCell];
     
-    SYBWeiBo *selectStatus = _items[path.row];
+    SYBWeiBo *selectStatus = self.items[path.row];
     
-    _userInfo.userIcon.image = selectedImage.image;
-    _userInfo.username.text = selectStatus.user.screen_name;
+    self.userInfo.userIcon.image = selectedImage.image;
+    self.userInfo.username.text = selectStatus.user.screen_name;
     
     if (selectStatus.user.verified) {
-        _userInfo.authedIfo.text = selectStatus.user.verified_reason;
+        self.userInfo.authedIfo.text = selectStatus.user.verified_reason;
     } else {
-        _userInfo.authedIfo.text = nil;
+        self.userInfo.authedIfo.text = nil;
     }
     
     NSString *followInfo = selectStatus.user.follow_me ? @"已关注你": @"未关注你";
@@ -398,19 +395,19 @@ success:^(NSArray *result) {
     } else {
         followInfo = [@"他" stringByAppendingString:followInfo];
     }
-    _userInfo.followInfo.text = followInfo;
+    self.userInfo.followInfo.text = followInfo;
     
-    [[UIApplication sharedApplication].keyWindow addSubview:_userInfo];
-    _userInfo.center = [UIApplication sharedApplication].keyWindow.center;
-    _userInfo.hidden = NO;
-    _listTableView.scrollEnabled = NO;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.userInfo];
+    self.userInfo.center = [UIApplication sharedApplication].keyWindow.center;
+    self.userInfo.hidden = NO;
+    self.listTableView.scrollEnabled = NO;
 }
 
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)recognizer
 {
     if ([recognizer isMemberOfClass:[UIPanGestureRecognizer class]]) {
-        CGPoint transfromPoint = [(UIPanGestureRecognizer *)recognizer translationInView:_listTableView];
+        CGPoint transfromPoint = [(UIPanGestureRecognizer *)recognizer translationInView:self.listTableView];
         if (fabsf(transfromPoint.x) > fabsf(transfromPoint.y)) {
             return YES;
         }
@@ -421,14 +418,14 @@ success:^(NSArray *result) {
 - (UIImage *)getImageWithURL:(NSString *)imageURL
 {
     UIImage *image = nil;
-    if (_iconDict) {
-        image = [_iconDict objectForKey:imageURL];
+    if (self.iconDict) {
+        image = [self.iconDict objectForKey:imageURL];
         
         if (image) {
             return image;
         }
     } else {
-        _iconDict = [[NSMutableDictionary alloc] init];
+        self.iconDict = [[NSMutableDictionary alloc] init];
     }
     image = [self loadImage:imageURL];
 
@@ -442,7 +439,7 @@ success:^(NSArray *result) {
             return nil;
         }
     }
-    [_iconDict setObject:image forKey:imageURL];
+    [self.iconDict setObject:image forKey:imageURL];
     return image;
 }
 
@@ -501,10 +498,10 @@ success:^(NSArray *result) {
                                                      if (!self.items) {
                                                          self.items =  [result copy];
                                                      } else if(result) {
-                                                         _items = [[result arrayByAddingObjectsFromArray: _items] copy];
+                                                         self.items = [[result arrayByAddingObjectsFromArray: self.items] copy];
                                                      }
                                                      
-                                                     [_listTableView reloadData];
+                                                     [self.listTableView reloadData];
                                                      [weakSelf doneLoadingTableViewData];
                                                  } failure:^(PBXError errorCode) {
                                                      //TODO:错误处理
@@ -544,7 +541,7 @@ success:^(NSArray *result) {
                                                              self.items = [result copy];
                                                          }
                                                      }
-                                                     [_listTableView reloadData];
+                                                     [self.listTableView reloadData];
                                                      [weakSelf doneLoadingTableViewData];
                                                  } failure:^(PBXError errorCode) {
                                                      //TODO:错误处理

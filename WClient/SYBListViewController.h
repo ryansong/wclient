@@ -21,8 +21,6 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *listTableView;
 
-- (IBAction)signOut:(id)sender;
-
 @property (nonatomic, strong) EGORefreshTableHeaderView *headerView;
 
 - (void)reloadTableViewDataSource;

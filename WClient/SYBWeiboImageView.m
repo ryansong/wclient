@@ -56,7 +56,6 @@ static const CGFloat borderInterval = 10.0f;
 {
     [super drawRect:rect];
     
-    
 }
 
 - (void)layoutSubviews
@@ -68,41 +67,4 @@ static const CGFloat borderInterval = 10.0f;
 
 }
 
-//- (void)loadMiddleImageWithProgress
-//{
-//    if (!_imageURL) {
-//        return;
-//    }
-//    
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    
-//    NSURL *URL = [NSURL URLWithString:@"_imageURL"];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-//    
-//    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-//        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
-//        return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
-//    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-//        NSLog(@"File downloaded to: %@", filePath);
-//    }];
-//    [downloadTask resume];
-//}
-//
-//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-//{
-//    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-//    NSDictionary *dict = httpResponse.allHeaderFields;
-//    NSString *lengthString = [dict valueForKey:@"Content-Length"];
-//    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-//    NSNumber *length = [formatter numberFromString:lengthString];
-//    self.totalBytes = length.unsignedIntegerValue;
-//    _imageData = [[NSMutableData alloc] init];
-//    NSLog(@"%d", [_imageData length]);
-//    
-//    [connection cancel];
-//    connection = nil;
-//    _imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageURL]];
-//        NSLog(@"%d", [_imageData length]);
-//}
 @end

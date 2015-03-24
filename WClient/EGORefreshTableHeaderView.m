@@ -183,7 +183,7 @@
 
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
 	
-    defaultInsets = scrollView.contentInset;
+//    defaultInsets = scrollView.contentInset;
     CGFloat mixOffset = scrollView.contentInset.top;
     
 	if (_state == EGOOPullRefreshLoading) {
@@ -229,7 +229,8 @@
 		[self setState:EGOOPullRefreshLoading];
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
-		scrollView.contentInset = defaultInsets;
+//		scrollView.contentInset = defaultInsets;
+        scrollView.contentInset = UIEdgeInsetsZero;
 		[UIView commitAnimations];
 		
 	}
@@ -240,7 +241,8 @@
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
-	[scrollView setContentInset:defaultInsets];
+//	[scrollView setContentInset:defaultInsets];
+    [scrollView setContentInset:UIEdgeInsetsZero];
 	[UIView commitAnimations];
 	
 	[self setState:EGOOPullRefreshNormal];
