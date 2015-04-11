@@ -18,6 +18,9 @@
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
     NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
+    if (token) {
+        [SYBWeiboAPIClient sharedClient].token = token;
+    }
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     id tabbarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"tabbarVC"];

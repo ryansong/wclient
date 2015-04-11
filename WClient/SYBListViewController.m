@@ -511,13 +511,13 @@ success:^(NSArray *result) {
     __unsafe_unretained typeof(self) weakSelf = self;
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:sinceID max_id:0 count:0 base_app:0 feature:0 trim_user:0
                                                  success:^(NSArray *result) {
-                                                     if (!self.items) {
-                                                         self.items =  [result copy];
+                                                     if (!weakSelf.items) {
+                                                         weakSelf.items =  [result copy];
                                                      } else if(result) {
-                                                         self.items = [[result arrayByAddingObjectsFromArray: self.items] copy];
+                                                         weakSelf.items = [[result arrayByAddingObjectsFromArray: weakSelf.items] copy];
                                                      }
                                                      
-                                                     [self.listTableView reloadData];
+                                                     [weakSelf.listTableView reloadData];
                                                      [weakSelf doneLoadingTableViewData];
                                                  } failure:^(PBXError errorCode) {
                                                      //TODO:错误处理

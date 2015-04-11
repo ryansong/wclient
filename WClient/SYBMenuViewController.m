@@ -49,20 +49,40 @@
                                       destructiveButtonTitle:@"Login Off"
                                            otherButtonTitles:nil];
 
+    [self updateUserInfo];
+
+    
+    UITapGestureRecognizer *iconGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(tapIconGestureRecognizer:)];
+    [self.userImageView addGestureRecognizer:iconGestureRecognizer];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (!self.user) {
+        [self updateUserInfo];
+    }
+}
+
+
+- (void)updateUserInfo
+{
     [[SYBWeiboAPIClient sharedClient] getUserInfoWithSource:nil
                                                         uid:nil
                                                 screen_name:nil
                                                     success:^(NSDictionary *dict) {
-                                                        _user = [[SYBWeiboUser alloc] init];
-                                                        _user.idstr = dict[@"idstr"];
-                                                        _user.screen_name = dict[@"screen_name"];
-                                                        _user.location = dict[@"location"];
-                                                        _user.profile_image_url = dict[@"avatar_large"];
-                                                        _user.profile_url = dict[@"profile_url"];
+                                                        self.user = [[SYBWeiboUser alloc] init];
+                                                        self.user.idstr = dict[@"idstr"];
+                                                        self.user.screen_name = dict[@"screen_name"];
+                                                        self.user.location = dict[@"location"];
+                                                        self.user.profile_image_url = dict[@"avatar_large"];
+                                                        self.user.profile_url = dict[@"profile_url"];
                                                         
-                                                        _userImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user.profile_image_url]]];
-                                                        _userInfo.text = dict[@"description"];
-                                                        _username.text = dict[@"screen_name"];
+                                                        self.userImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.user.profile_image_url]]];
+                                                        self.userInfo.text = dict[@"description"];
+                                                        self.username.text = dict[@"screen_name"];
                                                         
                                                         NSString *friends_count = [NSString stringWithFormat:@"关注%@",[dict[@"friends_count"] stringValue]];
                                                         [self.following setTitle:friends_count forState:UIControlStateNormal];
@@ -76,11 +96,6 @@
                                                     } failure:^(PBXError error) {
                                                         
                                                     }];
-
-    
-    UITapGestureRecognizer *iconGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                            action:@selector(tapIconGestureRecognizer:)];
-    [_userImageView addGestureRecognizer:iconGestureRecognizer];
 }
 
 #pragma mark -- UITableViewDataSource
