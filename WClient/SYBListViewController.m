@@ -119,7 +119,6 @@ static NSString * const largeImageFolder = @"mw1024";
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.listTableView.frame.size.width, 44)];
     self.mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     
-    
     [self getWeibo];
 }
 
@@ -131,7 +130,24 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (!self.items) {
+        [self getWeibo];
+    }
     [self.listTableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+    NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
+    if (!token) {
+        id loginVC = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
+        [self.tabBarController presentViewController:loginVC animated:YES completion:nil];
+    }
+    
 }
 
 #pragma mark -- UITableViewDataSource

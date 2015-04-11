@@ -109,7 +109,8 @@
 - (void)goListViewController
 {
     [self hideWebView];
-    [self performSegueWithIdentifier:@"login" sender:self];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showWebView
@@ -191,7 +192,7 @@
                 [SSKeychain setPassword:access_token forService:@"WClient" account:uid];
                 [[SYBWeiboAPIClient sharedClient] setToken:access_token];
                 
-                [self performSegueWithIdentifier:@"login" sender:self];
+                [self goListViewController];
                 
                 [_activity stopAnimating];
                 self.view.userInteractionEnabled = YES;
@@ -259,9 +260,5 @@
      ];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-}
 
 @end

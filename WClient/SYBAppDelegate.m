@@ -6,21 +6,33 @@
 //  Copyright (c) 2013年 Song Xiaoming. All rights reserved.
 //
 
+#import <SSKeychain.h>
 #import "SYBAppDelegate.h"
 #import "SYBWeiboAPIClient.h"
-#import <SSKeychain.h>
+#import "SYBLoginViewController.h"
 
 @implementation SYBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#warning test api
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
     NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
-    if (token) {
-        [SYBWeiboAPIClient sharedClient].token = token;
-    }
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    id tabbarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"tabbarVC"];
+    
+    [[UIApplication sharedApplication] keyWindow].rootViewController = tabbarVC;
+    
+    
+    
+#warning test api
+    
+//    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+//    NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
+//    if (token) {
+//        [SYBWeiboAPIClient sharedClient].token = token;
+//    }
 
     //test get friendsWeibo
 //    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0 success:^(NSArray *reslut) {

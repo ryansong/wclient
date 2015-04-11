@@ -125,9 +125,18 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
-     
-//        [self performSegueWithIdentifier:@"logoff" sender:self];
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+
+        
+       id LoginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
+
+        // todo
+        __weak UIViewController *listVC = self.tabBarController.customizableViewControllers[0];
+        
+        [self.tabBarController presentViewController:LoginVC animated:YES completion:^{
+            [self.tabBarController setSelectedIndex:0];
+        }];
+        
     }
 }
 

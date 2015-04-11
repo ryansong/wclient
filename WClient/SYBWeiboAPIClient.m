@@ -86,7 +86,9 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
                       failure:(PBErrorBlock)failure
 {
     NSMutableDictionary *params = [NSMutableDictionary  dictionary];
-    params[@"access_token"] = _token;
+    if (_token){
+        params[@"access_token"] = _token;
+    }
     
     if (source) {
         params[@"source"] = source;
@@ -98,7 +100,10 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
     if (uid) {
         params[@"uid"] = uid;
     } else {
-       params[@"uid"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+        uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+        if (uid) {
+            params[@"uid"] = uid;
+        }
     }
     
     if (screen_name) {
@@ -136,8 +141,11 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
                    failure:(PBErrorBlock)failure
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-
-    params[@"access_token"] = _token;
+    
+    if (self.token) {
+        params[@"access_token"] = _token;
+    }
+    
     
     if (since_id) {
         params[@"since_id"] = @(since_id);

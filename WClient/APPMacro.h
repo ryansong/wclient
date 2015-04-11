@@ -31,6 +31,6 @@ typedef NS_ENUM(NSUInteger, SYBCommentOriType  ){
     SYBCommentOriRetweet,
 };
 
-static SYBRunEnviroment const ENV = SYBRunEnviromentOffLine;
+static SYBRunEnviroment const ENV = SYBRunEnviromentOnline;
 
 #endif
