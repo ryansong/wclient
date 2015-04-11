@@ -30,6 +30,8 @@
 #define TEXT_COLOR	 [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
 #define FLIP_ANIMATION_DURATION 0.18f
 
+#define FLIP_REFRESH_OFFSET 45.0f
+
 
 @interface EGORefreshTableHeaderView (Private)
 - (void)setState:(EGOPullRefreshState)aState;
@@ -229,11 +231,20 @@
 		[self setState:EGOOPullRefreshLoading];
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
-//		scrollView.contentInset = defaultInsets;
         scrollView.contentInset = UIEdgeInsetsZero;
 		[UIView commitAnimations];
-		
-	}
+    } else if (((scrollView.contentOffset.y + scrollView.frame.size.height - scrollView.contentSize.height) > FLIP_REFRESH_OFFSET) && !_loading){
+       
+        if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDidTriggerRefresh:direction:)]) {
+            [_delegate egoRefreshTableHeaderDidTriggerRefresh:self direction:EGOOPullRefreshUp];
+        }
+        
+        [self setState:EGOOPullRefreshLoading];
+        [UIView beginAnimations:nil context:NULL]; 
+        [UIView setAnimationDuration:0.2];
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, FLIP_REFRESH_OFFSET, 0);
+        [UIView commitAnimations];
+    }
 	
 }
 

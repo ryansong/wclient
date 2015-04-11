@@ -33,11 +33,17 @@ typedef enum{
 	EGOOPullRefreshLoading,	
 } EGOPullRefreshState;
 
+typedef enum{
+    EGOOPullRefreshUp = 0,
+    EGOOPullRefreshDown,
+} EGOPullRefreshDirection;
+
 @protocol EGORefreshTableHeaderDelegate;
 @interface EGORefreshTableHeaderView : UIView {
 	
 	id _delegate;
 	EGOPullRefreshState _state;
+    EGOPullRefreshDirection _direction;
 
 	UILabel *_lastUpdatedLabel;
 	UILabel *_statusLabel;
@@ -59,6 +65,7 @@ typedef enum{
 @end
 @protocol EGORefreshTableHeaderDelegate
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view;
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view direction:(EGOPullRefreshDirection)direction;
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view;
 @optional
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view;

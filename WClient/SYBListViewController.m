@@ -492,12 +492,40 @@ success:^(NSArray *result) {
     return attString;
 }
 
--(NSMutableAttributedString *)AttributedString:(NSString *)text
+- (NSMutableAttributedString *)AttributedString:(NSString *)text
 {
     return [self AttributedString:text withFont:nil withColor:nil] ;
 }
 
--(void) refreshNewWeibos
+- (void)fetchOldDate
+{
+    long long maxID = 0;
+    if (self.items) {
+        SYBWeiBo *lastItem =  self.items.lastObject;
+        if (lastItem) {
+            maxID = lastItem.weiboId;
+        }
+    }
+    __unsafe_unretained typeof(self) weakSelf = self;
+    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:maxID count:0 base_app:0 feature:0 trim_user:0
+                                                 success:^(NSArray *result) {
+                                                     if (!weakSelf.items) {
+                                                         weakSelf.items =  [result copy];
+                                                     } else if(result) {
+                                                         weakSelf.items = [[weakSelf.items arrayByAddingObjectsFromArray: result] copy];
+                                                     }
+                                                     
+                                                     [weakSelf.listTableView reloadData];
+                                                     [weakSelf doneLoadingTableViewData];
+                                                 } failure:^(PBXError errorCode) {
+                                                     //TODO:错误处理
+                                                     NSLog(@"get weibo failed. error code:%lu", errorCode);
+                                                     [weakSelf doneLoadingTableViewData];
+                                                 }];
+    
+}
+
+- (void) refreshNewWeibos
 {
 
     long long sinceID = 0;
@@ -573,6 +601,16 @@ success:^(NSArray *result) {
     [self refreshNewWeibos];
     
 }
+- (void)reloadTableViewDataSourceInType:(SYBFetchDataType)fetchType
+{
+    loading = YES;
+    if (fetchType == SYBFetchDataTypeNew) {
+        [self refreshNewWeibos];
+    } else if (fetchType == SYBFetchDataTypeOld)
+    {
+        [self fetchOldDate];
+    }
+}
 
 - (void)doneLoadingTableViewData
 {
@@ -586,6 +624,15 @@ success:^(NSArray *result) {
 {
     [self reloadTableViewDataSource];
 
+}
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view direction:(EGOPullRefreshDirection)direction
+{
+    if (direction == EGOOPullRefreshDown) {
+        [self reloadTableViewDataSourceInType:SYBFetchDataTypeNew];
+    } else if (direction == EGOOPullRefreshUp){
+        [self reloadTableViewDataSourceInType:SYBFetchDataTypeOld];
+    }
+    
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view

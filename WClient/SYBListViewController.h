@@ -11,6 +11,12 @@
 #import "SYBWeiboViewCell.h"
 #import "APPMacro.h"
 
+typedef enum{
+    SYBFetchDataTypeNew = 0,
+    SYBFetchDataTypeOld,
+    SYBFetchDataTypeUpdate,
+} SYBFetchDataType;
+
 @interface SYBListViewController : UIViewController <UITableViewDataSource,
                                                     UITableViewDelegate,
                                                     UIGestureRecognizerDelegate,
@@ -23,8 +29,12 @@
 
 @property (nonatomic, strong) EGORefreshTableHeaderView *headerView;
 
+- (void)reloadTableViewDataSourceInType:(SYBFetchDataType)fetchType;
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
+
+- (void)fetchNewDate;
+- (void)fetchOldDate;
 
 
 @end
