@@ -231,7 +231,7 @@
 		[self setState:EGOOPullRefreshLoading];
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
-        scrollView.contentInset = UIEdgeInsetsZero;
+        scrollView.contentInset = defaultInsets;
 		[UIView commitAnimations];
     } else if (((scrollView.contentOffset.y + scrollView.frame.size.height - scrollView.contentSize.height) > FLIP_REFRESH_OFFSET) && !_loading){
        
