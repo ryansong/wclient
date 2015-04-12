@@ -48,6 +48,7 @@
 		CF58BB18185A131C00CE3136 /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CF58BB17185A131C00CE3136 /* UserIcon.png */; };
 		CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF58BB74185F3D9100CE3136 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF58BB73185F3D9100CE3136 /* libicucore.dylib */; };
+		CF6048F31AD990E5008E6286 /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6048F21AD990E5008E6286 /* UIImage+image.m */; };
 		CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */; };
 		CF7CA5431AB9D2C200E76086 /* SYBPlistManagment.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7CA5421AB9D2C200E76086 /* SYBPlistManagment.m */; };
 		CF7CA5471ABB2D0600E76086 /* SYBWeiBo+tableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7CA5461ABB2D0600E76086 /* SYBWeiBo+tableViewCell.m */; };
@@ -155,6 +156,8 @@
 		CF58BB70185F3CBF00CE3136 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		CF58BB71185F3CBF00CE3136 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		CF58BB73185F3D9100CE3136 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		CF6048F11AD990E5008E6286 /* UIImage+image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
+		CF6048F21AD990E5008E6286 /* UIImage+image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
 		CF6FBD8F1837DBC9001A35EF /* SYBMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBMenuViewController.h; sourceTree = "<group>"; };
 		CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBMenuViewController.m; sourceTree = "<group>"; };
 		CF7CA5411AB9D2C200E76086 /* SYBPlistManagment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBPlistManagment.h; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 			children = (
 				CF7CA5451ABB2D0600E76086 /* SYBWeiBo+tableViewCell.h */,
 				CF7CA5461ABB2D0600E76086 /* SYBWeiBo+tableViewCell.m */,
+				CF6048F11AD990E5008E6286 /* UIImage+image.h */,
+				CF6048F21AD990E5008E6286 /* UIImage+image.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -679,6 +684,7 @@
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
 				56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,
+				CF6048F31AD990E5008E6286 /* UIImage+image.m in Sources */,
 				CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */,
 				CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */,
 				CF7CA5471ABB2D0600E76086 /* SYBWeiBo+tableViewCell.m in Sources */,

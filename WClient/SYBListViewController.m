@@ -22,6 +22,7 @@
 #import "SYBCommentTransition.h"
 #import "SYBActionTransition.h"
 #import "SYBWeiBo+tableViewCell.h"
+#import "UIImage+image.h"
 
 
 #import "UIColor+hex.h"
@@ -130,6 +131,9 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [self.tabBarController.tabBar setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]]];
+    [self.tabBarController.tabBar setShadowImage:[UIImage createImageWithColor:[UIColor colorWithWhite:0.7 alpha:1]]];
     
     if (!self.items) {
         [self getWeibo];
