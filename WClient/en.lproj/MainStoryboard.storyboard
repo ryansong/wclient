@@ -798,7 +798,7 @@
         <!--Weibo Action View Controller-->
         <scene sceneID="n3A-tm-d6Q">
             <objects>
-                <viewController storyboardIdentifier="SYBWeiboActionViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="4HE-3p-rfX" customClass="SYBWeiboActionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SYBWeiboActionViewController" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" id="4HE-3p-rfX" customClass="SYBWeiboActionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hyq-MQ-83h"/>
                         <viewControllerLayoutGuide type="bottom" id="OGS-fs-wZQ"/>
@@ -807,20 +807,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="6mq-Kl-Jl9">
-                                <rect key="frame" x="0.0" y="39" width="320" height="29"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <segments>
-                                    <segment title="like" enabled="NO"/>
-                                    <segment title="retweet"/>
-                                    <segment title="comment"/>
-                                </segments>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrT-dZ-DM4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="1Dt-vi-Lz7"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="itemChanged:" destination="4HE-3p-rfX" eventType="valueChanged" id="t0t-Vg-ka1"/>
+                                    <action selector="dismissBtnClicked:" destination="4HE-3p-rfX" eventType="touchUpInside" id="jfY-ti-7hc"/>
                                 </connections>
-                            </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dZT-6B-m5k">
-                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dZT-6B-m5k">
+                                <rect key="frame" x="0.0" y="101" width="320" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="FQO-6I-mgO">
@@ -864,28 +865,40 @@
                                     <outlet property="delegate" destination="4HE-3p-rfX" id="jpE-Ta-p3K"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrT-dZ-DM4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="6mq-Kl-Jl9">
+                                <rect key="frame" x="0.0" y="72" width="320" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="like" enabled="NO"/>
+                                    <segment title="retweet"/>
+                                    <segment title="comment"/>
+                                </segments>
                                 <connections>
-                                    <action selector="dismissBtnClicked:" destination="4HE-3p-rfX" eventType="touchUpInside" id="jfY-ti-7hc"/>
+                                    <action selector="itemChanged:" destination="4HE-3p-rfX" eventType="valueChanged" id="t0t-Vg-ka1"/>
                                 </connections>
-                            </button>
+                            </segmentedControl>
                         </subviews>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="OGS-fs-wZQ" firstAttribute="top" secondItem="dZT-6B-m5k" secondAttribute="bottom" id="44K-WN-cez"/>
+                            <constraint firstItem="dZT-6B-m5k" firstAttribute="leading" secondItem="V4R-ya-c2O" secondAttribute="leadingMargin" constant="-16" id="8Bu-eV-UPW"/>
+                            <constraint firstItem="dZT-6B-m5k" firstAttribute="top" secondItem="6mq-Kl-Jl9" secondAttribute="bottom" constant="1" id="DlW-V1-Fcj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dZT-6B-m5k" secondAttribute="trailing" constant="-16" id="Q95-mf-QaQ"/>
+                            <constraint firstItem="Hyq-MQ-83h" firstAttribute="top" secondItem="ZrT-dZ-DM4" secondAttribute="bottom" constant="-55" id="Qb5-hW-Xaw"/>
+                            <constraint firstItem="ZrT-dZ-DM4" firstAttribute="leading" secondItem="V4R-ya-c2O" secondAttribute="leadingMargin" constant="-16" id="Tvh-Nr-4xH"/>
+                            <constraint firstItem="6mq-Kl-Jl9" firstAttribute="leading" secondItem="V4R-ya-c2O" secondAttribute="leadingMargin" constant="-16" id="gIB-3a-CG0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZrT-dZ-DM4" secondAttribute="trailing" constant="-16" id="gTV-gY-p7v"/>
+                            <constraint firstItem="6mq-Kl-Jl9" firstAttribute="top" secondItem="ZrT-dZ-DM4" secondAttribute="bottom" constant="-3" id="h7k-0D-du0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6mq-Kl-Jl9" secondAttribute="trailing" constant="-16" id="hfQ-QT-NAl"/>
+                        </constraints>
                     </view>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="listTableView" destination="dZT-6B-m5k" id="jO5-mE-4Jy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clt-zQ-U6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-708" y="-798"/>
+            <point key="canvasLocation" x="-830" y="-1549"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="uYp-qe-v2k">

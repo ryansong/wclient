@@ -875,6 +875,7 @@ success:^(NSArray *result) {
     SYBWeiBo *status = [_items objectAtIndex:indexPath.row];
     
     SYBWeiboActionViewController *actionViewController = [_mainStoryboard instantiateViewControllerWithIdentifier:@"SYBWeiboActionViewController"];
+    
     actionViewController.transitioningDelegate = self;
     actionViewController.modalPresentationStyle = UIModalPresentationCustom;
     actionViewController.status = status.retweeted_status;
