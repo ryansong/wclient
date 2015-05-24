@@ -75,8 +75,9 @@
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [self.view addSubview: _webView];
+        [self loadLoginWebView];
     }
-    _webView.hidden  = YES;
+//    _webView.hidden  = YES;
     _loadImage.hidden = NO;
     
     [self start];
@@ -140,12 +141,6 @@
     
     [_webView loadRequest:request];
     _webView.delegate = self;
-    [self didLoadLoginWebView];
-}
-
-- (void)didLoadLoginWebView
-{
-//    timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(showWebView) userInfo:nil repeats:NO];
 }
 
 
