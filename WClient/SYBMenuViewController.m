@@ -137,7 +137,7 @@
     // choose logoff
     if (buttonIndex == 0) {
         self.user = nil;
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SSKeyChina_UID];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

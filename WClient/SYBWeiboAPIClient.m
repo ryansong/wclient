@@ -59,6 +59,10 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
         _client_secret = CLIENT_SECRET;
         _httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:KAPIBaseUrl]];
         _httpClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:SSKeyChina_UID];
+        _token = [SSKeychain passwordForService:SSKeyChina_Service account:account];
+        
     }
     return self;
 }
@@ -100,7 +104,7 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
     if (uid) {
         params[@"uid"] = uid;
     } else {
-        uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+        uid = [[NSUserDefaults standardUserDefaults] valueForKey:SSKeyChina_UID];
         if (uid) {
             params[@"uid"] = uid;
         }
@@ -616,7 +620,7 @@ static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
 
 - (BOOL) sendWeiBo
 {
-    NSString *acctoken = [SSKeychain passwordForService:@"WClient" account:@"username"];
+    NSString *acctoken = [SSKeychain passwordForService:SSKeyChina_Service account:@"username"];
     NSString *status =@"test1111222中文";
     
     NSString *api = [NSString stringWithFormat:@"https://api.weibo.com/2/statuses/update.json?access_token=%@&status=%@",acctoken,status];

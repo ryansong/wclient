@@ -87,7 +87,7 @@
 
 - (void)start
 {
-    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
+    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:SSKeyChina_UID];
     if (!uid)
     { //As Not Login
         [self openLoginView];
@@ -95,7 +95,7 @@
 #warning delete user key for test
 //        [SSKeychain deletePasswordForService:@"WClient" account:uid];
         
-        NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
+        NSString *token = [SSKeychain passwordForService:SSKeyChina_Service account:uid];
         [[SYBWeiboAPIClient sharedClient] setToken:token];
 
         if (!token)
@@ -143,7 +143,6 @@
     _webView.delegate = self;
 }
 
-
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
     NSString *tokenstring = self.webView.request.URL.absoluteString;
@@ -184,7 +183,7 @@
                 NSString *uid = dict[@"uid"];
                 NSString *access_token = dict[@"access_token"];
                 [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
-                [SSKeychain setPassword:access_token forService:@"WClient" account:uid];
+                [SSKeychain setPassword:access_token forService:SSKeyChina_Service account:uid];
                 [[SYBWeiboAPIClient sharedClient] setToken:access_token];
                 
                 [self goListViewController];

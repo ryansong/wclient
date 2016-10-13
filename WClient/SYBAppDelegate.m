@@ -10,14 +10,17 @@
 #import "SYBAppDelegate.h"
 #import "SYBWeiboAPIClient.h"
 #import "SYBLoginViewController.h"
+#import "WClient-Swift.h"
 
 @implementation SYBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [WeiboSDK registerApp:CLIENT_ID];
     
-    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
-    NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:SSKeyChina_UID];
+    NSString *token = [SSKeychain passwordForService:SSKeyChina_Service account:uid];
     if (token) {
         [SYBWeiboAPIClient sharedClient].token = token;
     }
@@ -56,5 +59,24 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+   return [WeiboSDK handleOpenURL:url delegate:SYBRouter.sharedRouter.weiboDelegate];
+}
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    return [WeiboSDK handleOpenURL:url delegate:SYBRouter.sharedRouter.weiboDelegate];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(nullable NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    return [WeiboSDK handleOpenURL:url delegate:SYBRouter.sharedRouter.weiboDelegate];
+ }
 
 @end

@@ -15,6 +15,7 @@
     #import <Foundation/Foundation.h>
     #import "WeiboConstantDefine.h"
     #import "APPMacro.h"
+    #import "WeiboSDK.h"
 
 #endif
 

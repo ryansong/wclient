@@ -23,6 +23,7 @@
 #import "SYBActionTransition.h"
 #import "SYBWeiBo+tableViewCell.h"
 #import "UIImage+image.h"
+#import "WClient-Swift.h"
 
 
 #import "UIColor+hex.h"
@@ -121,6 +122,10 @@ static NSString * const largeImageFolder = @"mw1024";
     self.mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     
     [self getWeibo];
+    
+    if (![SYBAccount.account isLogin] ){
+        [SYBRouter.sharedRouter showLoginViewInViewControllerWithViewController:self];
+    }
 }
 
 - (void)loadView
@@ -144,14 +149,6 @@ static NSString * const largeImageFolder = @"mw1024";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
-    NSString *token = [SSKeychain passwordForService:@"WClient" account:uid];
-    if (!token) {
-        id loginVC = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
-        [self.tabBarController presentViewController:loginVC animated:YES completion:nil];
-    }
-    
 }
 
 
