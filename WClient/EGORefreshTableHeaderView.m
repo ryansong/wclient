@@ -45,7 +45,7 @@
     if((self = [super initWithFrame:frame])) {
 		
         
-        defaultInsets = UIEdgeInsetsMake(44.0f, 0.0f, 0.0f, 0.0f);
+        defaultInsets = UIEdgeInsetsMake(64.0f, 0.0f, 0.0f, 0.0f);
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
 
@@ -252,8 +252,8 @@
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
-//	[scrollView setContentInset:defaultInsets];
-    [scrollView setContentInset:UIEdgeInsetsZero];
+	[scrollView setContentInset:defaultInsets];
+//    [scrollView setContentInset:UIEdgeInsetsZero];
 	[UIView commitAnimations];
 	
 	[self setState:EGOOPullRefreshNormal];

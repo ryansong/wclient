@@ -604,7 +604,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="n0X-Zi-0bW" firstAttribute="top" secondItem="iG6-1q-ZO5" secondAttribute="bottom" id="C9K-8z-tgD"/>
+                            <constraint firstItem="n0X-Zi-0bW" firstAttribute="top" secondItem="iG6-1q-ZO5" secondAttribute="bottom" constant="-64" id="C9K-8z-tgD"/>
                             <constraint firstItem="uAo-iL-CY4" firstAttribute="top" secondItem="n0X-Zi-0bW" secondAttribute="bottom" id="KUA-o8-RHK"/>
                             <constraint firstItem="n0X-Zi-0bW" firstAttribute="leading" secondItem="I69-6B-bOR" secondAttribute="leadingMargin" constant="-16" id="cOe-HM-ujB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="n0X-Zi-0bW" secondAttribute="trailing" constant="-16" id="rEX-HE-PMB"/>
@@ -651,16 +651,16 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="FQO-6I-mgO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attibutedCell" rowHeight="60" id="EJu-fI-0Ow" customClass="SYBAttibutedViewCell">
-                                        <rect key="frame" x="0.0" y="66" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="66" width="1000" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJu-fI-0Ow" id="cQN-a4-Ohr">
-                                            <frame key="frameInset" width="375" height="59"/>
+                                            <frame key="frameInset" width="1000" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jd0-Vc-ZKh">
@@ -1067,6 +1067,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="drN-Dw-XO9"/>
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="kOd-De-obG">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

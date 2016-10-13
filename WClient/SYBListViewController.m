@@ -504,6 +504,27 @@ success:^(NSArray *result) {
     return [self AttributedString:text withFont:nil withColor:nil] ;
 }
 
+- (void)fetchNewDate {
+    long long maxID = 0;
+ 
+    __unsafe_unretained typeof(self) weakSelf = self;
+    [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:maxID count:0 base_app:0 feature:0 trim_user:0
+                                                 success:^(NSArray *result) {
+                                                     if (!weakSelf.items) {
+                                                         weakSelf.items =  [result copy];
+                                                     } else if(result) {
+                                                         weakSelf.items = [[weakSelf.items arrayByAddingObjectsFromArray: result] copy];
+                                                     }
+                                                     
+                                                     [weakSelf.listTableView reloadData];
+                                                     [weakSelf doneLoadingTableViewData];
+                                                 } failure:^(PBXError errorCode) {
+                                                     //TODO:错误处理
+                                                     NSLog(@"get weibo failed. error code:%lu", errorCode);
+                                                     [weakSelf doneLoadingTableViewData];
+                                                 }];
+}
+
 - (void)fetchOldDate
 {
     long long maxID = 0;
