@@ -14,8 +14,12 @@ class SYBAccount: SYBWeiboUser {
     
     override init() {
         super.init()
-        let userID:String = UserDefaults.standard.object(forKey: SSKeyChina_UID) as! String
-        self.idstr = userID
+        
+        let id = UserDefaults.standard.object(forKey: SSKeyChina_UID)
+        if id != nil {
+            let userID:String = id as! String
+            self.idstr = userID
+        }
     }
     
     func isLogin() -> Bool {
@@ -23,7 +27,6 @@ class SYBAccount: SYBWeiboUser {
         if userID != nil {
             return true
         }
-        
         return false
     }
     

@@ -25,14 +25,7 @@
 #import "UIImage+image.h"
 #import "WClient-Swift.h"
 
-
 #import "UIColor+hex.h"
-
-#define ALABEL_EXPRESSION @"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}"
-#define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
-#define URL_EXPRESSION @"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])"
-#define AT_IN_WEIBO_EXPRESSION @"(@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30})"
-#define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
 
 #define MAX_TWITTER_COUNT 100
 
@@ -96,8 +89,6 @@ static NSString * const largeImageFolder = @"mw1024";
     
     NSString *defaultImagePath = [[NSBundle mainBundle] pathForResource:@"Default" ofType:@"png"];
     defaultImage = [UIImage imageWithContentsOfFile:defaultImagePath];
-
-
 }
 
 - (void)viewDidLoad
@@ -470,38 +461,6 @@ success:^(NSArray *result) {
 {
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
     return image;
-}
-
--(NSMutableAttributedString *)AttributedString:(NSString *)text withFont:(UIFont *)font withColor:(UIColor *)color
-{
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    
-    if (!color) {
-      color = [UIColor colorWithHex:0x3498DB];
-    }
-
-    NSRange userRange = {NSNotFound, NSNotFound};
-    NSInteger local = 0;
-    NSMutableString *muText = [NSMutableString stringWithString:text];
-    
-    NSString *regEx = ALABEL_EXPRESSION;
-    for(NSString *user in [muText componentsMatchedByRegex:regEx]) {
-
-        if (userRange.location != NSNotFound) {
-            [muText deleteCharactersInRange:NSMakeRange(0, userRange.location + userRange.length)];
-        }
-        
-        userRange = [muText rangeOfString:user options:NSRegularExpressionSearch];
-        [attString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(local + userRange.location, userRange.length)];
-        local += userRange.length + userRange.location;
-        
-    }
-    return attString;
-}
-
-- (NSMutableAttributedString *)AttributedString:(NSString *)text
-{
-    return [self AttributedString:text withFont:nil withColor:nil] ;
 }
 
 - (void)fetchNewDate {

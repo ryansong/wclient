@@ -24,6 +24,12 @@ static NSString *const Retweet = @"Retweet";
 #define SSKeyChina_UID @"uid"
 #define SSKeyChina_Service @"WClient"
 
+#define ALABEL_EXPRESSION @"@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30}"
+#define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
+#define URL_EXPRESSION @"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])"
+#define AT_IN_WEIBO_EXPRESSION @"(@[\u4e00-\u9fa5a-zA-Z0-9_-]{4,30})"
+#define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
+
 typedef enum{
     SYBRunEnviromentOffLine = 0,
     SYBRunEnviromentOnline,
