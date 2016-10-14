@@ -590,11 +590,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="n0X-Zi-0bW" secondAttribute="trailing" constant="-16" id="rEX-HE-PMB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="AMk-aB-s3a">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="QVr-kY-irl">
-                            <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="AMk-aB-s3a"/>
                     <connections>
                         <outlet property="listTableView" destination="n0X-Zi-0bW" id="5so-DA-Qmg"/>
                     </connections>
