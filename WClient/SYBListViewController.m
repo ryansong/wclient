@@ -188,7 +188,6 @@ static NSString * const largeImageFolder = @"mw1024";
     SYBWeiboViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.cellDelegate = self;
     
-    
     UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
                                                  initWithTarget:self
                                                  action:@selector(handleCellTap:)];
@@ -207,7 +206,6 @@ static NSString * const largeImageFolder = @"mw1024";
     
     // update layout after set text
     [cell layoutIfNeeded];
-    
     return cell;
 }
 

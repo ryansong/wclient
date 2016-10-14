@@ -7,6 +7,7 @@
 //
 
 #import "SYBWeiboViewCell.h"
+#import "WClient-Swift.h"
 
 @implementation SYBWeiboViewCell
 
@@ -89,6 +90,10 @@
 - (void)tapRepoWeibo
 {
     [self.cellDelegate viewRepoWeibo:self];
+}
+
+- (void)layoutSubviews {
+    [self.iconView setCornerWithRadius:10];
 }
 
 

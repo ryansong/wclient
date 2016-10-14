@@ -25,6 +25,7 @@
 		56D940471DAF7C160052CC60 /* SYBAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940461DAF7C150052CC60 /* SYBAccount.swift */; };
 		56D940B31DAFCCDD0052CC60 /* NSString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940B21DAFCCDD0052CC60 /* NSString+Extension.swift */; };
 		56D940B51DAFCF8F0052CC60 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940B41DAFCF8F0052CC60 /* UIColor+Extension.swift */; };
+		56D940B71DB111970052CC60 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940B61DB111970052CC60 /* UIView+Extension.swift */; };
 		56EF4919199C891A00B1A569 /* SYBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF4918199C891A00B1A569 /* SYBCommentViewController.m */; };
 		56EF491D199C9E0200B1A569 /* SYBCommentTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF491C199C9E0200B1A569 /* SYBCommentTransition.m */; };
 		56EF4921199CD08000B1A569 /* SYBPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF4920199CD08000B1A569 /* SYBPopoverSegue.m */; };
@@ -126,6 +127,7 @@
 		56D940461DAF7C150052CC60 /* SYBAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBAccount.swift; sourceTree = "<group>"; };
 		56D940B21DAFCCDD0052CC60 /* NSString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Extension.swift"; sourceTree = "<group>"; };
 		56D940B41DAFCF8F0052CC60 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		56D940B61DB111970052CC60 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		56EF4917199C891A00B1A569 /* SYBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBCommentViewController.h; sourceTree = "<group>"; };
 		56EF4918199C891A00B1A569 /* SYBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBCommentViewController.m; sourceTree = "<group>"; };
 		56EF491B199C9E0200B1A569 /* SYBCommentTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBCommentTransition.h; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				CF6048F21AD990E5008E6286 /* UIImage+image.m */,
 				56D940B21DAFCCDD0052CC60 /* NSString+Extension.swift */,
 				56D940B41DAFCF8F0052CC60 /* UIColor+Extension.swift */,
+				56D940B61DB111970052CC60 /* UIView+Extension.swift */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
 				56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,
+				56D940B71DB111970052CC60 /* UIView+Extension.swift in Sources */,
 				CF6048F31AD990E5008E6286 /* UIImage+image.m in Sources */,
 				CFB0864517E73E16003F5F03 /* SYBWeiBo.m in Sources */,
 				CF58BB72185F3CBF00CE3136 /* RegexKitLite.m in Sources */,
