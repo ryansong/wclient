@@ -31,7 +31,6 @@ import UIKit
         } else {
             viewController.dismiss(animated: true, completion: nil)
         }
-        
         self.weiboDelegate = nil
     }
     

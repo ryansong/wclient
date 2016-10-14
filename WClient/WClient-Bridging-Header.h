@@ -6,3 +6,6 @@
 #import "APPMacro.h"
 #import "SSKeyChain.h"
 #import "SYBWeiboUser.h"
+#import "SYBWeiBo.h"
+#import "SYBWeiBoUser.h"
+#import "UIImageView+WebCache.h"

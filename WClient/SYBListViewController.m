@@ -160,109 +160,19 @@ static NSString * const largeImageFolder = @"mw1024";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier;
+    static NSString *reuserIdentifier = @"reuserIdentifier";
     
-    SYBWeiBo *status = [self.items objectAtIndex:[indexPath row]];
-
-    switch ([status cellType]) {
-        case WeiboCellTypeText:
-            CellIdentifier = textCellIdentifier;
-            break;
-            
-        case WeiboCellTypeImage:
-            CellIdentifier = imageCellIdentifier;
-            break;
-            
-        case WeiboCellTypeRepoText:
-            CellIdentifier = repoTextCellIdentifier;
-            break;
-
-        case WeiboCellTypeRepoImage:
-            CellIdentifier = repoImageCellIdentifier;
-            break;
-            
-        default:
-            break;
+    WeiboCell *cell = [tableView dequeueReusableCellWithIdentifier:reuserIdentifier];
+    if (cell == nil) {
+        cell = [WeiboCell cellFromNibWith:reuserIdentifier];
     }
     
-    SYBWeiboViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.cellDelegate = self;
+    SYBWeiBo *twitter = [self.items objectAtIndex:indexPath.row];
+    [cell setupOf:twitter];
     
-    UITapGestureRecognizer *tapGestureForCell = [[UITapGestureRecognizer alloc]
-                                                 initWithTarget:self
-                                                 action:@selector(handleCellTap:)];
-    [cell.iconView addGestureRecognizer:tapGestureForCell];
-    
-    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
-    
-    [cell.poImage addGestureRecognizer:tapImage];
-    
-    UITapGestureRecognizer *tapRepoImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullImage:)];
-    [cell.repoImage addGestureRecognizer:tapRepoImage];
-
-    cell.tag = indexPath.row;
-    
-    [self setViewCell:cell withIndex:indexPath];
-    
-    // update layout after set text
-    [cell layoutIfNeeded];
     return cell;
 }
 
-
-- (void)setViewCell:(UITableViewCell *)viewCell withIndex:(NSIndexPath *)indexPath
-{
-    SYBWeiboViewCell *configCell = ((SYBWeiboViewCell *)viewCell);
-    SYBWeiBo *status = [self.items objectAtIndex:indexPath.row];
-    configCell.poTextView.text = status.text;
-    
-    configCell.username.text = status.user.name;
-    configCell.creatTimeAndSource.text = [NSString stringWithFormat:@"%@ %@", status.created_at, status.source];
-
-    if (status.cellType == WeiboCellTypeImage) {
-        
-        configCell.poImage.imageURL = status.pic_urls[0];
-        dispatch_async(dispatch_queue_create(0, 0), ^{
-            UIImage *cellImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:status.pic_urls[0]]]];
-            if (cellImage) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    configCell.poImage.imageView.image = cellImage;
-                });
-            }
-        });
-    } else if (status.cellType == WeiboCellTypeRepoText) {
-        configCell.repoUsername.text = status.retweeted_status.user.name;
-        configCell.repoTextView.text = status.retweeted_status.text;
-    } else if (status.cellType == WeiboCellTypeRepoImage) {
-        configCell.repoUsername.text = status.retweeted_status.user.name;
-        configCell.repoTextView.text = status.retweeted_status.text;
-
-        configCell.repoImage.imageURL = status.retweeted_status.pic_urls[0];
-        dispatch_async(dispatch_queue_create(0, 0), ^{
-            UIImage *cellImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:status.retweeted_status.pic_urls[0]]]];
-            if (cellImage) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    configCell.repoImage.imageView.image = cellImage;
-                });
-            }
-        });
-
-    }
-    
-    __unsafe_unretained typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *image = [weakSelf getImageWithURL:status.user.profile_image_url];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!indexPath && image) {
-                return ;
-            }
-            if (configCell.tag == indexPath.row) {
-                configCell.iconView.image = image;
-            }
-        });
-    });
-
-}
 
 - (NSString *)dateTimeWithCreat_dt:(NSString *)created_dt
 {
