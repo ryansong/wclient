@@ -10,6 +10,8 @@
 
 @interface NSDate (date)
 
-- (NSDate *)dateFromString:(NSString *)dateString;
++ (NSDate *)dateWithString:(NSString *)dateString;
++ (NSDate *)dateWithCreateAt:(NSString *)dateString;
+- (NSString *)sinceDate;
 
 @end

@@ -173,46 +173,6 @@ static NSString * const largeImageFolder = @"mw1024";
     return cell;
 }
 
-
-- (NSString *)dateTimeWithCreat_dt:(NSString *)created_dt
-{
-    NSDateFormatter* formater = [[NSDateFormatter alloc] init];
-    [formater setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
-    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    [formater setLocale:usLocale];
-    
-    NSDate* createdDate = [formater dateFromString:created_dt];
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:createdDate];
-    
-    if (timeInterval < SYBMINTUESECONDS) {
-        
-        long second = timeInterval;
-        NSNumber *number = [NSNumber numberWithLong:second];
-        NSString *creat_dt = [number stringValue];
-        
-        return [creat_dt stringByAppendingString:@"秒前"];
-    } else if(timeInterval < SYBHOURSECONDS) {
-        
-        long minute = timeInterval/SYBMINTUESECONDS;
-        NSNumber *number = [NSNumber numberWithLong:minute];
-        NSString *creat_dt = [number stringValue];
-        return [creat_dt stringByAppendingString:@"分前"];
-    } else if(timeInterval < SYBDAYSECONDS/24*3) {
-    //only show 3 hours ago
-        long hour = timeInterval/SYBDAYSECONDS*24;
-        NSNumber *number = [NSNumber numberWithLong:hour];
-        NSString *creat_dt = [number stringValue];
-        return [creat_dt stringByAppendingString:@"小时前"];
-    }
-
-    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-    [outputFormatter setDateFormat:@"yy-dd HH:mm"];
-    [outputFormatter setLocale:[NSLocale currentLocale]];
-    NSString *creat_dt = [outputFormatter stringFromDate:createdDate];
-    
-    return creat_dt;
- }
-
 - (void)getWeibo{
 
     [[SYBWeiboAPIClient sharedClient] getAllFriendsWeibo:0 max_id:0 count:0 base_app:0 feature:0 trim_user:0

@@ -11,9 +11,11 @@ import UIKit
 class WeiboCell: UITableViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
-
-    @IBOutlet weak var contentLabel: UILabel!
+    
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    @IBOutlet weak var contentLabel: UILabel!
     
     static func cellFromNib() -> WeiboCell {
         let nib = Bundle.main.loadNibNamed("WeiboCell", owner: nil, options: nil)
@@ -38,6 +40,12 @@ class WeiboCell: UITableViewCell {
         self.userImageView.sd_setImage(with: URL.init(string: weibo.user.avatar_large))
         self.usernameLabel.text = weibo.user.name
         self.contentLabel.text = weibo.text
+        
+        var info:String
+        let time:String = NSDate(createAt: weibo.created_at).sinceDate()
+        info = time + " " + weibo.source
+        self.infoLabel.text = info
+        
     }
     
     override func prepareForReuse() {

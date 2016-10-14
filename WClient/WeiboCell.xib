@@ -18,34 +18,42 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j96-uf-o9X">
                         <constraints>
-                            <constraint firstAttribute="height" constant="100" id="9zt-Km-igk"/>
-                            <constraint firstAttribute="width" constant="100" id="Rp2-3F-q32"/>
+                            <constraint firstAttribute="height" constant="50" id="9zt-Km-igk"/>
+                            <constraint firstAttribute="width" constant="50" id="Rp2-3F-q32"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYa-kX-NCu">
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS0-Yc-ojR">
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS0-Yc-ojR">
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ4-Wt-HGg">
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYa-kX-NCu">
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="vS0-Yc-ojR" secondAttribute="trailing" id="3LE-Ub-hLM"/>
-                    <constraint firstItem="vS0-Yc-ojR" firstAttribute="top" secondItem="j96-uf-o9X" secondAttribute="bottom" constant="20" id="L7J-Xz-kg1"/>
+                    <constraint firstItem="vS0-Yc-ojR" firstAttribute="top" secondItem="j96-uf-o9X" secondAttribute="bottom" constant="37" id="L7J-Xz-kg1"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vS0-Yc-ojR" secondAttribute="bottom" constant="20" id="SAS-ZF-Pcv"/>
-                    <constraint firstItem="j96-uf-o9X" firstAttribute="top" secondItem="TRR-eb-JPQ" secondAttribute="topMargin" constant="17" id="SNY-lI-c9D"/>
-                    <constraint firstItem="oYa-kX-NCu" firstAttribute="leading" secondItem="j96-uf-o9X" secondAttribute="trailing" constant="27" id="UkE-ZI-fbh"/>
-                    <constraint firstItem="j96-uf-o9X" firstAttribute="leading" secondItem="TRR-eb-JPQ" secondAttribute="leadingMargin" constant="18" id="V20-nX-u9S"/>
-                    <constraint firstItem="oYa-kX-NCu" firstAttribute="top" secondItem="TRR-eb-JPQ" secondAttribute="topMargin" constant="17" id="t45-o8-A9w"/>
+                    <constraint firstItem="j96-uf-o9X" firstAttribute="top" secondItem="TRR-eb-JPQ" secondAttribute="topMargin" id="SNY-lI-c9D"/>
+                    <constraint firstItem="oYa-kX-NCu" firstAttribute="leading" secondItem="j96-uf-o9X" secondAttribute="trailing" constant="17" id="UkE-ZI-fbh"/>
+                    <constraint firstItem="j96-uf-o9X" firstAttribute="leading" secondItem="TRR-eb-JPQ" secondAttribute="leadingMargin" id="V20-nX-u9S"/>
+                    <constraint firstItem="tZ4-Wt-HGg" firstAttribute="leading" secondItem="j96-uf-o9X" secondAttribute="trailing" constant="17" id="VNj-Sb-O4g"/>
+                    <constraint firstItem="oYa-kX-NCu" firstAttribute="top" secondItem="TRR-eb-JPQ" secondAttribute="topMargin" constant="4" id="t45-o8-A9w"/>
                     <constraint firstItem="vS0-Yc-ojR" firstAttribute="leading" secondItem="TRR-eb-JPQ" secondAttribute="leadingMargin" constant="18" id="ycj-Pb-265"/>
+                    <constraint firstItem="tZ4-Wt-HGg" firstAttribute="top" secondItem="oYa-kX-NCu" secondAttribute="bottom" constant="6" id="zW8-bn-tPn"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="vS0-Yc-ojR" id="3WD-pg-cfj"/>
+                <outlet property="infoLabel" destination="tZ4-Wt-HGg" id="keo-78-VTU"/>
                 <outlet property="userImageView" destination="j96-uf-o9X" id="YUB-14-6So"/>
                 <outlet property="usernameLabel" destination="oYa-kX-NCu" id="xnk-ld-UD7"/>
             </connections>
