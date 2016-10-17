@@ -76,16 +76,16 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="FQO-6I-mgO">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attibutedCell" rowHeight="60" id="EJu-fI-0Ow" customClass="SYBAttibutedViewCell">
-                                        <rect key="frame" x="0.0" y="66" width="1000" height="60"/>
+                                        <rect key="frame" x="0.0" y="66" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJu-fI-0Ow" id="cQN-a4-Ohr">
-                                            <frame key="frameInset" width="1000" height="59"/>
+                                            <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jd0-Vc-ZKh">
@@ -470,7 +470,7 @@
         <scene sceneID="dcS-5z-57g">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="qS0-wb-TBP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Timeline" image="sina-weibo.png" id="ZAE-bv-zEV"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" image="home" id="ZAE-bv-zEV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZV-sm-Lue">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -489,7 +489,7 @@
         <scene sceneID="X5k-OI-cdk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7IH-bn-Koa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="profile.png" id="RG7-7q-x3R"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="mine" id="RG7-7q-x3R"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pOU-Hr-kux">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -507,8 +507,8 @@
     </scenes>
     <resources>
         <image name="UserIcon.png" width="180" height="180"/>
-        <image name="profile.png" width="30" height="30"/>
-        <image name="sina-weibo.png" width="30" height="30"/>
+        <image name="home" width="50" height="48"/>
+        <image name="mine" width="43" height="50"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
