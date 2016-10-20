@@ -29,8 +29,6 @@ class WeiboCell: UITableViewCell {
         return cell
     }
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.separatorInset = UIEdgeInsets.zero

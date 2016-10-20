@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560B4CAC1DB6879A00445787 /* SwipeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B4CAB1DB6879A00445787 /* SwipeTableView.swift */; };
+		560B4CAE1DB8FE1F00445787 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B4CAD1DB8FE1F00445787 /* APIClient.swift */; };
 		5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */; };
 		56722A8219FF961100EDE375 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 56722A8019FF961100EDE375 /* profile.png */; };
 		56722A8319FF961100EDE375 /* sina-weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 56722A8119FF961100EDE375 /* sina-weibo.png */; };
+		5677DCBE1DB5E90F00A04601 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5677DCBD1DB5E90F00A04601 /* MineViewController.swift */; };
+		5677DCC11DB5EB2300A04601 /* UserModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5677DCC01DB5EB2300A04601 /* UserModule.swift */; };
 		5679DC8719EFB21F004221C9 /* SYBActionTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5679DC8619EFB21F004221C9 /* SYBActionTransition.m */; };
 		56B1830F198F50830062F4CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56B1830B198F50830062F4CA /* InfoPlist.strings */; };
 		56B18310198F50830062F4CA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56B1830D198F50830062F4CA /* MainStoryboard.storyboard */; };
@@ -22,6 +26,9 @@
 		56B1831F198F6A4C0062F4CA /* SYBWeiboActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B1831E198F6A4C0062F4CA /* SYBWeiboActionViewController.m */; };
 		56B183B219920A9E0062F4CA /* SYBWeiboRetweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183B119920A9E0062F4CA /* SYBWeiboRetweet.m */; };
 		56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B183B4199228190062F4CA /* SYBWeiboAttitude.m */; };
+		56C3F9EE1DB6250B005ABF4E /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3F9ED1DB6250B005ABF4E /* UIButton+Extension.swift */; };
+		56C3F9F41DB63809005ABF4E /* ScrollTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3F9F31DB63809005ABF4E /* ScrollTableView.swift */; };
+		56C3F9F61DB63810005ABF4E /* ScrollTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C3F9F51DB63810005ABF4E /* ScrollTableView.xib */; };
 		56D940471DAF7C160052CC60 /* SYBAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940461DAF7C150052CC60 /* SYBAccount.swift */; };
 		56D940B31DAFCCDD0052CC60 /* NSString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940B21DAFCCDD0052CC60 /* NSString+Extension.swift */; };
 		56D940B51DAFCF8F0052CC60 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D940B41DAFCF8F0052CC60 /* UIColor+Extension.swift */; };
@@ -105,10 +112,14 @@
 /* Begin PBXFileReference section */
 		21AEE441C449EBAA39502A62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5433629D8FC348C69BD82076 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		560B4CAB1DB6879A00445787 /* SwipeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableView.swift; sourceTree = "<group>"; };
+		560B4CAD1DB8FE1F00445787 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboViewController.h; sourceTree = "<group>"; };
 		5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboViewController.m; sourceTree = "<group>"; };
 		56722A8019FF961100EDE375 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		56722A8119FF961100EDE375 /* sina-weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina-weibo.png"; sourceTree = "<group>"; };
+		5677DCBD1DB5E90F00A04601 /* MineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
+		5677DCC01DB5EB2300A04601 /* UserModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModule.swift; sourceTree = "<group>"; };
 		5679DC8519EFB21F004221C9 /* SYBActionTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBActionTransition.h; sourceTree = "<group>"; };
 		5679DC8619EFB21F004221C9 /* SYBActionTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBActionTransition.m; sourceTree = "<group>"; };
 		56B1830A198F4D680062F4CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -126,6 +137,9 @@
 		56B183B119920A9E0062F4CA /* SYBWeiboRetweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboRetweet.m; sourceTree = "<group>"; };
 		56B183B3199228190062F4CA /* SYBWeiboAttitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBWeiboAttitude.h; sourceTree = "<group>"; };
 		56B183B4199228190062F4CA /* SYBWeiboAttitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBWeiboAttitude.m; sourceTree = "<group>"; };
+		56C3F9ED1DB6250B005ABF4E /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		56C3F9F31DB63809005ABF4E /* ScrollTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollTableView.swift; sourceTree = "<group>"; };
+		56C3F9F51DB63810005ABF4E /* ScrollTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollTableView.xib; sourceTree = "<group>"; };
 		56D940461DAF7C150052CC60 /* SYBAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBAccount.swift; sourceTree = "<group>"; };
 		56D940B21DAFCCDD0052CC60 /* NSString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Extension.swift"; sourceTree = "<group>"; };
 		56D940B41DAFCF8F0052CC60 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -285,6 +299,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5677DCBF1DB5EAF800A04601 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5677DCC01DB5EB2300A04601 /* UserModule.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		56EF491A199C9DD600B1A569 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,7 +359,6 @@
 			isa = PBXGroup;
 			children = (
 				56FC70AE1DAE5CC700DC1934 /* SYBRouter.swift */,
-				56FC70AD1DAE5CC600DC1934 /* WClient-Bridging-Header.h */,
 			);
 			name = Router;
 			sourceTree = "<group>";
@@ -358,6 +379,9 @@
 				CF44FA7419913DBB00BB4FF1 /* SYBAttibutedViewCell.m */,
 				56D940BC1DB11A150052CC60 /* WeiboCell.swift */,
 				56D940BA1DB119CD0052CC60 /* WeiboCell.xib */,
+				56C3F9F31DB63809005ABF4E /* ScrollTableView.swift */,
+				56C3F9F51DB63810005ABF4E /* ScrollTableView.xib */,
+				560B4CAB1DB6879A00445787 /* SwipeTableView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -407,6 +431,7 @@
 		CF1E00E617C7B7AA00E3FF7F /* WClient */ = {
 			isa = PBXGroup;
 			children = (
+				5677DCBF1DB5EAF800A04601 /* Service */,
 				56FC70AC1DAE5C9200DC1934 /* Router */,
 				CF7CA5401AB9D25100E76086 /* persistence */,
 				56EF491E199CD03400B1A569 /* segue */,
@@ -423,6 +448,7 @@
 				CF1E00EF17C7B7AA00E3FF7F /* SYBAppDelegate.h */,
 				CF1E00F017C7B7AA00E3FF7F /* SYBAppDelegate.m */,
 				CFA000EE17DF7A8700D08CCA /* WeiboConstantDefine.h */,
+				56FC70AD1DAE5CC600DC1934 /* WClient-Bridging-Header.h */,
 				56B1830D198F50830062F4CA /* MainStoryboard.storyboard */,
 				CF7CA5481ABB337A00E76086 /* Launch Screen.xib */,
 				CFB4ED36181AAFA6004E5846 /* WClient.entitlements */,
@@ -488,6 +514,7 @@
 				CFB4ED3D181D4CC4004E5846 /* SYBListViewController.m */,
 				CF6FBD8F1837DBC9001A35EF /* SYBMenuViewController.h */,
 				CF6FBD901837DBC9001A35EF /* SYBMenuViewController.m */,
+				5677DCBD1DB5E90F00A04601 /* MineViewController.swift */,
 				5620AC041980DE6300A0B90E /* SYBWeiboViewController.h */,
 				5620AC051980DE6300A0B90E /* SYBWeiboViewController.m */,
 				56B1831D198F6A4C0062F4CA /* SYBWeiboActionViewController.h */,
@@ -539,6 +566,7 @@
 				56D940B21DAFCCDD0052CC60 /* NSString+Extension.swift */,
 				56D940B41DAFCF8F0052CC60 /* UIColor+Extension.swift */,
 				56D940B61DB111970052CC60 /* UIView+Extension.swift */,
+				56C3F9ED1DB6250B005ABF4E /* UIButton+Extension.swift */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -548,6 +576,7 @@
 			children = (
 				CFB4ED2B1819261F004E5846 /* SYBWeiboAPIClient.h */,
 				CFB4ED2C1819261F004E5846 /* SYBWeiboAPIClient.m */,
+				560B4CAD1DB8FE1F00445787 /* APIClient.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -694,6 +723,7 @@
 				CF1E00EB17C7B7AA00E3FF7F /* InfoPlist.strings in Resources */,
 				56B1830F198F50830062F4CA /* InfoPlist.strings in Resources */,
 				CFC7164D1858AFBE0057EEE4 /* timeline_rt_border_t.png in Resources */,
+				56C3F9F61DB63810005ABF4E /* ScrollTableView.xib in Resources */,
 				56B18318198F558F0062F4CA /* forward.png in Resources */,
 				CF7CA5491ABB337A00E76086 /* Launch Screen.xib in Resources */,
 				CFC7163B1854954C0057EEE4 /* Images.xcassets in Resources */,
@@ -784,6 +814,7 @@
 				56D940BD1DB11A150052CC60 /* WeiboCell.swift in Sources */,
 				56D940B31DAFCCDD0052CC60 /* NSString+Extension.swift in Sources */,
 				56D940B51DAFCF8F0052CC60 /* UIColor+Extension.swift in Sources */,
+				56C3F9EE1DB6250B005ABF4E /* UIButton+Extension.swift in Sources */,
 				CF7CA5431AB9D2C200E76086 /* SYBPlistManagment.m in Sources */,
 				56B1831F198F6A4C0062F4CA /* SYBWeiboActionViewController.m in Sources */,
 				56D940471DAF7C160052CC60 /* SYBAccount.swift in Sources */,
@@ -799,15 +830,20 @@
 				5620AC061980DE6300A0B90E /* SYBWeiboViewController.m in Sources */,
 				CF2DE52A184A61DB00FC3403 /* SYBCellRetweetView.m in Sources */,
 				56B183B219920A9E0062F4CA /* SYBWeiboRetweet.m in Sources */,
+				5677DCC11DB5EB2300A04601 /* UserModule.swift in Sources */,
 				56FC70B11DAE5E7100DC1934 /* SYBWeiboLoginViewController.swift in Sources */,
+				560B4CAE1DB8FE1F00445787 /* APIClient.swift in Sources */,
 				CFCAA3801A970AA200136635 /* NSDate+date.m in Sources */,
 				CFB4ED3218193180004E5846 /* SYBWeiboUser.m in Sources */,
+				5677DCBE1DB5E90F00A04601 /* MineViewController.swift in Sources */,
 				CFB4ED3B181AF183004E5846 /* SYBLoginViewController.m in Sources */,
 				CF2DE5221849E62300FC3403 /* UIColor+hex.m in Sources */,
 				56EF4921199CD08000B1A569 /* SYBPopoverSegue.m in Sources */,
+				560B4CAC1DB6879A00445787 /* SwipeTableView.swift in Sources */,
 				5679DC8719EFB21F004221C9 /* SYBActionTransition.m in Sources */,
 				CF6FBD911837DBC9001A35EF /* SYBMenuViewController.m in Sources */,
 				56B183B5199228190062F4CA /* SYBWeiboAttitude.m in Sources */,
+				56C3F9F41DB63809005ABF4E /* ScrollTableView.swift in Sources */,
 				CFB4ED2D1819261F004E5846 /* SYBWeiboAPIClient.m in Sources */,
 				56D940B71DB111970052CC60 /* UIView+Extension.swift in Sources */,
 				CF6048F31AD990E5008E6286 /* UIImage+image.m in Sources */,

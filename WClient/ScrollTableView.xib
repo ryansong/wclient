@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScrollTableView" customModule="WClient" customModuleProvider="target">
+            <connections>
+                <outlet property="firstTableView" destination="QYT-O3-nYt" id="0GH-Xr-zio"/>
+                <outlet property="lastTableView" destination="HEU-VF-Dqe" id="8iQ-IA-o6Q"/>
+                <outlet property="middleTableView" destination="Eh9-0A-JlS" id="3wl-4R-ZEv"/>
+                <outlet property="scrollView" destination="UwX-yx-80N" id="HBc-LQ-nLz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="UwX-yx-80N">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QYT-O3-nYt" customClass="SwipeTableView" customModule="WClient" customModuleProvider="target">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eh9-0A-JlS" customClass="SwipeTableView" customModule="WClient" customModuleProvider="target">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-VF-Dqe" customClass="SwipeTableView" customModule="WClient" customModuleProvider="target">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="HEU-VF-Dqe" firstAttribute="leading" secondItem="Eh9-0A-JlS" secondAttribute="trailing" id="4ak-L9-eJD"/>
+                <constraint firstItem="HEU-VF-Dqe" firstAttribute="height" secondItem="UwX-yx-80N" secondAttribute="height" id="6Ls-hv-Q4m"/>
+                <constraint firstItem="QYT-O3-nYt" firstAttribute="top" secondItem="UwX-yx-80N" secondAttribute="top" id="AKl-MS-gVW"/>
+                <constraint firstItem="HEU-VF-Dqe" firstAttribute="width" secondItem="UwX-yx-80N" secondAttribute="width" id="Pks-bQ-WZE"/>
+                <constraint firstAttribute="bottom" secondItem="QYT-O3-nYt" secondAttribute="bottom" id="Tgf-oQ-uxb"/>
+                <constraint firstItem="Eh9-0A-JlS" firstAttribute="top" secondItem="UwX-yx-80N" secondAttribute="top" id="WcC-bL-fZG"/>
+                <constraint firstItem="Eh9-0A-JlS" firstAttribute="width" secondItem="UwX-yx-80N" secondAttribute="width" id="WjM-kD-ApM"/>
+                <constraint firstItem="QYT-O3-nYt" firstAttribute="width" secondItem="UwX-yx-80N" secondAttribute="width" id="bC0-is-WhV"/>
+                <constraint firstItem="Eh9-0A-JlS" firstAttribute="height" secondItem="UwX-yx-80N" secondAttribute="height" id="jnO-iT-Ga2"/>
+                <constraint firstAttribute="trailing" secondItem="HEU-VF-Dqe" secondAttribute="trailing" id="nvm-OH-Iq8"/>
+                <constraint firstItem="HEU-VF-Dqe" firstAttribute="top" secondItem="UwX-yx-80N" secondAttribute="top" id="ocZ-jL-XeH"/>
+                <constraint firstItem="Eh9-0A-JlS" firstAttribute="leading" secondItem="QYT-O3-nYt" secondAttribute="trailing" constant="8" symbolic="YES" id="pIi-VB-CYT"/>
+                <constraint firstItem="QYT-O3-nYt" firstAttribute="leading" secondItem="UwX-yx-80N" secondAttribute="leading" id="tEd-ln-hnT"/>
+                <constraint firstAttribute="bottom" secondItem="Eh9-0A-JlS" secondAttribute="bottom" id="u38-Mt-67O"/>
+                <constraint firstItem="QYT-O3-nYt" firstAttribute="height" secondItem="UwX-yx-80N" secondAttribute="height" id="vDn-KV-PYV"/>
+            </constraints>
+        </scrollView>
+    </objects>
+</document>

@@ -6,18 +6,6 @@
 //  Copyright (c) 2013年 Song Xiaoming. All rights reserved.
 //
 
-static NSString *const KAPIRedirectUri = @"https://api.weibo.com/oauth2/default.html";
-static NSString *const KAPIBaseUrl = @"https://api.weibo.com";
-static NSString *const KAPIRequestAuthorize = @"/oauth2/authorize";
-static NSString *const KAPIRequestAccess_token = @"/oauth2/access_token";
-static NSString *const KAPIRequestShowComments = @"/2/comments/show.json";
-static NSString *const KAPIRequestShowRetweets = @"/2/statuses/repost_timeline.json";
-static NSString *const KAPIRequestShowAttitudes = @"2/attitudes/show.json";
-static NSString *const KAPIRequestFriendsWeibo = @"/statuses/friends_timeline.json";
-
-static NSString *const KAPIRequestCommentWeibo = @"/2/comments/create.json";
-static NSString *const KAPIRequestRepostWeibo = @"/2/statuses/repost.json";
-
 
 #import "SYBWeiboAPIClient.h"
 #import <AFNetworking.h>
